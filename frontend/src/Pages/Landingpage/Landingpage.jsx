@@ -12,10 +12,10 @@ const Landingpage = () => {
   return (
     <div>
     <Header></Header>
-    <div class="container">
+    <div class="landingpage-container">
         <div class="nav">
             <div>
-                <Link to={'/register-page'} class="landing-button" >
+                <Link to={'/register-page-personal'} class="landing-button" >
                     <img class="icon" src={registericon} alt=""/>
                     <p>Register</p>
                 </Link>

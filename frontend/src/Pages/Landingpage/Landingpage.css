@@ -22,7 +22,8 @@
     width: 20px;
     margin-right: 7px;
 }
-.container{
+.landingpage-container{
+    display: flex;
     justify-content: flex-end;
    
 }

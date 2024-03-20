@@ -1,5 +1,5 @@
 
-.header-fixed{
+.registration-header{
     position: sticky;
     top:0;
     left:0;
@@ -7,7 +7,6 @@
     /* background-color: cadetblue; */
     /* background-color: rgb(129, 164, 241); */
 }
-
 .title{
     text-align:center;
     font-family: 'Outfit';
@@ -23,11 +22,9 @@
     align-items: center;
     display: flex;
     margin-bottom:20px ;
-
 }
 
 .forms{
-
     border: none;
     height: 45px;
     width:35%;
@@ -39,16 +36,21 @@
     background: linear-gradient(to  right,rgb(0, 131, 213),rgb(1, 61, 96));
     
 }
-.container{
+/* .container{
     display: flex;
     padding-top:10px;
     padding-bottom: 10px;
-    /* background-color: cadetblue; */
     margin-left: 5px;
     margin-right: 5px;
  
+} */
+.registration1-levels{
+    display: flex;
+    margin: 15px;
 }
-
+.upload-files{
+    margin: 10px;
+}
 
 .field{
     flex:1;
@@ -135,9 +137,9 @@ label{
     margin-left:6%;
     margin-right:6%;
 }
-hr{
+#registration-seperator{
     height: 3px;
-    /* margin: 3%; */
+    margin: 3%;
     background-color: #002133;
   
 }
@@ -157,7 +159,8 @@ textarea::placeholder{
     
    
 }
-/* .b2{
-    flex:1;
-    padding: 10px;
-} */
+.bankdetails-container{
+    /* background-color: #000; */
+    display: flex;
+   
+}
