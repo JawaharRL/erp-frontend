@@ -63,7 +63,13 @@ function Registrationpage1() {
                </div>
                <div class="field">
                  <label htmlFor="Community">Community</label>
-                 <input type="text" name="Community"/>
+                 <select name="Community">
+                  <option value="OC">OC</option>
+                  <option value="BC">BC</option>
+                  <option value="MBC">MBC</option>
+                  <option value="SC">SC</option>
+                  <option value="DNC">DNC</option>
+                  </select>
                </div>
                <div class="field">
                 <label htmlFor="Caste">Caste</label>
@@ -78,7 +84,7 @@ function Registrationpage1() {
                  <input type="text" name="FatherName" />
                </div>
                <div class="field">
-                 <label htmlFor="Occupation">Occupation</label>
+                 <label htmlFor="Occupation">Father's Occupation</label>
                  <input type="text" name="Occupation"  />
                </div>
                <div class="field">
@@ -86,7 +92,7 @@ function Registrationpage1() {
                 <input type="text" name="MotherName"  />
               </div>
                <div class="form-group field">
-                <label htmlFor="Occupation">Occupation</label>
+                <label htmlFor="Occupation">Mother's Occupation</label>
                 <input type="text" name="Occupation"  />
               </div>
             </div>
@@ -97,12 +103,16 @@ function Registrationpage1() {
                  <input type="text" name="GuardianName"/>
                </div>
                <div class="field">
-                 <label htmlFor="Occupation">Occupation</label>
+                 <label htmlFor="Occupation">Guardian Occupation</label>
                  <input type="text" name="Occupation" />
                </div>
                <div class="field">
                 <label htmlFor="ParentsStatus">Parents Status</label>
-                <input type="text" name="ParentsStatus"  />
+                <select name="ParentsStatus">
+                  <option value="Both are alive">Both are alive</option>
+                  <option value="Father alive">Father alive</option>
+                  <option value="Mother alive">Mother alive</option>
+                  </select>
               </div>
                <div class="field">
                 <label htmlFor="Income">Income</label>
