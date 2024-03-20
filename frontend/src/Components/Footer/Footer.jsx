@@ -10,7 +10,7 @@ const Footer = () => {
         </div>
         <div class="content">
             <p>contact</p>
-            <p>erp@gmai.com<br/>+91 8989787844<br/>044 6874988</p>
+            <p>erp@gmail.com<br/>+91 8989787844<br/>044 6874988</p>
         </div>
     </footer>
 

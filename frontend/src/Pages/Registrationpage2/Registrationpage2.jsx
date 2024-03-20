@@ -1,12 +1,16 @@
 import React from 'react'
 import './Registrationpage2.css'
+import { Link } from 'react-router-dom'
+import Formtitle from '../../Components/Formtitle/Formtitle'
 
 function Registrationpage2() {
   return (
     <div>
 
-           
-            <div class="header-fixed ">
+            <div className='form-content'>
+           <Formtitle></Formtitle>
+           </div>
+            {/* <div class="header-fixed ">
                 <div class="title">
                  <h1 >ERP Registration form</h1>
                 </div>
@@ -14,7 +18,7 @@ function Registrationpage2() {
                   <button class="field"><a href="erp.html" class="link1">Personal Details</a> </button>
                   <button class="field"><a href="#" class="link1">Academic Details</a></button>
                 </div>
-            </div>
+            </div> */}
             <br/>
             <div class="container">
                 <div class="field">
@@ -92,7 +96,7 @@ function Registrationpage2() {
              </div>
              <br/>
              <div class="container container1">
-                <button>Previous</button>
+                <Link to={'./registration-page-personal'}>Previous</Link>
                 <button>Save</button>
                </div>
     </div>

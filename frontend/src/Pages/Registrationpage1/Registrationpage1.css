@@ -1,13 +1,21 @@
 
-.registration-header{
+*{
+    margin: 0;
+    padding: 0;
+}
+/* .registration-header{
     position: sticky;
     top:0;
     left:0;
     background-color:white;
-    /* background-color: cadetblue; */
-    /* background-color: rgb(129, 164, 241); */
+} */
+.form-content{
+    position: sticky;
+    top:0;
+    left:0;
+
 }
-.title{
+/* .title{
     text-align:center;
     font-family: 'Outfit';
     font-size: 14px;
@@ -16,7 +24,7 @@
 }
 .title.h1{
     color: #002133;
-}
+} */
 .links{
     /* background-color: #000; */
     align-items: center;
@@ -66,15 +74,29 @@ input[type="text"]{
     background-color:#e8F8FF;
     height: 40px;
     width:100%;
-    padding: px;
-  
+    /* padding: px; */
     border-radius: 8px;
     border:none;
     /* box-shadow: 2px 2px 10px #002133; */
     box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
     /* box-shadow: 8px 7px 23px -12px rgba(0,33,51,1); */
 }
-
+input[type="date"]{
+    background: url('../../Assets/calendar.svg') no-repeat center;
+    background-size: 25px 25px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: none;
+    background-color: #e8F8FF;
+    margin-top: -50px;
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 0px 30px 0px 20px;
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
+    
+}
 .radio{
     display:flex;
 } 
@@ -163,4 +185,20 @@ textarea::placeholder{
     /* background-color: #000; */
     display: flex;
    
+}
+.next-button{
+    /* background: #000; */
+    margin-top: 25px;
+    justify-content: flex-end;
+}
+.register-page-button{
+    width: 10%;
+
+    display: flex;
+    color: #ebf8ff;
+    margin: 10px 5px 0px 5px ;
+    border: none;
+    padding:7px 20px 7px 15px;
+    border-radius: 8px;
+    background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
 }

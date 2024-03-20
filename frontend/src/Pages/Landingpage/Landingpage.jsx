@@ -1,11 +1,10 @@
 import React from 'react';
 import './Landingpage.css';
-// import '../Registrationpage1/Registrationpage1.jsx'
 import registericon from '../../Assets/register1.svg'
 import loginicon from '../../Assets/login1.svg'
 import Footer from '../../Components/Footer/Footer';
 import { Link } from 'react-router-dom';
-import { Header } from '../../Components'
+import Header from '../../Components/Header/Header'
 
 
 const Landingpage = () => {

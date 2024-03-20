@@ -1,13 +1,15 @@
 import React from 'react';
 import './Registrationpage1.css';
 import Profile from '../../Assets/profile.svg'
+import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom';
+import Formtitle from '../../Components/Formtitle/Formtitle';
 
 function Registrationpage1() {
   return (
     <div>
-        <div class="regbackground">
-            <div class="registration-header ">
+        <div class="registration-background">
+            {/* <div class="registration-header ">
              <div class="title">
               <h1 >ERP Registration form</h1>
             </div>
@@ -15,8 +17,11 @@ function Registrationpage1() {
                 <button class="forms">Personal Details</button>
                 <button class="forms">Academic Details</button>
             </div>
-            </div>
-          
+            </div> */}
+           <div className='form-content'>
+           <Formtitle></Formtitle>
+           </div>
+         
             <div class="registration1-levels">
                <div class="field">
                 <label htmlFor="Name">First Name</label>
@@ -263,10 +268,16 @@ function Registrationpage1() {
            <input type="text" name="Special Category" />
          </div>
        </div>
-       <div class="container container1">
-        <Link to={'/register-page-academic'}>Next</Link>
+       <div className='registration1-levels next-button'>
+       <Link to={'/register-page-academic'} class="register-page-button" >
+                    <img class="icon" src={Nextwhite} alt=""/>
+                    <p>Next</p>
+                </Link>
        </div>
+       
+
     </div>
+    
     </div>
   )
 }
