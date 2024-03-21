@@ -89,7 +89,6 @@ input[type="date"]{
     cursor: pointer;
     border: none;
     background-color: #e8F8FF;
-    margin-top: -50px;
     width: 300px;
     height: 40px;
     border-radius: 8px;
@@ -98,7 +97,7 @@ input[type="date"]{
     
 }
 .radio{
-    display:flex;
+    /* display:flex; */
 } 
 
 .radio-spacing{
@@ -201,4 +200,12 @@ textarea::placeholder{
     padding:7px 20px 7px 15px;
     border-radius: 8px;
     background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
+}
+.community-dropdown{
+    border: none;
+    background-color: #e8f8ff;
+    height: 40px;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
 }

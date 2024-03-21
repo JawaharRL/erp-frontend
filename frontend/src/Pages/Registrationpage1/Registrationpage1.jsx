@@ -34,14 +34,14 @@ function Registrationpage1() {
                
               </div>
               <div class="field">
-                <label htmlFor="DateOfBirth" >Date of Birth</label><br/>
-                <input type="date" name="DateOfBirth"/>
-              </div>
+                 <label htmlFor="Date of Admission">Date of Admission</label>
+                 <input type="date" name="Date of Admission"  />
+               </div>
             </div>
            
             <div class="registration1-levels">
                <div class="field">
-                <label htmlFor="Gender">Gender</label><br/>
+                <label htmlFor="Gender">Gender</label>
                <div class="radio" >
                 <div class="radio-spacing"><input type="radio" name="Gender" value="Male"/> Male</div>
                 <div class="radio-spacing"><input type="radio" name="Gender" value="Female"/> Female</div>
@@ -68,7 +68,8 @@ function Registrationpage1() {
                </div>
                <div class="field">
                  <label htmlFor="Community">Community</label>
-                 <select name="Community">
+                 <select className='community-dropdown' name="Community">
+                  <option value="Select">Select</option>
                   <option value="OC">OC</option>
                   <option value="BC">BC</option>
                   <option value="MBC">MBC</option>
@@ -113,7 +114,8 @@ function Registrationpage1() {
                </div>
                <div class="field">
                 <label htmlFor="ParentsStatus">Parents Status</label>
-                <select name="ParentsStatus">
+                <select  className='community-dropdown' name="ParentsStatus">
+                  <option value="Both are alive">Select</option>
                   <option value="Both are alive">Both are alive</option>
                   <option value="Father alive">Father alive</option>
                   <option value="Mother alive">Mother alive</option>

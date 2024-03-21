@@ -20,77 +20,82 @@ function Registrationpage2() {
                 </div>
             </div> */}
             <br/>
-            <div class="container">
+            <div class="registrationtwo-levels">
                 <div class="field">
-                 <label htmlFor="RegisterNo"><strong>RegisterNo</strong></label>
+                 <label htmlFor="RegisterNo">RegisterNo</label>
                  <input type="text" name="RegisterNo" />
                </div>
                <div class="field">
-                 <label htmlFor="Programme"><strong>Programme</strong></label>
+                 <label htmlFor="Programme">Programme</label>
                  <input type="text" name="Programme"  />
                </div>
                <div class="field">
-                 <label htmlFor="Discipline"><strong>Discipline</strong></label>
+                 <label htmlFor="Discipline">Discipline</label>
                  <input type="text" name="Discipline" />
                </div> 
                <div class="field">
-                <label htmlFor="Regulation"><strong>Regulation</strong></label>
+                <label htmlFor="Regulation">Regulation</label>
                 <input type="text" name="Regulation"/>
               </div>
              </div>
              <br/>
-             <div class="container">
+             <div class="registrationtwo-levels">
                 <div class="field">
-                 <label htmlFor="AdmissionNo"><strong>AdmissionNo</strong></label>
+                 <label htmlFor="AdmissionNo">AdmissionNo</label>
                  <input type="text" name="AdmissionNo" />
                </div>
                <div class="field">
-                 <label htmlFor="Academic Year"><strong>Academic Year</strong></label>
+                 <label htmlFor="Academic Year">Academic Year</label>
                  <input type="text" name="Academic Year"/>
                </div>
                <div class="field">
-                 <label htmlFor="Semester"><strong>Semester</strong></label>
+                 <label htmlFor="Semester">Semester</label>
                  <input type="text" name="Semester"/>
                </div> 
                <div class="field">
-                <label htmlFor="ABC Id"><strong>ABC Id</strong></label>
+                <label htmlFor="ABC Id">ABC Id</label>
                 <input type="text" name="ABC Id" />
               </div>
              </div>
              <br/>
-             <div class="container">
+             <div class="registrationtwo-levels">
                 <div class="field">
-                 <label htmlFor="UMIS Id"><strong>UMIS Id</strong></label>
+                 <label htmlFor="UMIS Id">UMIS Id</label>
                  <input type="text" name="UMIS Id"   />
                </div>
                <div class="field">
-                 <label htmlFor="Date of Admission"><strong>Date of Admission</strong></label>
+                 <label htmlFor="Date of Admission">Date of Admission</label>
                  <input type="date" name="Date of Admission"  />
                </div>
                <div class="field">
-                 <label htmlFor="Course joined"><strong>Course joined</strong></label>
+                 <label htmlFor="Course joined">Course joined</label>
                  <input type="date" name="Course joined"  />
                </div> 
-               <div class="field">
-                <label htmlFor="Course Type"><strong>Course Type</strong></label>
-                <input type="radio" name="Fastrack" value="Regular"/>Regular
-                <input type="radio" name="Fastrack" value="Lateral"/>Lateral
-              </div>
+              
               
              </div>
              <br/>
-             <div class="container">
-                <div class="field">
-                    <label htmlFor="Fastrack"><strong>Fastrack</strong></label>
-                    <input type="radio" name="Fastrack" value ="Yes"/>Yes
-                    <input type="radio" name="Fastrack" value="No"/>No
-                  </div> 
+             <div class="registrationtwo-levels">
+             <div class="field">
+               <label htmlFor="Coursetype">Course Type</label>
+               <div class="radio">
+               <div class="radio-spacing"><input type="radio" name="Hosteller"value="Regular"/> Regular</div>
+               <div class="radio-spacing"> <input type="radio" name="Hosteller" value="Lateral"/> Lateral</div>
+              </div>
+             </div>
+              <div class="field">
+               <label htmlFor="Fasttrack">Fasttrack</label>
+               <div class="radio">
+               <div class="radio-spacing"><input type="radio" name="Hosteller"value="Yes"/> Yes</div>
+               <div class="radio-spacing"> <input type="radio" name="Hosteller" value="No"/> No</div>
+              </div>
+             </div>
                <div class="field" >
-                 <label htmlFor="CGPA"><strong>CGPA</strong></label>
+                 <label htmlFor="CGPA">CGPA</label>
                  <input type="text" name="CGPA" />
                </div> 
                <div class="field">
-                <label htmlFor="Student status"><strong>Student status</strong></label>
+                <label htmlFor="Student status">Student status</label>
                 <input type="text" name="Student status" />
               </div>
              </div>
