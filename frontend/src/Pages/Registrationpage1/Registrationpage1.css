@@ -70,19 +70,21 @@
     font-size: 18px;
 }
 
+
 input[type="text"]{
     background-color:#e8F8FF;
     height: 40px;
     width:100%;
-    /* padding: px; */
+    padding: 20px;
     border-radius: 8px;
     border:none;
     /* box-shadow: 2px 2px 10px #002133; */
     box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
     /* box-shadow: 8px 7px 23px -12px rgba(0,33,51,1); */
 }
-input[type="date"]{
-    background: url('../../Assets/calendar.svg') no-repeat center;
+input[type="date"]
+{
+    background: url('../../Assets/calendar.svg') no-repeat ;
     background-size: 25px 25px;
     width: 24px;
     height: 24px;
@@ -96,8 +98,9 @@ input[type="date"]{
     box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
     
 }
+
 .radio{
-    /* display:flex; */
+    display:flex;
 } 
 
 .radio-spacing{
@@ -105,7 +108,7 @@ input[type="date"]{
 }
 
 input[type="radio"]{
-   appearance: none;
+   /* appearance: none; */
    width:20px;
    height: 20px;
    border:3px solid #002133;
@@ -191,9 +194,8 @@ textarea::placeholder{
     justify-content: flex-end;
 }
 .register-page-button{
-    width: 10%;
-
     display: flex;
+    text-decoration: none;
     color: #ebf8ff;
     margin: 10px 5px 0px 5px ;
     border: none;
@@ -208,4 +210,5 @@ textarea::placeholder{
     border-radius: 8px;
     width: 100%;
     padding: 10px;
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
 }

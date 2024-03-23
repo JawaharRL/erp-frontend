@@ -1,8 +1,5 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
 }
 
 .logincontainer{
@@ -11,6 +8,12 @@
     background-color: #fff;
     display: flex;
     /* margin-left: -85px; */
+}
+.login-mailid{
+    margin-top: 30px;
+}
+.login-password{
+    margin-top: 20px;
 }
 .Image{
     width: 40%;
@@ -30,11 +33,20 @@
 }
 .form{
     color: #e8faff;
+    /* background-color: #555555; */
     margin: 10%;
 }
 .forgotpassword{
+    margin-top: 30px;
     color: #e8faff;
+    text-align: right;
+}
+.login-button-space{
+    text-align:center;
+    margin-top: 15px;
 }
 .or{
+    margin-top: 20px;
     color: #e8faff;
+    text-align: center;
 }

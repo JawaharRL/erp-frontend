@@ -1,11 +1,14 @@
 import React from 'react'
 import './Registrationpage2.css'
+import Previouswhite from '../../Assets/Previouswhite.svg'
+import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 
 function Registrationpage2() {
   return (
     <div>
+        <div class="registration-background">
 
             <div className='form-content'>
            <Formtitle></Formtitle>
@@ -100,10 +103,18 @@ function Registrationpage2() {
               </div>
              </div>
              <br/>
-             <div class="container container1">
-                <Link to={'./registration-page-personal'}>Previous</Link>
-                <button>Save</button>
-               </div>
+             <div className='registration1-levels next-button'>
+                <Link to={'/register-page-personal'} class="register-page-button" >
+                    <img class="icon" src={Previouswhite} alt=""/>
+                    <p>Previous</p>
+                </Link>
+                <Link to={'#'} class="register-page-button" >
+                    <img class="icon" src={Nextwhite} alt=""/>
+                    <p>Submit</p>
+                </Link>
+             </div>
+    </div>
+
     </div>
   )
 }

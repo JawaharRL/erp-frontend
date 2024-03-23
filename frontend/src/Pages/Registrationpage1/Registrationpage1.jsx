@@ -121,9 +121,9 @@ function Registrationpage1() {
                   <option value="Mother alive">Mother alive</option>
                   </select>
               </div>
-               <div class="field">
+              <div class="form-group field">
                 <label htmlFor="Income">Income</label>
-                <input type="text" name="Income"  class="field" />
+                <input type="text" name="Income" />
               </div>
             </div>
             
@@ -135,9 +135,10 @@ function Registrationpage1() {
             </div>
             
             <div class="profilephoto">
-                <img class="photo" src={Profile} alt="Photo"/>
+                <img class="photo" src={Profile} alt="Photopreview"/>
                 <div className='getphoto'>
                     <input type="file" name="file"/>
+                    <br />
                     <br />
                     <p style={{ color: 'red' }}>File should be less than 1 Mb</p>
                     <p style={{ color: 'red' }}>File may be pdf, jpeg, or jpg</p>

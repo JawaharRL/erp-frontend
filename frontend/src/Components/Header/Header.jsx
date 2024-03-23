@@ -6,7 +6,7 @@ function Header() {
     <div>
         <header>
         <div><img class="clglogo" src={clglogo} alt="collegelogo"/></div>
-        <div class="clgname">
+        <div class="clg-name">
         <h2 >Alagappa Chettiar Government College of Engineering and Technology-Karaikudi</h2>
         <p class="clgdes">(An Autonomous Institution Permanently Affiliated to Anna University)</p>
         </div>

@@ -14,13 +14,15 @@ function Loginpage() {
       
         <div className="Loginform">
             <div className="form">
-            <h2>Login</h2>
-            <label htmlFor="Email ID">Email ID</label>
+            <h2 >Login</h2>
+            <label className='login-mailid' htmlFor="Email ID">Email ID</label>
             <input type="text" />
-            <label htmlFor="Password">Password</label>
-            <input type="password" /><img src={eye} alt="" />
+            <label className='login-password' htmlFor="Password">Password</label>
+            <input  type="password" /><img src={eye} alt="" />
             <a href="#"> <p className='forgotpassword'>Forgot password?</p></a>
+            <div className='login-button-space' >
             <Loginbutton></Loginbutton>
+            </div>
             <p className='or'>or</p>
             <p className='or'>Create new account</p>
             </div>

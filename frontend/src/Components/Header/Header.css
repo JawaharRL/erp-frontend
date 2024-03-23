@@ -1,7 +1,15 @@
 header{
     display: flex;
     margin: 10px;
+    align-items: center;
+    justify-content: space-around;
 }
-#heder-line{
-    margin: none;
+#header-line{
+    background-color: #002133;
+    width: 96%;
+    height: 2px;
+    margin: auto;
+}
+.clg-name{
+    font-family: outfit,popins;
 }

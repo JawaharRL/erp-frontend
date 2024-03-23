@@ -5,7 +5,10 @@
 .radio{
     display:flex;
 } 
-
+.regbackground{
+    margin-left:6%;
+    margin-right:6%;
+}
 .radio-spacing{
     width:45%; 
     margin: 10px;
@@ -16,6 +19,5 @@ input[type="radio"]{
     height: 20px;
     border:3px solid #002133;
     border-radius: 50%;
-    /* outline:none; */
     transform: translateY(3px);
  }

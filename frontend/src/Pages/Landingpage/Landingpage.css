@@ -1,3 +1,4 @@
+
 .registration-background{
     margin-left:7% ;
     margin-right:7% ;
@@ -21,6 +22,7 @@
 .landingpage-container{
     display: flex;
     justify-content: flex-end;
+    margin-right: 10px;
    
 }
 
@@ -29,7 +31,10 @@
   
 }
 .landing-button{
+    font-family: outfit;
+    font-weight: 400;
     display: flex;
+    text-decoration: none;
     align-items: center;
     color: #ebf8ff;
     margin: 10px 5px 0px 5px ;
