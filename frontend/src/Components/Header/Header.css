@@ -12,4 +12,13 @@ header{
 }
 .clg-name{
     font-family: outfit,popins;
+    color: #002133;
+    margin: auto;
+}
+.clglogo{
+    width: 120px;   
+}
+
+.clgdes{
+    margin-left: 180px;
 }

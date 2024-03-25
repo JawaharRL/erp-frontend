@@ -14,11 +14,11 @@ function Loginpage() {
       
         <div className="Loginform">
             <div className="form">
-            <h2 >Login</h2>
+            <h1>Login</h1>
             <label className='login-mailid' htmlFor="Email ID">Email ID</label>
             <input type="text" />
             <label className='login-password' htmlFor="Password">Password</label>
-            <input  type="password" /><img src={eye} alt="" />
+            <input  type="password" />
             <a href="#"> <p className='forgotpassword'>Forgot password?</p></a>
             <div className='login-button-space' >
             <Loginbutton></Loginbutton>

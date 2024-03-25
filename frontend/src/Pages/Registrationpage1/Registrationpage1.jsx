@@ -34,7 +34,7 @@ function Registrationpage1() {
                
               </div>
               <div class="field">
-                 <label htmlFor="Date of Admission">Date of Admission</label>
+                 <label htmlFor="Date of Birth">Date of Birth</label>
                  <input type="date" name="Date of Admission"  />
                </div>
             </div>
