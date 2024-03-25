@@ -1,0 +1,24 @@
+header{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    justify-content: space-around;
+}
+#header-line{
+    background-color: #002133;
+    width: 96%;
+    height: 2px;
+    margin: auto;
+}
+.clg-name{
+    font-family: outfit,popins;
+    color: #002133;
+    margin: auto;
+}
+.clglogo{
+    width: 120px;   
+}
+
+.clgdes{
+    margin-left: 180px;
+}

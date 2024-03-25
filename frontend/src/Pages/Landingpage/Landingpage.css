@@ -1,31 +1,18 @@
-*{
-    padding: 0;
-    margin: 0;
-    /* box-sizing: border-box; */
+
+.registration-background{
+    margin-left:7% ;
+    margin-right:7% ;
 }
 
-header{
-    display: flex;
-}
-
-.clglogo{
-    width: 120px;   
-}
-.clgname{
-    color: #002133;
-    margin: auto;
-
-}
-.clgdes{
-    margin-left: 180px;
-}
 
 .icon{
     width: 20px;
     margin-right: 7px;
 }
-.container{
+.landingpage-container{
+    display: flex;
     justify-content: flex-end;
+    margin-right: 10px;
    
 }
 
@@ -34,7 +21,10 @@ header{
   
 }
 .landing-button{
+    font-family: outfit;
+    font-weight: 400;
     display: flex;
+    text-decoration: none;
     align-items: center;
     color: #ebf8ff;
     margin: 10px 5px 0px 5px ;

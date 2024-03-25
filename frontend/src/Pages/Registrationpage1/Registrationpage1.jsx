@@ -1,12 +1,15 @@
 import React from 'react';
 import './Registrationpage1.css';
 import Profile from '../../Assets/profile.svg'
+import Nextwhite from '../../Assets/Nextwhite.svg'
+import { Link } from 'react-router-dom';
+import Formtitle from '../../Components/Formtitle/Formtitle';
 
 function Registrationpage1() {
   return (
     <div>
-        <div class="regbackground">
-            <div class="header-fixed ">
+        <div class="registration-background">
+            {/* <div class="registration-header ">
              <div class="title">
               <h1 >ERP Registration form</h1>
             </div>
@@ -14,9 +17,12 @@ function Registrationpage1() {
                 <button class="forms">Personal Details</button>
                 <button class="forms">Academic Details</button>
             </div>
-            </div>
-          
-            <div class="container">
+            </div> */}
+           <div className='form-content'>
+           <Formtitle></Formtitle>
+           </div>
+         
+            <div class="registration1-levels">
                <div class="field">
                 <label htmlFor="Name">First Name</label>
                 <input type="text" name="Name" />
@@ -28,14 +34,14 @@ function Registrationpage1() {
                
               </div>
               <div class="field">
-                <label htmlFor="DateOfBirth" >Date of Birth</label><br/>
-                <input type="date" name="DateOfBirth"/>
-              </div>
+                 <label htmlFor="Date of Birth">Date of Birth</label>
+                 <input type="date" name="Date of Admission"  />
+               </div>
             </div>
            
-            <div class="container">
+            <div class="registration1-levels">
                <div class="field">
-                <label htmlFor="Gender">Gender</label><br/>
+                <label htmlFor="Gender">Gender</label>
                <div class="radio" >
                 <div class="radio-spacing"><input type="radio" name="Gender" value="Male"/> Male</div>
                 <div class="radio-spacing"><input type="radio" name="Gender" value="Female"/> Female</div>
@@ -51,7 +57,7 @@ function Registrationpage1() {
               </div>
             </div>
             
-            <div class="container">
+            <div class="registration1-levels">
                 <div class="field">
                  <label htmlFor="Nationality">Nationality</label>
                  <input type="text" name="Nationality" />
@@ -62,7 +68,14 @@ function Registrationpage1() {
                </div>
                <div class="field">
                  <label htmlFor="Community">Community</label>
-                 <input type="text" name="Community"/>
+                 <select className='community-dropdown' name="Community">
+                  <option value="Select">Select</option>
+                  <option value="OC">OC</option>
+                  <option value="BC">BC</option>
+                  <option value="MBC">MBC</option>
+                  <option value="SC">SC</option>
+                  <option value="DNC">DNC</option>
+                  </select>
                </div>
                <div class="field">
                 <label htmlFor="Caste">Caste</label>
@@ -71,13 +84,13 @@ function Registrationpage1() {
                 
              </div>
            
-            <div class="container ">
+            <div class="registration1-levels ">
                 <div class="field">
                  <label htmlFor="FatherName">Father's Name</label>
                  <input type="text" name="FatherName" />
                </div>
                <div class="field">
-                 <label htmlFor="Occupation">Occupation</label>
+                 <label htmlFor="Occupation">Father's Occupation</label>
                  <input type="text" name="Occupation"  />
                </div>
                <div class="field">
@@ -85,31 +98,36 @@ function Registrationpage1() {
                 <input type="text" name="MotherName"  />
               </div>
                <div class="form-group field">
-                <label htmlFor="Occupation">Occupation</label>
+                <label htmlFor="Occupation">Mother's Occupation</label>
                 <input type="text" name="Occupation"  />
               </div>
             </div>
             
-            <div class="container">
+            <div class="registration1-levels">
                 <div class="field">
                  <label htmlFor="GuardianName">Guardian Name</label>
                  <input type="text" name="GuardianName"/>
                </div>
                <div class="field">
-                 <label htmlFor="Occupation">Occupation</label>
+                 <label htmlFor="Occupation">Guardian Occupation</label>
                  <input type="text" name="Occupation" />
                </div>
                <div class="field">
                 <label htmlFor="ParentsStatus">Parents Status</label>
-                <input type="text" name="ParentsStatus"  />
+                <select  className='community-dropdown' name="ParentsStatus">
+                  <option value="Both are alive">Select</option>
+                  <option value="Both are alive">Both are alive</option>
+                  <option value="Father alive">Father alive</option>
+                  <option value="Mother alive">Mother alive</option>
+                  </select>
               </div>
-               <div class="field">
+              <div class="form-group field">
                 <label htmlFor="Income">Income</label>
-                <input type="text" name="Income"  class="field" />
+                <input type="text" name="Income" />
               </div>
             </div>
             
-            <div class="container">
+            <div class="registration1-levels">
                 <div class="form-group field">
                  <label htmlFor="MaritalStatus">Marital Status</label>
                  <input type="text" name="Marital Staus"  id='maritalstatus' />
@@ -117,19 +135,20 @@ function Registrationpage1() {
             </div>
             
             <div class="profilephoto">
-                <img class="photo" src={Profile} alt="Photo"/>
+                <img class="photo" src={Profile} alt="Photopreview"/>
                 <div className='getphoto'>
                     <input type="file" name="file"/>
+                    <br />
                     <br />
                     <p style={{ color: 'red' }}>File should be less than 1 Mb</p>
                     <p style={{ color: 'red' }}>File may be pdf, jpeg, or jpg</p>
 
                 </div>  
             </div>
-            <hr/>
+            <hr id='registration-seperator'/>
             
-            <div class="container">
-                <div class=" b4 field">
+            <div class="registration1-levels">
+                <div class=" field">
                  <label htmlFor="MobileNo">Mobile Number</label>
                  <input id='mobilenumber' type="text" name="MobileNo"  />
                </div>
@@ -139,8 +158,8 @@ function Registrationpage1() {
                 <input id='mailid' type="text" name="Emailid" />
               </div>
             </div>
-            <div class="container g1">
-              <div class=" b4 field">
+            <div class="registration1-levels">
+              <div class=" field">
                 <label htmlFor="ResidentialAddress">Residential Address</label><br/>
                 <textarea  name="ResidentialAddress" cols="40" rows="6" placeholder="  Enter your address here"></textarea>
               </div>
@@ -150,7 +169,7 @@ function Registrationpage1() {
               </div>
             </div>
             
-            <div class="container">
+            <div class="registration1-levels">
               <div class="field">
                <label htmlFor="Hosteller">Hosteller</label>
                <div class="radio">
@@ -167,36 +186,75 @@ function Registrationpage1() {
              </div>
            </div>
            
-           <hr/>
-           
-           <div class="container">
+           <hr id='registration-seperator'/>
+           <div class="registration1-levels">
+                <div class=" field">
+                 <label htmlFor="Bank name">Bank Name</label>
+                 <input id='bank' type="text" name="Bank Name"  />
+               </div>
+              
+               <div class="field ">
+                <label htmlFor="ifsccode">IFSC Code</label>
+                <input id='ifsc' type="text" name="IFSC Code" />
+              </div>
+            </div>
+            <div class="registration1-levels">
+            <div class=" field">
+                 <label htmlFor="MobileNo">Branch Name</label>
+                 <input id='branch' type="text" name="Branch Name"  />
+               </div>
+              
+               <div class="field ">
+                <label htmlFor="Emailid">Account Number</label>
+                <input id='accno' type="text" name="Account Number" />
+              </div>
+            </div>
+
+            <hr id='registration-seperator'/>
+           <div class="registration1-levels">
             <div class="field">
              <label  htmlFor="SSLC">SSLC %</label>
-             <input type="text" name="sslc"class="b2" />
-             <br/><br/>
-             <input type="file" name="file" class="b3" />
+             <input type="text" name="sslc"class="" />
+             
+             {/* <br/>
+             <input type="file" name="file" class="" /> */}
            </div>
            <div class="field">
              <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
-             <input type="text" name="HSC 1st YEAR" class="b2"  />
-             <br/><br/>
-             <input type="file" name="file" class="b3"/>
+             <input type="text" name="HSC 1st YEAR" class=""  />
+             {/* <br/>
+             <input type="file" name="file" class=""/> */}
            </div>
            <div class="field">
              <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
-             <input type="text" name="HSC 2nd YEAR"class="b2" />
-             <br/><br/>
-             <input type="file" name="file" class="b3"/>
+             <input type="text" name="HSC 2nd YEAR"class="" />
+             {/* <br/>
+             <input type="file" name="file" class=""/> */}
            </div>
            <div class="field">
             <label htmlFor="Diploma">Diploma %</label>
-            <input type="text" name="Diploma"class="b2" />
-            <br/><br/>
-            <input type="file" name="file" class="b2"/>
+            <input type="text" name="Diploma"class="" />
+            {/* <br/>
+            <input type="file" name="file" class=""/> */}
           </div>
          </div>
       
-         <div class="container">
+         <div class="registration1-levels upload-files">
+            <div class="field">
+          <input type="file" name="file" class="" />
+            </div>
+            <div class="field">
+          <input type="file" name="file" class="" />
+            </div>
+            <div class="field">
+          <input type="file" name="file" class="" />
+            </div>
+            <div class="field">
+          <input type="file" name="file" class="" />
+            </div>
+          </div>
+          
+         <div class="registration1-levels">
           <div class="field">
            <label htmlFor="EmisNumber">Emis Number</label>
            <input type="text" name="EmisNumber"/>
@@ -213,10 +271,16 @@ function Registrationpage1() {
            <input type="text" name="Special Category" />
          </div>
        </div>
-       <div class="container container1">
-        <button class="link1">Next</button>
+       <div className='registration1-levels next-button'>
+       <Link to={'/register-page-academic'} class="register-page-button" >
+                    <img class="icon" src={Nextwhite} alt=""/>
+                    <p>Next</p>
+                </Link>
        </div>
+       
+
     </div>
+    
     </div>
   )
 }
