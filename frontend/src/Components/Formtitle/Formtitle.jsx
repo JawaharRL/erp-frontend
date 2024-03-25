@@ -12,7 +12,7 @@ function Formtitle() {
         
         <div className='form-content'>
         <div className='form-title'>
-            <h1>Regiatration Form</h1>
+            <h1>Registration Form</h1>
         </div>
         <div className='registration-navigation '>
             <div className='navigates personal-navigate '>
