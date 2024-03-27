@@ -203,7 +203,7 @@ textarea::placeholder{
     border-radius: 8px;
     background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
 }
-.community-dropdown{
+.community-dropdown,.parential-dropdown{
     border: none;
     background-color: #e8f8ff;
     height: 40px;
