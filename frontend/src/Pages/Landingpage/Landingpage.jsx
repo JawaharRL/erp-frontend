@@ -14,7 +14,7 @@ const Landingpage = () => {
     <div class="landingpage-container">
         <div class="nav">
             <div>
-                <Link to={'/register-page-personal'} class="landing-button" >
+                <Link to={'/personal-form'} class="landing-button" >
                     <img class="icon" src={registericon} alt=""/>
                     <p>Register</p>
                 </Link>

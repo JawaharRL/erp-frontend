@@ -1,0 +1,214 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+/* .registration-header{
+    position: sticky;
+    top:0;
+    left:0;
+    background-color:white;
+} */
+.form-content{
+    position: sticky;
+    top:0;
+    left:0;
+
+}
+/* .title{
+    text-align:center;
+    font-family: 'Outfit';
+    font-size: 14px;
+    background-color:white;
+    padding: 25px;
+}
+.title.h1{
+    color: #002133;
+} */
+.links{
+    /* background-color: #000; */
+    align-items: center;
+    display: flex;
+    margin-bottom:20px ;
+}
+
+.forms{
+    border: none;
+    height: 45px;
+    width:35%;
+    border-radius: 10px;
+    margin: auto;
+    cursor: pointer;
+    color: #e8f8ff;
+    font-size: 20px;
+    background: linear-gradient(to  right,rgb(0, 131, 213),rgb(1, 61, 96));
+    
+}
+/* .container{
+    display: flex;
+    padding-top:10px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+ 
+} */
+.registration1-levels{
+    display: flex;
+    margin: 15px;
+}
+.upload-files{
+    margin: 10px;
+}
+
+.field{
+    flex:1;
+    border: none;
+    /* flex-direction: row; */
+    margin-left: 10px;
+    margin-right:10px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+
+input[type="text"]{
+    background-color:#e8F8FF;
+    height: 40px;
+    width:100%;
+    padding: 20px;
+    border-radius: 8px;
+    border:none;
+    /* box-shadow: 2px 2px 10px #002133; */
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
+    /* box-shadow: 8px 7px 23px -12px rgba(0,33,51,1); */
+}
+input[type="date"]
+{
+    background: url('../../Assets/calendar.svg') no-repeat ;
+    background-size: 25px 25px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: none;
+    background-color: #e8F8FF;
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 0px 30px 0px 20px;
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
+    
+}
+
+.radio{
+    display:flex;
+} 
+
+.radio-spacing{
+    width:35%; 
+}
+
+input[type="radio"]{
+   /* appearance: none; */
+   width:20px;
+   height: 20px;
+   border:3px solid #002133;
+   border-radius: 50%;
+   /* outline:none; */
+   transform: translateY(3px);
+}
+
+input[type="radio"]:before{
+   content:'';
+   display:block;
+   width: 70%;
+   height: 70%;
+   margin:15% auto;
+   border-radius: 50%;
+   
+}
+input[type="radio"]:checked:before{
+    background-color: #002133;
+}
+
+textArea{
+    background-color: #e8F8FF;
+    color:#002133;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
+}
+label{
+    display:block;
+    margin-bottom: 0.5em;
+}
+.profilephoto{
+    display: flex;
+    margin-top: 2%;
+}
+.getphoto{
+    margin: auto;
+}
+.photo{
+    width:15%;
+    height:35%;
+    margin-left:20%;
+}
+#maritalstatus{
+    width: 30%;
+}
+.regbackground{
+    margin-left:6%;
+    margin-right:6%;
+}
+#registration-seperator{
+    height: 3px;
+    margin: 3%;
+    background-color: #002133;
+  
+}
+
+
+#mobilenumber{
+    width: 70%;
+}
+#mailid{
+    width: 100%;
+}
+.mailid{
+    margin-left: -15%;
+}
+textarea::placeholder{
+    padding: 10px;
+    
+   
+}
+.bankdetails-container{
+    /* background-color: #000; */
+    display: flex;
+   
+}
+.next-button{
+    /* background: #000; */
+    margin-top: 25px;
+    justify-content: flex-end;
+}
+.register-page-button{
+    display: flex;
+    text-decoration: none;
+    color: #ebf8ff;
+    margin: 10px 5px 0px 5px ;
+    border: none;
+    padding:7px 20px 7px 15px;
+    border-radius: 8px;
+    background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
+}
+.community-dropdown,.parential-dropdown{
+    border: none;
+    background-color: #e8f8ff;
+    height: 40px;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
+}
