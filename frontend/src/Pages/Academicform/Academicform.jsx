@@ -1,11 +1,11 @@
 import React from 'react'
-import './Registrationpage2.css'
+import './Academicform.css'
 import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 
-function Registrationpage2() {
+function Academicform() {
   return (
     <div>
         <div class="registration-background">
@@ -13,15 +13,6 @@ function Registrationpage2() {
             <div className='form-content'>
            <Formtitle></Formtitle>
            </div>
-            {/* <div class="header-fixed ">
-                <div class="title">
-                 <h1 >ERP Registration form</h1>
-                </div>
-                <div class="container">
-                  <button class="field"><a href="erp.html" class="link1">Personal Details</a> </button>
-                  <button class="field"><a href="#" class="link1">Academic Details</a></button>
-                </div>
-            </div> */}
             <br/>
             <div class="registrationtwo-levels">
                 <div class="field">
@@ -119,4 +110,4 @@ function Registrationpage2() {
   )
 }
 
-export default Registrationpage2
+export default Academicform

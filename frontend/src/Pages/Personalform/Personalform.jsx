@@ -1,14 +1,20 @@
-
 import React from 'react';
-import './Registrationpage1.css';
+import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import axios from 'axios';
+import {useNavigate } from 'react-router-dom';
 
 
-function Registrationpage1() {
+function Personalform() {
+  const navigate = useNavigate();
+
+  const goToAcademicform= () => {
+    navigate('/academic-form');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +40,7 @@ function Registrationpage1() {
         parents_Status:formData.get('parents_Status'),
         income:formData.get('income'),
         marital_Status:formData.get('marital_Status'),
-        profile_Photo:formData.get('profile_Photo'),
+        // profile_Photo:formData.get('profile_Photo'),
         mobile_Number:formData.get('mobile_Number'),
         email_Id:formData.get('email_id'),
         residential_Address:formData.get('residential_Address'),
@@ -52,7 +58,6 @@ function Registrationpage1() {
         emis_Number:formData.get('emis_Number'),
         first_Graduate:formData.get('first_Graduate'),
         special_Category:formData.get('special_Category')
-
     };
     console.log(data.date_Of_Birth);
 
@@ -255,16 +260,7 @@ function Registrationpage1() {
                <div className="field ">
                 <label htmlFor="Emailid">Account Number</label>
                 <input id='accno' type="text" name="account_Number" />
-
               </div>
-            </div>
-          </div>
-
-          <hr id="registration-seperator" />
-          <div className="registration1-levels">
-            <div className=" field">
-              <label htmlFor="Bank name">Bank Name</label>
-              <input id="bank" type="text" name="bank_Name" />
             </div>
 
             <hr id='registration-seperator'/>
@@ -323,67 +319,19 @@ function Registrationpage1() {
            <input type="text" name="special_Category" />
          </div>
        </div>
-       {/* <div className='registration1-levels next-button'>
-       <Link to={'/register-page-academic'} className="register-page-button" >
-                    <img className="icon" src={Nextwhite} alt=""/>
-                    <p>Next</p>
-                </Link>
-       </div> */}
-       <button type="submit">Submit</button>
+        <div className='registration1-levels next-button'>
+        <button onClick={goToAcademicform}>
+      Next
+    </button>
+       </div> 
+       <button type="submit">Save</button>
 
-           </form>
-                  
-
-          {/* <div className="registration1-levels upload-files">
-            <div className="field">
-          <input type="file" name="sslcfile" className="" />
-            </div>
-            <div className="field">
-          <input type="file" name="hsc1file" className="" />
-            </div>
-            <div className="field">
-          <input type="file" name="hsc2file" className="" />
-            </div>
-            <div className="field">
-          <input type="file" name="diplomafile" className="" />
-            </div>
-          </div> */}
-
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="EmisNumber">Emis Number</label>
-              <input type="text" name="emis_Number" />
-            </div>
-            <div className="field">
-              <label htmlFor="First Graduate">First Graduate</label>
-              <div className="radio">
-                <div className="radio-spacing">
-                  <input type="radio" name="first_Graduate" value="Yes" /> Yes
-                </div>
-                <div className="radio-spacing">
-                  <input type="radio" name="first_Graduate" value="No" /> No
-                </div>
-              </div>
-            </div>
-            <div className="field">
-              <label htmlFor="Special Category">Special Category</label>
-              <input type="text" name="special_Category" />
-            </div>
-          </div>
-          <div className="registration1-levels next-button">
-            <Link
-              to={"/register-page-academic"}
-              className="register-page-button"
-            >
-              <img className="icon" src={Nextwhite} alt="" />
-              <p>Next</p>
-            </Link>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      </form>
+          
     </div>
-  );
+    
+    </div>
+  )
 }
 
-export default Registrationpage1;
+export default Personalform
