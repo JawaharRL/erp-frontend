@@ -13,6 +13,12 @@
     width:45%; 
     margin: 10px;
 }
+.academic-buttons{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 input[type="radio"]{
     appearance: none;
     width:20px;
