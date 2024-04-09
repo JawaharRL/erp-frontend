@@ -4,6 +4,9 @@ header{
     align-items: center;
     justify-content: space-around;
 }
+header:hover{
+    cursor: default;
+}
 #header-line{
     background-color: #002133;
     width: 96%;

@@ -4,6 +4,7 @@ import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
+import Allbuttons from '../../Components/Allbuttons/Allbuttons'
 
 function Academicform() {
   return (
@@ -104,14 +105,12 @@ function Academicform() {
               </div>
              </div>
              <br/>
-             <div className='registration1-levels next-button'>
-                <Link to={'/register-page-personal'} class="register-page-button" >
-                    <img class="icon" src={Previouswhite} alt=""/>
-                    <p>Previous</p>
+             <div className='academic-buttons'>
+                <Link to={'/register-page-personal'} >
+                    <Allbuttons value="Previous" image={Previouswhite}/>
                 </Link>
-                <Link to={'#'} class="register-page-button" >
-                    <img class="icon" src={Nextwhite} alt=""/>
-                    <p>Submit</p>
+                <Link to={'#'}>
+                <Allbuttons value="Submit" image={Nextwhite} />
                 </Link>
              </div>
     </div>
