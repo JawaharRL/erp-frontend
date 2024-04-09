@@ -44,7 +44,17 @@ function Academicform() {
                </div>
                <div class="field">
                  <label htmlFor="Semester">Semester</label>
-                 <input type="text" name="Semester"/>
+                 <select className='community-dropdown'>
+                  <option>Select</option>
+                  <option value="I">I</option>
+                  <option value="II">II</option>
+                  <option value="III">III</option>
+                  <option value="IV">IV</option>
+                  <option value="V">V</option>
+                  <option value="VI">VI</option>
+                  <option value="VII">VII</option>
+                  <option value="VIII">VIII</option>
+                 </select>
                </div> 
                <div class="field">
                 <label htmlFor="ABC Id">ABC Id</label>
