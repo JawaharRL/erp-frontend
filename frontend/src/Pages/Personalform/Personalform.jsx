@@ -59,7 +59,6 @@ function Personalform() {
       first_Graduate: formData.get('first_Graduate'),
       special_Category: formData.get('special_Category')
     };
-    console.log(data.date_Of_Birth);
 
     try {
       const response = await axios.post(url, data);
@@ -78,12 +77,12 @@ function Personalform() {
           <div className="registration1-levels">
             <div className="field">
               <label htmlFor="Name">First Name</label>
-              <input type="text" name="first_Name" pattern="[A-Za-z]+" required />
+              <input type="text" name="first_Name" pattern="[A-Za-z\s]+" required />
 
             </div>
             <div className="field">
               <label htmlFor="Name" >Last Name</label>
-              <input type="text" name="last_Name" pattern="[A-Za-z]+" required />
+              <input type="text" name="last_Name" pattern="[A-Za-z\s]+" required />
 
             </div>
             <div className="field">
@@ -96,12 +95,10 @@ function Personalform() {
             <div className="field">
               <label htmlFor="Gender">Gender</label>
               <div className="radio" >
-                <div className="radio-spacing"><input type="radio" name="gender" value="Male" /> Male</div>
+                <div className="radio-spacing"><input type="radio" name="gender" value="Male" required /> Male</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Female" /> Female</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Others" /> Others</div>
               </div>
-
-
 
             </div>
             <div className="field">
@@ -132,7 +129,7 @@ function Personalform() {
             </div>
             <div className="field">
               <label htmlFor="Caste">Caste</label>
-              <input type="text" name="caste" pattern="[A-Za-z]+" required />
+              <input type="text" name="caste" pattern="[A-Za-z\s]+" required />
             </div>
 
           </div>
@@ -140,11 +137,11 @@ function Personalform() {
           <div className="registration1-levels ">
             <div className="field">
               <label htmlFor="FatherName">Father's Name</label>
-              <input type="text" name="fathers_Name" pattern="[A-Za-z]+" required />
+              <input type="text" name="fathers_Name" pattern="[A-Za-z\s]+" required />
             </div>
             <div className="field">
               <label htmlFor="Occupation">Father's Occupation</label>
-              <input type="text" name="fathers_Occupation" pattern="[A-Za-z]+" />
+              <input type="text" name="fathers_Occupation" pattern="[A-Za-z\s]+" />
             </div>
             <div className=" field">
               <label htmlFor="MobileNo">Father's Mobile Number</label>
@@ -155,11 +152,11 @@ function Personalform() {
           <div className="registration1-levels">
           <div className="field">
               <label htmlFor="MotherName">Mother's Name</label>
-              <input type="text" name="mothers_Name" pattern="[A-Za-z]+" required/>
+              <input type="text" name="mothers_Name" pattern="[A-Za-z\s]+" required/>
             </div>
             <div className="form-group field">
               <label htmlFor="Occupation">Mother's Occupation</label>
-              <input type="text" name="mothers_Occupation" pattern="[A-Za-z]+" />
+              <input type="text" name="mothers_Occupation" pattern="[A-Za-z\s]+" />
             </div>
             <div className=" field">
               <label htmlFor="MobileNo">Mother's Mobile Number</label>
@@ -194,11 +191,11 @@ function Personalform() {
           <div className="registration1-levels">
             <div className="field">
               <label htmlFor="GuardianName">Guardian Name</label>
-              <input type="text" name="guardians_Name" pattern="[A-Za-z]+" />
+              <input type="text" name="guardians_Name" pattern="[A-Za-z\s]+" />
             </div>
             <div className="field">
               <label htmlFor="Occupation">Guardian Occupation</label>
-              <input type="text" name="guardians_Occupation" pattern="[A-Za-z]+" />
+              <input type="text" name="guardians_Occupation" pattern="[A-Za-z\s]+" />
             </div>
             <div className=" field">
               <label htmlFor="MobileNo">Guardian Mobile Number</label>
@@ -234,11 +231,11 @@ function Personalform() {
           <div className="registration1-levels">
            <div className="field">
               <label htmlFor="CommunicationAddress">Communication Address</label><br />
-              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" required></textarea>
+              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
             </div>
             <div className=" field">
               <label htmlFor="ResidentialAddress">Residential Address</label><br />
-              <textarea name="residential_Address" cols="40" rows="6" placeholder="  Enter your address here" required></textarea>
+              <textarea name="residential_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
             </div>
             
           </div>
@@ -247,14 +244,14 @@ function Personalform() {
             <div className="field">
               <label htmlFor="Hosteller">Hosteller</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" /> Yes</div>
+                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" required /> Yes</div>
                 <div className="radio-spacing"> <input type="radio" name="hosteller" value="No" /> No</div>
               </div>
             </div>
             <div className="field">
               <label htmlFor="Hostel Type">Hostel Type</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" /> Free</div>
+                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" required /> Free</div>
                 <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Paid" /> Paid</div>
               </div>
             </div>
@@ -264,11 +261,11 @@ function Personalform() {
           <div className="registration1-levels">
             <div className=" field">
               <label htmlFor="Bank name">Bank Name</label>
-              <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required />
+              <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z\s]+" required />
             </div>
             <div className=" field">
               <label htmlFor="branch_Name">Branch Name</label>
-              <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z]+" required />
+              <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z\s]+" required />
             </div>
           </div>
           <div className="registration1-levels">
@@ -329,7 +326,7 @@ function Personalform() {
             <div className="field">
               <label htmlFor="First Graduate">First Graduate</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" /> Yes</div>
+                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" required /> Yes</div>
                 <div className="radio-spacing"><input type="radio" name="first_Graduate" value="No" /> No</div>
               </div>
             </div>
@@ -338,8 +335,9 @@ function Personalform() {
               <select className='community-dropdown' name="special_Category" required >
                 <option>Select</option>
                 <option value="Ex-Service Man">Ex-Service Man</option>
-                <option value="Eminent sports man">Eminent sports man</option>
+                <option value="Eminent sports man">Eminent Sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
+                <option value="Not applicable">Not Applicable</option>
               </select>
             </div>
           </div>
