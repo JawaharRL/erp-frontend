@@ -1,8 +1,6 @@
 header{
-    display: flex;
-    margin: 10px;
-    align-items: center;
-    justify-content: space-around;
+display: flex;
+margin: 10px;
 }
 header:hover{
     cursor: default;
@@ -14,14 +12,17 @@ header:hover{
     margin: auto;
 }
 .clg-name{
+    text-align: center;
     font-family: outfit,popins;
     color: #002133;
     margin: auto;
 }
 .clglogo{
-    width: 120px;   
+   
+    width: 110px;   
 }
 
-.clgdes{
+/* .clgdes{
+    
     margin-left: 180px;
-}
+} */

@@ -46,9 +46,8 @@ function Academicform() {
     }
   };
   return (
-    <div>
-        <div class="registration-background">
-
+   <div>
+        <div className="registration-background">
             <div className='form-content'>
            <Formtitle></Formtitle>
            </div>
@@ -59,11 +58,11 @@ function Academicform() {
                  <label htmlFor="RegisterNo">RegisterNo</label>
                  <input type="text" name="register_No" />
                </div>
-               <div class="field">
+               <div className="programme">
                  <label htmlFor="Programme">Programme</label>
                  <input type="text" name="programme"  />
                </div>
-               <div class="field">
+               <div className="discipline">
                  <label htmlFor="Discipline">Discipline</label>
                  <input type="text" name="discipline" />
                </div> 
@@ -82,7 +81,17 @@ function Academicform() {
                  <label htmlFor="Academic Year">Academic Year</label>
                  <input type="text" name="academic_Year"/>
                </div>
-               <div class="field">
+               
+                <div className="adm-no">
+                 <label htmlFor="AdmissionNo">AdmissionNo</label>
+                 <input type="text" name="AdmissionNo" />
+               </div>
+               <div className="regulation">
+                <label htmlFor="Regulation">Regulation</label>
+                <input type="text" name="Regulation"/>
+              </div>
+              
+               <div className="sem">
                  <label htmlFor="Semester">Semester</label>
                  <select className='community-dropdown' name='semester'>
                   <option>Select</option>
@@ -96,49 +105,42 @@ function Academicform() {
                   <option value="VIII">VIII</option>
                  </select>
                </div> 
-               <div class="field">
+               <div className="abc-id">
                 <label htmlFor="ABC Id">ABC Id</label>
                 <input type="text" name="abc_Id" />
               </div>
-             </div>
-             <br/>
-             <div class="registrationtwo-levels">
-                <div class="field">
+                <div className="umis-id">
                  <label htmlFor="UMIS Id">UMIS Id</label>
                  <input type="text" name="umis_Id"   />
                </div>
-               <div class="field">
+               <div className="date-of-adm">
                  <label htmlFor="Date of Admission">Date of Admission</label>
                  <input type="date" name="date_of_Admission"  />
                </div>
-               <div class="field">
+               <div className="join-date">
                  <label htmlFor="Course joined">Course joined</label>
                  <input type="date" name="course_Joined_Date"  />
                </div> 
-              
-              
-             </div>
-             <br/>
-             <div class="registrationtwo-levels">
-             <div class="field">
+
+             <div className="course-type">
                <label htmlFor="Coursetype">Course Type</label>
                <div class="radio">
                <div class="radio-spacing"><input type="radio" name="hosteller"value="Regular"/> Regular</div>
                <div class="radio-spacing"> <input type="radio" name="hosteller" value="Lateral"/> Lateral</div>
               </div>
              </div>
-              <div class="field">
+              <div className="fasttrack">
                <label htmlFor="Fasttrack">Fasttrack</label>
                <div class="radio">
                <div class="radio-spacing"><input type="radio" name="fast_Track"value="Yes"/> Yes</div>
                <div class="radio-spacing"> <input type="radio" name="fast_Track" value="No"/> No</div>
               </div>
              </div>
-               <div class="field" >
+               <div className="cgpa" >
                  <label htmlFor="CGPA">CGPA</label>
                  <input type="text" name="cgpa" />
                </div> 
-               <div class="field">
+               <div className="student-status">
                 <label htmlFor="Student status">Student status</label>
                 <input type="text" name="student_Status" />
               </div>
