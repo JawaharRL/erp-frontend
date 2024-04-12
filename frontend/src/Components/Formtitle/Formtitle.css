@@ -1,8 +1,9 @@
+
 .form-content{
     background-color: #fff;
-    position: sticky;
-    top:0;
-    left:0;
+}
+.form-content:hover{
+    cursor: default;
 }
 .form-title{
     text-align: center;
@@ -11,6 +12,7 @@
 }
 .registration-navigation{
     display: flex;
+    position: sticky;
     /* align-items: center; */
     justify-content: space-evenly;
     margin-left: 200px;
@@ -29,6 +31,3 @@
     background-color:#002133;
     /* opacity: 30%; */
 }
-/* .academic-navigate{
-    opacity: 30%;
-} */

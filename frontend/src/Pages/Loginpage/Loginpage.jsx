@@ -6,17 +6,13 @@ import { Loginbutton } from '../../Components'
 
 function Loginpage() {
   return (
-    <div>
-      <div className="logincontainer">
-        <div className="Image">
-          <img id='Illustration' src={Illustration} alt="" />
-        </div>
-      
+    <div >
+      <div className="logincontainer">    
         <div className="Loginform">
             <div className="form">
-            <h1>Login</h1>
+            <h1 id='login-title'>Login</h1>
             <label className='login-mailid' htmlFor="Email ID">Email ID</label>
-            <input type="text" />
+            <input type="text" id='input-mail' />
             <label className='login-password' htmlFor="Password">Password</label>
             <input  type="password" />
             <a href="#"> <p className='forgotpassword'>Forgot password?</p></a>
@@ -24,9 +20,8 @@ function Loginpage() {
             <Loginbutton></Loginbutton>
             </div>
             <p className='or'>or</p>
-            <p className='or'>Create new account</p>
+            <p className='or new-register'>Create new account</p>
             </div>
-
         </div>
       </div>
       </div>

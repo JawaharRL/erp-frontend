@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Landingpage, Loginpage} from './Pages';
-import { Personalform,Academicform } from './Pages';
+import { Landingpage, Loginpage, Personalform,Academicform } from './Pages';
+
 
 function App() {
   return (

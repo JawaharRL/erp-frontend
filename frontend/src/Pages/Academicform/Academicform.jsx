@@ -6,6 +6,7 @@ import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
+import Allbuttons from '../../Components/Allbuttons/Allbuttons'
 
 function Academicform() {
   const navigate = useNavigate();
@@ -149,7 +150,6 @@ function Academicform() {
             </div>
             </form>
         </div>
-
     </div>
   )
 }

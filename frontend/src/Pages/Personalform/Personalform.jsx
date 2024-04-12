@@ -1,9 +1,11 @@
 import React from 'react';
 import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
+import save from '../../Assets/save.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link, Navigate } from 'react-router-dom';
 import Formtitle from '../../Components/Formtitle/Formtitle';
+import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +18,7 @@ function Personalform() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();   
 
     const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/student';
@@ -207,7 +209,7 @@ function Personalform() {
           <div className="profilephoto">
             <img className="photo" src={Profile} alt="Photopreview"/>
             <div className='getphoto'>
-              <input type="file" name="profile_Photo" required/>
+              <input type="file" name="profile_Photo" />
               <br />
               <br />
               <p style={{ color: 'red' }}>File should be less than 1 Mb</p>
@@ -305,16 +307,16 @@ function Personalform() {
 
           <div className="registration1-levels upload-files">
             <div className="field">
-              <input type="file" name="sslcfile" className="" required />
+              <input type="file" name="sslcfile" className="educational-document"  />
             </div>
             <div className="field">
-              <input type="file" name="hscIfile" className="" />
+              <input type="file" name="hscIfile" className="educational-document" />
             </div>
             <div className="field">
-              <input type="file" name="hscIIfile" className="" />
+              <input type="file" name="hscIIfile" className="educational-document" />
             </div>
             <div className="field">
-              <input type="file" name="diplomafile" className="" />
+              <input type="file" name="diplomafile" className="educational-document" />
             </div>
           </div>
 
@@ -341,9 +343,9 @@ function Personalform() {
               </select>
             </div>
           </div>
-          <div className='registration1-levels next-button'>
-            <button type="submit" class="register-page-button">Save</button>
-            <button onClick={goToAcademicform} class="register-page-button">Next</button>
+          <div className='personal-form-buttons'>
+              <Allbuttons type="submit" value="Save" image={save} />
+              <Allbuttons onClick={goToAcademicform} value="Next" image={Nextwhite} />
           </div>
           
 
