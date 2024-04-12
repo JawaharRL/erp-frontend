@@ -1,12 +1,49 @@
 import React from 'react'
+import axios from 'axios';
 import './Academicform.css'
 import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
 
 function Academicform() {
+  const navigate = useNavigate();
+
+  const goToPersonalform = () => {
+    navigate('/personal-form');
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const url = 'http://localhost:8080/api/academics';
+
+    const data = {
+      register_No: formData.get('register_No'),
+      programme: formData.get('programme'),
+      discipline: formData.get('discipline'),
+      admission_Number: formData.get('admission_Number'),
+      academic_Year: formData.get('academic_Year'),
+      semester: formData.get('semester'),
+      abc_Id: formData.get('abc_Id'),
+      umis_Id: formData.get('umis_Id'),
+      date_Of_Admission: formData.get('date_Of_Admission'),
+      course_Joined_Date: formData.get('course_Joined_Date'),
+      course_Type: formData.get('course_Type'),
+      regulation: formData.get('regulation'),
+      fast_Track: formData.get('fast_Track'),
+      cgpa:  formData.get('cgpa'),
+      student_Status: formData.get('student_Status')
+    };
+    try {
+      const response = await axios.post(url, data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error saving student:', error);
+    }
+  };
   return (
    <div>
         <div className="registration-background">
@@ -14,6 +51,7 @@ function Academicform() {
            <Formtitle></Formtitle>
            </div>
             <br/>
+            <form action="">
             <div className="academic-container">
                 <div className="reg-no">
                  <label htmlFor="RegisterNo">RegisterNo</label>
@@ -97,14 +135,12 @@ function Academicform() {
              
     </div>
     <div className='academic-buttons'>
-                <Link to={'/register-page-personal'} >
-                    <Allbuttons value="Previous" image={Previouswhite}/>
-                </Link>
-              
-                <Link to={'#'}>
-                <Allbuttons value="Submit" image={Nextwhite} />
-                </Link>
+                
+        <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
+
+          <Allbuttons value="Submit" image={Nextwhite} />
              </div>
+             </form>
     </div>
      </div>
   )

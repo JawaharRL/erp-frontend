@@ -272,7 +272,7 @@ function Personalform() {
 <hr id='registration-seperator' />
          
             <div className=" bank_name">
-            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="" req_flag=""/>
+            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="" req_flag="true"/>
               {/* <label htmlFor="Bank name">Bank Name</label>
               <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required /> */}
             </div>
@@ -363,13 +363,13 @@ function Personalform() {
             </div>
        
           <div className='personal-form-buttons'>
-              <Allbuttons type="submit" value="Save" image={save} />
-              <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
+              <Allbuttons type="submit"  value="Save" image={save} />
+             
           </div>
           
         </div>
         </form>
-      
+        <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
       </div>
 
     </div>
