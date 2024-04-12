@@ -1,20 +1,26 @@
-.registrationtwo-levels{
-    flex: 1;
-    display: flex;
+
+
+.academic-container{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    /* grid-template-rows: repeat(4,1fr); */
+    gap: 20px;
+
 }
-.radio{
-    display:flex;
-} 
-.regbackground{
-    margin-left:6%;
-    margin-right:6%;
+ .reg-no,.programme,.discipline,.regulation,.adm-no,.abc-id,.umis-id,.course-type,.fasttrack{
+    grid-column:span 2;
 }
+.aca-year,.sem,.date-of-adm,.join-date,.cgpa,.student-status{
+    grid-column: span 1;
+}
+
 .radio-spacing{
-    width:45%; 
-    margin: 10px;
-}
+    width:65%; 
+    /* margin: 10px; */
+} 
 .academic-buttons{
     display: flex;
+    margin-top: 20px;
     justify-content: flex-end;
 
 }
@@ -27,3 +33,38 @@ input[type="radio"]{
     border-radius: 50%;
     transform: translateY(3px);
  }
+
+ @media (width<=980px) {
+    
+.academic-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* grid-template-rows: repeat(4,1fr); */
+    gap: 20px;
+
+}
+    .reg-no,.programme,.discipline,.adm-no,.regulation,.abc-id,.umis-id,.course-type,.fasttrack{
+        grid-column:span 1;
+    }
+    .aca-year,.sem,.date-of-adm,.join-date,.cgpa,.student-status{
+        grid-column: span 1;
+    }
+    
+}
+ @media (width<=790px) {
+    
+.academic-container{
+    
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+
+}
+    .reg-no,.programme,.discipline,.abc-id,.umis-id,.course-type,.fasttrack{
+        grid-column:span 2;
+    }
+    .aca-year,.sem,.date-of-adm,.regulation,.join-date,.adm-no,.cgpa,.student-status{
+        grid-column: span 1;
+    }
+    
+}
