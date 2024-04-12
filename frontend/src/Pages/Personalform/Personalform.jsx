@@ -192,7 +192,7 @@ function Personalform() {
             </div>
             <div className="marital_status">
               <label htmlFor="MaritalStatus">Marital Status</label>
-              <select className='community-dropdown' required >
+              <select className='community-dropdown' >
                 <option>Select</option>
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
@@ -207,7 +207,7 @@ function Personalform() {
 
             <div className="parents_status">
               <label htmlFor="ParentsStatus">Parents Status</label>
-              <select className='community-dropdown' name="parents_Status" required>
+              <select className='community-dropdown' name="parents_Status" >
                 <option >Select</option>
                 <option value="Both are alive">Both are alive</option>
                 <option value="Father alive">Father alive</option>
@@ -245,12 +245,12 @@ function Personalform() {
 
            <div className="communication_address">
               <label htmlFor="CommunicationAddress">Communication Address</label><br />
-              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" required></textarea>
+              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" ></textarea>
             </div>
 
             <div className=" residential_address">
               <label htmlFor="ResidentialAddress">Residential Address</label><br />
-              <textarea name="residential_Address" cols="40" rows="6" placeholder="  Enter your address here" required></textarea>
+              <textarea name="residential_Address" cols="40" rows="6" placeholder="  Enter your address here" ></textarea>
             </div>
             
             <div className="hosteller">
@@ -354,7 +354,7 @@ function Personalform() {
 
             <div className="special_category">
               <label htmlFor="Special Category">Special Category</label>
-              <select className='community-dropdown' name="special_Category" required >
+              <select className='community-dropdown' name="special_Category"  >
                 <option>Select</option>
                 <option value="Ex-Service Man">Ex-Service Man</option>
                 <option value="Eminent sports man">Eminent sports man</option>
@@ -364,7 +364,7 @@ function Personalform() {
        
           <div className='personal-form-buttons'>
               <Allbuttons type="submit" value="Save" image={save} />
-              <Allbuttons onClick={goToAcademicform} value="Next" image={Nextwhite} />
+              <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
           </div>
           
         </div>
