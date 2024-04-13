@@ -1,47 +1,17 @@
-*{
-    padding: 0;
-    margin: 0;
-    /* box-sizing: border-box; */
+
+.registration-background{
+    margin-left:7% ;
+    margin-right:7% ;
 }
 
-header{
-    display: flex;
-}
-
-.clglogo{
-    width: 120px;   
-}
-.clgname{
-    color: #002133;
-    margin: auto;
-
-}
-.clgdes{
-    margin-left: 180px;
-}
-
-.icon{
-    width: 20px;
-    margin-right: 7px;
-}
-.container{
+.landingpage-container{
+    display: grid;
     justify-content: flex-end;
+    margin-right: 10px;
    
 }
 
 .nav{
     display: flex;
-  
-}
-.landing-button{
-    display: flex;
-    align-items: center;
-    color: #ebf8ff;
-    margin: 10px 5px 0px 5px ;
-    border: none;
-    padding:7px 20px 7px 15px;
-    border-radius: 8px;
-    background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
-
 }
 

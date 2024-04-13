@@ -6,25 +6,22 @@ import { Loginbutton } from '../../Components'
 
 function Loginpage() {
   return (
-    <div>
-      <div className="logincontainer">
-        <div className="Image">
-          <img id='Illustration' src={Illustration} alt="" />
-        </div>
-      
+    <div >
+      <div className="logincontainer">    
         <div className="Loginform">
             <div className="form">
-            <h2>Login</h2>
-            <label htmlFor="Email ID">Email ID</label>
-            <input type="text" />
-            <label htmlFor="Password">Password</label>
-            <input type="password" /><img src={eye} alt="" />
+            <h1 id='login-title'>Login</h1>
+            <label className='login-mailid' htmlFor="Email ID">Email ID</label>
+            <input type="text" id='input-mail' />
+            <label className='login-password' htmlFor="Password">Password</label>
+            <input  type="password" />
             <a href="#"> <p className='forgotpassword'>Forgot password?</p></a>
+            <div className='login-button-space' >
             <Loginbutton></Loginbutton>
-            <p className='or'>or</p>
-            <p className='or'>Create new account</p>
             </div>
-
+            <p className='or'>or</p>
+            <p className='or new-register'>Create new account</p>
+            </div>
         </div>
       </div>
       </div>
