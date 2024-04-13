@@ -14,7 +14,6 @@ function Academicform() {
   const goToPersonalform = () => {
     navigate('/personal-form');
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,114 +44,105 @@ function Academicform() {
       console.error('Error saving student:', error);
     }
   };
-  return (
-   <div>
-        <div className="registration-background">
-            <div className='form-content'>
-           <Formtitle></Formtitle>
-           </div>
-            <br/>
-            <form id='registration-form' onSubmit={handleSubmit}>
-            <div class="registrationtwo-levels">
-                <div class="field">
-                 <label htmlFor="RegisterNo">RegisterNo</label>
-                 <input type="text" name="register_No" />
-               </div>
-               <div className="programme">
-                 <label htmlFor="Programme">Programme</label>
-                 <input type="text" name="programme"  />
-               </div>
-               <div className="discipline">
-                 <label htmlFor="Discipline">Discipline</label>
-                 <input type="text" name="discipline" />
-               </div> 
-               <div class="field">
-                <label htmlFor="Regulation">Regulation</label>
-                <input type="text" name="regulation"/>
-              </div>
-             </div>
-             <br/>
-             <div class="registrationtwo-levels">
-                <div class="field">
-                 <label htmlFor="AdmissionNo">AdmissionNo</label>
-                 <input type="text" name="admission_No" />
-               </div>
-               <div class="field">
-                 <label htmlFor="Academic Year">Academic Year</label>
-                 <input type="text" name="academic_Year"/>
-               </div>
-               
-                <div className="adm-no">
-                 <label htmlFor="AdmissionNo">AdmissionNo</label>
-                 <input type="text" name="AdmissionNo" />
-               </div>
-               <div className="regulation">
-                <label htmlFor="Regulation">Regulation</label>
-                <input type="text" name="Regulation"/>
-              </div>
-              
-               <div className="sem">
-                 <label htmlFor="Semester">Semester</label>
-                 <select className='community-dropdown' name='semester'>
-                  <option>Select</option>
-                  <option value="I">I</option>
-                  <option value="II">II</option>
-                  <option value="III">III</option>
-                  <option value="IV">IV</option>
-                  <option value="V">V</option>
-                  <option value="VI">VI</option>
-                  <option value="VII">VII</option>
-                  <option value="VIII">VIII</option>
-                 </select>
-               </div> 
-               <div className="abc-id">
-                <label htmlFor="ABC Id">ABC Id</label>
-                <input type="text" name="abc_Id" />
-              </div>
-                <div className="umis-id">
-                 <label htmlFor="UMIS Id">UMIS Id</label>
-                 <input type="text" name="umis_Id"   />
-               </div>
-               <div className="date-of-adm">
-                 <label htmlFor="Date of Admission">Date of Admission</label>
-                 <input type="date" name="date_of_Admission"  />
-               </div>
-               <div className="join-date">
-                 <label htmlFor="Course joined">Course joined</label>
-                 <input type="date" name="course_Joined_Date"  />
-               </div> 
 
-             <div className="course-type">
-               <label htmlFor="Coursetype">Course Type</label>
-               <div class="radio">
-               <div class="radio-spacing"><input type="radio" name="hosteller"value="Regular"/> Regular</div>
-               <div class="radio-spacing"> <input type="radio" name="hosteller" value="Lateral"/> Lateral</div>
-              </div>
-             </div>
-              <div className="fasttrack">
-               <label htmlFor="Fasttrack">Fasttrack</label>
-               <div class="radio">
-               <div class="radio-spacing"><input type="radio" name="fast_Track"value="Yes"/> Yes</div>
-               <div class="radio-spacing"> <input type="radio" name="fast_Track" value="No"/> No</div>
-              </div>
-             </div>
-               <div className="cgpa" >
-                 <label htmlFor="CGPA">CGPA</label>
-                 <input type="text" name="cgpa" />
-               </div> 
-               <div className="student-status">
-                <label htmlFor="Student status">Student status</label>
-                <input type="text" name="student_Status" />
-              </div>
-             </div>
-             <br/>
-             <div className='registration1-levels next-button'>
-            <button onClick={goToPersonalform} class="register-page-button">Previous</button>
-            <button type="submit" class="register-page-button">Submit</button>
-            </div>
-            </form>
-        </div>
-    </div>
+  return (
+    <div className="registration-background">
+    <div className='form-content'>
+   <Formtitle></Formtitle>
+   </div>
+    <br/>
+    <form id='registration_form' onSubmit={handleSubmit}>
+    <div className="academic-container">
+        <div className="reg-no">
+         <label htmlFor="RegisterNo">RegisterNo</label>
+         <input type="text" name="RegisterNo"/>
+       </div>
+       <div className="programme">
+         <label htmlFor="Programme">Programme</label>
+         <input type="text" name="Programme" />
+       </div>
+       <div className="discipline">
+         <label htmlFor="Discipline">Discipline</label>
+         <input type="text" name="Discipline" />
+       </div> 
+       <div className="aca-year">
+         <label htmlFor="Academic Year">Academic Year</label>
+         <input type="text" name="Academic Year"/>
+       </div>
+       
+        <div className="adm-no">
+         <label htmlFor="AdmissionNo">AdmissionNo</label>
+         <input type="text" name="AdmissionNo" />
+       </div>
+       <div className="regulation">
+        <label htmlFor="Regulation">Regulation</label>
+        <input type="text" name="Regulation"/>
+      </div>
+      
+       <div className="sem">
+         <label htmlFor="Semester">Semester</label>
+         <select className='community-dropdown'>
+          <option>Select</option>
+          <option value="I">I</option>
+          <option value="II">II</option>
+          <option value="III">III</option>
+          <option value="IV">IV</option>
+          <option value="V">V</option>
+          <option value="VI">VI</option>
+          <option value="VII">VII</option>
+          <option value="VIII">VIII</option>
+         </select>
+       </div> 
+       <div className="abc-id">
+        <label htmlFor="ABC Id">ABC Id</label>
+        <input type="text" name="ABC Id" />
+      </div>
+        <div className="umis-id">
+         <label htmlFor="UMIS Id">UMIS Id</label>
+         <input type="text" name="UMIS Id"   />
+       </div>
+       <div className="date-of-adm">
+         <label htmlFor="Date of Admission">Date of Admission</label>
+         <input type="date" name="Date of Admission"  />
+       </div>
+       <div className="join-date">
+         <label htmlFor="Course joined">Course joined</label>
+         <input type="date" name="Course joined"  />
+       </div> 
+
+     <div className="course-type">
+       <label htmlFor="Coursetype">Course Type</label>
+       <div className="radio">
+       <div className="radio-spacing"><input type="radio" name="Hosteller"value="Regular"/> Regular</div>
+       <div className="radio-spacing"> <input type="radio" name="Hosteller" value="Lateral"/> Lateral</div>
+      </div>
+     </div>
+      <div className="fasttrack">
+       <label htmlFor="Fasttrack">Fasttrack</label>
+       <div className="radio">
+       <div className="radio-spacing"><input type="radio" name="Hosteller"value="Yes"/> Yes</div>
+       <div className="radio-spacing"> <input type="radio" name="Hosteller" value="No"/> No</div>
+      </div>
+     </div>
+       <div className="cgpa" >
+         <label htmlFor="CGPA">CGPA</label>
+         <input type="text" name="CGPA" />
+       </div> 
+       <div className="student-status">
+        <label htmlFor="Student status">Student status</label>
+        <input type="text" name="Student status" />
+      </div>
+     
+</div>
+<div className='academic-buttons'>
+        
+<Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
+
+  <Allbuttons value="Submit" image={Nextwhite} />
+     </div>
+     </form>
+</div>
+
   )
 }
 
