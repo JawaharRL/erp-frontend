@@ -62,6 +62,7 @@ function Personalform() {
       first_Graduate: formData.get('first_Graduate'),
       special_Category: formData.get('special_Category')
     };
+    // console.log(data.date_Of_Birth);
 
     try {
       const response = await axios.post(url, data);
@@ -77,11 +78,12 @@ function Personalform() {
           <Formtitle></Formtitle>
         </div>
         <form id='registration_form' onSubmit={handleSubmit}>
-
           <div className="personal-container">
+
             <div className="first_name">
               <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="" req_flag=""/>
             </div>
+
             <div className="last_name">
             <Allfields fieldtype="text" value="Last Name" inputname="last_Name"fieldpattern=""/>
             </div>
@@ -93,12 +95,10 @@ function Personalform() {
             <div className="gender">
               <label htmlFor="Gender">Gender</label>
               <div className="radio" >
-                <div className="radio-spacing"><input type="radio" name="gender" value="Male" required /> Male</div>
+                <div className="radio-spacing"><input type="radio" name="gender" value="Male" /> Male</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Female" /> Female</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Others" /> Others</div>
-
             </div>
-
 
             </div>
             <div className="aadhar_number">
@@ -131,11 +131,13 @@ function Personalform() {
                 <option value="BCM">BCM</option>
               </select>
             </div>
+
             <div className="caste">
             <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="" req_flag=""/>
               {/* <label htmlFor="Caste">Caste</label>
               <input type="text" name="caste" pattern="[A-Za-z]+" required /> */}
             </div>
+
             <div className="fathers_Name">
             <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="" req_flag=""/>
               {/* <label htmlFor="FatherName">Father's Name</label>
@@ -214,22 +216,8 @@ function Personalform() {
                 <option value="Both are not alive">Both are not alive</option>
               </select>
             </div>
-          </div>
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="GuardianName">Guardian Name</label>
-              <input type="text" name="guardians_Name" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className="field">
-              <label htmlFor="Occupation">Guardian Occupation</label>
-              <input type="text" name="guardians_Occupation" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className=" field">
-              <label htmlFor="MobileNo">Guardian Mobile Number</label>
-              <input type="text" name="guardians_Mobile_Number" pattern="[0-9]{10}" />
-            </div>
+
             
-          </div>        
           <div className="profile_photo">
             <img className="photo" src={Profile} alt="Photopreview"/>
             <div className='get_photo'>
@@ -258,18 +246,18 @@ function Personalform() {
 
            <div className="communication_address">
               <label htmlFor="CommunicationAddress">Communication Address</label><br />
-              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
+              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" ></textarea>
             </div>
 
             <div className=" residential_address">
               <label htmlFor="ResidentialAddress">Residential Address</label><br />
-              <textarea name="residential_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
+              <textarea name="residential_Address" cols="40" rows="6" placeholder="  Enter your address here" ></textarea>
             </div>
             
             <div className="hosteller">
               <label htmlFor="Hosteller">Hosteller</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" required /> Yes</div>
+                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" /> Yes</div>
                 <div className="radio-spacing"> <input type="radio" name="hosteller" value="No" /> No</div>
               </div>
             </div>
@@ -277,7 +265,7 @@ function Personalform() {
             <div className="hostel_type">
               <label htmlFor="Hostel Type">Hostel Type</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" required /> Free</div>
+                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" /> Free</div>
                 <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Paid" /> Paid</div>
               </div>
             </div>
@@ -285,7 +273,7 @@ function Personalform() {
 <hr id='registration-seperator' />
          
             <div className=" bank_name">
-            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="" req_flag=""/>
+            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="" req_flag="true"/>
               {/* <label htmlFor="Bank name">Bank Name</label>
               <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required /> */}
             </div>
@@ -360,7 +348,7 @@ function Personalform() {
             <div className="first_graduate">
               <label htmlFor="First Graduate">First Graduate</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" required /> Yes</div>
+                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" /> Yes</div>
                 <div className="radio-spacing"><input type="radio" name="first_Graduate" value="No" /> No</div>
               </div>
             </div>
@@ -370,20 +358,24 @@ function Personalform() {
               <select className='community-dropdown' name="special_Category"  >
                 <option>Select</option>
                 <option value="Ex-Service Man">Ex-Service Man</option>
-                <option value="Eminent sports man">Eminent Sports man</option>
+                <option value="Eminent sports man">Eminent sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
-                <option value="Not applicable">Not Applicable</option>
               </select>
             </div>
        
           <div className='personal-form-buttons'>
-              <Allbuttons type="submit" value="Save" image={save} />
-              <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
+              <Allbuttons type="submit"  value="Save" image={save} />
+             
           </div>
           </form>  
         </div>
+<<<<<<< HEAD
        
         
+=======
+        </form>
+        <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
+>>>>>>> b97c72e383d602f288b338f4c2bcde9b0fd33619
       </div>
       
 
