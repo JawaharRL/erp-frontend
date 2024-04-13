@@ -128,6 +128,7 @@ function Personalform() {
                 <option value="MBC">MBC</option>
                 <option value="SC">SC</option>
                 <option value="DNC">DNC</option>
+                <option value="BCM">BCM</option>
               </select>
             </div>
             <div className="caste">
@@ -379,13 +380,14 @@ function Personalform() {
               <Allbuttons type="submit" value="Save" image={save} />
               <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
           </div>
-          
+          </form>  
         </div>
-        </form>
-      
+       
+        
       </div>
+      
 
-    </div>
+    
   )
 }
 
