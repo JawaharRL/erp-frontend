@@ -112,9 +112,11 @@ textarea::placeholder{
 
 
 .personal-form-buttons{
-    margin-top: 25px;
+    margin-top: 15px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: flex-end;
+    grid-column: span 12;
 }
 
 
