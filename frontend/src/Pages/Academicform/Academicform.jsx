@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import './Academicform.css'
 import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
-import { Link } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 import Allfields from '../../Components/Allfields/Allfields';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
