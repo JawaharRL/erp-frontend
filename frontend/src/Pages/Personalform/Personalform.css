@@ -122,7 +122,7 @@ textarea::placeholder{
 
 }
 
-.first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
+.first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
     grid-column:span 4;
 }
 .gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{

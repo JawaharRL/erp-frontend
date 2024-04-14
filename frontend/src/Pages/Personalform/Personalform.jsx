@@ -37,10 +37,13 @@ function Personalform() {
       caste: formData.get('caste'),
       fathers_Name: formData.get('fathers_Name'),
       fathers_Occupation: formData.get('fathers_Occupation'),
+      fathers_Mobile_Number:formData.get('fathers_Mobile_Number'),
       mothers_Name: formData.get('mothers_Name'),
       mothers_Occupation: formData.get('mothers_Occupation'),
+      mothers_Mobile_Number:formData.get('mothers_Mobile_Number'),
       guardians_Name: formData.get('guardians_Name'),
       guardians_Occupation: formData.get('guardians_Occupation'),
+      guardians_Mobile_Number:formData.get('guardians_Mobile_Number'),
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
@@ -152,8 +155,8 @@ function Personalform() {
               <input type="text" name="fathers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
-            <div className="fathetrs_Mobile_Number">
-            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathetrs_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <div className="fathers_Mobile_Number">
+            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
               {/* <label htmlFor="MobileNo">Father's Mobile Number</label>
               <input type="text" name="fathetrs_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
@@ -171,7 +174,7 @@ function Personalform() {
             </div>
 
             <div className="Mothers_Mobile_Number">
-            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="Mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
               {/* <label htmlFor="MobileNo">Mother's Mobile Number</label>
               <input type="text" name="Mothers_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
@@ -189,7 +192,7 @@ function Personalform() {
             </div>
 
             <div className=" guardians_mobile_number">
-            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardians_mobile_number"fieldpattern="[0-9]{10}" req_flag=""/>
+            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardians_Mobile_Number"fieldpattern="[0-9]{10}" req_flag=""/>
               {/* <label htmlFor="MobileNo">Guardian Mobile Number</label>
               <input type="text" name="guardians_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
