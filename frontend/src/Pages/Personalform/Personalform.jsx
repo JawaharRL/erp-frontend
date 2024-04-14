@@ -365,8 +365,8 @@ function Personalform() {
             </div>
        
           <div className='personal-form-buttons'>
-              <Allbuttons type="submit" value="Save" image={save} />
-              <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} />
+              <Allbuttons type="submit" value="Next" image={Nextwhite} />
+              {/* <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} /> */}
           </div>
           
         </div>
