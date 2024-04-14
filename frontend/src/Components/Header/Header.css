@@ -18,7 +18,6 @@ header:hover{
     margin: auto;
 }
 .clglogo{
-   
     width: 110px;   
 }
 
@@ -26,3 +25,11 @@ header:hover{
     
     margin-left: 180px;
 } */
+@media (width<=600px) {
+    .clglogo{
+        width: 90px;   
+    }
+    .clg-name{
+        font-size:x-small;
+    }
+}

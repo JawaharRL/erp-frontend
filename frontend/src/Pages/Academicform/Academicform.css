@@ -60,11 +60,11 @@ input[type="radio"]{
     gap: 20px;
 
 }
-    .reg-no,.programme,.discipline,.abc-id,.umis-id,.course-type,.fasttrack{
+.reg-no,.programme,.discipline,.abc-id,.umis-id,.course-type,.fasttrack{
         grid-column:span 2;
-    }
-    .aca-year,.sem,.date-of-adm,.regulation,.join-date,.adm-no,.cgpa,.student-status{
+}
+.aca-year,.sem,.date-of-adm,.regulation,.join-date,.adm-no,.cgpa,.student-status{
         grid-column: span 1;
-    }
-    
+}
+
 }

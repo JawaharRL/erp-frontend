@@ -33,7 +33,8 @@
 
 input[type="date"]
 {
-    background: url('../../Assets/calendar.svg') no-repeat ;
+    /* background: url('../../Assets/calendar.svg') no-repeat ; */
+    /* background-position: 250px; */
     background-size: 25px 25px;
     width: 24px;
     height: 24px;
@@ -112,13 +113,14 @@ textarea::placeholder{
 
 
 .personal-form-buttons{
+
     margin-top: 15px;
     margin-bottom: 20px;
     display: flex;
     justify-content: flex-end;
     grid-column: span 12;
-}
 
+}
 
 .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
     grid-column:span 4;
@@ -133,21 +135,30 @@ textarea::placeholder{
     grid-column:span 3;
 }
 .mobile_no{
-    grid-column:span 3;
-   
+    grid-column:span 4;
 }
 .mail_id{
-    grid-column:span 7;
+    grid-column:span 8;
 }
+
+
+@media (width<=920px) {
+
+    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
+        grid-column:span 3;
+    }
+    /* .personal-form-buttons{
+        grid-column: 1/1;
+    } */
+}
+
+
 @media (width<=425px) {
 
     .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
         grid-column:span 12;
     }
     .gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{
-        grid-column:span 12;
-    }
-    .profile_photo,.get-photo,#registration-seperator{
         grid-column:span 12;
     }
     .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
@@ -161,3 +172,4 @@ textarea::placeholder{
         grid-column:span 12;
     }
 }
+
