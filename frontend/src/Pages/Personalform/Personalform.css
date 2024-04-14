@@ -113,11 +113,13 @@ textarea::placeholder{
 
 
 .personal-form-buttons{
-    grid-column: span 12;
+
     margin-top: 15px;
-    display: flex;  
-    justify-content: flex-end;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    grid-column: span 12;
+
 }
 
 .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{

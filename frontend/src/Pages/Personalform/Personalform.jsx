@@ -130,6 +130,7 @@ function Personalform() {
                 <option value="MBC">MBC</option>
                 <option value="SC">SC</option>
                 <option value="DNC">DNC</option>
+                <option value="BCM">BCM</option>
               </select>
             </div>
 
