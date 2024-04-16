@@ -5,23 +5,26 @@ import loginicon from '../../Assets/login1.svg'
 import Footer from '../../Components/Footer/Footer';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Header from '../../Components/Header/Header'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 
-const Landingpage = () => {
+function Landingpage() {
+  const navigate = useNavigate();
+
+  const goToPersonalform = () => {
+    navigate('/personal-form');
+  };
+  const goToLoginpage = () => {
+    navigate('/login-page');
+  };
+
   return (
     <div>
     <Header></Header>
     <div class="landingpage-container">
         <div class="nav">
-            <Link to={'/personal-form'}  >
-            <Allbuttons value="Register" image={registericon}/>
-            </Link>
-        
-            <Link to={'/login-page'}>
-            <Allbuttons value="Login" image={loginicon}/>
-            </Link>
-           
+            <Allbuttons className="register-button" target={goToPersonalform} value="Register" image={registericon}/>
+            <Allbuttons className="login-button" target={goToLoginpage} value="Login" image={loginicon}/>
         </div>
     </div>
     

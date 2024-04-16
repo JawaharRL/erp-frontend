@@ -1,7 +1,7 @@
 import React from 'react'
 import './Loginpage.css'
-import Illustration from '../../Assets/Illustration.jpg'
-import eye from '../../Assets/eyewhite.svg'
+// import Illustration from '../../Assets/Illustration.jpg'
+// import eye from '../../Assets/eyewhite.svg'
 import { Loginbutton } from '../../Components'
 
 function Loginpage() {
@@ -15,7 +15,7 @@ function Loginpage() {
             <input type="text" id='input-mail' />
             <label className='login-password' htmlFor="Password">Password</label>
             <input  type="password" />
-            <a href="#"> <p className='forgotpassword'>Forgot password?</p></a>
+            <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
             <div className='login-button-space' >
             <Loginbutton></Loginbutton>
             </div>

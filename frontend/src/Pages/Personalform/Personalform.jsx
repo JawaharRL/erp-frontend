@@ -3,11 +3,13 @@ import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
 import save from '../../Assets/save.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
-import { Link, Navigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
+import Allfields from '../../Components/Allfields/Allfields';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Academicform from '../Academicform/Academicform';
 
 
 function Personalform() {
@@ -25,7 +27,7 @@ function Personalform() {
 
     const data = {
       first_Name: formData.get('first_Name'),
-      last_Name: formData.get('last_Name'),
+      last_Name: formData.get('last_Name'), 
       date_Of_Birth: formData.get('date_Of_Birth'),
       gender: formData.get('gender'),
       aadhar_Number: formData.get('aadhar_Number'),
@@ -35,10 +37,13 @@ function Personalform() {
       caste: formData.get('caste'),
       fathers_Name: formData.get('fathers_Name'),
       fathers_Occupation: formData.get('fathers_Occupation'),
+      fathers_Mobile_Number:formData.get('fathers_Mobile_Number'),
       mothers_Name: formData.get('mothers_Name'),
       mothers_Occupation: formData.get('mothers_Occupation'),
+      mothers_Mobile_Number:formData.get('mothers_Mobile_Number'),
       guardians_Name: formData.get('guardians_Name'),
       guardians_Occupation: formData.get('guardians_Occupation'),
+      guardians_Mobile_Number:formData.get('guardians_Mobile_Number'),
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
@@ -61,10 +66,12 @@ function Personalform() {
       first_Graduate: formData.get('first_Graduate'),
       special_Category: formData.get('special_Category')
     };
+    // console.log(data.date_Of_Birth);
 
     try {
       const response = await axios.post(url, data);
       console.log(response.data);
+      navigate('/academic-form');
     } catch (error) {
       console.error('Error saving student:', error);
     }
@@ -75,50 +82,49 @@ function Personalform() {
         <div className='form-content'>
           <Formtitle></Formtitle>
         </div>
-        <form id='registration_form' onSubmit={handleSubmit}>
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="Name">First Name</label>
-              <input type="text" name="first_Name" pattern="[A-Za-z\s]+" required />
+        <form id='registration_form' action='' onSubmit={handleSubmit}>
+          <div className="personal-container">
 
+            <div className="first_name">
+              <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
             </div>
-            <div className="field">
-              <label htmlFor="Name" >Last Name</label>
-              <input type="text" name="last_Name" pattern="[A-Za-z\s]+" required />
 
+            <div className="last_name">
+            <Allfields fieldtype="text" value="Last Name" inputname="last_Name"fieldpattern="[A-Za-z]+"/>
             </div>
-            <div className="field">
-              <label htmlFor="Date of Birth">Date of Birth</label>
-              <input type="date" name="date_Of_Birth" required />
-            </div>
-          </div>
 
-          <div className="registration1-levels">
-            <div className="field">
+            <div className="date_Of_Birth">
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag="true"/>
+            </div>
+         
+            <div className="gender">
               <label htmlFor="Gender">Gender</label>
               <div className="radio" >
-                <div className="radio-spacing"><input type="radio" name="gender" value="Male" required /> Male</div>
+                <div className="radio-spacing"><input type="radio" name="gender" value="Male" /> Male</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Female" /> Female</div>
                 <div className="radio-spacing"><input type="radio" name="gender" value="Others" /> Others</div>
-              </div>
+            </div>
 
             </div>
-            <div className="field">
-              <label htmlFor="Aadhar">Aadhar Number</label>
-              <input type="text" name="aadhar_Number" pattern="[0-9]{12}" required />
+            <div className="aadhar_number">
+            <Allfields fieldtype="text" value="Aadhar Number" inputname="aadhar_Number"fieldpattern="[0-9]{12}" req_flag="true"/>
+              {/* <label htmlFor="Aadhar">Aadhar Number</label>
+              <input type="text" name="aadhar_Number" pattern="[0-9]{12}" required /> */}
             </div>
-          </div>
+          
+            <div className="nationality">
+            <Allfields fieldtype="text" value="Nationality" inputname="nationality"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Nationality">Nationality</label>
+              <input type="text" name="nationality" pattern="[A-Za-z]+" required /> */}
+            </div>
 
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="Nationality">Nationality</label>
-              <input type="text" name="nationality" pattern="[A-Za-z]+" required />
+            <div className="religion"> 
+            <Allfields fieldtype="text" value="Religion" inputname="religion"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Religion">Religion</label>
+              <input type="text" name="religion" pattern="[A-Za-z]+" required /> */}
             </div>
-            <div className="field">
-              <label htmlFor="Religion">Religion</label>
-              <input type="text" name="religion" pattern="[A-Za-z]+" required />
-            </div>
-            <div className="field">
+
+            <div className="community">
               <label htmlFor="Community">Community</label>
               <select className='community-dropdown' name="community" required>
                 <option value="Select">Select</option>
@@ -127,61 +133,87 @@ function Personalform() {
                 <option value="MBC">MBC</option>
                 <option value="SC">SC</option>
                 <option value="DNC">DNC</option>
+                <option value="BCM">BCM</option>
               </select>
             </div>
-            <div className="field">
-              <label htmlFor="Caste">Caste</label>
-              <input type="text" name="caste" pattern="[A-Za-z\s]+" required />
+
+            <div className="caste">
+            <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Caste">Caste</label>
+              <input type="text" name="caste" pattern="[A-Za-z]+" required /> */}
             </div>
 
-          </div>
+            <div className="fathers_Name">
+            <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="FatherName">Father's Name</label>
+              <input type="text" name="fathers_Name" pattern="[A-Za-z]+" required /> */}
+            </div>
 
-          <div className="registration1-levels ">
-            <div className="field">
-              <label htmlFor="FatherName">Father's Name</label>
-              <input type="text" name="fathers_Name" pattern="[A-Za-z\s]+" required />
+            <div className="fathers_Occupation">
+            <Allfields fieldtype="text" value="Father's Occupation" inputname="fathers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Occupation">Father's Occupation</label>
+              <input type="text" name="fathers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
-            <div className="field">
-              <label htmlFor="Occupation">Father's Occupation</label>
-              <input type="text" name="fathers_Occupation" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className=" field">
-              <label htmlFor="MobileNo">Father's Mobile Number</label>
-              <input type="text" name="fathetrs_Mobile_Number" pattern="[0-9]{10}" />
+
+            <div className="fathers_Mobile_Number">
+            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+              {/* <label htmlFor="MobileNo">Father's Mobile Number</label>
+              <input type="text" name="fathetrs_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
             
-          </div>       
-          <div className="registration1-levels">
-          <div className="field">
-              <label htmlFor="MotherName">Mother's Name</label>
-              <input type="text" name="mothers_Name" pattern="[A-Za-z\s]+" required/>
+            <div className="mothers_Name">
+            <Allfields fieldtype="text" value="Mother's Name" inputname="mothers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="MotherName">Mother's Name</label>
+              <input type="text" name="mothers_Name" pattern="[A-Za-z]+" required/> */}
             </div>
-            <div className="form-group field">
-              <label htmlFor="Occupation">Mother's Occupation</label>
-              <input type="text" name="mothers_Occupation" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className=" field">
-              <label htmlFor="MobileNo">Mother's Mobile Number</label>
-              <input type="text" name="Mothers_Mobile_Number" pattern="[0-9]{10}" />
-            </div>
-          </div> 
 
-          <div className="registration1-levels">
-            <div className="form-group field">
+            <div className="mothers_Occupation">
+            <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Occupation">Mother's Occupation</label>
+              <input type="text" name="mothers_Occupation" pattern="[A-Za-z]+" /> */}
+            </div>
+
+            <div className="Mothers_Mobile_Number">
+            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+              {/* <label htmlFor="MobileNo">Mother's Mobile Number</label>
+              <input type="text" name="Mothers_Mobile_Number" pattern="[0-9]{10}" /> */}
+            </div>
+
+            <div className="guardians_name">
+            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_name"fieldpattern="[A-Za-z]+" req_flag=""/>
+              {/* <label htmlFor="GuardianName">Guardian Name</label>
+              <input type="text" name="guardians_Name" pattern="[A-Za-z]+" /> */}
+            </div>
+
+            <div className="guardians_occupation">
+            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_occupation"fieldpattern="[A-Za-z]+" req_flag=""/>
+              {/* <label htmlFor="Occupation">Guardian Occupation</label>
+              <input type="text" name="guardians_Occupation" pattern="[A-Za-z]+" /> */}
+            </div>
+
+            <div className=" guardians_mobile_number">
+            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardians_Mobile_Number"fieldpattern="[0-9]{10}" req_flag=""/>
+              {/* <label htmlFor="MobileNo">Guardian Mobile Number</label>
+              <input type="text" name="guardians_Mobile_Number" pattern="[0-9]{10}" /> */}
+            </div>
+            <div className="marital_status">
               <label htmlFor="MaritalStatus">Marital Status</label>
-              <select className='community-dropdown' required >
+              <select className='community-dropdown' >
                 <option>Select</option>
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
               </select>
             </div>
-            <div className="form-group field">
-              <label htmlFor="Income">Income</label>
-              <input type="text" name="income" pattern="[0-9]+" required />
+
+            <div className="income">
+            <Allfields fieldtype="text" value="Income" inputname="income"fieldpattern="[0-9]+" req_flag="true"/>
+              {/* <label htmlFor="Income">Income</label>
+              <input type="text" name="income" pattern="[0-9]+" required /> */}
             </div>
-            <div className="field">
+
+            <div className="parents_status">
               <label htmlFor="ParentsStatus">Parents Status</label>
-              <select className='community-dropdown' name="parents_Status" required>
+              <select className='community-dropdown' name="parents_Status" >
                 <option >Select</option>
                 <option value="Both are alive">Both are alive</option>
                 <option value="Father alive">Father alive</option>
@@ -189,26 +221,11 @@ function Personalform() {
                 <option value="Both are not alive">Both are not alive</option>
               </select>
             </div>
-          </div>
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="GuardianName">Guardian Name</label>
-              <input type="text" name="guardians_Name" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className="field">
-              <label htmlFor="Occupation">Guardian Occupation</label>
-              <input type="text" name="guardians_Occupation" pattern="[A-Za-z\s]+" />
-            </div>
-            <div className=" field">
-              <label htmlFor="MobileNo">Guardian Mobile Number</label>
-              <input type="text" name="guardians_Mobile_Number" pattern="[0-9]{10}" />
-            </div>
-            
-          </div>
 
-          <div className="profilephoto">
+            
+          <div className="profile_photo">
             <img className="photo" src={Profile} alt="Photopreview"/>
-            <div className='getphoto'>
+            <div className='get_photo'>
               <input type="file" name="profile_Photo" />
               <br />
               <br />
@@ -217,140 +234,148 @@ function Personalform() {
 
             </div>
           </div>
-          <hr id='registration-seperator' />
 
-          <div className="registration1-levels">
-            <div className=" field">
-              <label htmlFor="MobileNo">Mobile Number</label>
-              <input id='mobilenumber' type="text" name="mobile_Number" pattern="[0-9]{10}" required />
+<hr id='registration-seperator' />
+
+            <div className="mobile_no">
+            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag="true"/>
+              {/* <label htmlFor="MobileNo">Mobile Number</label>
+              <input id='mobilenumber' type="text" name="MobileNo" pattern="[0-9]{10}" required /> */}
             </div>
 
-            <div className="field mailid">
-              <label htmlFor="Emailid">Email ID</label>
-              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required />
+            <div className="mail_id">
+            <Allfields fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag="true"/>
+              {/* <label htmlFor="Emailid">Email ID</label>
+              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required /> */}
             </div>
-          </div>
-          <div className="registration1-levels">
-           <div className="field">
+
+           <div className="communication_address">
               <label htmlFor="CommunicationAddress">Communication Address</label><br />
-              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
+              <textarea name="communication_Address" cols="40" rows="6" placeholder="Enter your address here" required></textarea>
             </div>
-            <div className=" field">
+
+            <div className=" residential_address">
               <label htmlFor="ResidentialAddress">Residential Address</label><br />
-              <textarea name="residential_Address" cols="40" rows="6" placeholder="Enter your address here" pattern="[\s\S]+" required></textarea>
+              <textarea name="residential_Address" cols="40" rows="6" placeholder="  Enter your address here" required></textarea>
             </div>
             
-          </div>
-
-          <div className="registration1-levels">
-            <div className="field">
+            <div className="hosteller">
               <label htmlFor="Hosteller">Hosteller</label>
-              <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" required /> Yes</div>
+              <div className="radio" required>
+                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" /> Yes</div>
                 <div className="radio-spacing"> <input type="radio" name="hosteller" value="No" /> No</div>
               </div>
             </div>
-            <div className="field">
+
+            <div className="hostel_type" required>
               <label htmlFor="Hostel Type">Hostel Type</label>
               <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" required /> Free</div>
+                <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Free" /> Free</div>
                 <div className="radio-spacing"><input type="radio" name="hostel_Type" value="Paid" /> Paid</div>
               </div>
             </div>
-          </div>
+        
+<hr id='registration-seperator' />
+         
+            <div className=" bank_name">
+            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="Bank name">Bank Name</label>
+              <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required /> */}
+            </div>
 
-          <hr id='registration-seperator' />
-          <div className="registration1-levels">
-            <div className=" field">
-              <label htmlFor="Bank name">Bank Name</label>
-              <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z\s]+" required />
+            <div className="branch_Name">
+            <Allfields fieldtype="text" value="Branch Name" inputname="branch_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              {/* <label htmlFor="branch_Name">Branch Name</label>
+              <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z]+" required /> */}
             </div>
-            <div className=" field">
-              <label htmlFor="branch_Name">Branch Name</label>
-              <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z\s]+" required />
+         
+            <div className="account_Number ">
+            <Allfields fieldtype="text" value="Account Number" inputname="account_Number"fieldpattern="[0-9]{11,16}" req_flag="true"/>
+              {/* <label htmlFor="account_Number">Account Number</label>
+              <input id='accno' type="text" name="account_Number" pattern="[0-9]{11,16}" required /> */}
             </div>
-          </div>
-          <div className="registration1-levels">
-            <div className="field ">
-              <label htmlFor="account_Number">Account Number</label>
-              <input id='accno' type="text" name="account_Number" pattern="[0-9]{11,16}" required />
-            </div>
-            <div className="field ">
-              <label htmlFor="ifsccode">IFSC Code</label>
-              <input id='ifsc' type="text" name="ifsc_Code" pattern="[A-Za-z0-9]+" required />
-            </div>
-          </div>
 
-          <hr id='registration-seperator' />
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="SSLC">SSLC %</label>
-              <input type="text" name="sslc" className="" pattern="\d+\.\d+" required />
-
+            <div className="ifsc_Code ">
+            <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"fieldpattern="[A-Za-z0-9]+" req_flag="true"/>
+              {/* <label htmlFor="ifsccode">IFSC Code</label>
+              <input id='ifsc' type="text" name="ifsc_Code" pattern="[A-Za-z0-9]+" required /> */}
             </div>
-            <div className="field">
-              <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
-              <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" />
+        
 
+<hr id='registration-seperator' />
+          
+            <div className="sslc">
+            <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag="true"/>
+              {/* <label htmlFor="SSLC">SSLC %</label>
+              <input type="text" name="sslc" className="" pattern="\d+\.\d+" required /> */}
             </div>
-            <div className="field">
-              <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
-              <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" />
 
+            <div className="hsc_1_Year">
+            <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+              {/* <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
+              <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
-            <div className="field">
-              <label htmlFor="Diploma">Diploma %</label>
-              <input type="text" name="diploma" className="" pattern="\d+\.\d+" />
 
+            <div className="hsc_2_Year">
+            <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+              {/* <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
+              <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
-          </div>
 
-          <div className="registration1-levels upload-files">
+            <div className="diploma">
+            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag="true"/>
+              {/* <label htmlFor="Diploma">Diploma %</label>
+              <input type="text" name="diploma" className="" pattern="\d+\.\d+" /> */}
+            </div>
+         
             <div className="field">
               <input type="file" name="sslcfile" className="educational-document"  />
             </div>
+
             <div className="field">
               <input type="file" name="hscIfile" className="educational-document" />
             </div>
+
             <div className="field">
               <input type="file" name="hscIIfile" className="educational-document" />
             </div>
+
             <div className="field">
               <input type="file" name="diplomafile" className="educational-document" />
             </div>
-          </div>
 
-          <div className="registration1-levels">
-            <div className="field">
-              <label htmlFor="EmisNumber">Emis Number</label>
-              <input type="text" name="emis_Number" pattern="[0-9]{10,20}" required />
+            <div className="emis_Number">
+            <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag="true"/>
+              {/* <label htmlFor="EmisNumber">Emis Number</label>
+              <input type="text" name="emis_Number" pattern="[0-9]{10,20}" required /> */}
             </div>
-            <div className="field">
+            
+            <div className="first_graduate">
               <label htmlFor="First Graduate">First Graduate</label>
-              <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" required /> Yes</div>
+              <div className="radio" required>
+                <div className="radio-spacing"><input type="radio" name="first_Graduate" value="Yes" /> Yes</div>
                 <div className="radio-spacing"><input type="radio" name="first_Graduate" value="No" /> No</div>
               </div>
             </div>
-            <div className="field">
+
+            <div className="special_category">
               <label htmlFor="Special Category">Special Category</label>
               <select className='community-dropdown' name="special_Category" required >
                 <option>Select</option>
                 <option value="Ex-Service Man">Ex-Service Man</option>
-                <option value="Eminent sports man">Eminent Sports man</option>
+                <option value="Eminent sports man">Eminent sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
-                <option value="Not applicable">Not Applicable</option>
               </select>
             </div>
-          </div>
+       
           <div className='personal-form-buttons'>
-              <Allbuttons type="submit" value="Save" image={save} />
-              <Allbuttons onClick={goToAcademicform} value="Next" image={Nextwhite} />
+              <Allbuttons type="submit" value="Next" image={Nextwhite} />
+              {/* <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} /> */}
           </div>
           
-
+        </div>
         </form>
-
+      
       </div>
 
     </div>
