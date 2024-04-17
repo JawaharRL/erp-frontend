@@ -47,7 +47,7 @@ function Personalform() {
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
-      // profile_Photo:formData.get('profile_Photo'),
+      profile_Photo:e.target.elements.profile_Photo.files[0],
       mobile_Number: formData.get('mobile_Number'),
       email_Id: formData.get('email_id'),
       residential_Address: formData.get('residential_Address'),
@@ -62,6 +62,10 @@ function Personalform() {
       hsc_1_Year: formData.get('hsc_1_Year'),
       hsc_2_Year: formData.get('hsc_2_Year'),
       diploma: formData.get('diploma'),
+      sslc_File: e.target.elements.sslc_File.files[0],
+      hsc_1_Year_File: e.target.elements.hsc_1_Year_File.files[0],
+      hsc_2_Year_File: e.target.elements.hsc_2_Year_File.files[0],
+      diploma_File: e.target.elements.diploma_File.files[0],
       emis_Number: formData.get('emis_Number'),
       first_Graduate: formData.get('first_Graduate'),
       special_Category: formData.get('special_Category')
@@ -86,7 +90,7 @@ function Personalform() {
           <div className="personal-container">
 
             <div className="first_name">
-              <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+              <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag={true}/>
             </div>
 
             <div className="last_name">
@@ -94,7 +98,7 @@ function Personalform() {
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag="true"/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag={true}/>
             </div>
          
             <div className="gender">
@@ -107,19 +111,19 @@ function Personalform() {
 
             </div>
             <div className="aadhar_number">
-            <Allfields fieldtype="text" value="Aadhar Number" inputname="aadhar_Number"fieldpattern="[0-9]{12}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Aadhar Number" inputname="aadhar_Number"fieldpattern="[0-9]{12}" req_flag={true}/>
               {/* <label htmlFor="Aadhar">Aadhar Number</label>
               <input type="text" name="aadhar_Number" pattern="[0-9]{12}" required /> */}
             </div>
           
             <div className="nationality">
-            <Allfields fieldtype="text" value="Nationality" inputname="nationality"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Nationality" inputname="nationality"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Nationality">Nationality</label>
               <input type="text" name="nationality" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="religion"> 
-            <Allfields fieldtype="text" value="Religion" inputname="religion"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Religion" inputname="religion"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Religion">Religion</label>
               <input type="text" name="religion" pattern="[A-Za-z]+" required /> */}
             </div>
@@ -138,43 +142,43 @@ function Personalform() {
             </div>
 
             <div className="caste">
-            <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Caste">Caste</label>
               <input type="text" name="caste" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="fathers_Name">
-            <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="FatherName">Father's Name</label>
               <input type="text" name="fathers_Name" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="fathers_Occupation">
-            <Allfields fieldtype="text" value="Father's Occupation" inputname="fathers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Occupation" inputname="fathers_Occupation"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Occupation">Father's Occupation</label>
               <input type="text" name="fathers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="fathers_Mobile_Number">
-            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag={true}/>
               {/* <label htmlFor="MobileNo">Father's Mobile Number</label>
               <input type="text" name="fathetrs_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
             
             <div className="mothers_Name">
-            <Allfields fieldtype="text" value="Mother's Name" inputname="mothers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Name" inputname="mothers_Name"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="MotherName">Mother's Name</label>
               <input type="text" name="mothers_Name" pattern="[A-Za-z]+" required/> */}
             </div>
 
             <div className="mothers_Occupation">
-            <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothers_Occupation"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Occupation">Mother's Occupation</label>
               <input type="text" name="mothers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="Mothers_Mobile_Number">
-            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag={true}/>
               {/* <label htmlFor="MobileNo">Mother's Mobile Number</label>
               <input type="text" name="Mothers_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
@@ -206,7 +210,7 @@ function Personalform() {
             </div>
 
             <div className="income">
-            <Allfields fieldtype="text" value="Income" inputname="income"fieldpattern="[0-9]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Income" inputname="income"fieldpattern="[0-9]+" req_flag={true}/>
               {/* <label htmlFor="Income">Income</label>
               <input type="text" name="income" pattern="[0-9]+" required /> */}
             </div>
@@ -238,13 +242,13 @@ function Personalform() {
 <hr id='registration-seperator' />
 
             <div className="mobile_no">
-            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag={true}/>
               {/* <label htmlFor="MobileNo">Mobile Number</label>
               <input id='mobilenumber' type="text" name="MobileNo" pattern="[0-9]{10}" required /> */}
             </div>
 
             <div className="mail_id">
-            <Allfields fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag="true"/>
+            <Allfields fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag={true}/>
               {/* <label htmlFor="Emailid">Email ID</label>
               <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required /> */}
             </div>
@@ -278,25 +282,25 @@ function Personalform() {
 <hr id='registration-seperator' />
          
             <div className=" bank_name">
-            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="Bank name">Bank Name</label>
               <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="branch_Name">
-            <Allfields fieldtype="text" value="Branch Name" inputname="branch_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Branch Name" inputname="branch_Name"fieldpattern="[A-Za-z]+" req_flag={true}/>
               {/* <label htmlFor="branch_Name">Branch Name</label>
               <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z]+" required /> */}
             </div>
          
             <div className="account_Number ">
-            <Allfields fieldtype="text" value="Account Number" inputname="account_Number"fieldpattern="[0-9]{11,16}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Account Number" inputname="account_Number"fieldpattern="[0-9]{11,16}" req_flag={true}/>
               {/* <label htmlFor="account_Number">Account Number</label>
               <input id='accno' type="text" name="account_Number" pattern="[0-9]{11,16}" required /> */}
             </div>
 
             <div className="ifsc_Code ">
-            <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"fieldpattern="[A-Za-z0-9]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"fieldpattern="[A-Za-z0-9]+" req_flag={true}/>
               {/* <label htmlFor="ifsccode">IFSC Code</label>
               <input id='ifsc' type="text" name="ifsc_Code" pattern="[A-Za-z0-9]+" required /> */}
             </div>
@@ -305,47 +309,47 @@ function Personalform() {
 <hr id='registration-seperator' />
           
             <div className="sslc">
-            <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag={true}/>
               {/* <label htmlFor="SSLC">SSLC %</label>
               <input type="text" name="sslc" className="" pattern="\d+\.\d+" required /> */}
             </div>
 
             <div className="hsc_1_Year">
-            <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag={true}/>
               {/* <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
               <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="hsc_2_Year">
-            <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag={true}/>
               {/* <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
               <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="diploma">
-            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag={true}/>
               {/* <label htmlFor="Diploma">Diploma %</label>
               <input type="text" name="diploma" className="" pattern="\d+\.\d+" /> */}
             </div>
          
             <div className="field">
-              <input type="file" name="sslcfile" className="educational-document"  />
+              <input type="file" name="sslc_File" className="educational-document"  />
             </div>
 
             <div className="field">
-              <input type="file" name="hscIfile" className="educational-document" />
+              <input type="file" name="hsc_1_Year_File" className="educational-document" />
             </div>
 
             <div className="field">
-              <input type="file" name="hscIIfile" className="educational-document" />
+              <input type="file" name="hsc_2_Year_File" className="educational-document" />
             </div>
 
             <div className="field">
-              <input type="file" name="diplomafile" className="educational-document" />
+              <input type="file" name="diploma_File" className="educational-document" />
             </div>
 
             <div className="emis_Number">
-            <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag={true}/>
               {/* <label htmlFor="EmisNumber">Emis Number</label>
               <input type="text" name="emis_Number" pattern="[0-9]{10,20}" required /> */}
             </div>
@@ -365,6 +369,7 @@ function Personalform() {
                 <option value="Ex-Service Man">Ex-Service Man</option>
                 <option value="Eminent sports man">Eminent sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
+                <option value="Not Applicable">Not Applicable</option>
               </select>
             </div>
        
