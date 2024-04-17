@@ -172,9 +172,9 @@ const [showDiv, setShowDiv] = useState(false);
 </div>
 <div className='academic-buttons'>
   <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
-  {/* <Allbuttons  value="Submit" image={Nextwhite}  onClick={notify}/> */}
+ 
       <div>
-        <button className='All-button' type="submit"  >Submit</button>
+      <Allbuttons  value="Submit" image={Nextwhite} />
         {/* <button onClick={notify} >Submit</button> */}
         <ToastContainer />
       </div>
