@@ -59,12 +59,34 @@ function Academicform() {
       toast("Registration successful");
       setIsOpen(true);
       // openModal();
-     
-
     } catch (error) {
-      
       console.error('Error saving student:', error);
       toast("Registration failed");
+    }
+    
+  };
+  const PasswordSubmit = async (e) => {
+    e.preventDefault();
+   
+    const formData = new FormData(e.target);
+    const url = 'http://localhost:8080/api/student/password';
+
+    const data = {
+      email_Id :location.state.Uname,
+      create_Password: formData.get('create_Password'),
+      reenter_Password: formData.get('reenter_Password'),
+      
+    };
+    console.log(data.email_Id);
+    try {
+      const response = await axios.post(url, data);
+      console.log(response.data);
+      toast("Password creation successful");
+      
+      // openModal();
+    } catch (error) {
+      console.error('Error saving student:', error);
+      toast("Password creation failed");
     }
     
   };
@@ -176,8 +198,8 @@ function Academicform() {
 <div className='academic-buttons'>
       <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
       <div>
-      {/* <Allbuttons onClick={openModal} value="Submit" image={Nextwhite} /> */}
-        <button  >Submit</button>
+      <Allbuttons value="Submit" image={Nextwhite} />
+        {/* <button>Submit</button> */}
         <ToastContainer />
      <div className="password_popup">
       {/* <button onClick={openModal}>Open Popup</button> */}
@@ -188,14 +210,14 @@ function Academicform() {
       >
         <div>
         <div className="login-popup">
-            <form className="create-passwors-form">
+            <form className="create-passwors-form" id="createpassword" onSubmit={PasswordSubmit}>
               <h2 className='create-password-title' >
                 Create password
               </h2>
               <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
-              <input className="create_password_fields" type="password" placeholder="Create password" />
-              <input className="create_password_fields" type="password" placeholder="Re-enter password" />
-              <button className='All-button'>Create</button>
+              <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" />
+              <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" />
+              <button className='All-button' type="submit">Create</button>
             </form>
           </div>
         </div>
