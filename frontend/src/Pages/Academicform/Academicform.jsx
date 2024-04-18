@@ -11,24 +11,25 @@ import Allfields from '../../Components/Allfields/Allfields'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react'
-import Createpasswordpopup from '../../Components/Createpasswordpopup/Createpasswordpopup'
+import Popup from 'reactjs-popup'
 
 
 function Academicform() {
-const [showDiv, setShowDiv] = useState(false);
-
-
   const location =useLocation();
   console.log(location)
-  // const email_id = location.state.Uname
-  const navigate =useNavigate();
 
+  const navigate =useNavigate();
   const goToPersonalform = () => {
     navigate('/personal-form');
   };
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  // const openModal = () => {
+  //   setIsOpen(true);
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+   
     const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/academics';
 
@@ -56,14 +57,16 @@ const [showDiv, setShowDiv] = useState(false);
       const response = await axios.post(url, data);
       console.log(response.data);
       toast("Registration successful");
-      setShowDiv(true);
+      setIsOpen(true);
+      // openModal();
      
 
     } catch (error) {
-      toast("Registration failed");
-     
+      
       console.error('Error saving student:', error);
+      toast("Registration failed");
     }
+    
   };
 
   return (
@@ -171,22 +174,42 @@ const [showDiv, setShowDiv] = useState(false);
      
 </div>
 <div className='academic-buttons'>
-  <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
- 
+      <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
       <div>
-      <Allbuttons  value="Submit" image={Nextwhite} />
-        {/* <button onClick={notify} >Submit</button> */}
+      {/* <Allbuttons onClick={openModal} value="Submit" image={Nextwhite} /> */}
+        <button  >Submit</button>
         <ToastContainer />
+     <div className="password_popup">
+      {/* <button onClick={openModal}>Open Popup</button> */}
+      <Popup 
+        open={isOpen} 
+        modal
+        closeOnDocumentClick={false}
+      >
+        <div>
+        <div className="login-popup">
+            <form className="create-passwors-form">
+              <h2 className='create-password-title' >
+                Create password
+              </h2>
+              <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
+              <input className="create_password_fields" type="password" placeholder="Create password" />
+              <input className="create_password_fields" type="password" placeholder="Re-enter password" />
+              <button className='All-button'>Create</button>
+            </form>
+          </div>
+        </div>
+      </Popup>
+    </div>
       </div>
-  
      </div>
      </form>
-        
+{/*         
      {showDiv && 
      <div>
-       <Createpasswordpopup/>
+       <Createpasswordpopup />
       </div>}
-    
+     */}
 </div>
 
   )
