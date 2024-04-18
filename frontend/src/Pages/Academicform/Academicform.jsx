@@ -58,6 +58,7 @@ function Academicform() {
       console.log(response.data);
       toast("Registration successful");
       setIsOpen(true);
+      
       // openModal();
     } catch (error) {
       console.error('Error saving student:', error);
@@ -82,7 +83,7 @@ function Academicform() {
       const response = await axios.post(url, data);
       console.log(response.data);
       toast("Password creation successful");
-      
+      navigate('/login-page');
       // openModal();
     } catch (error) {
       console.error('Error saving student:', error);
@@ -214,10 +215,11 @@ function Academicform() {
               <h2 className='create-password-title' >
                 Create password
               </h2>
+              <label htmlFor="">User name</label>
               <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
               <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" />
               <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" />
-              <button className='All-button' type="submit">Create</button>
+              <button className='All-button' >Create</button>
             </form>
           </div>
         </div>

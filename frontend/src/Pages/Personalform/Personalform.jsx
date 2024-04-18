@@ -370,6 +370,7 @@ function Personalform() {
                 <option value="Ex-Service Man">Ex-Service Man</option>
                 <option value="Eminent sports man">Eminent sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
+                <option value="Differently Abled">Not applicable</option>
               </select>
             </div>
        
