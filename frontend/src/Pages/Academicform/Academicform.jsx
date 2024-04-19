@@ -107,33 +107,33 @@ function Academicform() {
     <form id='registration_form' onSubmit={handleSubmit}>
     <div className="academic-container">
         <div className="reg-no">
-        <Allfields fieldtype="text" value="Register_No" inputname="register_No" fieldpattern="[0-9]+" req_flag="true"/>
+        <Allfields fieldtype="text" value="Register_No" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
          {/* <label htmlFor="RegisterNo">RegisterNo</label>
          <input type="text" name="RegisterNo"/> */}
        </div>
        <div className="programme">
-       <Allfields fieldtype="text" value="Programme" inputname="programme" fieldpattern="[A-Za-z]+" req_flag="true"/>
+       <Allfields fieldtype="text" value="Programme" inputname="programme" fieldpattern="[A-Za-z]+" req_flag={true} format={/[^A-Za-z\s]/g}/>
          {/* <label htmlFor="Programme">Programme</label>
          <input type="text" name="Programme" /> */}
        </div>
        <div className="discipline">
-       <Allfields fieldtype="text" value="Discipline" inputname="discipline" fieldpattern="[A-Za-z]+" req_flag="true"/>
+       <Allfields fieldtype="text" value="Discipline" inputname="discipline" fieldpattern="[A-Za-z]+" req_flag={true}format={/[^A-Za-z\s]/g}/>
          {/* <label htmlFor="Discipline">Discipline</label>
          <input type="text" name="Discipline" /> */}
        </div> 
        <div className="aca-year">
-       <Allfields fieldtype="text" value="Academic_Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag="true"/>
+       <Allfields fieldtype="text" value="Academic_Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g}/>
          {/* <label htmlFor="Academic Year">Academic Year</label>
          <input type="text" name="Academic Year"/> */}
        </div>
        
         <div className="adm-no">
-        <Allfields fieldtype="text" value="Admission_Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag="true"/>
+        <Allfields fieldtype="text" value="Admission_Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g}/>
          {/* <label htmlFor="AdmissionNo">AdmissionNo</label>
          <input type="text" name="AdmissionNo" /> */}
        </div>
        <div className="regulation">
-       <Allfields fieldtype="text" value="Regulation" inputname="regulation" fieldpattern="[A-Za-z0-9]+" req_flag="true"/>
+       <Allfields fieldtype="text" value="Regulation" inputname="regulation" fieldpattern="[A-Za-z0-9]+" req_flag={true} format={/[^0-9a-zA-Z]/g}/>
         {/* <label htmlFor="Regulation">Regulation</label>
         <input type="text" name="Regulation"/> */}
       </div>
@@ -155,20 +155,20 @@ function Academicform() {
        <div className="abc-id">
         {/* <label htmlFor="ABC Id">ABC Id</label>
         <input type="text" name="ABC Id" /> */}
-        <Allfields fieldtype="text" value="ABC_Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag="true"/>
+        <Allfields fieldtype="text" value="ABC_Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
       </div>
         <div className="umis-id">
-        <Allfields fieldtype="text" value="UMIS_Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag="true"/>
+        <Allfields fieldtype="text" value="UMIS_Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
          {/* <label htmlFor="UMIS Id">UMIS Id</label>
          <input type="text" name="UMIS Id"   /> */}
        </div>
        <div className="date-of-adm">
-       <Allfields fieldtype="date" value="Date_of_Admission" inputname="date_Of_Admission"fieldpattern="" req_flag="true"/>
+       <Allfields fieldtype="date" value="Date_of_Admission" inputname="date_Of_Admission"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
          {/* <label htmlFor="Date of Admission">Date of Admission</label>
          <input type="date" name="Date of Admission"  /> */}
        </div>
        <div className="join-date">
-       <Allfields fieldtype="date" value="Course_Joined_Date" inputname="course_Joined_Date"fieldpattern="" req_flag="true"/>
+       <Allfields fieldtype="date" value="Course_Joined_Date" inputname="course_Joined_Date"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
          {/* <label htmlFor="Course joined">Course joined</label>
          <input type="date" name="Course joined"  /> */}
        </div> 
@@ -188,7 +188,7 @@ function Academicform() {
       </div>
      </div>
        <div className="cgpa" >
-       <Allfields fieldtype="text" value="CGPA" inputname="cgpa"fieldpattern="\d+\.\d+" req_flag="true"/>
+       <Allfields fieldtype="text" value="CGPA" inputname="cgpa"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
          {/* <label htmlFor="CGPA">CGPA</label>
          <input type="text" name="CGPA" /> */}
        </div> 
