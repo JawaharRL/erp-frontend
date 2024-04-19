@@ -33,6 +33,41 @@ input[type="radio"]{
     border-radius: 50%;
     transform: translateY(3px);
  }
+ .create-passwors-form{
+    
+    width: 300px;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    
+    
+}
+ 
+.create_password_fields{
+    width: 100%;    
+    margin-bottom: 15px;
+}
+
+.login-popup{
+
+    /* margin-left: 350px; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    width: 400px;
+    height: fit-content;
+    border-radius: 30px;
+    opacity: 1;
+    background: rgba(92, 146, 190, 0.47);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(3.6px);
+}
+.create-password-title{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
 
  @media (width<=980px) {
     
