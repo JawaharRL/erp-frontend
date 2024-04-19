@@ -4,23 +4,37 @@ import { useNavigate } from 'react-router-dom'
 import './Academicform.css'
 import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
+import { useLocation } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 import Allfields from '../../Components/Allfields/Allfields';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react'
+import Popup from 'reactjs-popup'
+
 
 function Academicform() {
-  const navigate = useNavigate();
+  const location =useLocation();
+  console.log(location)
 
+  const navigate =useNavigate();
   const goToPersonalform = () => {
     navigate('/personal-form');
   };
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  // const openModal = () => {
+  //   setIsOpen(true);
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+   
     const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/academics';
 
     const data = {
+      email_Id :location.state.Uname,
       register_No: formData.get('register_No'),
       programme: formData.get('programme'),
       discipline: formData.get('discipline'),
@@ -37,12 +51,51 @@ function Academicform() {
       cgpa:  formData.get('cgpa'),
       student_Status: formData.get('student_Status')
     };
+    console.log(data.email_Id);
+    try {
+      
+      const response = await axios.post(url, data);
+      console.log(response.data);
+      toast("Registration successful");
+      setIsOpen(true);
+      
+      // openModal();
+    } catch (error) {
+      console.error('Error saving student:', error);
+      toast("Registration failed");
+    }
+    
+  };
+  const PasswordSubmit = async (e) => {
+    e.preventDefault();
+   
+    const formData = new FormData(e.target);
+    const createPassword = formData.get('create_Password');
+    const reenterPassword = formData.get('reenter_Password');
+    if (createPassword !== reenterPassword) {
+      toast("Passwords does not matched");
+      return; // Prevent further execution
+    }
+    const url = 'http://localhost:8080/api/authentication';
+
+    const data = {
+      email_Id :location.state.Uname,
+      password: createPassword,
+      
+    };
+    console.log(data.email_Id);
     try {
       const response = await axios.post(url, data);
       console.log(response.data);
+      toast("Password creation successful");
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      navigate('/login-page');
+      // openModal();
     } catch (error) {
       console.error('Error saving student:', error);
+      toast("Password creation failed");
     }
+    
   };
 
   return (
@@ -150,12 +203,46 @@ function Academicform() {
      
 </div>
 <div className='academic-buttons'>
-        
-<Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
-
-  <Allbuttons value="Submit" image={Nextwhite} />
+      <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
+      <div>
+      <Allbuttons value="Submit" image={Nextwhite} />
+        {/* <button>Submit</button> */}
+        <ToastContainer />
+     
+      </div>
      </div>
      </form>
+     <div className="password_popup">
+      {/* <button onClick={openModal}>Open Popup</button> */}
+      <Popup 
+        open={isOpen} 
+        modal
+        closeOnDocumentClick={false}
+      >
+        <div>
+        <div className="login-popup">
+            <form className="create-passwors-form" id="createpassword" onSubmit={PasswordSubmit}>
+              <h2 className='create-password-title' >
+                Create password
+              </h2>
+              <label htmlFor="">User name</label>
+              <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
+              <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" 
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/>
+              <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" 
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/>
+              <button className='All-button' >Create</button>
+            </form>
+          </div>
+        </div>
+      </Popup>
+    </div>
+{/*         
+     {showDiv && 
+     <div>
+       <Createpasswordpopup />
+      </div>}
+     */}
 </div>
 
   )
