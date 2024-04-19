@@ -1,86 +1,206 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Personalform.css';
-import Profile from '../../Assets/profile.svg'
-import save from '../../Assets/save.svg'
-import Nextwhite from '../../Assets/Nextwhite.svg'
+import Profile from '../../Assets/profile.svg';
+import Nextwhite from '../../Assets/Nextwhite.svg';
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Academicform from '../Academicform/Academicform';
-import { useState } from 'react';
-
 
 function Personalform() {
-
   const navigate = useNavigate();
-  const [Uname,setUname]=useState('');
+  const [formData, setFormData] = useState({
+    first_Name: '',
+    last_Name: '',
+    date_Of_Birth: '',
+    gender: '',
+    aadhar_Number: '',
+    nationality: '',
+    religion: '',
+    community:'',
+    caste:'',
+    fathers_Name:'',
+    fathers_Occupation:'',
+    fathers_Mobile_Number:'',
+    mothers_Name:'',
+    mothers_Occupation:'',
+    mothers_Mobile_Number:'',
+    guardians_Name:'',
+    guardians_Occupation:'',
+    guardians_Mobile_Number:'',
+    parents_Status:'',
+    income:'',
+    marital_Status:'',
+    profile_Photo:'',
+    mobile_Number:'',
+    email_Id:'',
+    residential_Address:'',
+    communication_Address:'',
+    hosteller:'',
+    hostel_Type:'',
+    bank_Name:'',
+    ifsc_Code:'',
+    branch_Name:'',
+    account_Number:'',
+    sslc:'',
+    hsc_1_Year:'',
+    hsc_2_Year:'',
+    diploma:'',
+    emis_Number:'',
+    first_Graduate:'',
+    special_Category:'',
+    sslc_File:'',
+    hsc_1_Year_File:'',
+    hsc_2_Year_File:'',
+    diploma_File:''
+
+    // Add other form fields here
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Perform validation for each field as it's entered
+    if (name === 'first_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('First Name should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'last_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Last Name should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'aadhar_Number' && !/^\d{12}$/.test(value.trim())) {
+      alert('Aadhar number should contain only 12 numeric characters');
+      return;
+    }
+    if (name === 'nationality' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Nationality should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'religion' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Religion should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'caste' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'fathers_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'fathers_Occupation' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'fathers_Mobile_Number' && !/^[0-9]{10}$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'mothers_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'mothers_Occupation' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'mothers_Mobile_Number' && !/^[0-9]{10}$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'guardians_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'guardians_Occupation' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'guardians_Mobile_Number' && !/^[0-9]{10}$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'income' && !/^\d+(\.\d{1,2})?$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'mobile_Number' && !/^[0-9]{10}$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'email_id' && !/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'bank_name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'branch_Name' && !/^[A-Za-z]+$/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'account_Number' && !/^[0-9]{11,16}/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'ifsc_Code' && !/^[A-Za-z0-9]+/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'sslc' && !/^\d+\.\d+/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'hsc_1_Year' && !/^\d+\.\d+/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'hsc_2_Year' && !/^\d+\.\d+/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'diploma' && !/^\d+\.\d+/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    if (name === 'emis_Number' && !/^[0-9]{10,20}/.test(value.trim())) {
+      alert('Caste should contain only alphabetic characters');
+      return;
+    }
+    // Add more validation checks for other fields
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  
 
   const handleSubmit = async (e) => {
-    e.preventDefault();   
-    
-    const formData = new FormData(e.target);
+    e.preventDefault();
+
+    // Perform validation before submitting
+    if (formData.first_Name.trim() === '') {
+      alert('Please enter First Name');
+      return;
+    }
+
+    // Add more validation checks for other fields
+
     const url = 'http://localhost:8080/api/student';
 
-    const data = {
-      first_Name: formData.get('first_Name'),
-      last_Name: formData.get('last_Name'), 
-      date_Of_Birth: formData.get('date_Of_Birth'),
-      gender: formData.get('gender'),
-      aadhar_Number: formData.get('aadhar_Number'),
-      nationality: formData.get('nationality'),
-      religion: formData.get('religion'),
-      community: formData.get('community'),
-      caste: formData.get('caste'),
-      fathers_Name: formData.get('fathers_Name'),
-      fathers_Occupation: formData.get('fathers_Occupation'),
-      fathers_Mobile_Number:formData.get('fathers_Mobile_Number'),
-      mothers_Name: formData.get('mothers_Name'),
-      mothers_Occupation: formData.get('mothers_Occupation'),
-      mothers_Mobile_Number:formData.get('mothers_Mobile_Number'),
-      guardians_Name: formData.get('guardians_Name'),
-      guardians_Occupation: formData.get('guardians_Occupation'),
-      guardians_Mobile_Number:formData.get('guardians_Mobile_Number'),
-      parents_Status: formData.get('parents_Status'),
-      income: formData.get('income'),
-      marital_Status: formData.get('marital_Status'),
-      profile_Photo:formData.get('profile_Photo'),
-      mobile_Number: formData.get('mobile_Number'),
-      email_Id: formData.get('email_id'),
-      residential_Address: formData.get('residential_Address'),
-      communication_Address: formData.get('communication_Address'),
-      hosteller: formData.get('hosteller'),
-      hostel_Type: formData.get('hostel_Type'),
-      bank_Name: formData.get('bank_Name'),
-      ifsc_Code: formData.get('ifsc_Code'),
-      branch_Name: formData.get('branch_Name'),
-      account_Number: formData.get('account_Number'),
-      sslc: formData.get('sslc'),
-      hsc_1_Year: formData.get('hsc_1_Year'),
-      hsc_2_Year: formData.get('hsc_2_Year'),
-      diploma: formData.get('diploma'),
-      emis_Number: formData.get('emis_Number'),
-      first_Graduate: formData.get('first_Graduate'),
-      special_Category: formData.get('special_Category'),
-      sslc_File: formData.get('sslc_File'),
-      hsc_1_Year_File: formData.get('hsc_1_Year_File'),
-      hsc_2_Year_File: formData.get('hsc_2_Year_File'),
-      diploma_File: formData.get('diploma_File'),
-    };
-    // console.log(data.date_Of_Birth);
-
     try {
-      
-      const response = await axios.post(url, data);
-      navigate('/academic-form', {state: {Uname}});
+      const response = await axios.post(url, formData);
+      navigate('/academic-form', { state: { Uname: formData.first_Name } });
       console.log(response.data);
-      // navigate('/academic-form');
-      
     } catch (error) {
       console.error('Error saving student:', error);
     }
   };
+
   return (
     <div>
       <div className="registration-background">
@@ -88,21 +208,21 @@ function Personalform() {
           <Formtitle></Formtitle>
         </div>
         
-        <form id='registration_form'  onSubmit={handleSubmit}>
+        <form id='registration_form' onSubmit={handleSubmit} >
           <div className="personal-container">
         {/* <input type="text" placeholder='uname' onChange={(event)=>setuname(event.target.value)} />
         <input type="password" placeholder='pw' onChange={(event)=>setpw(event.target.value)}/> */}
-            <div className="first_name">
-              <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <div className="first_name" >
+              <Allfields fieldtype="text" value="First Name" inputname="first_Name"req_flag="true" onChange={handleChange} />
             </div>
            
 
             <div className="last_name">
-            <Allfields fieldtype="text" value="Last Name" inputname="last_Name"fieldpattern="[A-Za-z]+"/>
+            <Allfields fieldtype="text" value="Last Name" inputname="last_Name" onChange={handleChange}/>
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag="true"/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth" req_flag="true" onChange={handleChange}/>
             </div>
          
             <div className="gender">
@@ -115,19 +235,19 @@ function Personalform() {
 
             </div>
             <div className="aadhar_number">
-            <Allfields fieldtype="text" value="Aadhar Number" inputname="aadhar_Number"fieldpattern="[0-9]{12}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Aadhar Number" inputname="aadhar_Number"fieldpattern="[0-9]{12}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Aadhar">Aadhar Number</label>
               <input type="text" name="aadhar_Number" pattern="[0-9]{12}" required /> */}
             </div>
           
             <div className="nationality">
-            <Allfields fieldtype="text" value="Nationality" inputname="nationality"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Nationality" inputname="nationality"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Nationality">Nationality</label>
               <input type="text" name="nationality" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="religion"> 
-            <Allfields fieldtype="text" value="Religion" inputname="religion"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Religion" inputname="religion"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Religion">Religion</label>
               <input type="text" name="religion" pattern="[A-Za-z]+" required /> */}
             </div>
@@ -146,61 +266,61 @@ function Personalform() {
             </div>
 
             <div className="caste">
-            <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Caste" inputname="caste"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Caste">Caste</label>
               <input type="text" name="caste" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="fathers_Name">
-            <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Name" inputname="fathers_Name"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="FatherName">Father's Name</label>
               <input type="text" name="fathers_Name" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="fathers_Occupation">
-            <Allfields fieldtype="text" value="Father's Occupation" inputname="fathers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Occupation" inputname="fathers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Occupation">Father's Occupation</label>
               <input type="text" name="fathers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="fathers_Mobile_Number">
-            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="MobileNo">Father's Mobile Number</label>
               <input type="text" name="fathetrs_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
             
             <div className="mothers_Name">
-            <Allfields fieldtype="text" value="Mother's Name" inputname="mothers_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Name" inputname="mothers_Name"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="MotherName">Mother's Name</label>
               <input type="text" name="mothers_Name" pattern="[A-Za-z]+" required/> */}
             </div>
 
             <div className="mothers_Occupation">
-            <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothers_Occupation"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Occupation">Mother's Occupation</label>
               <input type="text" name="mothers_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="Mothers_Mobile_Number">
-            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothers_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="MobileNo">Mother's Mobile Number</label>
               <input type="text" name="Mothers_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
 
             <div className="guardians_name">
-            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_name"fieldpattern="[A-Za-z]+" req_flag=""/>
+            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_name"fieldpattern="[A-Za-z]+" req_flag="" onChange={handleChange}/>
               {/* <label htmlFor="GuardianName">Guardian Name</label>
               <input type="text" name="guardians_Name" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="guardians_occupation">
-            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_occupation"fieldpattern="[A-Za-z]+" req_flag=""/>
+            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_occupation"fieldpattern="[A-Za-z]+" req_flag="" onChange={handleChange}/>
               {/* <label htmlFor="Occupation">Guardian Occupation</label>
               <input type="text" name="guardians_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className=" guardians_mobile_number">
-            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardians_Mobile_Number"fieldpattern="[0-9]{10}" req_flag=""/>
+            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardians_Mobile_Number"fieldpattern="[0-9]{10}" req_flag="" onChange={handleChange}/>
               {/* <label htmlFor="MobileNo">Guardian Mobile Number</label>
               <input type="text" name="guardians_Mobile_Number" pattern="[0-9]{10}" /> */}
             </div>
@@ -214,7 +334,7 @@ function Personalform() {
             </div>
 
             <div className="income">
-            <Allfields fieldtype="text" value="Income" inputname="income"fieldpattern="[0-9]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Income" inputname="income"fieldpattern="[0-9]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Income">Income</label>
               <input type="text" name="income" pattern="[0-9]+" required /> */}
             </div>
@@ -246,7 +366,7 @@ function Personalform() {
 <hr id='registration-seperator' />
 
             <div className="mobile_no">
-            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Mobile Number" inputname="mobile_Number"fieldpattern="[0-9]{10}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="MobileNo">Mobile Number</label>
               <input id='mobilenumber' type="text" name="MobileNo" pattern="[0-9]{10}" required /> */}
             </div>
@@ -255,7 +375,7 @@ function Personalform() {
              
             {/* <Allfields id="mail_id" fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag="true" onChange={(event)=>setUname(event.target.value)}/> */}
               <label htmlFor="Emailid">Email ID</label>
-              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required  onChange={(event)=>setUname(event.target.value)}/>
+              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required onChange={handleChange}/>
             </div>
 
            <div className="communication_address">
@@ -287,25 +407,25 @@ function Personalform() {
 <hr id='registration-seperator' />
          
             <div className=" bank_name">
-            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Bank Name" inputname="bank_Name"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Bank name">Bank Name</label>
               <input id='bank' type="text" name="bank_Name" pattern="[A-Za-z]+" required /> */}
             </div>
 
             <div className="branch_Name">
-            <Allfields fieldtype="text" value="Branch Name" inputname="branch_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Branch Name" inputname="branch_Name"fieldpattern="[A-Za-z]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="branch_Name">Branch Name</label>
               <input id='branch' type="text" name="branch_Name" pattern="[A-Za-z]+" required /> */}
             </div>
          
             <div className="account_Number ">
-            <Allfields fieldtype="text" value="Account Number" inputname="account_Number"fieldpattern="[0-9]{11,16}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Account Number" inputname="account_Number"fieldpattern="[0-9]{11,16}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="account_Number">Account Number</label>
               <input id='accno' type="text" name="account_Number" pattern="[0-9]{11,16}" required /> */}
             </div>
 
             <div className="ifsc_Code ">
-            <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"fieldpattern="[A-Za-z0-9]+" req_flag="true"/>
+            <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"fieldpattern="[A-Za-z0-9]+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="ifsccode">IFSC Code</label>
               <input id='ifsc' type="text" name="ifsc_Code" pattern="[A-Za-z0-9]+" required /> */}
             </div>
@@ -314,25 +434,25 @@ function Personalform() {
 <hr id='registration-seperator' />
           
             <div className="sslc">
-            <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="SSLC">SSLC %</label>
               <input type="text" name="sslc" className="" pattern="\d+\.\d+" required /> */}
             </div>
 
             <div className="hsc_1_Year">
-            <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
               <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="hsc_2_Year">
-            <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
               <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="diploma">
-            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag="true"/>
+            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="Diploma">Diploma %</label>
               <input type="text" name="diploma" className="" pattern="\d+\.\d+" /> */}
             </div>
@@ -354,7 +474,7 @@ function Personalform() {
             </div>
 
             <div className="emis_Number">
-            <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag="true"/>
+            <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag="true" onChange={handleChange}/>
               {/* <label htmlFor="EmisNumber">Emis Number</label>
               <input type="text" name="emis_Number" pattern="[0-9]{10,20}" required /> */}
             </div>

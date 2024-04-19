@@ -1,13 +1,19 @@
-import React from 'react'
+// Allfields.js
+import React from 'react';
 import './Allfields.css'
-
-const Allfields = ({value,fieldtype,inputname,field_pattern,req_flag})=> {
+const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, onChange }) => {
   return (
     <div>
-    <label >{value} </label>
-    <input type={fieldtype} name={inputname} pattern={field_pattern} required={req_flag}  />
+      <label htmlFor={inputname}>{value}</label>
+      <input
+        type={fieldtype}
+        name={inputname}
+        pattern={fieldpattern}
+        required={req_flag === "true"}
+        onChange={onChange}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Allfields
+export default Allfields;
