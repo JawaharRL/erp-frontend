@@ -3,25 +3,23 @@ import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
 import save from '../../Assets/save.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
-import { Link} from 'react-router-dom';
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Academicform from '../Academicform/Academicform';
+import { useState } from 'react';
 
 
 function Personalform() {
-  const navigate = useNavigate();
 
-  const goToAcademicform = () => {
-    navigate('/academic-form');
-  };
+  const navigate = useNavigate();
+  const [Uname,setUname]=useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();   
-
+    
     const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/student';
 
@@ -47,7 +45,7 @@ function Personalform() {
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
-      // profile_Photo:formData.get('profile_Photo'),
+      profile_Photo:formData.get('profile_Photo'),
       mobile_Number: formData.get('mobile_Number'),
       email_Id: formData.get('email_id'),
       residential_Address: formData.get('residential_Address'),
@@ -64,14 +62,21 @@ function Personalform() {
       diploma: formData.get('diploma'),
       emis_Number: formData.get('emis_Number'),
       first_Graduate: formData.get('first_Graduate'),
-      special_Category: formData.get('special_Category')
+      special_Category: formData.get('special_Category'),
+      sslc_File: formData.get('sslc_File'),
+      hsc_1_Year_File: formData.get('hsc_1_Year_File'),
+      hsc_2_Year_File: formData.get('hsc_2_Year_File'),
+      diploma_File: formData.get('diploma_File'),
     };
     // console.log(data.date_Of_Birth);
 
     try {
+      
       const response = await axios.post(url, data);
+      navigate('/academic-form', {state: {Uname}});
       console.log(response.data);
-      navigate('/academic-form');
+      // navigate('/academic-form');
+      
     } catch (error) {
       console.error('Error saving student:', error);
     }
@@ -82,12 +87,15 @@ function Personalform() {
         <div className='form-content'>
           <Formtitle></Formtitle>
         </div>
-        <form id='registration_form' action='' onSubmit={handleSubmit}>
+        
+        <form id='registration_form'  onSubmit={handleSubmit}>
           <div className="personal-container">
-
+        {/* <input type="text" placeholder='uname' onChange={(event)=>setuname(event.target.value)} />
+        <input type="password" placeholder='pw' onChange={(event)=>setpw(event.target.value)}/> */}
             <div className="first_name">
               <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag="true"/>
             </div>
+           
 
             <div className="last_name">
             <Allfields fieldtype="text" value="Last Name" inputname="last_Name"fieldpattern="[A-Za-z]+"/>
@@ -244,9 +252,10 @@ function Personalform() {
             </div>
 
             <div className="mail_id">
-            <Allfields fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag="true"/>
-              {/* <label htmlFor="Emailid">Email ID</label>
-              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required /> */}
+             
+            {/* <Allfields id="mail_id" fieldtype="email" value="Email ID" inputname="email_id"fieldpattern="" req_flag="true" onChange={(event)=>setUname(event.target.value)}/> */}
+              <label htmlFor="Emailid">Email ID</label>
+              <input id='mailid' type="text" name="email_id" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required  onChange={(event)=>setUname(event.target.value)}/>
             </div>
 
            <div className="communication_address">
@@ -329,19 +338,19 @@ function Personalform() {
             </div>
          
             <div className="field">
-              <input type="file" name="sslcfile" className="educational-document"  />
+              <input type="file" name="sslc_File" className="educational-document"  />
             </div>
 
             <div className="field">
-              <input type="file" name="hscIfile" className="educational-document" />
+              <input type="file" name="hsc_1_Year_File" className="educational-document" />
             </div>
 
             <div className="field">
-              <input type="file" name="hscIIfile" className="educational-document" />
+              <input type="file" name="hsc_2_Year_File" className="educational-document" />
             </div>
 
             <div className="field">
-              <input type="file" name="diplomafile" className="educational-document" />
+              <input type="file" name="diploma_File" className="educational-document" />
             </div>
 
             <div className="emis_Number">
@@ -365,11 +374,13 @@ function Personalform() {
                 <option value="Ex-Service Man">Ex-Service Man</option>
                 <option value="Eminent sports man">Eminent sports man</option>
                 <option value="Differently Abled">Differently Abled</option>
+                <option value="Not applicable">Not applicable</option>
               </select>
             </div>
        
           <div className='personal-form-buttons'>
-              <Allbuttons type="submit" value="Next" image={Nextwhite} />
+            {/* <button className='All-button'src="Nextwhite" type="sumbit" >Next</button> */}
+              <Allbuttons type="submit" value="Next" image={Nextwhite}  />
               {/* <Allbuttons target={goToAcademicform} value="Next" image={Nextwhite} /> */}
           </div>
           
