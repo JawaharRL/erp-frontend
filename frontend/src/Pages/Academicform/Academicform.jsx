@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 import Allfields from '../../Components/Allfields/Allfields';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
-import Allfields from '../../Components/Allfields/Allfields'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react'
