@@ -76,7 +76,7 @@ function Academicform() {
       toast("Passwords does not matched");
       return; // Prevent further execution
     }
-    const url = 'http://localhost:8080/api/student/authentication';
+    const url = 'http://localhost:8080/api/authentication';
 
     const data = {
       email_Id :location.state.Uname,
@@ -88,7 +88,7 @@ function Academicform() {
       const response = await axios.post(url, data);
       console.log(response.data);
       toast("Password creation successful");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/login-page');
       // openModal();
     } catch (error) {
