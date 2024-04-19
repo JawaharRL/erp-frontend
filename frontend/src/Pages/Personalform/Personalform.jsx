@@ -93,17 +93,17 @@ function Personalform() {
         {/* <input type="text" placeholder='uname' onChange={(event)=>setuname(event.target.value)} />
         <input type="password" placeholder='pw' onChange={(event)=>setpw(event.target.value)}/> */}
             <div className="first_name">
-              <Allfields fieldtype="text" value="First Name" inputname="first_Name"fieldpattern="[A-Za-z]+" req_flag={true} 
+              <Allfields fieldtype="text" value="First Name" inputname="first_Name" fieldpattern="[A-Za-z]+" req_flag={true} 
               format={/[^A-Za-z\s]/g}/>
             </div>
            
 
             <div className="last_name">
-            <Allfields fieldtype="text" value="Last Name" inputname="last_Name"fieldpattern="[A-Za-z]+" format={/[^A-Za-z\s]/g}/>
+            <Allfields fieldtype="text" value="Last Name" inputname="last_Name" fieldpattern="[A-Za-z]+" format={/[^A-Za-z\s]/g}/>
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format={/[^0-9/]/g}/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth" fieldpattern="" req_flag={true} format=""/>
             </div>
          
             <div className="gender">
