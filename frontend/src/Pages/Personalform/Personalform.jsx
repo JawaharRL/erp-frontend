@@ -70,6 +70,7 @@ function Personalform() {
     try {
       
       const response = await axios.post(url, data);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate('/academic-form', {state: {Uname}});
       console.log(response.data);
       // navigate('/academic-form');
