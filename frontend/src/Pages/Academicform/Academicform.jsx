@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
 import Allfields from '../../Components/Allfields/Allfields';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
-import Allfields from '../../Components/Allfields/Allfields'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react'
@@ -71,12 +70,17 @@ function Academicform() {
     e.preventDefault();
    
     const formData = new FormData(e.target);
-    const url = 'http://localhost:8080/api/student/password';
+    const createPassword = formData.get('create_Password');
+    const reenterPassword = formData.get('reenter_Password');
+    if (createPassword !== reenterPassword) {
+      toast("Passwords does not matched");
+      return; // Prevent further execution
+    }
+    const url = 'http://localhost:8080/api/authentication';
 
     const data = {
       email_Id :location.state.Uname,
-      create_Password: formData.get('create_Password'),
-      reenter_Password: formData.get('reenter_Password'),
+      password: createPassword,
       
     };
     console.log(data.email_Id);
@@ -84,6 +88,7 @@ function Academicform() {
       const response = await axios.post(url, data);
       console.log(response.data);
       toast("Password creation successful");
+      await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/login-page');
       // openModal();
     } catch (error) {
@@ -203,6 +208,10 @@ function Academicform() {
       <Allbuttons value="Submit" image={Nextwhite} />
         {/* <button>Submit</button> */}
         <ToastContainer />
+     
+      </div>
+     </div>
+     </form>
      <div className="password_popup">
       {/* <button onClick={openModal}>Open Popup</button> */}
       <Popup 
@@ -218,17 +227,16 @@ function Academicform() {
               </h2>
               <label htmlFor="">User name</label>
               <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
-              <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" />
-              <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" />
+              <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" 
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/>
+              <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" 
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/>
               <button className='All-button' >Create</button>
             </form>
           </div>
         </div>
       </Popup>
     </div>
-      </div>
-     </div>
-     </form>
 {/*         
      {showDiv && 
      <div>
