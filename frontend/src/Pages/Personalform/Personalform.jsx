@@ -103,7 +103,7 @@ function Personalform() {
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format={/[^0-9/]/g}/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
             </div>
          
             <div className="gender">

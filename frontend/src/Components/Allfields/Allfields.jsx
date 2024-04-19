@@ -9,7 +9,7 @@ const Allfields = ({value,fieldtype,inputname,field_pattern,req_flag,format})=> 
   return (
     <div>
     <label >{value} </label>
-    <input type={fieldtype} name={inputname} pattern={field_pattern} required={req_flag} onInput={handleInputChange} />
+    <input type={fieldtype} name={inputname} pattern={field_pattern} required={req_flag} onInput={handleInputChange}/>
     </div>
   )
 }
