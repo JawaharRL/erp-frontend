@@ -6,6 +6,7 @@ import Previouswhite from '../../Assets/Previouswhite.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
 import { useLocation } from 'react-router-dom'
 import Formtitle from '../../Components/Formtitle/Formtitle'
+import Allfields from '../../Components/Allfields/Allfields';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'
 import Allfields from '../../Components/Allfields/Allfields'
 import { ToastContainer, toast } from 'react-toastify';
