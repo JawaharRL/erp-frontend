@@ -7,13 +7,13 @@
 }
 .form-title{
     text-align: center;
-    margin: 15px 0px 10px 0px;
+    margin: 25px 0px 40px 0px;
 
 }
-.registration-navigation{
+/* .registration-navigation{
     display: flex;
     position: sticky;
-    /* align-items: center; */
+    align-items: center;
     justify-content: space-evenly;
     margin-left: 200px;
     margin-right: 200px;
@@ -22,12 +22,4 @@
    width: 120px;
    
    
-}
-.line-to{
-    width: 350px;
-    height: 3px;
-    margin-top: 30px;
-    border-radius: 10px;
-    background-color:#002133;
-    /* opacity: 30%; */
-}
+} */
