@@ -7,7 +7,7 @@ import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import Academicform from '../Academicform/Academicform';
 import { useState } from 'react';
 
@@ -45,7 +45,7 @@ function Personalform() {
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
-      profile_Photo:formData.get('profile_Photo'),
+      profile_Photo:e.target.elements.profile_Photo.files[0],
       mobile_Number: formData.get('mobile_Number'),
       email_Id: formData.get('email_id'),
       residential_Address: formData.get('residential_Address'),
@@ -69,10 +69,15 @@ function Personalform() {
       special_Category: formData.get('special_Category'),
     };
     // console.log(data.date_Of_Birth);
+    
 
     try {
-      
-      const response = await axios.post(url, data);
+      const response = await axios.post(url, data, {
+        headers: {
+          'Content-Type': "multipart/form-data;boundary=--------------------------362947062764690924037801"
+        }
+      });
+     // const response = await axios.post(url, JSON.stringify(data));
       await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/academic-form', {state: {Uname}});
       console.log(response.data);
@@ -88,7 +93,7 @@ function Personalform() {
         <div className='form-content'>
           <Formtitle></Formtitle>
         </div>
-        <form id='registration_form'  onSubmit={handleSubmit}>
+        <form id='registration_form'  onSubmit={handleSubmit} enctype="multipart/form-data" >
           <div className="personal-container">
         {/* <input type="text" placeholder='uname' onChange={(event)=>setuname(event.target.value)} />
         <input type="password" placeholder='pw' onChange={(event)=>setpw(event.target.value)}/> */}
@@ -103,7 +108,7 @@ function Personalform() {
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag={true} format=""/>
             </div>
          
             <div className="gender">
@@ -189,13 +194,13 @@ function Personalform() {
             </div>
 
             <div className="guardians_name">
-            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_name"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
+            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_Name"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
               {/* <label htmlFor="GuardianName">Guardian Name</label>
               <input type="text" name="guardians_Name" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="guardians_occupation">
-            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_occupation"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
+            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_Occupation"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
               {/* <label htmlFor="Occupation">Guardian Occupation</label>
               <input type="text" name="guardians_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
@@ -207,7 +212,7 @@ function Personalform() {
             </div>
             <div className="marital_status">
               <label htmlFor="MaritalStatus">Marital Status</label>
-              <select className='community-dropdown' >
+              <select className='community-dropdown' name='marital_Status' >
                 <option>Select</option>
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
@@ -247,7 +252,7 @@ function Personalform() {
 <hr id='registration-seperator' />
 
             <div className="mobile_no">
-            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag={true} format={/[^0-9]/g}/>
+            <Allfields fieldtype="text" value="Mobile Number" inputname="mobile_Number"fieldpattern="[0-9]{10}" req_flag={true} format={/[^0-9]/g}/>
               {/* <label htmlFor="MobileNo">Mobile Number</label>
               <input id='mobilenumber' type="text" name="MobileNo" pattern="[0-9]{10}" required /> */}
             </div>
