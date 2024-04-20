@@ -78,10 +78,10 @@ function Academicform() {
       toast("Passwords does not matched");
       return; // Prevent further execution
     }
-    const url = 'http://localhost:8080/api/authentication';
+    const url = 'http://localhost:8080/api/authentication/create';
 
     const data = {
-      email_Id :location.state.Uname,
+      emailid :location.state.Uname,
       password: createPassword,
       
     };
