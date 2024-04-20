@@ -163,12 +163,12 @@ function Academicform() {
          <input type="text" name="UMIS Id"   /> */}
        </div>
        <div className="date-of-adm">
-       <Allfields fieldtype="date" value="Date_of_Admission" inputname="date_Of_Admission"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
+       <Allfields fieldtype="date" value="Date_of_Admission" inputname="date_Of_Admission"fieldpattern="" req_flag={true} format=""/>
          {/* <label htmlFor="Date of Admission">Date of Admission</label>
          <input type="date" name="Date of Admission"  /> */}
        </div>
        <div className="join-date">
-       <Allfields fieldtype="date" value="Course_Joined_Date" inputname="course_Joined_Date"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
+       <Allfields fieldtype="date" value="Course_Joined_Date" inputname="course_Joined_Date"fieldpattern="" req_flag={true} format=""/>
          {/* <label htmlFor="Course joined">Course joined</label>
          <input type="date" name="Course joined"  /> */}
        </div> 
