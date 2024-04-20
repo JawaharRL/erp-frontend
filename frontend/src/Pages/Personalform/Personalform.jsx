@@ -6,6 +6,7 @@ import Nextwhite from '../../Assets/Nextwhite.svg'
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
+import Fileupload from '../../Components/Fileupload/Fileupload';
 import axios from 'axios';
 import { json, useNavigate } from 'react-router-dom';
 import Academicform from '../Academicform/Academicform';
@@ -236,8 +237,11 @@ function Personalform() {
               </select>
             </div>
 
+            <div className="profile_photo">
+            <Fileupload  input_name="profile_Photo" />
+            </div>
             
-          <div className="profile_photo">
+          {/* <div className="profile_photo">
             <img className="photo" src={Profile} alt="Photopreview"/>
             <div className='get_photo'>
               <input type="file" name="profile_Photo" />
@@ -247,7 +251,7 @@ function Personalform() {
               <p style={{ color: 'red' }}>File may be pdf, jpeg, or jpg</p>
 
             </div>
-          </div>
+          </div> */}
 
 <hr id='registration-seperator' />
 

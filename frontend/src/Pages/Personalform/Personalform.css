@@ -128,12 +128,13 @@ textarea::placeholder{
 .gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{
     grid-column:span 6;
 }
-.profile_photo,.get-photo,#registration-seperator{
+.profile_photo,#registration-seperator{
     grid-column:span 12;
 }
 .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
     grid-column:span 3;
 }
+
 .mobile_no{
     grid-column:span 4;
 }
