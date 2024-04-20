@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Passwordvalidater.css'
 
-const Passwordvalidater = ({input_name}) => {
+const Passwordvalidater = ({input_name_createpw,input_name_reenterpw}) => {
   const [password, setPassword] = useState('');
 
   const passwordRules = [
@@ -23,7 +23,8 @@ const Passwordvalidater = ({input_name}) => {
 
   return (
     <div>
-      <input type="password" name={input_name} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password"/>
+      <input type="password" name={input_name_createpw} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter new password"/>
+    
       <ul>
         {passwordChecks.map((check, index) => (
           <li className="password_instructions" key={index} style={{ display: check.meetsCriteria ? 'none' : 'block'} }>
@@ -32,6 +33,7 @@ const Passwordvalidater = ({input_name}) => {
           </li>
         ))}
       </ul>
+      <input className="create_password_fields" name={input_name_reenterpw} type="password" placeholder="Re-enter password"/> 
     </div>
   );
 };

@@ -229,11 +229,8 @@ function Academicform() {
               </h2>
               {/* <label htmlFor="">User name</label> */}
               <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
-              {/* <input className="create_password_fields" name="create_Password" type="password" placeholder="Create password" 
-              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/>*/}
-                <Passwordvalidater input_name="create_Password"/>
-              <input className="create_password_fields" name="reenter_Password" type="password" placeholder="Re-enter password" 
-              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'/> 
+                <Passwordvalidater input_name_createpw="create_Password" input_name_reenterpw="reenter_Password"/>
+              
             
               <button className='All-button' >Create</button>
             </form>
