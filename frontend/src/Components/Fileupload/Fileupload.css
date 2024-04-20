@@ -1,7 +1,7 @@
 .photo_preview{
     width: 125px;
     height: 150px;
-    margin-right: 100px;
+    margin-right: 80px;
 }
 .image_upload_insrtuction{
     color: #E34545;
@@ -28,5 +28,13 @@
     border-radius: 5px;
   }
 
-
+@media(width<=500px){
+    .photo_preview{
+        margin-right: 0px;
+    }
+    .image_upload_insrtuction{
+        font-size: small;
+        
+    }
+}
   
