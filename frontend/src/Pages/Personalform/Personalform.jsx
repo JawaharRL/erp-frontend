@@ -346,7 +346,7 @@ function Personalform() {
             <div className="field">
               <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload1} />
               <p className="marksheet_label">SSLC Marksheet</p>
-              <label htmlFor="sslc-input" className="upload-button"style={{ justifyContent: 'center' }} >  
+              <label htmlFor="sslc-input" className="File-upload-button"style={{ justifyContent: 'center' }} >  
                 <img className='icon' src={Upload} />
                <p>Upload</p>
                </label>
@@ -363,7 +363,7 @@ function Personalform() {
             <div className="field">
             <p className="marksheet_label">HSC I-year Marksheet</p>
               <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload2}  />
-              <label htmlFor="hsc1-input" className="upload-button"style={{ justifyContent: 'center' }}  >  
+              <label htmlFor="hsc1-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
                 <img className='icon' src={Upload} />
                <p>Upload</p>
               </label>
@@ -379,7 +379,7 @@ function Personalform() {
             <div className="field">
             <p className="marksheet_label">HSC II-year Marksheet</p>
               <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload3}  />
-              <label htmlFor="hsc2-input" className="upload-button"style={{ justifyContent: 'center' }}  >  
+              <label htmlFor="hsc2-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
                 <img className='icon' src={Upload} />
                 <p>Upload</p>
               </label>
@@ -394,7 +394,7 @@ function Personalform() {
             <div className="field">
             <p className="marksheet_label">Diploma Marksheet</p>
               <input type="file" id="diploma-input" name="diploma_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload4} />
-              <label htmlFor="diploma-input" className="upload-button" style={{ justifyContent: 'center' }} >  
+              <label htmlFor="diploma-input" className="File-upload-button" style={{ justifyContent: 'center' }} >  
                 <img className='icon' src={Upload} />
                 <p>Upload</p>
               </label>
