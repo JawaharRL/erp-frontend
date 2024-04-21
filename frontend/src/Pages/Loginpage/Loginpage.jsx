@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import './Loginpage.css';
+import { useNavigate } from 'react-router-dom'
 import { Loginbutton } from '../../Components';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Loginpage() {
   const [emailid, setemailid] = useState('');
   const [password, setPassword] = useState('');
+  const navigate =useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     axios.post("http://localhost:8080/api/authentication/authenticate", { emailid, password })
-      .then(res => {
+      .then(async(res) => {
         console.log(res);
         if (res.data === "Authentication successful") {
           toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          navigate('/personal-form')
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        toast("Invalid Emailid or Password");
+      });
   };
 
   return (
@@ -34,6 +42,7 @@ function Loginpage() {
               <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
               <div className='login-button-space'>
                 <Loginbutton></Loginbutton>
+                <ToastContainer />
               </div>
             </form>
             <p className='or'>or</p>
