@@ -3,6 +3,7 @@ import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
 import save from '../../Assets/save.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
+import Upload from '../../Assets/upload.svg'
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
@@ -17,6 +18,23 @@ function Personalform() {
 
   const navigate = useNavigate();
   const [Uname,setUname]=useState('');
+
+  const [fileName1, setFileName1] = useState('');
+  const [fileName2, setFileName2] = useState('');
+  const [fileName3, setFileName3] = useState('');
+  const [fileName4, setFileName4] = useState('');
+  const handleFileUpload1 = (event) => {
+    setFileName1(event.target.files[0].name);
+  };
+  const handleFileUpload2 = (event) => {
+    setFileName2(event.target.files[0].name);
+  };
+  const handleFileUpload3 = (event) => {
+    setFileName3(event.target.files[0].name);
+  };
+  const handleFileUpload4 = (event) => {
+    setFileName4(event.target.files[0].name);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();   
@@ -325,43 +343,67 @@ function Personalform() {
           
             <div className="sslc">
             <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            <div className="field">
+              <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload1} />
+              <p className="marksheet_label">SSLC Marksheet</p>
+              <label htmlFor="sslc-input" className="File-upload-button"style={{ justifyContent: 'center' }} >  
+                <img className='icon' src={Upload} />
+               <p>Upload</p>
+               </label>
+               {fileName1 && <p className="uploaded_file_name">{fileName1} Uploaded</p>}
+             
+            </div>
               {/* <label htmlFor="SSLC">SSLC %</label>
               <input type="text" name="sslc" className="" pattern="\d+\.\d+" required /> */}
             </div>
 
             <div className="hsc_1_Year">
             <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            
+            <div className="field">
+            <p className="marksheet_label">HSC I-year Marksheet</p>
+              <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload2}  />
+              <label htmlFor="hsc1-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
+                <img className='icon' src={Upload} />
+               <p>Upload</p>
+              </label>
+              {fileName2 && <p className="uploaded_file_name">{fileName2} Uploaded</p>}
+            </div>
               {/* <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
               <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="hsc_2_Year">
             <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+             
+            <div className="field">
+            <p className="marksheet_label">HSC II-year Marksheet</p>
+              <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload3}  />
+              <label htmlFor="hsc2-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
+                <img className='icon' src={Upload} />
+                <p>Upload</p>
+              </label>
+              {fileName3 && <p className="uploaded_file_name">{fileName3} Uploaded</p>}
+            </div>
               {/* <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
               <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="diploma">
             <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            <div className="field">
+            <p className="marksheet_label">Diploma Marksheet</p>
+              <input type="file" id="diploma-input" name="diploma_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload4} />
+              <label htmlFor="diploma-input" className="File-upload-button" style={{ justifyContent: 'center' }} >  
+                <img className='icon' src={Upload} />
+                <p>Upload</p>
+              </label>
+              {fileName4 && <p className="uploaded_file_name">{fileName4} Uploaded</p>}
+            </div>
               {/* <label htmlFor="Diploma">Diploma %</label>
               <input type="text" name="diploma" className="" pattern="\d+\.\d+" /> */}
             </div>
-         
-            <div className="field">
-              <input type="file" name="sslc_File" className="educational-document"  />
-            </div>
 
-            <div className="field">
-              <input type="file" name="hsc_1_Year_File" className="educational-document" />
-            </div>
-
-            <div className="field">
-              <input type="file" name="hsc_2_Year_File" className="educational-document" />
-            </div>
-
-            <div className="field">
-              <input type="file" name="diploma_File" className="educational-document" />
-            </div>
 
             <div className="emis_Number">
             <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag={true} format={/[^0-9]/g}/>

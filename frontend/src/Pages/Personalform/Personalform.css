@@ -14,13 +14,25 @@
     left:0;
 
 }
+
+.marksheet_label{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.field{
+    margin-top: 15px;
+}
 .personal-container{
     gap: 20px;
     display: grid;
     grid-template-columns: repeat(12,1fr);
 }
 
-
+.uploaded_file_name{
+    margin-left: 30px;
+    margin-top: -8px;
+    color: #1D242C;
+}
 .community-dropdown,.parential-dropdown{
     border: none;
     background-color: rgba(199, 238, 255,0.5);
@@ -74,7 +86,9 @@ input[type="radio"]:checked:before{
 } 
 
 textArea{
+    margin-top: -20px;
     background-color: rgba(199, 238, 255,0.5);
+    resize: none;
     color:#002133;
     border: none;
     width: 100%;
@@ -86,13 +100,16 @@ label{
     display:block;
     margin-bottom: 0.5em;
 }
-/* .profilephoto{
+.File-upload-button{
     display: flex;
-    margin-top: 2%;
-} */
-/* .getphoto{
+    width: fit-content;
+    background-color: #59E34E;
+    padding: 6px 30px;
+    border-radius: 8px;
     margin: auto;
-} */
+
+}
+
 .photo{
     width:15%;
     height:35%;
@@ -131,6 +148,7 @@ textarea::placeholder{
 .profile_photo,#registration-seperator{
     grid-column:span 12;
 }
+
 .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
     grid-column:span 3;
 }
@@ -143,10 +161,23 @@ textarea::placeholder{
 }
 
 
-@media (width<=920px) {
+@media (width<=921px) {
 
-    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
-        grid-column:span 3;
+    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
+        grid-column:span 4;
+    }
+    .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
+        grid-column:span 6;
+    }
+    /* .personal-form-buttons{
+        grid-column: 1/1;
+    } */
+}
+
+@media (width<=680px) {
+
+    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
+        grid-column:span 6;
     }
     /* .personal-form-buttons{
         grid-column: 1/1;
@@ -154,16 +185,16 @@ textarea::placeholder{
 }
 
 
-@media (width<=425px) {
+@media (width<=590px) {
 
-    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathetrs_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
+    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.parents_status,.emis_Number,.first_graduate,.special_category{
         grid-column:span 12;
     }
     .gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{
         grid-column:span 12;
     }
-    .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
-        grid-column:span 12;
+    .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field,.income,.marital_status{
+        grid-column:span 6;
     }
     .mobile_no{
         grid-column:span 12;
@@ -172,5 +203,12 @@ textarea::placeholder{
     .mail_id{
         grid-column:span 12;
     }
-}
 
+}
+@media (width<=450px) {
+    .sslc,.hsc_1_Year,.hsc_2_Year,.diploma{
+        grid-column:span 12;
+    }
+   
+  
+}

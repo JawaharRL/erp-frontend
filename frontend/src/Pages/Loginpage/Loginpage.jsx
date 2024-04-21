@@ -42,16 +42,25 @@ function Loginpage() {
               <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
               <div className='login-button-space'>
                 <Loginbutton></Loginbutton>
-                <ToastContainer />
+
+               
               </div>
             </form>
+
+              </div>
+            </form>
+
             <p className='or'>or</p>
             <p className='or new-register'>Create new account</p>
           </div>
         </div>
       </div>
+
+      <ToastContainer />
+
     </div>
   );
 }
 
 export default Loginpage;
+

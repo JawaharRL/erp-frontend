@@ -90,7 +90,7 @@ function Academicform() {
       const response = await axios.post(url, data);
       console.log(response.data);
       toast("Password creation successful");
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 1300));
       navigate('/login-page');
       // openModal();
     } catch (error) {
@@ -109,7 +109,7 @@ function Academicform() {
     <form id='registration_form' onSubmit={handleSubmit}>
     <div className="academic-container">
         <div className="reg-no">
-        <Allfields fieldtype="text" value="Register_No" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
+        <Allfields fieldtype="text" value="Register Number" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
          {/* <label htmlFor="RegisterNo">RegisterNo</label>
          <input type="text" name="RegisterNo"/> */}
        </div>
@@ -124,13 +124,13 @@ function Academicform() {
          <input type="text" name="Discipline" /> */}
        </div> 
        <div className="aca-year">
-       <Allfields fieldtype="text" value="Academic_Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g}/>
+       <Allfields fieldtype="text" value="Academic Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g}/>
          {/* <label htmlFor="Academic Year">Academic Year</label>
          <input type="text" name="Academic Year"/> */}
        </div>
        
         <div className="adm-no">
-        <Allfields fieldtype="text" value="Admission_Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g}/>
+        <Allfields fieldtype="text" value="Admission Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g}/>
          {/* <label htmlFor="AdmissionNo">AdmissionNo</label>
          <input type="text" name="AdmissionNo" /> */}
        </div>
@@ -157,20 +157,20 @@ function Academicform() {
        <div className="abc-id">
         {/* <label htmlFor="ABC Id">ABC Id</label>
         <input type="text" name="ABC Id" /> */}
-        <Allfields fieldtype="text" value="ABC_Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
+        <Allfields fieldtype="text" value="ABC Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
       </div>
         <div className="umis-id">
-        <Allfields fieldtype="text" value="UMIS_Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
+        <Allfields fieldtype="text" value="UMIS Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
          {/* <label htmlFor="UMIS Id">UMIS Id</label>
          <input type="text" name="UMIS Id"   /> */}
        </div>
        <div className="date-of-adm">
-       <Allfields fieldtype="date" value="Date_of_Admission" inputname="date_Of_Admission"fieldpattern="" req_flag={true} format=""/>
+       <Allfields fieldtype="date" value="Date of Admission" inputname="date_Of_Admission"fieldpattern="" req_flag={true} format=""/>
          {/* <label htmlFor="Date of Admission">Date of Admission</label>
          <input type="date" name="Date of Admission"  /> */}
        </div>
        <div className="join-date">
-       <Allfields fieldtype="date" value="Course_Joined_Date" inputname="course_Joined_Date"fieldpattern="" req_flag={true} format=""/>
+       <Allfields fieldtype="date" value="Course Joined Date" inputname="course_Joined_Date"fieldpattern="" req_flag={true} format=""/>
          {/* <label htmlFor="Course joined">Course joined</label>
          <input type="date" name="Course joined"  /> */}
        </div> 
@@ -195,7 +195,7 @@ function Academicform() {
          <input type="text" name="CGPA" /> */}
        </div> 
        <div className="student-status">
-       <label htmlFor="Student_Status">Student_Status</label>
+       <label htmlFor="Student_Status">Student status</label>
          <select className='community-dropdown' name="student_Status">
           <option>Select</option>
           <option value="Active">Active</option>
