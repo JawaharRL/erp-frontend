@@ -47,9 +47,6 @@ function Loginpage() {
               </div>
             </form>
 
-              </div>
-            </form>
-
             <p className='or'>or</p>
             <p className='or new-register'>Create new account</p>
           </div>
