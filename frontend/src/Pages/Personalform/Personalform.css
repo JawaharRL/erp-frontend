@@ -30,7 +30,6 @@
 
 .uploaded_file_name{
     margin-left: 30px;
-    margin-top: -8px;
     color: #1D242C;
 }
 .community-dropdown,.parential-dropdown{
@@ -98,7 +97,7 @@ textArea{
 }
 label{
     display:block;
-    margin-bottom: 0.5em;
+    margin-bottom:8px;
 }
 .File-upload-button{
     display: flex;
@@ -123,7 +122,7 @@ label{
   
 }
 textarea::placeholder{
-    padding: 10px;
+    padding: 5px;
     
    
 }
