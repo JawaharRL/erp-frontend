@@ -1,0 +1,69 @@
+.profile{
+    display: flex;
+    margin:20px 0px ;
+}
+.profile-items{
+    margin-left: 15px;
+    max-width: fit-content;
+    height: 350px;
+    border-radius: 30px;
+    opacity: 0.8;
+    background: rgba(0, 157, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+}
+.profile_page_footer{
+    position: relative;
+}
+.profile_links{
+    color: #000;
+    text-decoration: none;
+    list-style: none;
+    /* padding: 0px 10px 0px 10px; */
+}
+
+.profile-personal-dislpay,.profile-bank-display,.profile-academics-dislpay,.profile-communication-dislpay,.profile-education-display{
+    width: 80%;
+    height: fit-content;
+    margin-left: 20px;
+    border-radius: 26px;
+    padding: 20px;
+    opacity: 0.8;
+    background: rgba(0, 157, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
+}
+#name{
+    padding:0px 25px;
+border-radius: 6px;
+opacity: 1;
+background: rgba(255, 255, 255, 0.4);
+box-sizing: border-box;
+border: 1px solid rgba(255, 255, 255, 0.68);
+backdrop-filter: blur(5px);
+}
+.profile-links{
+    width: fit-content;
+    height: 300px;
+    padding: 26px;
+    border-radius: 30px;
+    margin-left: 10px;
+    opacity: 0.8;
+    background: rgba(0, 157, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
+}
+.field_bckground{
+width: fit-content;
+padding: 5px 40px ;
+ border-radius: 6px;
+opacity: 1;
+background: rgba(255, 255, 255, 0.4);
+box-sizing: border-box;
+border: 1px solid rgba(255, 255, 255, 0.68);
+backdrop-filter: blur(5px);
+}

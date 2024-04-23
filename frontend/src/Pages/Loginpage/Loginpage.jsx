@@ -19,7 +19,7 @@ function Loginpage() {
         if (res.data === "Authentication successful") {
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/personal-form')
+          navigate('/profile-page')
         }
       })
       .catch(err => {
@@ -44,9 +44,6 @@ function Loginpage() {
                 <Loginbutton></Loginbutton>
 
                
-              </div>
-            </form>
-
               </div>
             </form>
 

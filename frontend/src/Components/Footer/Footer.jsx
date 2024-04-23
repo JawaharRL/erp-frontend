@@ -3,7 +3,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div>
-         <footer>
+         <footer >
         <div class="content">
             <p>Address</p>
             <p className='clg-address'>College Road,<br/>Karaikudi-636003,<br/>Sivagangai.</p>

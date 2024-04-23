@@ -34,7 +34,7 @@ function Academicform() {
    
     const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/academics';
-
+ 
     const data = {
       email_Id :location.state.Uname,
       register_No: formData.get('register_No'),
@@ -205,7 +205,7 @@ function Academicform() {
      
 </div>
 <div className='academic-buttons'>
-      <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/>
+      {/* <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/> */}
       <div>
       <Allbuttons value="Submit" image={Nextwhite} />
         {/* <button>Submit</button> */}
@@ -228,11 +228,9 @@ function Academicform() {
                 Create password
               </h2>
               {/* <label htmlFor="">User name</label> */}
-              <input className="create_password_fields" type="text" placeholder={location.state.Uname} disabled /> 
+              <input className="create_password_fields" type="text" placeholder={location.state.Uname}  disabled /> 
                 <Passwordvalidater input_name_createpw="create_Password" input_name_reenterpw="reenter_Password"/>
-              
-            
-              <button className='All-button' >Create</button>
+              <button className='All-button password_crate_button' >Create</button>
             </form>
           </div>
         </div>
