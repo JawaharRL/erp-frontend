@@ -3,11 +3,13 @@ import './Personalform.css';
 import Profile from '../../Assets/profile.svg'
 import save from '../../Assets/save.svg'
 import Nextwhite from '../../Assets/Nextwhite.svg'
+import Upload from '../../Assets/upload.svg'
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
+import Fileupload from '../../Components/Fileupload/Fileupload';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import Academicform from '../Academicform/Academicform';
 import { useState } from 'react';
 
@@ -16,6 +18,23 @@ function Personalform() {
 
   const navigate = useNavigate();
   const [Uname,setUname]=useState('');
+
+  const [fileName1, setFileName1] = useState('');
+  const [fileName2, setFileName2] = useState('');
+  const [fileName3, setFileName3] = useState('');
+  const [fileName4, setFileName4] = useState('');
+  const handleFileUpload1 = (event) => {
+    setFileName1(event.target.files[0].name);
+  };
+  const handleFileUpload2 = (event) => {
+    setFileName2(event.target.files[0].name);
+  };
+  const handleFileUpload3 = (event) => {
+    setFileName3(event.target.files[0].name);
+  };
+  const handleFileUpload4 = (event) => {
+    setFileName4(event.target.files[0].name);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();   
@@ -45,7 +64,7 @@ function Personalform() {
       parents_Status: formData.get('parents_Status'),
       income: formData.get('income'),
       marital_Status: formData.get('marital_Status'),
-      profile_Photo:formData.get('profile_Photo'),
+      profile_Photo:e.target.elements.profile_Photo.files[0],
       mobile_Number: formData.get('mobile_Number'),
       email_Id: formData.get('email_id'),
       residential_Address: formData.get('residential_Address'),
@@ -69,10 +88,15 @@ function Personalform() {
       special_Category: formData.get('special_Category'),
     };
     // console.log(data.date_Of_Birth);
+    
 
     try {
-      
-      const response = await axios.post(url, data);
+      const response = await axios.post(url, data, {
+        headers: {
+          'Content-Type': "multipart/form-data;boundary=--------------------------362947062764690924037801"
+        }
+      });
+     // const response = await axios.post(url, JSON.stringify(data));
       await new Promise((resolve) => setTimeout(resolve, 800));
       navigate('/academic-form', {state: {Uname}});
       console.log(response.data);
@@ -88,7 +112,7 @@ function Personalform() {
         <div className='form-content'>
           <Formtitle></Formtitle>
         </div>
-        <form id='registration_form'  onSubmit={handleSubmit}>
+        <form id='registration_form'  onSubmit={handleSubmit} enctype="multipart/form-data" >
           <div className="personal-container">
         {/* <input type="text" placeholder='uname' onChange={(event)=>setuname(event.target.value)} />
         <input type="password" placeholder='pw' onChange={(event)=>setpw(event.target.value)}/> */}
@@ -103,7 +127,7 @@ function Personalform() {
             </div>
 
             <div className="date_Of_Birth">
-            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="\d{2}/\d{2}/\d{4}" req_flag={true} format=""/>
+            <Allfields fieldtype="date" value="Date of Birth" inputname="date_Of_Birth"fieldpattern="" req_flag={true} format=""/>
             </div>
          
             <div className="gender">
@@ -189,13 +213,13 @@ function Personalform() {
             </div>
 
             <div className="guardians_name">
-            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_name"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
+            <Allfields fieldtype="text" value="Guardian Name" inputname="guardians_Name"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
               {/* <label htmlFor="GuardianName">Guardian Name</label>
               <input type="text" name="guardians_Name" pattern="[A-Za-z]+" /> */}
             </div>
 
             <div className="guardians_occupation">
-            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_occupation"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
+            <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardians_Occupation"fieldpattern="[A-Za-z]+" req_flag={false} format={/[^A-Za-z\s]/g}/>
               {/* <label htmlFor="Occupation">Guardian Occupation</label>
               <input type="text" name="guardians_Occupation" pattern="[A-Za-z]+" /> */}
             </div>
@@ -207,7 +231,7 @@ function Personalform() {
             </div>
             <div className="marital_status">
               <label htmlFor="MaritalStatus">Marital Status</label>
-              <select className='community-dropdown' >
+              <select className='community-dropdown' name='marital_Status' >
                 <option>Select</option>
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
@@ -231,8 +255,11 @@ function Personalform() {
               </select>
             </div>
 
+            <div className="profile_photo">
+            <Fileupload  input_name="profile_Photo" />
+            </div>
             
-          <div className="profile_photo">
+          {/* <div className="profile_photo">
             <img className="photo" src={Profile} alt="Photopreview"/>
             <div className='get_photo'>
               <input type="file" name="profile_Photo" />
@@ -242,12 +269,12 @@ function Personalform() {
               <p style={{ color: 'red' }}>File may be pdf, jpeg, or jpg</p>
 
             </div>
-          </div>
+          </div> */}
 
 <hr id='registration-seperator' />
 
             <div className="mobile_no">
-            <Allfields fieldtype="text" value="Mobile Number" inputname="MobileNo"fieldpattern="[0-9]{10}" req_flag={true} format={/[^0-9]/g}/>
+            <Allfields fieldtype="text" value="Mobile Number" inputname="mobile_Number"fieldpattern="[0-9]{10}" req_flag={true} format={/[^0-9]/g}/>
               {/* <label htmlFor="MobileNo">Mobile Number</label>
               <input id='mobilenumber' type="text" name="MobileNo" pattern="[0-9]{10}" required /> */}
             </div>
@@ -316,43 +343,67 @@ function Personalform() {
           
             <div className="sslc">
             <Allfields fieldtype="text" value="SSLC %" inputname="sslc"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            <div className="field">
+              <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload1} />
+              <p className="marksheet_label">SSLC Marksheet</p>
+              <label htmlFor="sslc-input" className="File-upload-button"style={{ justifyContent: 'center' }} >  
+                <img className='icon' src={Upload} />
+               <p>Upload</p>
+               </label>
+               {fileName1 && <p className="uploaded_file_name">{fileName1} Uploaded</p>}
+             
+            </div>
               {/* <label htmlFor="SSLC">SSLC %</label>
               <input type="text" name="sslc" className="" pattern="\d+\.\d+" required /> */}
             </div>
 
             <div className="hsc_1_Year">
             <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc_1_Year"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            
+            <div className="field">
+            <p className="marksheet_label">HSC I-year Marksheet</p>
+              <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload2}  />
+              <label htmlFor="hsc1-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
+                <img className='icon' src={Upload} />
+               <p>Upload</p>
+              </label>
+              {fileName2 && <p className="uploaded_file_name">{fileName2} Uploaded</p>}
+            </div>
               {/* <label htmlFor="HSC 1st YEAR">HSC 1st YEAR %</label>
               <input type="text" name="hsc_1_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="hsc_2_Year">
             <Allfields fieldtype="text" value="HSC 2nd YEAR" inputname="hsc_2_Year"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+             
+            <div className="field">
+            <p className="marksheet_label">HSC II-year Marksheet</p>
+              <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload3}  />
+              <label htmlFor="hsc2-input" className="File-upload-button"style={{ justifyContent: 'center' }}  >  
+                <img className='icon' src={Upload} />
+                <p>Upload</p>
+              </label>
+              {fileName3 && <p className="uploaded_file_name">{fileName3} Uploaded</p>}
+            </div>
               {/* <label htmlFor="HSC 2nd YEAR">HSC 2nd YEAR %</label>
               <input type="text" name="hsc_2_Year" className="" pattern="\d+\.\d+" /> */}
             </div>
 
             <div className="diploma">
             <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            <div className="field">
+            <p className="marksheet_label">Diploma Marksheet</p>
+              <input type="file" id="diploma-input" name="diploma_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload4} />
+              <label htmlFor="diploma-input" className="File-upload-button" style={{ justifyContent: 'center' }} >  
+                <img className='icon' src={Upload} />
+                <p>Upload</p>
+              </label>
+              {fileName4 && <p className="uploaded_file_name">{fileName4} Uploaded</p>}
+            </div>
               {/* <label htmlFor="Diploma">Diploma %</label>
               <input type="text" name="diploma" className="" pattern="\d+\.\d+" /> */}
             </div>
-         
-            <div className="field">
-              <input type="file" name="sslc_File" className="educational-document"  />
-            </div>
 
-            <div className="field">
-              <input type="file" name="hsc_1_Year_File" className="educational-document" />
-            </div>
-
-            <div className="field">
-              <input type="file" name="hsc_2_Year_File" className="educational-document" />
-            </div>
-
-            <div className="field">
-              <input type="file" name="diploma_File" className="educational-document" />
-            </div>
 
             <div className="emis_Number">
             <Allfields fieldtype="text" value="Emis Number" inputname="emis_Number"fieldpattern="[0-9]{10,20}" req_flag={true} format={/[^0-9]/g}/>

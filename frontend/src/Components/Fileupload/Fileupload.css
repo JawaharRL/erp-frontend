@@ -1,0 +1,40 @@
+.photo_preview{
+    width: 125px;
+    height: 150px;
+    margin-right: 80px;
+}
+.image_upload_insrtuction{
+    color: #E34545;
+    
+}
+.file_upload{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-around; */
+}
+.upload-button {
+    display: flex;
+    padding: 5px 10px;
+    height: fit-content;
+    width: 150px;
+    background-color: #59E34E;
+    color: #1D242C;
+    border: none;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+
+@media(width<=500px){
+    .photo_preview{
+        margin-right: 0px;
+    }
+    .image_upload_insrtuction{
+        font-size: small;
+        
+    }
+}
+  

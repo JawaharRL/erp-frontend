@@ -45,7 +45,15 @@ input[type="radio"]{
  
 .create_password_fields{
     width: 100%;    
+    margin-top: 15px;
     margin-bottom: 15px;
+
+}
+.create_password_fields::placeholder{
+    color: #002133;
+}
+.password_crate_button{
+    float: right;
 }
 
 .login-popup{
@@ -54,7 +62,8 @@ input[type="radio"]{
     display: flex;
     /* align-items: center; */
     justify-content: center;
-    width: 400px;
+    max-width: 400px;
+    padding: 15px;
     height: fit-content;
     border-radius: 30px;
     opacity: 1;

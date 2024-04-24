@@ -30,15 +30,13 @@ function Landingpage() {
     <Header></Header>
     <div class="landingpage-container">
         <div class="nav">
-      
             <Allbuttons className="register-button" target={goToPersonalform} value="Register" image={registericon}/>
             <Allbuttons className="login-button" target={goToLoginpage} value="Login" image={loginicon}/>
-          
         </div>
     </div>
     
     
-    <Footer/>
+    <Footer position="absolute"/>
     </div>
   )
 }

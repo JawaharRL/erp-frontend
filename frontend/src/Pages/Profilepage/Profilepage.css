@@ -1,0 +1,107 @@
+.profile{
+    display: flex;
+    margin:20px 0px ;
+}
+
+.profile_links{
+    text-decoration: none;
+    list-style: none;
+    margin-top: 5px;
+    cursor: pointer;
+    /* padding: 0px 10px 0px 10px; */
+}
+
+.profile-personal-display,.profile-bank-display,.profile-academic-display,.profile-communication-display,.profile-education-display{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    width: 80%;
+    height: fit-content;
+    margin-left: 20px;
+    border-radius: 26px;
+    padding: 50px;
+    opacity: 0.8;
+    background: rgba(0, 157, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
+}
+.profile-personal-display{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+.profile-communication-display,.profile-bank-display{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+#name{
+    padding:0px 25px;
+border-radius: 6px;
+opacity: 1;
+background: rgba(255, 255, 255, 0.4);
+box-sizing: border-box;
+border: 1px solid rgba(255, 255, 255, 0.68);
+backdrop-filter: blur(5px);
+}
+.profile-links{
+    width: fit-content;
+    height: 300px;
+    padding: 26px;
+    border-radius: 30px;
+    margin-left: 10px;
+    opacity: 0.8;
+    background: rgba(0, 157, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
+}
+.field_bckground{
+width: 90%;
+text-align: center;
+margin-top: 5px;
+padding: 5px 40px ;
+ border-radius: 6px;
+opacity: 1;
+background: rgba(255, 255, 255, 0.55);
+box-sizing: border-box;
+border: 1px solid rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(5px);
+}
+.profile_profile_photo{
+    margin: auto;
+    /* grid-column: span 2; */
+    grid-area:  1/4/3/5 ;
+}
+#user_profile_photo{
+    
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.marksheet_download_links{
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    
+    border-radius: 8px;
+    padding: 5px 15px;
+    width: fit-content;
+}
+.file_download{
+    margin-top: 20px;
+}
+.profile_name,.profile_aadhar_number,.profile_communication_address,.profile_residential_address,.profile_email_id,.profile_mobile_number,.profile_account_number,.profile_branch_name,.profile_ifsc_code,.profile_bank_name{
+    grid-column: span 2;
+}
+
+.profile_communication_address,.profile_residential_address{
+    grid-row: span 2;
+}
+/* .profile_gender,.profile_aadhar_number{
+    grid-row: 2;
+} */
+/* .profile_fathers_mobile_number,.profile_fathers_occupation,.profile_fathers_name{
+    grid-column: span 4;
+} */
