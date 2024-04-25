@@ -32,7 +32,7 @@
     margin-left: 30px;
     color: #1D242C;
 }
-.community-dropdown,.parential-dropdown{
+.community-dropdown,.parential-dropdown,.discipline-dropdown,.programme-dropdown{
     border: none;
     background-color: rgba(199, 238, 255,0.5);
     height: 40px;

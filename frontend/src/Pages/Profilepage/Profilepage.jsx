@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Profilepage.css';
+import { useLocation } from 'react-router-dom'
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
 import Profileicon from '../../Assets/profile.svg';
 
 function StudentDisplay() {
+
+  const location =useLocation();
+  console.log(location)
+
   const [studentWithFiles, setStudentWithFiles] = useState(null);
   const [academicDetails, setAcademicDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [displaySection, setDisplaySection] = useState("personal"); // Default to displaying personal details
+  const [displaySection, setDisplaySection] = useState("personal"); 
 
     const getLinkStyle = (section) => {
       return displaySection === section ? { borderRadius: '6px',
@@ -26,7 +31,7 @@ function StudentDisplay() {
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
       try {
-        const studentId = "hihello@gmail.com"; // Replace with the ID of the student you want to fetch
+        const studentId = location.state.emailid; // Replace with the ID of the student you want to fetch
         const response = await axios.get(`http://localhost:8080/api/student/${studentId}`);
         setStudentWithFiles(response.data);
 

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function Loginpage() {
   const [emailid, setemailid] = useState('');
   const [password, setPassword] = useState('');
+  // const [Uname,setUname]=useState('');
   const navigate =useNavigate();
 
   function handleSubmit(e) {
@@ -19,7 +20,8 @@ function Loginpage() {
         if (res.data === "Authentication successful") {
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/profile-page')
+          navigate('/profile-page',{state: {emailid}})
+         
         }
       })
       .catch(err => {
@@ -35,8 +37,8 @@ function Loginpage() {
           <div className="form">
             <h1 id='login-title'>Login</h1>
             <form id="login" onSubmit={handleSubmit}>
-              <label className='login-mailid' htmlFor="Email ID">Email ID</label>
-              <input type="text" id='input-mail' onChange={e => setemailid(e.target.value)} />
+              <label className='login-mailid' htmlFor="Email ID" >Email ID</label>
+              <input type="text" id='input-mail' onChange={e => setemailid(e.target.value)}  />
               <label className='login-password' htmlFor="Password">Password</label>
               <input type="password" onChange={e => setPassword(e.target.value)} />
               <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>

@@ -390,7 +390,7 @@ function Personalform() {
             </div>
 
             <div className="diploma">
-            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
+            <Allfields fieldtype="text" value="Diploma %" inputname="diploma"fieldpattern="\d+\.\d+" req_flag={""} format={/[^0-9.]/g}/>
             <div className="field">
             <p className="marksheet_label">Diploma Marksheet</p>
               <input type="file" id="diploma-input" name="diploma_File" className="educational-document"  style={{ display: 'none' }}  onChange={handleFileUpload4} />

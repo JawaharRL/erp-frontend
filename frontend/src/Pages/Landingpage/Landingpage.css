@@ -15,5 +15,7 @@
     display: flex;
 }
 
-
+.empty{
+    height: 420px;
+}
 
