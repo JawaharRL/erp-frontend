@@ -34,7 +34,7 @@ function Landingpage() {
             <Allbuttons className="login-button" target={goToLoginpage} value="Login" image={loginicon}/>
         </div>
     </div>
-    
+    <div className="empty"></div>
     
     <Footer position="absolute"/>
     </div>

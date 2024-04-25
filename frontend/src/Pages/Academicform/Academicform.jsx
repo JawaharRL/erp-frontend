@@ -114,12 +114,36 @@ function Academicform() {
          <input type="text" name="RegisterNo"/> */}
        </div>
        <div className="programme">
-       <Allfields fieldtype="text" value="Programme" inputname="programme" fieldpattern="[A-Za-z]+" req_flag={true} format={/[^A-Za-z\s]/g}/>
+       {/* <Allfields fieldtype="text" value="Programme" inputname="programme" fieldpattern="[A-Za-z]+" req_flag={true} format={/[^A-Za-z\s]/g}/> */}
+
+         <label htmlFor="programme">programme</label>
+         <select className='programme-dropdown' name="programme">
+          <option>Select</option>
+          <option value="BE (Fulltime)">BE (Full time)</option>
+          <option value="BE (part time)">BE (part time)</option>
+          <option value="ME">ME</option>
+         </select>
          {/* <label htmlFor="Programme">Programme</label>
          <input type="text" name="Programme" /> */}
        </div>
        <div className="discipline">
-       <Allfields fieldtype="text" value="Discipline" inputname="discipline" fieldpattern="[A-Za-z]+" req_flag={true}format={/[^A-Za-z\s]/g}/>
+       <label htmlFor="discipline">discipline</label>
+         <select className='discipline-dropdown' name="discipline">
+          <option>Select</option>
+          <option value="Civil Engineering">Civil Engineering</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
+          <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+          <option value="Electronics and communication Engineering">Electronics and communication Engineering</option>
+          <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+          <option value="Structural Engineering">Structural Engineering</option>
+          <option value="Environmental Engineering">Environmental Engineering</option>
+          <option value="Manufacturing Engineering">Manufacturing Engineering</option>
+          <option value="Computer Aided Design">Computer Aided Design</option>
+          <option value=" Power Electronics and Drives"> Power Electronics and Drives</option>
+          <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
+          
+         </select>
+       {/* <Allfields fieldtype="text" value="Discipline" inputname="discipline" fieldpattern="[A-Za-z]+" req_flag={true}format={/[^A-Za-z\s]/g}/> */}
          {/* <label htmlFor="Discipline">Discipline</label>
          <input type="text" name="Discipline" /> */}
        </div> 
