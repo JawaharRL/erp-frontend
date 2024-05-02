@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 function Loginpage() {
   const [emailid, setemailid] = useState('');
   const [password, setPassword] = useState('');
-  // const [Uname,setUname]=useState('');
   const navigate =useNavigate();
 
   function handleSubmit(e) {
@@ -43,9 +42,7 @@ function Loginpage() {
               <input type="password" onChange={e => setPassword(e.target.value)} />
               <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
               <div className='login-button-space'>
-                <Loginbutton></Loginbutton>
-
-               
+                <Loginbutton></Loginbutton>        
               </div>
             </form>
 

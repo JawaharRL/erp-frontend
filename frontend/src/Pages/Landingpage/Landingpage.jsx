@@ -6,8 +6,6 @@ import Footer from '../../Components/Footer/Footer';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Header from '../../Components/Header/Header'
 import { Link,useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-
 
 function Landingpage() {
   const navigate = useNavigate();
@@ -18,13 +16,6 @@ function Landingpage() {
   const goToLoginpage = () => {
     navigate('/login-page');
   };
-  // const inputElement = document.getElementsByClassName('msg');
-  // const inputValue = inputElement.value;
-  // console.log(inputValue);
-
-  
-
-
   return (
     <div>
     <Header></Header>
