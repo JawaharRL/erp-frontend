@@ -7,25 +7,25 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Loginpage() {
-  const [emailid, setemailid] = useState('');
+  const [registerNo, setregisterNo] = useState('');
   const [password, setPassword] = useState('');
   const navigate =useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/authentication/authenticate", { emailid, password })
+    axios.post("http://localhost:8080/api/authentication/authenticate", { registerNo, password })
       .then(async(res) => {
         console.log(res);
         if (res.data === "Authentication successful") {
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/profile-page',{state: {emailid}})
-         
+          // navigate('/profile-page',{state: {registerNo}})
+          navigate('/personal-form',{state: {registerNo}})
         }
       })
       .catch(err => {
         console.log(err);
-        toast("Invalid Emailid or Password");
+        toast("Invalid registerNo or Password");
       });
   };
 
@@ -36,8 +36,8 @@ function Loginpage() {
           <div className="form">
             <h1 id='login-title'>Login</h1>
             <form id="login" onSubmit={handleSubmit}>
-              <label className='login-mailid' htmlFor="Email ID" >Email ID</label>
-              <input type="text" id='input-mail' onChange={e => setemailid(e.target.value)}  />
+              <label className='login-mailid' htmlFor="registerNo" >Register No</label>
+              <input type="text" id='input-mail' onChange={e => setregisterNo(e.target.value)}  />
               <label className='login-password' htmlFor="Password">Password</label>
               <input type="password" onChange={e => setPassword(e.target.value)} />
               <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>

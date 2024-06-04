@@ -34,8 +34,8 @@ function Academicform() {
     const url = 'http://localhost:8080/api/academics';
 
     const data = {
-      emailid: location.state.Uname,
-      register_No: formData.get('register_No'),
+      // emailid: location.state.Uname,
+      registerNo: formData.get('registerNo'),
       programme: formData.get('programme'),
       discipline: formData.get('discipline'),
       admission_Number: formData.get('admission_Number'),
@@ -51,7 +51,7 @@ function Academicform() {
       cgpa: formData.get('cgpa'),
       student_Status: formData.get('student_Status')
     };
-    console.log(data.email_Id);
+    // console.log(data.email_Id);
     try {
 
       const response = await axios.post(url, data);
@@ -106,7 +106,7 @@ function Academicform() {
       <form id='registration_form' onSubmit={handleSubmit}>
         <div className="academic-container">
           <div className="reg-no">
-            <Allfields fieldtype="text" value="Register Number" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} />
+            <Allfields fieldtype="text" value="RegisterNo" inputname="registerNo" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} />
           </div>
           <div className="programme">
             <label htmlFor="programme">programme</label>
