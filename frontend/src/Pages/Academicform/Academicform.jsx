@@ -35,7 +35,7 @@ function Academicform() {
 
     const data = {
       // emailid: location.state.Uname,
-      registerNo: formData.get('registerNo'),
+      register_No: formData.get('register_No'),
       programme: formData.get('programme'),
       discipline: formData.get('discipline'),
       admission_Number: formData.get('admission_Number'),
@@ -51,7 +51,7 @@ function Academicform() {
       cgpa: formData.get('cgpa'),
       student_Status: formData.get('student_Status')
     };
-    // console.log(data.email_Id);
+    console.log(data.register_No);
     try {
 
       const response = await axios.post(url, data);
@@ -65,37 +65,37 @@ function Academicform() {
     }
 
   };
-  const PasswordSubmit = async (e) => {
-    e.preventDefault();
+  // const PasswordSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const createPassword = formData.get('create_Password');
-    const reenterPassword = formData.get('reenter_Password');
-    if (createPassword !== reenterPassword) {
-      toast("Passwords does not matched");
-      return; // Prevent further execution
-    }
-    const url = 'http://localhost:8080/api/authentication/create';
+  //   const formData = new FormData(e.target);
+  //   const createPassword = formData.get('create_Password');
+  //   const reenterPassword = formData.get('reenter_Password');
+  //   if (createPassword !== reenterPassword) {
+  //     toast("Passwords does not matched");
+  //     return; // Prevent further execution
+  //   }
+    // const url = 'http://localhost:8080/api/authentication/create';
 
-    const data = {
-      emailid: location.state.Uname,
-      password: createPassword,
+    // const data = {
+    //   emailid: location.state.Uname,
+    //   password: createPassword,
 
-    };
-    console.log(data.email_Id);
-    try {
-      const response = await axios.post(url, data);
-      console.log(response.data);
-      toast("Password creation successful");
-      await new Promise((resolve) => setTimeout(resolve, 1300));
-      navigate('/login-page');
-      // openModal();
-    } catch (error) {
-      console.error('Error saving student:', error);
-      toast("Password creation failed");
-    }
+    // };
+    // console.log(data.email_Id);
+    // try {
+    //   const response = await axios.post(url, data);
+    //   console.log(response.data);
+    //   toast("Password creation successful");
+    //   await new Promise((resolve) => setTimeout(resolve, 1300));
+    //   navigate('/login-page');
+    //   // openModal();
+    // } catch (error) {
+    //   console.error('Error saving student:', error);
+    //   toast("Password creation failed");
+    // }
 
-  };
+  // };
 
   return (
     <div className="registration-background">
@@ -106,7 +106,7 @@ function Academicform() {
       <form id='registration_form' onSubmit={handleSubmit}>
         <div className="academic-container">
           <div className="reg-no">
-            <Allfields fieldtype="text" value="RegisterNo" inputname="registerNo" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} />
+            <Allfields fieldtype="text" value="RegisterNo" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} />
           </div>
           <div className="programme">
             <label htmlFor="programme">programme</label>
@@ -207,7 +207,7 @@ function Academicform() {
           </div>
         </div>
       </form>
-      <div className="password_popup">
+      {/* <div className="password_popup">
         <Popup
           open={isOpen}
           modal
@@ -226,7 +226,7 @@ function Academicform() {
             </div>
           </div>
         </Popup>
-      </div>
+      </div> */}
     </div>
 
   )
