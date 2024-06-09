@@ -20,70 +20,34 @@ function Personalform() {
     return storedData ? JSON.parse(storedData) : {};
   });
   const [Uname, setUname] = useState('');
-
-  const [fileName1, setFileName1] = useState('');
-  const [fileName2, setFileName2] = useState('');
-  const [fileName3, setFileName3] = useState('');
-  const [fileName4, setFileName4] = useState('');
-
+  const [fileNames, setFileNames] = useState({});
+ 
   useEffect(() => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-  }, [formData]);
+    const storedData = localStorage.getItem('formData');
+    if (storedData) {
+      setFormData(JSON.parse(storedData));
+    }
 
-  const handleFileUpload1 = (event) => {
-    // setFileName1(event.target.files[0].name);
-    // setFormData({ ...formData, sslc_File: event.target.files[0] });
+    const storedFileNames = localStorage.getItem('fileNames');
+    if (storedFileNames) {
+      setFileNames(JSON.parse(storedFileNames));
+    }
+  }, []);
+
+  const handleFileUpload = (fileKey) => (event) => {
     const file = event.target.files[0];
     if (file) {
-      setFileName1(file.name);
-      setFormData({ ...formData, [fileName1]: file });
-
-      // Store the file name in localStorage
-      localStorage.setItem(formData, file.name);
+      setFormData({ ...formData, [fileKey]: file });
+      setFileNames({ ...fileNames, [fileKey]: file.name }); // Update fileNames state with the uploaded file name
+      localStorage.setItem('formData', JSON.stringify({ ...formData, [fileKey]: file }));
+      localStorage.setItem('fileNames', JSON.stringify({ ...fileNames, [fileKey]: file.name }));
     }
   };
-  const handleFileUpload2 = (event) => {
-    // setFileName2(event.target.files[0].name);
-    // setFormData({ ...formData, sslc_File: event.target.files[0] });
-    const file = event.target.files[0];
-    if (file) {
-      setFileName2(file.name);
-      setFormData({ ...formData, [fileName2]: file });
-
-      // Store the file name in localStorage
-      localStorage.setItem(formData, file.name);
-    }
-  };
-  const handleFileUpload3 = (event) => {
-    // setFileName3(event.target.files[0].name);
-    // setFormData({ ...formData, sslc_File: event.target.files[0] });
-    const file = event.target.files[0];
-    if (file) {
-      setFileName3(file.name);
-      setFormData({ ...formData, [fileName3]: file });
-
-      // Store the file name in localStorage
-      localStorage.setItem(formData, file.name);
-    }
-  };
-  const handleFileUpload4 = (event) => {
-    // setFileName4(event.target.files[0].name);
-    // setFormData({ ...formData, sslc_File: event.target.files[0] });
-    const file = event.target.files[0];
-    if (file) {
-      setFileName4(file.name);
-      setFormData({ ...formData, [fileName4]: file });
-
-      // Store the file name in localStorage
-      localStorage.setItem(formData, file.name);
-    }
-  };
-
   // const handleOtherField=(event) => setFormData({...formData, [event.target.name]: event.target.value});
   const handleOtherField = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
+  }
   
   
 
@@ -333,14 +297,13 @@ function Personalform() {
             <div className="sslc">
               <Allfields fieldtype="text" value="SSLC %" inputname="sslc"  fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g} formData={formData} setFormData={setFormData} />
               <div className="field">
-                <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload1} />
+                <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('sslc_File')} />
                 <p className="marksheet_label">SSLC Marksheet</p>
                 <label htmlFor="sslc-input" className="File-upload-button" style={{ justifyContent: 'center' }} >
                   <img className='icon' src={Upload} />
                   <p>Upload</p>
                 </label>
-                {fileName1 && <p className="uploaded_file_name">{fileName1} Uploaded</p>}
-
+                {fileNames['sslc_File'] && <p className="uploaded_file_name">{fileNames['sslc_File']} Uploaded</p>}
               </div>
             </div>
 
@@ -349,12 +312,13 @@ function Personalform() {
 
               <div className="field">
                 <p className="marksheet_label">HSC I-year Marksheet</p>
-                <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload2} />
+                <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('hsc_1_Year_File')} />
                 <label htmlFor="hsc1-input" className="File-upload-button" style={{ justifyContent: 'center' }}  >
                   <img className='icon' src={Upload} />
                   <p>Upload</p>
                 </label>
-                {fileName2 && <p className="uploaded_file_name">{fileName2} Uploaded</p>}
+
+                {fileNames['hsc_1_Year_File'] && <p className="uploaded_file_name">{fileNames['hsc_1_Year_File']} Uploaded</p>}
               </div>
             </div>
 
@@ -363,12 +327,12 @@ function Personalform() {
 
               <div className="field">
                 <p className="marksheet_label">HSC II-year Marksheet</p>
-                <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload3} />
+                <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('hsc_2_Year_File')} />
                 <label htmlFor="hsc2-input" className="File-upload-button" style={{ justifyContent: 'center' }}  >
                   <img className='icon' src={Upload} />
                   <p>Upload</p>
                 </label>
-                {fileName3 && <p className="uploaded_file_name">{fileName3} Uploaded</p>}
+                {fileNames['hsc_2_Year_File'] && <p className="uploaded_file_name">{fileNames['hsc_2_Year_File']} Uploaded</p>}
               </div>
             </div>
 
@@ -376,12 +340,12 @@ function Personalform() {
               <Allfields fieldtype="text" value="Diploma %" inputname="diploma"   fieldpattern="\d+\.\d+" req_flag={false} format={/[^0-9.]/g} formData={formData} setFormData={setFormData} />
               <div className="field">
                 <p className="marksheet_label">Diploma Marksheet</p>
-                <input type="file" id="diploma-input" name="diploma_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload4} />
+                <input type="file" id="diploma-input" name="diploma_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload('diploma_File')} />
                 <label htmlFor="diploma-input" className="File-upload-button" style={{ justifyContent: 'center' }} >
                   <img className='icon' src={Upload} />
                   <p>Upload</p>
                 </label>
-                {fileName4 && <p className="uploaded_file_name">{fileName4} Uploaded</p>}
+                {fileNames['diploma_File'] && <p className="uploaded_file_name">{fileNames['diploma_File']} Uploaded</p>}
               </div>
             </div>
             <div className="emis_Number">
