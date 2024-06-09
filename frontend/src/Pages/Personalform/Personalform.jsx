@@ -14,14 +14,51 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Personalform() {
 
+  // const navigate = useNavigate();
+  // const [formData, setFormData] = useState(() => {
+  //   const storedData = localStorage.getItem('formData');
+  //   return storedData ? JSON.parse(storedData) : {};
+  // });
+  // const [Uname, setUname] = useState('');
+  // const [fileNames, setFileNames] = useState({});
+ 
+  // useEffect(() => {
+  //   const storedData = localStorage.getItem('formData');
+  //   if (storedData) {
+  //     setFormData(JSON.parse(storedData));
+  //   }
+
+  //   const storedFileNames = localStorage.getItem('fileNames');
+  //   if (storedFileNames) {
+  //     setFileNames(JSON.parse(storedFileNames));
+  //   }
+  // }, []);
+
+  // const handleFileUpload = (fileKey) => (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setFormData({ ...formData, [fileKey]: file });
+  //     setFileNames({ ...fileNames, [fileKey]: file.name }); // Update fileNames state with the uploaded file name
+  //     localStorage.setItem('formData', JSON.stringify({ ...formData, [fileKey]: file }));
+  //     localStorage.setItem('fileNames', JSON.stringify({ ...fileNames, [fileKey]: file.name }));
+  //   }
+  // };
+  // // const handleOtherField=(event) => setFormData({...formData, [event.target.name]: event.target.value});
+  // const handleOtherField = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // }
   const navigate = useNavigate();
   const [formData, setFormData] = useState(() => {
     const storedData = localStorage.getItem('formData');
     return storedData ? JSON.parse(storedData) : {};
   });
   const [Uname, setUname] = useState('');
-  const [fileNames, setFileNames] = useState({});
- 
+  const [fileNames, setFileNames] = useState(() => {
+    const storedFileNames = localStorage.getItem('fileNames');
+    return storedFileNames ? JSON.parse(storedFileNames) : {};
+  });
+
   useEffect(() => {
     const storedData = localStorage.getItem('formData');
     if (storedData) {
@@ -37,18 +74,22 @@ function Personalform() {
   const handleFileUpload = (fileKey) => (event) => {
     const file = event.target.files[0];
     if (file) {
-      setFormData({ ...formData, [fileKey]: file });
-      setFileNames({ ...fileNames, [fileKey]: file.name }); // Update fileNames state with the uploaded file name
-      localStorage.setItem('formData', JSON.stringify({ ...formData, [fileKey]: file }));
-      localStorage.setItem('fileNames', JSON.stringify({ ...fileNames, [fileKey]: file.name }));
+      const updatedFormData = { ...formData, [fileKey]: file };
+      const updatedFileNames = { ...fileNames, [fileKey]: file.name };
+      setFormData(updatedFormData);
+      setFileNames(updatedFileNames);
+      localStorage.setItem('formData', JSON.stringify(updatedFormData));
+      localStorage.setItem('fileNames', JSON.stringify(updatedFileNames));
     }
   };
-  // const handleOtherField=(event) => setFormData({...formData, [event.target.name]: event.target.value});
+
   const handleOtherField = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  }
-  
+    const updatedFormData = { ...formData, [name]: value };
+    setFormData(updatedFormData);
+    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+  };
+
   
 
   const handleSubmit = async (e) => {

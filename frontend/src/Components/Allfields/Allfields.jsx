@@ -4,7 +4,9 @@ import './Allfields.css'
 const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, format, formData, setFormData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const updatedFormData = { ...formData, [name]: value };
+    setFormData(updatedFormData);
+    localStorage.setItem('formData', JSON.stringify(updatedFormData));
   };
   const handleInputChange = (e) => {
     e.target.value = e.target.value.replace(format, '');
