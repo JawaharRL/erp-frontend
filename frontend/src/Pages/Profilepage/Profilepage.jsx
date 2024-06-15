@@ -31,8 +31,10 @@ function StudentDisplay() {
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
       try {
-        const studentId = location.state.register_No; // Replace with the ID of the student you want to fetch
-        const response = await axios.get(`http://localhost:8080/api/academics/${studentId}`);
+        const studentId = 91762115002; 
+        const studentMail="abi@gmail.com";
+        // Replace with the ID of the student you want to fetch
+        const response = await axios.get(`http://localhost:8080/api/student/${studentMail}`);
         setStudentWithFiles(response.data);
 
         const academicResponse = await axios.get(`http://localhost:8080/api/academics/${studentId}`);
