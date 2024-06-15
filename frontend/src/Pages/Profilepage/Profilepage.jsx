@@ -8,8 +8,8 @@ import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
 import Profileicon from '../../Assets/profile.svg';
 
 function StudentDisplay() {
-
   const location =useLocation();
+  
   console.log(location)
 
   const [studentWithFiles, setStudentWithFiles] = useState(null);
@@ -31,13 +31,12 @@ function StudentDisplay() {
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
       try {
-        const studentId = location.state.emailid; // Replace with the ID of the student you want to fetch
+        const studentId = location.state.registerNo; // Replace with the ID of the student you want to fetch
         const response = await axios.get(`http://localhost:8080/api/student/${studentId}`);
         setStudentWithFiles(response.data);
 
         const academicResponse = await axios.get(`http://localhost:8080/api/academics/${studentId}`);
         setAcademicDetails(academicResponse.data);
-
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -51,7 +50,6 @@ function StudentDisplay() {
 
   const handleSectionClick = (section) => {
     setDisplaySection(section);
-    //setSelectedSection(section);
   };
 
   if (loading) {
@@ -87,12 +85,12 @@ function StudentDisplay() {
           <div className="profile-personal-display">
             <div className='profile_name'>
           <p>Name </p>
-          <p className="field_bckground">{studentDto.first_Name} {studentDto.last_Name}</p>
+          <p className="field_bckground">{studentWithFiles.first_Name} {studentWithFiles.last_Name}</p>
         </div>
 
         <div className='profile_date_of_birth'>
           <p>Date of Birth</p>
-          <p className="field_bckground">{studentDto.date_Of_Birth}</p>
+          <p className="field_bckground">{studentWithFiles.date_Of_Birth}</p>
         </div>
         <div className='profile_profile_photo'>
         
@@ -100,75 +98,75 @@ function StudentDisplay() {
         </div>
         <div className='profile_gender'>
           <p>Gender</p>
-          <p className="field_bckground">{studentDto.gender}</p>
+          <p className="field_bckground">{studentWithFiles.gender}</p>
         </div>
         <div className='profile_aadhar_number'>
           <p>Aadhar Number</p>
-          <p className="field_bckground">{studentDto.aadhar_Number}</p>
+          <p className="field_bckground">{studentWithFiles.aadhar_Number}</p>
         </div>
         <div className='profile_nationality'>
           <p>Nationality</p>
-          <p className="field_bckground"> {studentDto.nationality}</p>
+          <p className="field_bckground"> {studentWithFiles.nationality}</p>
         </div>
         <div className='profile_religion'>
           <p>Religion</p>
-          <p className="field_bckground">  {studentDto.religion}</p>
+          <p className="field_bckground">  {studentWithFiles.religion}</p>
         </div>
         <div className='profile_community'>
           <p>Community</p>
-          <p className="field_bckground"> {studentDto.community}</p>
+          <p className="field_bckground"> {studentWithFiles.community}</p>
         </div>
         <div className='profile_caste'>
           <p>Caste</p>
-          <p className="field_bckground">  {studentDto.caste}</p>
+          <p className="field_bckground">  {studentWithFiles.caste}</p>
         </div>
         <div className='profile_fathers_name'>
           <p>Father's Name</p>
-          <p className="field_bckground"> {studentDto.fathers_Name}</p>
+          <p className="field_bckground"> {studentWithFiles.fathers_Name}</p>
         </div>
         <div className='profile_fathers_occupation'>
           <p>Father's Occupation</p>
-          <p className="field_bckground"> {studentDto.fathers_Occupation}</p>
+          <p className="field_bckground"> {studentWithFiles.fathers_Occupation}</p>
         </div>
         <div className='profile_fathers_mobile_number'>
           <p>Father's Mobile Number</p>
-          <p className="field_bckground"> {studentDto.fathers_Mobile_Number}</p>
+          <p className="field_bckground"> {studentWithFiles.fathers_Mobile_Number}</p>
         </div>
         <div className='profile_mothers_name'>
           <p>Mother's Name</p>
-          <p className="field_bckground"> {studentDto.mothers_Name}</p>
+          <p className="field_bckground"> {studentWithFiles.mothers_Name}</p>
         </div>
         <div className='profile_mothers_occupation'>
           <p>Mother's Occupation</p>
-          <p className="field_bckground">  {studentDto.mothers_Occupation}</p>
+          <p className="field_bckground">  {studentWithFiles.mothers_Occupation}</p>
         </div>
         <div className='profile_mothers_mobile_number'>
           <p>Mother's Mobile Number</p>
-          <p className="field_bckground"> {studentDto.mothers_Mobile_Number}</p>
+          <p className="field_bckground"> {studentWithFiles.mothers_Mobile_Number}</p>
         </div>
         <div className='profile_guardians_name'>
           <p>Guardian's Name</p>
-          <p className="field_bckground"> {studentDto.guardians_Name}</p>
+          <p className="field_bckground"> {studentWithFiles.guardians_Name}</p>
         </div>
         <div className='profile_guardians_occupation'>
           <p>Guardian's Occupation</p>
-          <p className="field_bckground">  {studentDto.guardians_Occupation}</p>
+          <p className="field_bckground">  {studentWithFiles.guardians_Occupation}</p>
         </div>
         <div className='profile_guardian_mobile_number'>
           <p>Guardian's Mobile Number</p>
-          <p className="field_bckground">  {studentDto.guardians_Mobile_Number}</p>
+          <p className="field_bckground">  {studentWithFiles.guardians_Mobile_Number}</p>
         </div>
         <div className='profile_parents_status'>
           <p>Parents Status</p>
-          <p className="field_bckground">   {studentDto.parents_Status}</p>
+          <p className="field_bckground">   {studentWithFiles.parents_Status}</p>
         </div>
         <div className='profile_income'>
           <p>Income</p>
-          <p className="field_bckground">  {studentDto.income}</p>
+          <p className="field_bckground">  {studentWithFiles.income}</p>
         </div>
         <div className='profile_marital_status'>
           <p>Marital Status</p>
-          <p className="field_bckground">  {studentDto.marital_Status}</p>
+          <p className="field_bckground">  {studentWithFiles.marital_Status}</p>
         </div>
 
           </div>
@@ -178,27 +176,27 @@ function StudentDisplay() {
           <div className="profile-communication-display">
             <div className='profile_mobile_number'>
         <p>Mobile Number</p>
-        <p className="field_bckground"> {studentDto.mobile_Number}</p>
+        <p className="field_bckground"> {studentWithFiles.mobile_Number}</p>
       </div>
       <div className='profile_email_id'>
         <p>Email ID</p>
-        <p className="field_bckground"> {studentDto.email_Id}</p>
+        <p className="field_bckground"> {studentWithFiles.emailid}</p>
       </div>
       <div className='profile_residential_address'>
         <p>Residential Address</p>
-        <p className="field_bckground"> {studentDto.residential_Address}</p>
+        <p className="field_bckground"> {studentWithFiles.residential_Address}</p>
       </div>
       <div className='profile_communication_address'>
         <p>Communication Address</p>
-        <p className="field_bckground">{studentDto.communication_Address}</p>
+        <p className="field_bckground">{studentWithFiles.communication_Address}</p>
       </div>
       <div className='profile_hosteller'>
         <p>Hosteller</p>
-        <p className="field_bckground">{studentDto.hosteller}</p>
+        <p className="field_bckground">{studentWithFiles.hosteller}</p>
       </div>
       <div className='profile_hostel_type'>
         <p>Hostel Type</p>
-        <p className="field_bckground">{studentDto.hostel_Type}</p>
+        <p className="field_bckground">{studentWithFiles.hostel_Type}</p>
       </div>
             
           </div>
@@ -208,22 +206,22 @@ function StudentDisplay() {
           <div className="profile-bank-display">
              <div className='profile_bank_name'>
     <p>Bank Name</p>
-    <p className="field_bckground">  {studentDto.bank_Name}</p>
+    <p className="field_bckground">  {studentWithFiles.bank_Name}</p>
    </div>
 
    <div className='profile_ifsc_code'>
     <p>IFSC Code</p>
-    <p className="field_bckground"> {studentDto.ifsc_Code}</p>
+    <p className="field_bckground"> {studentWithFiles.ifsc_Code}</p>
    </div>
 
    <div className='profile_branch_name'>
     <p>Branch Name</p>
-    <p className="field_bckground">{studentDto.branch_Name}</p>
+    <p className="field_bckground">{studentWithFiles.branch_Name}</p>
    </div>
 
    <div className='profile_account_number'>
     <p>Account Number</p>
-    <p className="field_bckground"> {studentDto.account_Number}</p>
+    <p className="field_bckground"> {studentWithFiles.account_Number}</p>
    </div>
 
             
@@ -234,43 +232,43 @@ function StudentDisplay() {
           <div className="profile-education-display">
             <div className='profile_sslc'>
         <p>SSLC</p>
-        <p className="field_bckground">{studentDto.sslc}</p>
+        <p className="field_bckground">{studentWithFiles.sslc}</p>
             <div className="file_download">       
                {sslcFileContent && <a className="marksheet_download_links"  href={`data:image/jpeg;base64,${sslcFileContent}`} download="SSLC_File.jpeg">Download SSLC File</a>}
             </div>
       </div>
       <div className='profile_hsc_1_year'>
         <p>HSC 1 Year</p>
-        <p className="field_bckground">{studentDto.hsc_1_Year}</p>
+        <p className="field_bckground">{studentWithFiles.hsc_1_Year}</p>
         <div  className="file_download">
         {hsc1YearFileContent && <a className="marksheet_download_links" href={`data:image/jpeg;base64,${hsc1YearFileContent}`} download="HSC_1_Year_File.jpeg">Download HSC 1 Year File</a>}
         </div>
       </div>
       <div className='profile_hsc_2_year'>
         <p>HSC 2 Year</p>
-        <p className="field_bckground">{studentDto.hsc_2_Year}</p>
+        <p className="field_bckground">{studentWithFiles.hsc_2_Year}</p>
 <div  className="file_download">
 {hsc2YearFileContent && <a className="marksheet_download_links" href={`data:image/jpeg;base64,${hsc2YearFileContent}`} download="HSC_2_Year_File.jpeg">Download HSC 2 Year File</a>}
 </div>
       </div>
       <div className='profile_diploma'>
         <p>Diploma</p>
-        <p className="field_bckground">{studentDto.diploma}</p>
+        <p className="field_bckground">{studentWithFiles.diploma}</p>
         <div  className="file_download">
         {diplomaFileContent && <a className="marksheet_download_links" href={`data:image/jpeg;base64,${diplomaFileContent}`} download="Diploma_File.jpeg">Download Diploma File</a>}
         </div>
       </div>
       <div className='profile_emis_number'>
         <p>EMIS Number</p>
-        <p className="field_bckground">{studentDto.emis_Number}</p>
+        <p className="field_bckground">{studentWithFiles.emis_Number}</p>
       </div>
       <div className='profile_first_graduate'>
         <p>First Graduate</p>
-        <p className="field_bckground">{studentDto.first_Graduate}</p>
+        <p className="field_bckground">{studentWithFiles.first_Graduate}</p>
       </div>
       <div className='profile_special_category'>
         <p>Special Category</p>
-        <p className="field_bckground">{studentDto.special_Category}</p>
+        <p className="field_bckground">{studentWithFiles.special_Category}</p>
       </div>
             
           </div>

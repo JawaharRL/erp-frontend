@@ -1,274 +1,160 @@
-import React from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import './Academicform.css'
-import Previouswhite from '../../Assets/Previouswhite.svg'
-import Nextwhite from '../../Assets/Nextwhite.svg'
-import { useLocation } from 'react-router-dom'
-import Formtitle from '../../Components/Formtitle/Formtitle'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './Academicform.css';
+import Previouswhite from '../../Assets/Previouswhite.svg';
+import Nextwhite from '../../Assets/Nextwhite.svg';
+import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allfields from '../../Components/Allfields/Allfields';
-import Allbuttons from '../../Components/Allbuttons/Allbuttons'
-import Passwordvalidater from '../../Components/Passwordvalidater/Passwordvalidater'
+import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react'
-import Popup from 'reactjs-popup'
-
 
 function Academicform() {
-  
-  const location =useLocation();
-  console.log(location)
-
-  const navigate =useNavigate();
-  const goToPersonalform = () => {
-    navigate('/personal-form');
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(() => {
+    const storedData = localStorage.getItem('formData');
+    return storedData ? JSON.parse(storedData) : {};
+  });
   const [isOpen, setIsOpen] = useState(false);
- 
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
+
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
+
+  const handleOtherField = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    const formData = new FormData(e.target);
     const url = 'http://localhost:8080/api/academics';
- 
-    const data = {
-      email_Id :location.state.Uname,
-      register_No: formData.get('register_No'),
-      programme: formData.get('programme'),
-      discipline: formData.get('discipline'),
-      admission_Number: formData.get('admission_Number'),
-      academic_Year: formData.get('academic_Year'),
-      semester: formData.get('semester'),
-      abc_Id: formData.get('abc_Id'),
-      umis_Id: formData.get('umis_Id'),
-      date_Of_Admission: formData.get('date_Of_Admission'),
-      course_Joined_Date: formData.get('course_Joined_Date'),
-      course_Type: formData.get('course_Type'),
-      regulation: formData.get('regulation'),
-      fast_Track: formData.get('fast_Track'),
-      cgpa:  formData.get('cgpa'),
-      student_Status: formData.get('student_Status')
-    };
-    console.log(data.email_Id);
+    
     try {
-      
-      const response = await axios.post(url, data);
-      console.log(response.data);
-      toast("Registration successful");
+      const response = await axios.post(url, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      // localStorage.removeItem('formData');
+      toast.success("Registration successful");
       setIsOpen(true);
-      
-      // openModal();
+      navigate('/profile-page');
     } catch (error) {
       console.error('Error saving student:', error);
-      toast("Registration failed");
+      toast.error("Registration failed");
     }
-    
-  };
-  const PasswordSubmit = async (e) => {
-    e.preventDefault();
-   
-    const formData = new FormData(e.target);
-    const createPassword = formData.get('create_Password');
-    const reenterPassword = formData.get('reenter_Password');
-    if (createPassword !== reenterPassword) {
-      toast("Passwords does not matched");
-      return; // Prevent further execution
-    }
-    const url = 'http://localhost:8080/api/authentication/create';
-
-    const data = {
-      emailid :location.state.Uname,
-      password: createPassword,
-      
-    };
-    console.log(data.email_Id);
-    try {
-      const response = await axios.post(url, data);
-      console.log(response.data);
-      toast("Password creation successful");
-      await new Promise((resolve) => setTimeout(resolve, 1300));
-      navigate('/login-page');
-      // openModal();
-    } catch (error) {
-      console.error('Error saving student:', error);
-      toast("Password creation failed");
-    }
-    
   };
 
   return (
     <div className="registration-background">
-    <div className='form-content'>
-   <Formtitle></Formtitle>
-   </div>
-    <br/>
-    <form id='registration_form' onSubmit={handleSubmit}>
-    <div className="academic-container">
-        <div className="reg-no">
-        <Allfields fieldtype="text" value="Register Number" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
-         {/* <label htmlFor="RegisterNo">RegisterNo</label>
-         <input type="text" name="RegisterNo"/> */}
-       </div>
-       <div className="programme">
-       {/* <Allfields fieldtype="text" value="Programme" inputname="programme" fieldpattern="[A-Za-z]+" req_flag={true} format={/[^A-Za-z\s]/g}/> */}
-
-         <label htmlFor="programme">programme</label>
-         <select className='programme-dropdown' name="programme">
-          <option>Select</option>
-          <option value="BE (Fulltime)">BE (Full time)</option>
-          <option value="BE (part time)">BE (part time)</option>
-          <option value="ME">ME</option>
-         </select>
-         {/* <label htmlFor="Programme">Programme</label>
-         <input type="text" name="Programme" /> */}
-       </div>
-       <div className="discipline">
-       <label htmlFor="discipline">discipline</label>
-         <select className='discipline-dropdown' name="discipline">
-          <option>Select</option>
-          <option value="Civil Engineering">Civil Engineering</option>
-          <option value="Mechanical Engineering">Mechanical Engineering</option>
-          <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-          <option value="Electronics and communication Engineering">Electronics and communication Engineering</option>
-          <option value="Computer Science and Engineering">Computer Science and Engineering</option>
-          <option value="Structural Engineering">Structural Engineering</option>
-          <option value="Environmental Engineering">Environmental Engineering</option>
-          <option value="Manufacturing Engineering">Manufacturing Engineering</option>
-          <option value="Computer Aided Design">Computer Aided Design</option>
-          <option value=" Power Electronics and Drives"> Power Electronics and Drives</option>
-          <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
-          
-         </select>
-       {/* <Allfields fieldtype="text" value="Discipline" inputname="discipline" fieldpattern="[A-Za-z]+" req_flag={true}format={/[^A-Za-z\s]/g}/> */}
-         {/* <label htmlFor="Discipline">Discipline</label>
-         <input type="text" name="Discipline" /> */}
-       </div> 
-       <div className="aca-year">
-       <Allfields fieldtype="text" value="Academic Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g}/>
-         {/* <label htmlFor="Academic Year">Academic Year</label>
-         <input type="text" name="Academic Year"/> */}
-       </div>
-       
-        <div className="adm-no">
-        <Allfields fieldtype="text" value="Admission Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g}/>
-         {/* <label htmlFor="AdmissionNo">AdmissionNo</label>
-         <input type="text" name="AdmissionNo" /> */}
-       </div>
-       <div className="regulation">
-       <Allfields fieldtype="text" value="Regulation" inputname="regulation" fieldpattern="[A-Za-z0-9]+" req_flag={true} format={/[^0-9a-zA-Z]/g}/>
-        {/* <label htmlFor="Regulation">Regulation</label>
-        <input type="text" name="Regulation"/> */}
+      <div className='form-content'>
+        <Formtitle />
       </div>
-      
-       <div className="sem">
-         <label htmlFor="Semester">Semester</label>
-         <select className='community-dropdown' name="semester">
-          <option>Select</option>
-          <option value="I">I</option>
-          <option value="II">II</option>
-          <option value="III">III</option>
-          <option value="IV">IV</option>
-          <option value="V">V</option>
-          <option value="VI">VI</option>
-          <option value="VII">VII</option>
-          <option value="VIII">VIII</option>
-         </select>
-       </div> 
-       <div className="abc-id">
-        {/* <label htmlFor="ABC Id">ABC Id</label>
-        <input type="text" name="ABC Id" /> */}
-        <Allfields fieldtype="text" value="ABC Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
-      </div>
-        <div className="umis-id">
-        <Allfields fieldtype="text" value="UMIS Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g}/>
-         {/* <label htmlFor="UMIS Id">UMIS Id</label>
-         <input type="text" name="UMIS Id"   /> */}
-       </div>
-       <div className="date-of-adm">
-       <Allfields fieldtype="date" value="Date of Admission" inputname="date_Of_Admission"fieldpattern="" req_flag={true} format=""/>
-         {/* <label htmlFor="Date of Admission">Date of Admission</label>
-         <input type="date" name="Date of Admission"  /> */}
-       </div>
-       <div className="join-date">
-       <Allfields fieldtype="date" value="Course Joined Date" inputname="course_Joined_Date"fieldpattern="" req_flag={true} format=""/>
-         {/* <label htmlFor="Course joined">Course joined</label>
-         <input type="date" name="Course joined"  /> */}
-       </div> 
-
-     <div className="course-type">
-       <label htmlFor="Coursetype">Course Type</label>
-       <div className="radio">
-       <div className="radio-spacing"><input type="radio" name="course_Type"value="Regular"/> Regular</div>
-       <div className="radio-spacing"> <input type="radio" name="course_Type" value="Lateral"/> Lateral</div>
-      </div>
-     </div>
-      <div className="fasttrack">
-       <label htmlFor="Fasttrack">Fasttrack</label>
-       <div className="radio">
-       <div className="radio-spacing"><input type="radio" name="fast_Track"value="Yes"/> Yes</div>
-       <div className="radio-spacing"> <input type="radio" name="fast_Track" value="No"/> No</div>
-      </div>
-     </div>
-       <div className="cgpa" >
-       <Allfields fieldtype="text" value="CGPA" inputname="cgpa"fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g}/>
-         {/* <label htmlFor="CGPA">CGPA</label>
-         <input type="text" name="CGPA" /> */}
-       </div> 
-       <div className="student-status">
-       <label htmlFor="Student_Status">Student status</label>
-         <select className='community-dropdown' name="student_Status">
-          <option>Select</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-         </select>
-      </div>
-     
-</div>
-<div className='academic-buttons'>
-      {/* <Allbuttons target={goToPersonalform} value="Previous" image={Previouswhite}/> */}
-      <div>
-      <Allbuttons value="Submit" image={Nextwhite} />
-        {/* <button>Submit</button> */}
-        <ToastContainer />
-     
-      </div>
-     </div>
-     </form>
-     <div className="password_popup">
-      {/* <button onClick={openModal}>Open Popup</button> */}
-      <Popup 
-        open={isOpen} 
-        modal
-        closeOnDocumentClick={false}
-      >
-        <div>
-        <div className="login-popup">
-            <form className="create-passwors-form" id="createpassword" onSubmit={PasswordSubmit}>
-              <h2 className='create-password-title' >
-                Create password
-              </h2>
-              {/* <label htmlFor="">User name</label> */}
-              <input className="create_password_fields" type="text" placeholder={location.state.Uname}  disabled /> 
-                <Passwordvalidater input_name_createpw="create_Password" input_name_reenterpw="reenter_Password"/>
-              <button className='All-button password_crate_button' >Create</button>
-            </form>
+      <br />
+      <form id='registration_form' onSubmit={handleSubmit}>
+        <div className="academic-container">
+          <div className="reg-no">
+            <Allfields fieldtype="text" value="RegisterNo" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="programme">
+            <label htmlFor="programme">Programme</label>
+            <select className='programme-dropdown' name="programme"  value={formData.programme || ''} onChange={handleOtherField}>
+              <option>Select</option>
+              <option value="BE (Fulltime)" >BE (Full time)</option>
+              <option value="BE (part time)" >BE (part time)</option>
+              <option value="ME">ME</option>
+            </select>
+          </div>
+          <div className="discipline">
+            <label htmlFor="discipline">Discipline</label>
+            <select className='discipline-dropdown' name="discipline"  value={formData.discipline || ''} onChange={handleOtherField}>
+              <option >Select</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Mechanical Engineering" >Mechanical Engineering</option>
+              <option value="Electrical and Electronics Engineering" >Electrical and Electronics Engineering</option>
+              <option value="Electronics and communication Engineering" >Electronics and communication Engineering</option>
+              <option value="Computer Science and Engineering" >Computer Science and Engineering</option>
+              <option value="Structural Engineering" >Structural Engineering</option>
+              <option value="Environmental Engineering" >Environmental Engineering</option>
+              <option value="Manufacturing Engineering" >Manufacturing Engineering</option>
+              <option value="Computer Aided Design" >Computer Aided Design</option>
+              <option value="Power Electronics and Drives" >Power Electronics and Drives</option>
+              <option value="Microwave and Optical Communication" >Microwave and Optical Communication</option>
+            </select>
+          </div>
+          <div className="aca-year">
+            <Allfields fieldtype="text" value="Academic Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="adm-no">
+            <Allfields fieldtype="text" value="Admission Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="regulation">
+            <Allfields fieldtype="text" value="Regulation" inputname="regulation" fieldpattern="[A-Za-z0-9]+" req_flag={true} format={/[^0-9a-zA-Z]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="sem">
+            <label htmlFor="semester">Semester</label>
+            <select className='community-dropdown' name="semester"  value={formData.semester || ''} onChange={handleOtherField}>
+              <option>Select</option>
+              <option value="I" >I</option>
+              <option value="II" >II</option>
+              <option value="III" >III</option>
+              <option value="IV" >IV</option>
+              <option value="V" >V</option>
+              <option value="VI" >VI</option>
+              <option value="VII" >VII</option>
+              <option value="VIII" >VIII</option>
+            </select>
+          </div>
+          <div className="abc-id">
+            <Allfields fieldtype="text" value="ABC Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="umis-id">
+            <Allfields fieldtype="text" value="UMIS Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="date-of-adm">
+            <Allfields fieldtype="date" value="Date of Admission" inputname="date_Of_Admission" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="join-date">
+            <Allfields fieldtype="date" value="Course Joined Date" inputname="course_Joined_Date" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="course-type">
+            <label htmlFor="course_Type">Course Type</label>
+            <div className="radio">
+              <div className="radio-spacing"><input type="radio" name="course_Type" value="Regular" onChange={handleOtherField} checked={formData.course_Type === 'Regular'} /> Regular</div>
+              <div className="radio-spacing"><input type="radio" name="course_Type" value="Lateral" onChange={handleOtherField} checked={formData.course_Type === 'Lateral'} /> Lateral</div>
+            </div>
+          </div>
+          <div className="fasttrack">
+            <label htmlFor="fast_Track">Fasttrack</label>
+            <div className="radio">
+              <div className="radio-spacing"><input type="radio" name="fast_Track" value="Yes" onChange={handleOtherField} checked={formData.fast_Track === 'Yes'} /> Yes</div>
+              <div className="radio-spacing"><input type="radio" name="fast_Track" value="No"  onChange={handleOtherField}checked={formData.fast_Track === 'No'} /> No</div>
+            </div>
+          </div>
+          <div className="cgpa">
+            <Allfields fieldtype="text" value="CGPA" inputname="cgpa" fieldpattern="\d+\.\d+" req_flag={true} format={/[^0-9.]/g} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className="student-status">
+            <label htmlFor="student_Status">Student Status</label>
+            <select className='student-status-dropdown' name="student_Status"  value={formData.student_Status || ''} onChange={handleOtherField}>
+              <option>Select</option>
+              <option value="Terminated" >Terminated</option>
+              <option value="Discontinued">Discontinued</option>
+              <option value="Passed Out" >Passed Out</option>
+            </select>
           </div>
         </div>
-      </Popup>
+        <div className="btn-container">
+          <Allbuttons value="Previous" img={Previouswhite} btnClass="previous-btn" navigateTo="/personalinformation" />
+          <Allbuttons value="Next" img={Nextwhite} btnClass="next-btn" />
+        </div>
+      </form>
+      <ToastContainer />
     </div>
-{/*         
-     {showDiv && 
-     <div>
-       <Createpasswordpopup />
-      </div>}
-     */}
-</div>
-
-  )
+  );
 }
 
 export default Academicform
