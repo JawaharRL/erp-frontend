@@ -7,13 +7,13 @@ import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
 import Fileupload from '../../Components/Fileupload/Fileupload';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 function Personalform() {
-
+  const location =useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(() => {
     const storedData = localStorage.getItem('formData');
@@ -58,6 +58,8 @@ function Personalform() {
     const url = 'http://localhost:8080/api/student';
 
     const formData = new FormData();
+
+    formData.append('register_No',location.state.registerNo);
     formData.append('first_Name', e.target.elements.first_Name.value);
     formData.append('last_Name', e.target.elements.last_Name.value);
     formData.append('date_Of_Birth', e.target.elements.date_Of_Birth.value);
