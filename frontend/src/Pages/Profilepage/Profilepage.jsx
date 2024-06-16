@@ -8,8 +8,8 @@ import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
 import Profileicon from '../../Assets/profile.svg';
 
 function StudentDisplay() {
-
   const location =useLocation();
+  
   console.log(location)
 
   const [studentWithFiles, setStudentWithFiles] = useState(null);
@@ -37,7 +37,6 @@ function StudentDisplay() {
 
         const academicResponse = await axios.get(`http://localhost:8080/api/academics/${studentId}`);
         setAcademicDetails(academicResponse.data);
-
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
