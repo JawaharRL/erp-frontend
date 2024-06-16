@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Personalform() {
-  const location =useLocation();
+
   const navigate = useNavigate();
   const location=useLocation();
   const [formData, setFormData] = useState(() => {
@@ -60,9 +60,7 @@ function Personalform() {
     const url = 'http://localhost:8080/api/student';
 
     const formData = new FormData();
-
-    formData.append('register_No',location.state.registerNo);
-
+    formData.append('register_No', location.state.registerNo);
     formData.append('first_Name', e.target.elements.first_Name.value);
     formData.append('last_Name', e.target.elements.last_Name.value);
     formData.append('date_Of_Birth', e.target.elements.date_Of_Birth.value);
@@ -95,6 +93,7 @@ function Personalform() {
     formData.append('ifsc_Code', e.target.elements.ifsc_Code.value);
     formData.append('branch_Name', e.target.elements.branch_Name.value);
     formData.append('account_Number', e.target.elements.account_Number.value);
+    formData.append('passbook', e.target.elements.passbook.files[0]);
     formData.append('sslc', e.target.elements.sslc.value);
     formData.append('hsc_1_Year', e.target.elements.hsc_1_Year.value);
     formData.append('hsc_2_Year', e.target.elements.hsc_2_Year.value);
@@ -297,7 +296,15 @@ function Personalform() {
             <div className="ifsc_Code ">
               <Allfields fieldtype="text" value="IFSC Code" inputname="ifsc_Code"  fieldpattern="[A-Za-z0-9]+" req_flag={true} formData={formData} setFormData={setFormData}/>
             </div>
-
+            <div className="field">
+                <input type="file" id="passbook" name="passbook" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('passbook')} />
+                <p className="marksheet_label">Bank Passbook</p>
+                <label htmlFor="passbook" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                  <img className='icon' src={Upload} alt='' />
+                  <p>Upload</p>
+                </label>
+                {fileNames['passbook'] && <p className="uploaded_file_name">{fileNames['passbook']} Uploaded</p>}
+              </div>
 
             <hr id='registration-seperator' />
 
@@ -311,7 +318,7 @@ function Personalform() {
                   <p>Upload</p>
                 </label>
                 {fileNames['sslc_File'] && <p className="uploaded_file_name">{fileNames['sslc_File']} Uploaded</p>}
-              </div>
+            </div>
             </div>
 
             <div className="hsc_1_Year">
