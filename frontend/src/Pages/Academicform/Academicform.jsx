@@ -40,6 +40,7 @@ function Academicform() {
       });
       localStorage.removeItem('formData');
       toast.success("Registration successful");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate('/');
     } catch (error) {
       console.error('Error saving student:', error);

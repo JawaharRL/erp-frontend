@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Loginpage() {
+
+
   const [registerNo, setregisterNo] = useState('');
   const [password, setPassword] = useState('');
   const navigate =useNavigate();
@@ -38,7 +40,7 @@ function Loginpage() {
       })
       .catch(err => {
         console.log(err);
-        toast("Invalid registerNo or Password");
+        toast("Invalid  register Number or Password");
       });
   };
 
