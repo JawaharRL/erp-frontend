@@ -41,7 +41,7 @@ function Academicform() {
       localStorage.removeItem('formData');
       toast.success("Registration successful");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate('/');
+      navigate('/login-page');
     } catch (error) {
       console.error('Error saving student:', error);
       toast.error("Registration failed");
@@ -139,7 +139,7 @@ function Academicform() {
           </div>
           <div className="student-status">
             <label htmlFor="student_Status">Student Status</label>
-            <select className='student-status-dropdown' name="student_Status"  value={formData.student_Status || ''} onChange={handleOtherField}>
+            <select className='community-dropdown' name="student_Status"  value={formData.student_Status || ''} onChange={handleOtherField}>
               <option>Select</option>
               <option value="Terminated" >Terminated</option>
               <option value="Discontinued">Discontinued</option>
@@ -147,12 +147,11 @@ function Academicform() {
             </select>
           </div>
         </div>
-        <div className="btn-container">
-          <Allbuttons value="Previous" img={Previouswhite} btnClass="previous-btn" navigateTo="/personalinformation" />
-          <Allbuttons value="Next" img={Nextwhite} btnClass="next-btn" />
+        <div className='academic-buttons'>
+          <Allbuttons value="Submit" image={Nextwhite} />
+          <ToastContainer />
         </div>
       </form>
-      <ToastContainer />
     </div>
   );
 }
