@@ -38,7 +38,7 @@ function Loginpage() {
       })
       .catch(err => {
         console.log(err);
-        toast("Invalid registerNo or Password");
+        toast("Invalid  register Number or Password");
       });
   };
 
