@@ -7,7 +7,8 @@ import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields';
 import Fileupload from '../../Components/Fileupload/Fileupload';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,11 +16,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function Personalform() {
   const location =useLocation();
   const navigate = useNavigate();
+  const location=useLocation();
   const [formData, setFormData] = useState(() => {
     const storedData = localStorage.getItem('formData');
     return storedData ? JSON.parse(storedData) : {};
   });
-  const [Uname, setUname] = useState('');
+
   const [fileNames, setFileNames] = useState({});
  
   useEffect(() => {
@@ -60,6 +62,7 @@ function Personalform() {
     const formData = new FormData();
 
     formData.append('register_No',location.state.registerNo);
+
     formData.append('first_Name', e.target.elements.first_Name.value);
     formData.append('last_Name', e.target.elements.last_Name.value);
     formData.append('date_Of_Birth', e.target.elements.date_Of_Birth.value);
@@ -102,7 +105,7 @@ function Personalform() {
     formData.append('diploma_File', e.target.elements.diploma_File.files[0]);
     formData.append('emis_Number', e.target.elements.emis_Number.value);
     formData.append('first_Graduate', e.target.elements.first_Graduate.value);
-    formData.append('special_Category', e.target.elements.diploma.value);
+    formData.append('special_Category', e.target.elements.special_Category.value);
     
     try {
       const response = await axios.post(url, formData, {
@@ -110,8 +113,8 @@ function Personalform() {
           'Content-Type': 'multipart/form-data'
         }
       });
-      // localStorage.removeItem('formData');
-      navigate('/academic-form', { state: { Uname: formData.get('first_Name') } });
+      localStorage.removeItem('formData');
+      navigate('/academic-form');
       console.log(response.data);
     } catch (error) {
       console.error('Error saving student:', error);
@@ -304,7 +307,7 @@ function Personalform() {
                 <input type="file" id="sslc-input" name="sslc_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('sslc_File')} />
                 <p className="marksheet_label">SSLC Marksheet</p>
                 <label htmlFor="sslc-input" className="File-upload-button" style={{ justifyContent: 'center' }} >
-                  <img className='icon' src={Upload} />
+                  <img className='icon' src={Upload} alt='' />
                   <p>Upload</p>
                 </label>
                 {fileNames['sslc_File'] && <p className="uploaded_file_name">{fileNames['sslc_File']} Uploaded</p>}
@@ -318,7 +321,7 @@ function Personalform() {
                 <p className="marksheet_label">HSC I-year Marksheet</p>
                 <input type="file" id="hsc1-input" name="hsc_1_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('hsc_1_Year_File')} />
                 <label htmlFor="hsc1-input" className="File-upload-button" style={{ justifyContent: 'center' }}  >
-                  <img className='icon' src={Upload} />
+                  <img className='icon' src={Upload} alt=''/>
                   <p>Upload</p>
                 </label>
 
@@ -333,7 +336,7 @@ function Personalform() {
                 <p className="marksheet_label">HSC II-year Marksheet</p>
                 <input type="file" id="hsc2-input" name="hsc_2_Year_File" className="educational-document" style={{ display: 'none' }} onChange={handleFileUpload('hsc_2_Year_File')} />
                 <label htmlFor="hsc2-input" className="File-upload-button" style={{ justifyContent: 'center' }}  >
-                  <img className='icon' src={Upload} />
+                  <img className='icon' src={Upload} alt=''/>
                   <p>Upload</p>
                 </label>
                 {fileNames['hsc_2_Year_File'] && <p className="uploaded_file_name">{fileNames['hsc_2_Year_File']} Uploaded</p>}
@@ -346,7 +349,7 @@ function Personalform() {
                 <p className="marksheet_label">Diploma Marksheet</p>
                 <input type="file" id="diploma-input" name="diploma_File" className="educational-document" style={{ display: 'none' }}  onChange={handleFileUpload('diploma_File')} />
                 <label htmlFor="diploma-input" className="File-upload-button" style={{ justifyContent: 'center' }} >
-                  <img className='icon' src={Upload} />
+                  <img className='icon' src={Upload} alt=''/>
                   <p>Upload</p>
                 </label>
                 {fileNames['diploma_File'] && <p className="uploaded_file_name">{fileNames['diploma_File']} Uploaded</p>}

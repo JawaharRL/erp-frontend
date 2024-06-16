@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Academicform.css';
 import Previouswhite from '../../Assets/Previouswhite.svg';
 import Nextwhite from '../../Assets/Nextwhite.svg';
@@ -11,13 +11,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Academicform() {
-  const location = useLocation();
+
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState(() => {
     const storedData = localStorage.getItem('formData');
     return storedData ? JSON.parse(storedData) : {};
   });
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
@@ -38,10 +38,10 @@ function Academicform() {
           'Content-Type': 'application/json',
         },
       });
-      // localStorage.removeItem('formData');
+      localStorage.removeItem('formData');
       toast.success("Registration successful");
-      setIsOpen(true);
-      navigate('/profile-page');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate('/');
     } catch (error) {
       console.error('Error saving student:', error);
       toast.error("Registration failed");

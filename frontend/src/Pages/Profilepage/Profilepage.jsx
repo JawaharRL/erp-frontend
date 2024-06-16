@@ -46,7 +46,7 @@ function StudentDisplay() {
     };
 
     fetchStudentWithFiles();
-  }, []);
+  }, [location.state.registerNo]);
 
   const handleSectionClick = (section) => {
     setDisplaySection(section);
