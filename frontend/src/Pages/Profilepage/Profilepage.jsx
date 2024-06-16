@@ -8,8 +8,8 @@ import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
 import Profileicon from '../../Assets/profile.svg';
 
 function StudentDisplay() {
-
   const location =useLocation();
+  
   console.log(location)
 
   const [studentWithFiles, setStudentWithFiles] = useState(null);
@@ -31,15 +31,13 @@ function StudentDisplay() {
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
       try {
-        const studentId = 91762115002; 
-        const studentMail="abi@gmail.com";
-        // Replace with the ID of the student you want to fetch
-        const response = await axios.get(`http://localhost:8080/api/student/${studentMail}`);
+
+        const studentId = location.state.registerNo; // Replace with the ID of the student you want to fetch
+        const response = await axios.get(`http://localhost:8080/api/student/${studentId}`);
         setStudentWithFiles(response.data);
 
         const academicResponse = await axios.get(`http://localhost:8080/api/academics/${studentId}`);
         setAcademicDetails(academicResponse.data);
-
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -49,7 +47,7 @@ function StudentDisplay() {
     };
 
     fetchStudentWithFiles();
-  }, []);
+  }, [location.state.registerNo]);
 
   const handleSectionClick = (section) => {
     setDisplaySection(section);

@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Loginpage() {
+
+
   const [registerNo, setregisterNo] = useState('');
   const [password, setPassword] = useState('');
   const navigate =useNavigate();
@@ -16,16 +18,29 @@ function Loginpage() {
     axios.post("http://localhost:8080/api/authentication/authenticate", { registerNo, password })
       .then(async(res) => {
         console.log(res);
-        if (res.data === "Authentication successful") {
+        if(res.data === "Authentication successful"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          // navigate('/profile-page',{state: {registerNo}})
+          navigate('/profile-page',{state: {registerNo}})
+        }
+        else if (res.data === "Academics form not filled") {
+          toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          navigate('/academic-form')
+        }
+        else if(res.data ==="Personal form not filled"){
+          toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/personal-form',{state: {registerNo}})
+        }
+        else if(res.data ==="Invalid register Number"){
+          toast("Invalid register Number or Password");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
       })
       .catch(err => {
         console.log(err);
-        toast("Invalid registerNo or Password");
+        toast("Invalid  register Number or Password");
       });
   };
 
@@ -59,4 +74,3 @@ function Loginpage() {
 }
 
 export default Loginpage;
-
