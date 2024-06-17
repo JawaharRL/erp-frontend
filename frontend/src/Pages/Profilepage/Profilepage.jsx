@@ -166,14 +166,14 @@ function StudentDisplay() {
             <div className="profile_name">
               <p>Name </p>
               <p className="field_bckground">
-                {studentWithFiles.first_Name} {studentWithFiles.last_Name}
+                {studentWithFiles.firstName} {studentWithFiles.lastName}
               </p>
             </div>
 
             <div className="profile_date_of_birth">
               <p>Date of Birth</p>
               <p className="field_bckground">
-                {studentWithFiles.date_Of_Birth}
+                {studentWithFiles.dateOfBirth}
               </p>
             </div>
             <div className="profile_profile_photo">
@@ -192,7 +192,7 @@ function StudentDisplay() {
             <div className="profile_aadhar_number">
               <p>Aadhar Number</p>
               <p className="field_bckground">
-                {studentWithFiles.aadhar_Number}
+                {studentWithFiles.aadharNumber}
               </p>
             </div>
             <div className="profile_nationality">
@@ -215,70 +215,70 @@ function StudentDisplay() {
               <p>Father's Name</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.fathers_Name}
+                {studentWithFiles.fathersName}
               </p>
             </div>
             <div className="profile_fathers_occupation">
               <p>Father's Occupation</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.fathers_Occupation}
+                {studentWithFiles.fathersOccupation || "NA" }
               </p>
             </div>
             <div className="profile_fathers_mobile_number">
               <p>Father's Mobile Number</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.fathers_Mobile_Number}
+                {studentWithFiles.fathersMobileNumber || "NA" }
               </p>
             </div>
             <div className="profile_mothers_name">
               <p>Mother's Name</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.mothers_Name}
+                {studentWithFiles.mothersName}
               </p>
             </div>
             <div className="profile_mothers_occupation">
               <p>Mother's Occupation</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.mothers_Occupation}
+                {studentWithFiles.mothersOccupation || "NA" }
               </p>
             </div>
             <div className="profile_mothers_mobile_number">
               <p>Mother's Mobile Number</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.mothers_Mobile_Number}
+                {studentWithFiles.mothersMobileNumber || "NA" }
               </p>
             </div>
             <div className="profile_guardians_name">
               <p>Guardian's Name</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.guardians_Name}
+                {studentWithFiles.guardiansName || "NA" }
               </p>
             </div>
             <div className="profile_guardians_occupation">
               <p>Guardian's Occupation</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.guardians_Occupation}
+                {studentWithFiles.guardiansOccupation || "NA" }
               </p>
             </div>
             <div className="profile_guardian_mobile_number">
               <p>Guardian's Mobile Number</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.guardians_Mobile_Number}
+                {studentWithFiles.guardiansMobileNumber || "NA" }
               </p>
             </div>
             <div className="profile_parents_status">
               <p>Parents Status</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.parents_Status}
+                {studentWithFiles.parentsStatus}
               </p>
             </div>
             <div className="profile_income">
@@ -289,7 +289,7 @@ function StudentDisplay() {
               <p>Marital Status</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.marital_Status}
+                {studentWithFiles.maritalStatus}
               </p>
             </div>
           </div>
@@ -301,7 +301,7 @@ function StudentDisplay() {
               <p>Mobile Number</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.mobile_Number}
+                {studentWithFiles.mobileNumber}
               </p>
             </div>
             <div className="profile_email_id">
@@ -312,13 +312,13 @@ function StudentDisplay() {
               <p>Residential Address</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.residential_Address}
+                {studentWithFiles.residentialAddress}
               </p>
             </div>
             <div className="profile_communication_address">
               <p>Communication Address</p>
               <p className="field_bckground">
-                {studentWithFiles.communication_Address}
+                {studentWithFiles.communicationAddress}
               </p>
             </div>
             <div className="profile_hosteller">
@@ -327,7 +327,7 @@ function StudentDisplay() {
             </div>
             <div className="profile_hostel_type">
               <p>Hostel Type</p>
-              <p className="field_bckground">{studentWithFiles.hostel_Type}</p>
+              <p className="field_bckground">{studentWithFiles.hostelType}</p>
             </div>
           </div>
         )}
@@ -336,24 +336,24 @@ function StudentDisplay() {
           <div className="profile-bank-display">
             <div className="profile_bank_name">
               <p>Bank Name</p>
-              <p className="field_bckground"> {studentWithFiles.bank_Name}</p>
+              <p className="field_bckground"> {studentWithFiles.bankName}</p>
             </div>
 
             <div className="profile_ifsc_code">
               <p>IFSC Code</p>
-              <p className="field_bckground"> {studentWithFiles.ifsc_Code}</p>
+              <p className="field_bckground"> {studentWithFiles.ifscCode}</p>
             </div>
 
             <div className="profile_branch_name">
               <p>Branch Name</p>
-              <p className="field_bckground">{studentWithFiles.branch_Name}</p>
+              <p className="field_bckground">{studentWithFiles.branchName}</p>
             </div>
 
             <div className="profile_account_number">
               <p>Account Number</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.account_Number}
+                {studentWithFiles.accountNumber}
               </p>
             </div>
             <div className="file_download">
@@ -380,7 +380,7 @@ function StudentDisplay() {
                   <a
                     className="marksheet_download_links"
                     href={`data:${sslcMimeType};base64,${studentWithFiles.sslcFileContent}`}
-                    download={`sslc_file.${sslcExtension}`}
+                    download={`sslcfile.${sslcExtension}`}
                   >
                     Download SSLC File
                   </a>
@@ -389,13 +389,13 @@ function StudentDisplay() {
             </div>
             <div className="profile_hsc_1_year">
               <p>HSC 1 Year</p>
-              <p className="field_bckground">{studentWithFiles.hsc_1_Year}</p>
+              <p className="field_bckground">{studentWithFiles.hsc1Year || "NA" }</p>
               <div className="file_download">
                 {hsc1MimeType && studentWithFiles.hsc1YearFileContent && (
                   <a
                     className="marksheet_download_links"
                     href={`data:${hsc1MimeType};base64,${studentWithFiles.hsc1YearFileContent}`}
-                    download={`hsc1_year_file.${hsc1Extension}`}
+                    download={`hsc1yearfile.${hsc1Extension}`}
                   >
                     Download HSC 1 Year File
                   </a>
@@ -404,13 +404,13 @@ function StudentDisplay() {
             </div>
             <div className="profile_hsc_2_year">
               <p>HSC 2 Year</p>
-              <p className="field_bckground">{studentWithFiles.hsc_2_Year}</p>
+              <p className="field_bckground">{studentWithFiles.hsc2Year || "NA" }</p>
               <div className="file_download">
                 {hsc2MimeType && studentWithFiles.hsc2YearFileContent && (
                   <a
                     className="marksheet_download_links"
                     href={`data:${hsc2MimeType};base64,${studentWithFiles.hsc2YearFileContent}`}
-                    download={`hsc2_year_file.${hsc2Extension}`}
+                    download={`hsc2yearfile.${hsc2Extension}`}
                   >
                     Download HSC 2 Year File
                   </a>
@@ -419,7 +419,7 @@ function StudentDisplay() {
             </div>
             <div className="profile_diploma">
               <p>Diploma</p>
-              <p className="field_bckground">{studentWithFiles.diploma}</p>
+              <p className="field_bckground">{studentWithFiles.diploma || "NA" }</p>
               <div className="file_download">
                 {diplomaMimeType && studentWithFiles.diplomaFileContent && (
                   <a
@@ -434,18 +434,18 @@ function StudentDisplay() {
             </div>
             <div className="profile_emis_number">
               <p>EMIS Number</p>
-              <p className="field_bckground">{studentWithFiles.emis_Number}</p>
+              <p className="field_bckground">{studentWithFiles.emisNumber}</p>
             </div>
             <div className="profile_first_graduate">
               <p>First Graduate</p>
               <p className="field_bckground">
-                {studentWithFiles.first_Graduate}
+                {studentWithFiles.firstGraduate}
               </p>
             </div>
             <div className="profile_special_category">
               <p>Special Category</p>
               <p className="field_bckground">
-                {studentWithFiles.special_Category}
+                {studentWithFiles.specialCategory}
               </p>
             </div>
           </div>
@@ -455,7 +455,7 @@ function StudentDisplay() {
           <div className="profile-academic-display">
             <div className="profile_register_number">
               <p>Register Number </p>
-              <p className="field_bckground">{academicDetails.register_No}</p>
+              <p className="field_bckground">{academicDetails.registerNo}</p>
             </div>
 
             <div className="profile_programme">
@@ -470,7 +470,7 @@ function StudentDisplay() {
               <p>Academic Year</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.academic_Year}
+                {academicDetails.academicYear}
               </p>
             </div>
             <div className="profile_semester">
@@ -479,28 +479,28 @@ function StudentDisplay() {
             </div>
             <div className="profile_abc_id">
               <p>ABC ID</p>
-              <p className="field_bckground"> {academicDetails.abc_Id}</p>
+              <p className="field_bckground"> {academicDetails.abcId}</p>
             </div>
             <div className="profile_umis_id">
               <p>UMIS ID</p>
-              <p className="field_bckground"> {academicDetails.umis_Id}</p>
+              <p className="field_bckground"> {academicDetails.umisId}</p>
             </div>
             <div className="profile_date_of_admission">
               <p>Date of Admission</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.date_Of_Admission}
+                {academicDetails.dateOfAdmission}
               </p>
             </div>
             <div className="profile_course_joined_date">
               <p>Course Joined Date</p>
               <p className="field_bckground">
-                {academicDetails.course_Joined_Date}
+                {academicDetails.courseJoinedDate}
               </p>
             </div>
             <div className="profile_course_type">
               <p>Course Type</p>
-              <p className="field_bckground"> {academicDetails.course_Type}</p>
+              <p className="field_bckground"> {academicDetails.courseType}</p>
             </div>
             <div className="profile__regulation">
               <p>Regulation</p>
@@ -508,7 +508,7 @@ function StudentDisplay() {
             </div>
             <div className="profile_fast_track">
               <p>Fast Track</p>
-              <p className="field_bckground"> {academicDetails.fast_Track}</p>
+              <p className="field_bckground"> {academicDetails.fastTrack}</p>
             </div>
             <div className="profile_cgpa">
               <p>CGPA</p>
@@ -518,7 +518,7 @@ function StudentDisplay() {
               <p>Student Status</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.student_Status}
+                {academicDetails.studentStatus}
               </p>
             </div>
           </div>

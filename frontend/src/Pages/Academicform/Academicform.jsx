@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Academicform.css';
-import Previouswhite from '../../Assets/Previouswhite.svg';
 import Nextwhite from '../../Assets/Nextwhite.svg';
 import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allfields from '../../Components/Allfields/Allfields';
@@ -33,7 +32,7 @@ function Academicform() {
     const url = 'http://localhost:8080/api/academics';
     
     try {
-      const response = await axios.post(url, formData, {
+      await axios.post(url, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -57,7 +56,7 @@ function Academicform() {
       <form id='registration_form' onSubmit={handleSubmit}>
         <div className="academic-container">
           <div className="reg-no">
-            <Allfields fieldtype="text" value="RegisterNo" inputname="register_No" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="text" value="RegisterNo" inputname="registerNo" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
           </div>
           <div className="programme">
             <label htmlFor="programme">Programme</label>
@@ -86,10 +85,10 @@ function Academicform() {
             </select>
           </div>
           <div className="aca-year">
-            <Allfields fieldtype="text" value="Academic Year" inputname="academic_Year" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g} formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="text" value="Academic Year" inputname="academicYear" fieldpattern="\d{4}-\d{4}$" req_flag={true} format={/[^0-9-]/g} formData={formData} setFormData={setFormData} />
           </div>
           <div className="adm-no">
-            <Allfields fieldtype="text" value="Admission Number" inputname="admission_Number" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g} formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9a-zA-Z/-]/g} formData={formData} setFormData={setFormData} />
           </div>
           <div className="regulation">
             <Allfields fieldtype="text" value="Regulation" inputname="regulation" fieldpattern="[A-Za-z0-9]+" req_flag={true} format={/[^0-9a-zA-Z]/g} formData={formData} setFormData={setFormData} />
@@ -109,29 +108,29 @@ function Academicform() {
             </select>
           </div>
           <div className="abc-id">
-            <Allfields fieldtype="text" value="ABC Id" inputname="abc_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="text" value="ABC Id" inputname="abcId" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
           </div>
           <div className="umis-id">
-            <Allfields fieldtype="text" value="UMIS Id" inputname="umis_Id" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="text" value="UMIS Id" inputname="umisId" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
           </div>
           <div className="date-of-adm">
-            <Allfields fieldtype="date" value="Date of Admission" inputname="date_Of_Admission" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="date" value="Date of Admission" inputname="dateOfAdmission" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
           </div>
           <div className="join-date">
-            <Allfields fieldtype="date" value="Course Joined Date" inputname="course_Joined_Date" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
+            <Allfields fieldtype="date" value="Course Joined Date" inputname="courseJoinedDate" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
           </div>
           <div className="course-type">
             <label htmlFor="course_Type">Course Type</label>
             <div className="radio">
-              <div className="radio-spacing"><input type="radio" name="course_Type" value="Regular" onChange={handleOtherField} checked={formData.course_Type === 'Regular'} /> Regular</div>
-              <div className="radio-spacing"><input type="radio" name="course_Type" value="Lateral" onChange={handleOtherField} checked={formData.course_Type === 'Lateral'} /> Lateral</div>
+              <div className="radio-spacing"><input type="radio" name="courseType" value="Regular" onChange={handleOtherField} checked={formData.courseType === 'Regular'} /> Regular</div>
+              <div className="radio-spacing"><input type="radio" name="courseType" value="Lateral" onChange={handleOtherField} checked={formData.courseType === 'Lateral'} /> Lateral</div>
             </div>
           </div>
           <div className="fasttrack">
             <label htmlFor="fast_Track">Fasttrack</label>
             <div className="radio">
-              <div className="radio-spacing"><input type="radio" name="fast_Track" value="Yes" onChange={handleOtherField} checked={formData.fast_Track === 'Yes'} /> Yes</div>
-              <div className="radio-spacing"><input type="radio" name="fast_Track" value="No"  onChange={handleOtherField}checked={formData.fast_Track === 'No'} /> No</div>
+              <div className="radio-spacing"><input type="radio" name="fastTrack" value="Yes" onChange={handleOtherField} checked={formData.fastTrack === 'Yes'} /> Yes</div>
+              <div className="radio-spacing"><input type="radio" name="fastTrack" value="No"  onChange={handleOtherField}checked={formData.fastTrack === 'No'} /> No</div>
             </div>
           </div>
           <div className="cgpa">
@@ -139,7 +138,7 @@ function Academicform() {
           </div>
           <div className="student-status">
             <label htmlFor="student_Status">Student Status</label>
-            <select className='community-dropdown' name="student_Status"  value={formData.student_Status || ''} onChange={handleOtherField}>
+            <select className='community-dropdown' name="studentStatus"  value={formData.studentStatus || ''} onChange={handleOtherField}>
               <option>Select</option>
               <option value="Terminated" >Terminated</option>
               <option value="Discontinued">Discontinued</option>
