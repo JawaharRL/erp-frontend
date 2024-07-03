@@ -1,0 +1,8 @@
+.student_sample_data{
+    display: flex;
+    width: 760px;
+    /* background-color: antiquewhite; */
+    justify-content: space-between;
+    padding: 15px 26px;
+    border-bottom: 1.5px solid rgba(0, 0, 0,0.3) ;
+}

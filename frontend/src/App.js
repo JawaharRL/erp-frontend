@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Landingpage, Loginpage, Personalform,Academicform, Profilepage } from './Pages';
+import { Landingpage, Loginpage, Personalform,Academicform, Profilepage, Facultydashboard } from './Pages';
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
         <Route path="/personal-form" element={<Personalform/>}/>
         <Route path="/academic-form" element={<Academicform/>}/>
         <Route path="/profile-page" element={<Profilepage/>}/>
+        <Route path="/faculty-dashboard" element={<Facultydashboard/>}/>
       </Routes>
     
     </div>
