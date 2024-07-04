@@ -1,0 +1,12 @@
+.profile-links{
+    width: 200px;
+}
+.faculty_dashboard_container{
+    display: flex;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+.student_sampledata_container{
+    margin-left: 30px;
+}
