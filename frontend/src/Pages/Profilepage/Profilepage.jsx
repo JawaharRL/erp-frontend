@@ -55,7 +55,7 @@ function StudentDisplay() {
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
       try {
-        const studentId = location.state.registerNo; 
+        const studentId = location.state.userId; 
         const response = await axios.get(
           `http://localhost:8080/api/student/${studentId}`
         );
