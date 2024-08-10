@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Landingpage, Loginpage, Personalform,Academicform, Profilepage, Facultydashboard } from './Pages';
+import { Landingpage, Loginpage, Facultyregistration,Profilepage, Facultydashboard,Registrationform } from './Pages';
 
 
 function App() {
@@ -11,10 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Landingpage/>} />
         <Route path="/login-page" element={<Loginpage/>}/>
-        <Route path="/personal-form" element={<Personalform/>}/>
-        <Route path="/academic-form" element={<Academicform/>}/>
+        <Route path="/registration-form" element={<Registrationform/>}/>
         <Route path="/profile-page" element={<Profilepage/>}/>
-        <Route path="/faculty-dashboard" element={<Facultydashboard/>}/>
+        {/* <Route path="/faculty-dashboard" element={<Facultydashboard/>}/> */}
+        <Route path="/faculty-registration" element={<Facultyregistration/>}/>
       </Routes>
     
     </div>

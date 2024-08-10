@@ -7,6 +7,7 @@ const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, format
     const updatedFormData = { ...formData, [name]: value };
     setFormData(updatedFormData);
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
+
   };
   const handleInputChange = (e) => {
     e.target.value = e.target.value.replace(format, '');
@@ -22,7 +23,7 @@ const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, format
         onChange={handleChange}
         pattern={fieldpattern}
         required={req_flag}
-        placeholder={value}
+        placeholder={`Enter ${value }`}
         onInput={handleInputChange}
       />
     </div>
