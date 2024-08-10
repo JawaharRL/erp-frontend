@@ -1,0 +1,25 @@
+.faculty_registration_container{
+    padding: 0px 100px;
+    gap:20px;
+    grid-row-gap: 35px;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+
+}
+
+
+.faculty_first_name,.faculty_last_name{
+    grid-column:span 6;
+}
+.discipline,.Mobile_Number{
+    grid-column:span 5;
+}
+.mailid{
+    grid-column:span 7;
+}
+.discipline,.handling_batch{
+    grid-column:span 6;
+}
+.handling_class{
+    grid-column:span 3;
+}
