@@ -12,8 +12,8 @@ function StudentDisplay() {
 
   console.log(location);
 
-  const [studentWithFiles, setStudentWithFiles] = useState(null);
-  const [academicDetails, setAcademicDetails] = useState(null);
+  const [studentWithFiles, setStudentWithFiles] = useState();
+  // const [academicDetails, setAcademicDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [displaySection, setDisplaySection] = useState("personal");
@@ -56,12 +56,14 @@ function StudentDisplay() {
     const fetchStudentWithFiles = async () => {
       try {
         const studentId = location.state.userId; 
+        console.log(studentId);
         const response = await axios.get(
           `http://localhost:8080/api/student/${studentId}`
         );
-        setStudentWithFiles(response.data.studentWithFilesDto);
-        setAcademicDetails(response.data.academicsDto);
-        setLoading(false);
+        console.log(response);
+        setStudentWithFiles(response.data);
+        // setAcademicDetails(response.data.academicsDto);
+        setLoading(false); 
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error);
@@ -70,7 +72,7 @@ function StudentDisplay() {
     };
 
     fetchStudentWithFiles();
-  }, [location.state.registerNo]);
+  }, [location.state.userId]);
 
   const handleSectionClick = (section) => {
     setDisplaySection(section);
@@ -455,70 +457,70 @@ function StudentDisplay() {
           <div className="profile-academic-display">
             <div className="profile_register_number">
               <p>Register Number </p>
-              <p className="field_bckground">{academicDetails.registerNo}</p>
+              <p className="field_bckground">{studentWithFiles.registerNo}</p>
             </div>
 
             <div className="profile_programme">
               <p>Programme</p>
-              <p className="field_bckground">{academicDetails.programme}</p>
+              <p className="field_bckground">{studentWithFiles.programme}</p>
             </div>
             <div className="profile_discipline">
               <p>Discipline</p>
-              <p className="field_bckground">{academicDetails.discipline}</p>
+              <p className="field_bckground">{studentWithFiles.discipline}</p>
             </div>
             <div className="profile_academic_year">
               <p>Academic Year</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.academicYear}
+                {studentWithFiles.academicYear}
               </p>
             </div>
             <div className="profile_semester">
               <p>Semester</p>
-              <p className="field_bckground"> {academicDetails.semester}</p>
+              <p className="field_bckground"> {studentWithFiles.semester}</p>
             </div>
             <div className="profile_abc_id">
               <p>ABC ID</p>
-              <p className="field_bckground"> {academicDetails.abcId}</p>
+              <p className="field_bckground"> {studentWithFiles.abcId}</p>
             </div>
             <div className="profile_umis_id">
               <p>UMIS ID</p>
-              <p className="field_bckground"> {academicDetails.umisId}</p>
+              <p className="field_bckground"> {studentWithFiles.umisId}</p>
             </div>
             <div className="profile_date_of_admission">
               <p>Date of Admission</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.dateOfAdmission}
+                {studentWithFiles.dateOfAdmission}
               </p>
             </div>
             <div className="profile_course_joined_date">
               <p>Course Joined Date</p>
               <p className="field_bckground">
-                {academicDetails.courseJoinedDate}
+                {studentWithFiles.courseJoinedDate}
               </p>
             </div>
             <div className="profile_course_type">
               <p>Course Type</p>
-              <p className="field_bckground"> {academicDetails.courseType}</p>
+              <p className="field_bckground"> {studentWithFiles.courseType}</p>
             </div>
             <div className="profile__regulation">
               <p>Regulation</p>
-              <p className="field_bckground"> {academicDetails.regulation}</p>
+              <p className="field_bckground"> {studentWithFiles.regulation}</p>
             </div>
             <div className="profile_fast_track">
               <p>Fast Track</p>
-              <p className="field_bckground"> {academicDetails.fastTrack}</p>
+              <p className="field_bckground"> {studentWithFiles.fastTrack}</p>
             </div>
             <div className="profile_cgpa">
               <p>CGPA</p>
-              <p className="field_bckground"> {academicDetails.cgpa}</p>
+              <p className="field_bckground"> {studentWithFiles.cgpa}</p>
             </div>
             <div className="profile_student_status">
               <p>Student Status</p>
               <p className="field_bckground">
                 {" "}
-                {academicDetails.studentStatus}
+                {studentWithFiles.studentStatus}
               </p>
             </div>
           </div>

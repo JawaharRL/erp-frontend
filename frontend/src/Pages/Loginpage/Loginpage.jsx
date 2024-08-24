@@ -21,27 +21,29 @@ function Loginpage() {
         if(res.data === "Student Authentication successful"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
+          console.log(userId);
           navigate('/profile-page',{state: {userId}})
         }
-        else if (res.data === "Academics form not filled") {
+       
+        else if(res.data ==="Form not filled"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/academic-form')
-        }
-        else if(res.data ==="Personal form not filled"){
-          toast("Login Successful");
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/personal-form',{state: {userId}})
+          navigate('/registration-form',{state: {userId}})
         }
         else if(res.data ==="Invalid register Number"){
-          toast("Invalid register Number or Password");
+          toast("Invalid Register Number or Password");
           await new Promise((resolve) => setTimeout(resolve, 1000));
         }
         else if(res.data ==="Faculty Authentication successful"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          navigate('/faculty-dashboard',{state: {userId}})
+          navigate('/faculty-registration',{state: {userId}})
         }
+        // else if(res.data ==="Faculty Authentication successful"){
+        //   toast("Login Successful");
+        //   await new Promise((resolve) => setTimeout(resolve, 1000));
+        //   navigate('/faculty-dashboard',{state: {userId}})
+        // }
       })
       .catch(err => {
         console.log(err);
@@ -66,8 +68,8 @@ function Loginpage() {
               </div>
             </form>
 
-            <p className='or'>or</p>
-            <p className='or new-register'>Create new account</p>
+            <p className='or'> </p>
+            {/* <p className='or new-register'>Create new account</p> */}
           </div>
         </div>
       </div>
