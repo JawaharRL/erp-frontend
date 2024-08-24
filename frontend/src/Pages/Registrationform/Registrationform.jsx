@@ -20,9 +20,10 @@ const PersonalForm = () => {
   };
   const [displaySection, setDisplaySection] = useState("personal");
   const [fileNames, setFileNames] = useState({});
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [formData, setFormData] = useState({
     //personal data
-    registerNo:location.state.userId,
+    //registerNo:location.state.userId,
     firstName:'',
     lastName:'',
     dateOfBirth:'',
@@ -87,8 +88,6 @@ const PersonalForm = () => {
     studentStatus:'',
   });
 
-
-
   useEffect(() => {
     const storedData = localStorage.getItem('formData');
     if (storedData) {
@@ -101,6 +100,10 @@ const PersonalForm = () => {
     }
   }, []);
 
+
+  const handleFileSelect = (file) => {
+    setProfilePhoto(file);
+  };
 
   const handleOtherField = (e) => {
     const { name, value } = e.target;
@@ -127,7 +130,8 @@ const PersonalForm = () => {
     Object.keys(formData).forEach((key) => {
       formDataToSend.append(key, formData[key]);
     });
-
+    formDataToSend.append("registerNo",location.state.userId);
+    formDataToSend.append("profilePhoto",profilePhoto);
     try {
       const response = await axios.post('http://localhost:8080/api/student', formDataToSend, {
         headers: {
@@ -266,7 +270,7 @@ const PersonalForm = () => {
            </div>
 
            <div className="profile_photo">
-             <Fileupload input_name="profilePhoto"  />
+             <Fileupload input_name="profilePhoto"  onFileSelect={handleFileSelect}/>
            </div>
           <br />
           <div>
@@ -473,9 +477,6 @@ const PersonalForm = () => {
             
             
           <div className="academic-data personal-container">
-          <div className="reg-no">
-            <Allfields fieldtype="text" value="RegisterNo" inputname="registerNo" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
-          </div>
           <div className="programme">
             <label htmlFor="programme">Programme</label>
             <select className='programme-dropdown' name="programme"  value={formData.programme || ''} onChange={handleOtherField}>
