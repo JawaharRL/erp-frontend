@@ -18,7 +18,7 @@ function Loginpage() {
     axios.post("http://localhost:8080/api/authentication/authenticate", { userId, password })
       .then(async(res) => {
         console.log(res);
-        if(res.data === "Student Authentication successful"){
+        if(res.data === "Student Authentication Successful"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           console.log(userId);
@@ -30,20 +30,20 @@ function Loginpage() {
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/registration-form',{state: {userId}})
         }
-        else if(res.data ==="Invalid register Number"){
+        else if(res.data ==="Invalid Register Number"){
           toast("Invalid Register Number or Password");
           await new Promise((resolve) => setTimeout(resolve, 1000));
         }
-        else if(res.data ==="Faculty Authentication successful"){
+        else if(res.data ==="Faculty Registration Not Successful"){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/faculty-registration',{state: {userId}})
         }
-        // else if(res.data ==="Faculty Authentication successful"){
-        //   toast("Login Successful");
-        //   await new Promise((resolve) => setTimeout(resolve, 1000));
-        //   navigate('/faculty-dashboard',{state: {userId}})
-        // }
+        else if(res.data ==="Faculty Authentication Successful"){
+          toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          navigate('/faculty-dashboard',{state: {userId}})
+        }
       })
       .catch(err => {
         console.log(err);
