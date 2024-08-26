@@ -3,7 +3,7 @@ import './Fileupload.css';
 import Profile from '../../Assets/profile.svg';
 import Upload from '../../Assets/upload.svg';
 
-function Fileupload({ input_name }) {
+function Fileupload({ input_name , onFileSelect }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [preview, setPreview] = useState(Profile);
 
@@ -20,6 +20,7 @@ function Fileupload({ input_name }) {
       const fileURL = URL.createObjectURL(file);
       setSelectedImage(file);
       setPreview(fileURL);
+      onFileSelect(file);
       // localStorage.setItem('uploadedImage', fileURL);
     }
   };

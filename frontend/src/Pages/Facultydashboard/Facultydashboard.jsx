@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Facultydashboard.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation , useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons.jsx';
@@ -12,8 +12,10 @@ import axios from 'axios';
 function Facultydashboard() {
   var sl= 0;
   const [faculty, setFaculty] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
   const [open, setOpen] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFaculty = async () => {
@@ -30,6 +32,29 @@ function Facultydashboard() {
     fetchFaculty();
   }, [location.state.userId]);
 
+  const handleLogoutClick = () => {
+    // Perform logout and then navigate to a different route if needed
+    navigate('/login-page');
+  };
+
+  const handleClearClick = () => {
+    // Reset or clear state
+    setSelectedStudent(null);
+    // Optionally, you can perform other clearing actions here
+  };
+
+  const handleViewClick = async (student) => {
+    try {
+      const studentId = student.registerNo;
+      const response = await axios.get(`http://localhost:8080/api/student/${studentId}`);
+      console.log('Response data:', response.data);
+      setSelectedStudent(response.data);
+    } catch (error) {
+      console.error('Error fetching faculty:', error);
+    }
+    //setSelectedStudent(student);
+  };
+
   if (!faculty) {
     return <p>Loading faculty data...</p>;
   }
@@ -38,6 +63,7 @@ function Facultydashboard() {
     <div>
       <Header />
       <div className="nav">
+      <Allbuttons value="Clear" image={Logout} onClick={handleClearClick} />
         <div className="faculty_profile_icon" onClick={()=>setOpen(!open)} >
             <img id="profile_icon" src={Profileicon} alt="" />
         </div>
@@ -47,19 +73,19 @@ function Facultydashboard() {
       <div className="faculty_profile_details">
         
       <div className="faculty-profile">
-         <p className="field_background">{faculty.name}</p>
+         <p className="field_background">{faculty.firstName} {faculty.lastName}</p>
          <p className="field_background">{faculty.discipline}</p>
-         <Allbuttons value="Logout" image={Logout}/>
+         <p className="field_background">{faculty.email}</p>
+         <p className="field_background">{faculty.mobileNumber}</p>
+         <Allbuttons value="Logout" image={Logout} onClick={handleLogoutClick}/>
          </div>
       </div>
       }
-        
-        
 
       <div className="faculty_dashboard_container">
         <div className="profile-links">
           <ul>
-            <li className="profile_links">CSE III Year</li>
+            <li className="profile_links">{faculty.discipline}{faculty.handlingBatch}</li>
             {/* <li className="profile_links" >Requests</li> */}
           </ul>
         </div>
@@ -73,7 +99,7 @@ function Facultydashboard() {
                 <p>{student.firstName} {student.lastName}</p>
                 <p>{student.registerNo}</p>
                 <p>{student.emailid}</p>
-                <Allbuttons value="View" image={View} target="/"/>
+                <Allbuttons value="View" image={View} onClick={() => handleViewClick(student)} />
                 {/* Add more fields as necessary */}
               </div>
             ))
@@ -82,6 +108,16 @@ function Facultydashboard() {
           )}
           
         </div>
+        {selectedStudent && (
+        <div className="student_details">
+          <h3>{selectedStudent.firstName} Details</h3>
+          <p><strong>First Name:</strong> {selectedStudent.firstName}</p>
+          <p><strong>Last Name:</strong> {selectedStudent.lastName}</p>
+          <p><strong>Register No:</strong> {selectedStudent.registerNo}</p>
+          <p><strong>Email ID:</strong> {selectedStudent.emailid}</p>
+          {/* Add more fields as necessary */}
+        </div>
+      )}
       </div>
       <Footer />
     </div>

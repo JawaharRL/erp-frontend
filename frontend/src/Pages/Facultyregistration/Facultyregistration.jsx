@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import './Facultyregistration.css';
 import { Allfields } from '../../Components';
 import { Allbuttons } from '../../Components';
-import { ToastContainer, toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Nextwhite from '../../Assets/Nextwhite.svg';
 
 function Facultyregistration() {
   const navigate = useNavigate();
+  const location=useLocation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
+    email: location.state.userId,
     mobileNumber: '',
     discipline: '',
     handlingBatch: ''
@@ -39,7 +41,7 @@ function Facultyregistration() {
       console.log('Form submitted successfully:', response.data);
       toast("Registration Successful");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      // navigate('/login-page');
+      navigate('/login-page');
     } catch (error) {
       console.error('Error submitting form:', error);
       toast(`Error: ${error.response?.data?.message || 'Something went wrong'}`);
@@ -102,20 +104,6 @@ function Facultyregistration() {
               format={/[^A-Za-z\s]/g} 
               formData={formData} 
               setFormData={setFormData}
-            />
-          </div>
-
-          <div className="mailid">
-            <label htmlFor="Emailid">Email ID</label>
-            <input 
-              id='mailid' 
-              type="email" 
-              name="email"  
-              placeholder="Enter email id" 
-              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" 
-              required  
-              value={formData.email}  
-              onChange={handleOtherField}  
             />
           </div>
 
