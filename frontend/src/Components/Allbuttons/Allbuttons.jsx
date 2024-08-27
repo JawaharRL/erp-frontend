@@ -1,18 +1,13 @@
-import React from 'react';
-import './Allbuttons.css';
+import React from 'react'
+import './Allbuttons.css'
 
-const Allbutton = ({ value, image, onClick, target }) => {
-  const handleClick = () => {
-    if (onClick) onClick();  // Call the onClick function if provided
-    if (target) window.location.href = target;  // Navigate to target URL if provided
-  };
-
+const Allbutton = ({value,image,target})=> {
   return (
-    <button className='All-button' onClick={handleClick}>
-      <img className='icon' src={image} alt="icon" />
-      {value}
+    <button className='All-button' onClick={target}>
+            <img className='icon' src={image}  />
+            {value}
     </button>
-  );
+  )
 }
 
-export default Allbutton;
+export default Allbutton
