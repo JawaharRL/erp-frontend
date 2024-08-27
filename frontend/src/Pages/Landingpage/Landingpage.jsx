@@ -22,7 +22,9 @@ function Landingpage() {
     </div>
     <div className="empty"></div>
     
-    <Footer position="absolute"/>
+    <div id="one">
+    <Footer />
+    </div>
     </div>
   )
 }

@@ -119,7 +119,9 @@ function Facultydashboard() {
         </div>
       )}
       </div>
-      <Footer />
+     <div id="one"> 
+     <Footer />
+     </div>
     </div>
   );
 }
