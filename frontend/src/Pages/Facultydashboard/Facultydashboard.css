@@ -55,3 +55,10 @@
 #profile_icon{
     width: 20px;
 }
+
+#one{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

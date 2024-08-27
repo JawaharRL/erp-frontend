@@ -63,7 +63,7 @@ function Facultydashboard() {
     <div>
       <Header />
       <div className="nav">
-      <Allbuttons value="Clear" image={Logout} onClick={handleClearClick} />
+      <Allbuttons value="Clear" image={Logout} target={handleClearClick} />
         <div className="faculty_profile_icon" onClick={()=>setOpen(!open)} >
             <img id="profile_icon" src={Profileicon} alt="" />
         </div>
@@ -77,7 +77,7 @@ function Facultydashboard() {
          <p className="field_background">{faculty.discipline}</p>
          <p className="field_background">{faculty.email}</p>
          <p className="field_background">{faculty.mobileNumber}</p>
-         <Allbuttons value="Logout" image={Logout} onClick={handleLogoutClick}/>
+         <Allbuttons value="Logout" image={Logout} target={handleLogoutClick}/>
          </div>
       </div>
       }
@@ -99,7 +99,7 @@ function Facultydashboard() {
                 <p>{student.firstName} {student.lastName}</p>
                 <p>{student.registerNo}</p>
                 <p>{student.emailid}</p>
-                <Allbuttons value="View" image={View} onClick={() => handleViewClick(student)} />
+                <Allbuttons value="View" image={View} target={() => handleViewClick(student)} />
                 {/* Add more fields as necessary */}
               </div>
             ))
@@ -119,7 +119,9 @@ function Facultydashboard() {
         </div>
       )}
       </div>
-      <Footer />
+     <div id="one"> 
+     <Footer />
+     </div>
     </div>
   );
 }
