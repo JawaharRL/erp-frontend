@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profilepage.css";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
 import Profileicon from "../../Assets/profile.svg";
+import Logout from '../../Assets/logout.svg';
 
 function StudentDisplay() {
+
   const location = useLocation();
+  const navigate = useNavigate();
 
   console.log(location);
 
@@ -16,8 +19,16 @@ function StudentDisplay() {
   // const [academicDetails, setAcademicDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+ 
   const [displaySection, setDisplaySection] = useState("personal");
-
+  const handleLogoutClick = () => {
+    // Perform logout and then navigate to a different route if needed
+    navigate('/login-page');
+  };
+  const handleBonafideClick = () => {
+    // Perform logout and then navigate to a different route if needed
+    navigate('/bonafide-page');
+  };
   const getLinkStyle = (section) => {
     return displaySection === section
       ? {
@@ -114,6 +125,8 @@ function StudentDisplay() {
     <div>
       <Header />
       <div className="nav">
+
+        <button className="" onClick={handleBonafideClick}>Bonafide</button>
         <Allbuttons
           className="profile-button"
           target={""}
@@ -161,6 +174,8 @@ function StudentDisplay() {
               Academic Details
             </li>
           </ul>
+
+          <Allbuttons value="Logout" image={Logout} target={handleLogoutClick}/>
         </div>
 
         {displaySection === "personal" && (
