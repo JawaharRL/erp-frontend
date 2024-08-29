@@ -126,7 +126,7 @@ function StudentDisplay() {
       <Header />
       <div className="nav">
 
-        <button className="" onClick={handleBonafideClick}>Bonafide</button>
+        <button className="bonafide_button" onClick={handleBonafideClick}>Bonafide</button>
         <Allbuttons
           className="profile-button"
           target={""}

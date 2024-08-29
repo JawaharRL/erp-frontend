@@ -109,17 +109,20 @@ label{
     margin: auto;
 
 }
-.navigate_buttons{
+.navigate_buttons,.navigate_buttons_previous{
+    all: unset;
     font-family: outfit; 
     color: #fafafa;
-    margin: 10px 5px 0px 5px ;
-    border: none;
+    margin: 0px 5px 30px 5px ;
     padding:7px 15px 7px 15px;
     border-radius: 8px;
-    /* background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1)); */
+    background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1));
     opacity: 1;
     background: linear-gradient(109deg, rgba(1, 119, 193, 0.7) -3%, rgba(0, 102, 165, 0.9) 48%, #004B79 103%);
-
+    text-align: center;
+}
+.navigate_buttons:hover{
+    cursor: pointer;
 }
 
 .photo{
@@ -151,8 +154,22 @@ textarea::placeholder{
 
 }
 
+#navigate_button_next_personal{
+    grid-column-start: 11;
+        grid-row-start: 8;
+    grid-column-end: span 2;
+}
+#navigate_buttons_previous_communication,#navigate_buttons_previous_bank,#navigate_buttons_previous_educational,#navigate_buttons_previous_academic {
+    grid-column-start: 9;
+    grid-row-start: 5;
+    grid-column-end: span 2;
+}
 
-
+#navigate_buttons_next_communication,#navigate_buttons_next_bank,#navigate_buttons_next_educational{
+    grid-column-start: 11;
+        grid-row-start: 5;
+    grid-column-end: span 2;
+}
 .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
     grid-column:span 4;
 }
@@ -171,6 +188,9 @@ textarea::placeholder{
     grid-column:span 4;
 }
 .mail_id{
+    grid-column:span 8;
+}
+.discipline-dropdown{
     grid-column:span 8;
 }
 
@@ -244,10 +264,10 @@ textarea::placeholder{
     align-items: center;
 
 }
- .reg-no,.programme,.discipline,.regulation,.adm-no,.abc-id,.umis-id,.course-type,.fasttrack{
+.aca-year,.reg-no,.programme,.discipline,.adm-no,.abc-id,.umis-id,.course-type,.fasttrack{
     grid-column:span 2;
 }
-.aca-year,.sem,.date-of-adm,.join-date,.cgpa,.student-status{
+.sem,.date-of-adm,.regulation,.join-date,.cgpa,.student-status{
     grid-column: span 1;
 }
 

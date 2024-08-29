@@ -21,15 +21,9 @@ header:hover{
     width: 110px;   
 }
 
-/* .clgdes{
-    
-    margin-left: 180px;
-} */
 @media (width<=600px) {
     .clglogo{
         width: 90px;   
     }
-    .clg-name{
-        font-size:x-small;
-    }
+   
 }
