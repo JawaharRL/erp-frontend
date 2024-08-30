@@ -67,9 +67,9 @@ function Loginpage() {
               <input type="text" id='input-mail' onChange={e => setuserId(e.target.value)}  />
               <label className='login-password' htmlFor="Password">Password</label>
               <input type="password" onChange={e => setPassword(e.target.value)} />
-              <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
+              {/* <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a> */}
               <div className='login-button-space'>
-                <Loginbutton></Loginbutton>        
+                <Loginbutton ></Loginbutton>        
               </div>
             </form>
 
