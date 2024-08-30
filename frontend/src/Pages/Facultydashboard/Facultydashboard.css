@@ -1,5 +1,10 @@
 .profile-links{
     width: 200px;
+    height: fit-content;
+    gap: 50px;
+}
+.profile-links>*{
+    padding: auto;
 }
 .faculty_dashboard_container{
     display: flex;

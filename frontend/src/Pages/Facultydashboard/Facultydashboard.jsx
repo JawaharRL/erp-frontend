@@ -16,7 +16,7 @@ function Facultydashboard() {
   const [open, setOpen] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const facultyId = location.state.userId;
   useEffect(() => {
     const fetchFaculty = async () => {
       try {
@@ -41,6 +41,28 @@ function Facultydashboard() {
     // Reset or clear state
     setSelectedStudent(null);
     // Optionally, you can perform other clearing actions here
+  };
+
+  const handleItemClick = async (className, batchYear) => {
+    try {
+        // Construct the query parameters
+        const queryParams = new URLSearchParams({
+            email: facultyId,
+            className: className,
+            batchYear: batchYear,
+        });
+
+        // Send a GET request to the backend with query parameters
+        const response = await axios.get(`http://localhost:8080/api/faculty/filter?${queryParams.toString()}`);
+        setFaculty(response.data);
+        // Log the response data or handle it as needed
+        console.log('Response data:', response.data);
+        // You can also set this data to state if needed
+        // setSomeState(response.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error (e.g., show an error message)
+    }
   };
 
   const handleViewClick = async (student) => {
@@ -83,12 +105,26 @@ function Facultydashboard() {
       }
 
       <div className="faculty_dashboard_container">
-        <div className="profile-links">
-          <ul>
-            <li className="profile_links">{faculty.discipline}{faculty.handlingBatch}</li>
-            {/* <li className="profile_links" >Requests</li> */}
-          </ul>
-        </div>
+      <div className="profile-links">
+                <ul>
+                    <li className="profile_links" onClick={() => handleItemClick(faculty.discipline, faculty.handlingBatch)}>
+                      {faculty.discipline} ({faculty.handlingBatch})
+                    </li>
+                    {faculty.handlingClass && faculty.handlingClass.split(',').map((item, index) => {
+                        const [className, batchYear] = item.trim().split('#');
+                        return (
+                            <li 
+                                key={index} 
+                                className="profile_links" 
+                                onClick={() => handleItemClick(className, batchYear)} // Attach the click handler
+                            >
+                                {className} ({batchYear})
+                            </li>
+                        );
+                    })}
+                    {/* <li className="profile_links">Requests</li> */}
+                </ul>
+            </div>
 
         <div className="profile_name">
         
