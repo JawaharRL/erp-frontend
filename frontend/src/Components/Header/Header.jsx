@@ -7,8 +7,8 @@ function Header() {
         <header>
         <div><img class="clglogo" src={clglogo} alt="collegelogo"/></div>
         <div class="clg-name">
-        <h2 >Alagappa Chettiar Government College of Engineering and Technology-Karaikudi</h2>
-        <p class="clgdes">(An Autonomous Institution Permanently Affiliated to Anna University)</p>
+        <h2 id="college_name">Alagappa Chettiar Government College of Engineering and Technology,Karaikudi-630003</h2>
+        <p class="college_description">(An Autonomous Institution Permanently Affiliated to Anna University)</p>
         </div>
     </header>
     <hr id='header-line'/>

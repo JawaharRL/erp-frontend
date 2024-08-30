@@ -13,7 +13,7 @@ function Landingpage() {
     navigate('/login-page');
   };
   return (
-    <div>
+    <div >
     <Header></Header>
     <div class="landingpage-container">
         <div class="nav">
@@ -22,9 +22,8 @@ function Landingpage() {
     </div>
     <div className="empty"></div>
     
-    <div id="one">
+    
     <Footer />
-    </div>
     </div>
   )
 }
