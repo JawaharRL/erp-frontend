@@ -11,6 +11,15 @@
     /* padding: 0px 10px 0px 10px; */
 }
 
+.bonafide_button{
+    all: unset;
+    margin-right: 26px;
+    
+}
+.bonafide_button:hover{
+    cursor: pointer;
+    
+}
 .profile-personal-display,.profile-bank-display,.profile-academic-display,.profile-communication-display,.profile-education-display{
     display: grid;
     grid-template-columns: repeat(3,1fr);
