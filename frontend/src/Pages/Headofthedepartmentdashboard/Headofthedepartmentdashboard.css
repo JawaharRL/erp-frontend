@@ -1,0 +1,29 @@
+.student_and_faculty_profile{
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+
+
+#view_student_profiles,#view_faculty_profiles{
+   
+    all: unset;
+    padding:50px 30px ;
+    background: linear-gradient(109deg, rgba(1, 119, 193, 0.7) -3%, rgba(0, 102, 165, 0.9) 48%, #004B79 103%);
+    color: #fff;
+    font-size: large;
+    height: 80px;
+    border-radius: 20px;
+}
+#view_student_profiles,#view_faculty_profiles:hover{
+    cursor: pointer;
+}
+
+.Headofthedepartmentdashboard_footer{
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ left   : 0;
+
+}

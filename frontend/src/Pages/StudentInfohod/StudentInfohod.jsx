@@ -9,6 +9,8 @@ function StudentInfoHOD() {
   return (
     <div>
         <Header></Header>
+
+        <p>hi</p>
         <Footer></Footer>
     </div>
   )
