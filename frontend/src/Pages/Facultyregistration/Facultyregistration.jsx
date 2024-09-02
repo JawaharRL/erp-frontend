@@ -39,7 +39,7 @@ function Facultyregistration() {
       navigate('/login-page');
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast(`Error: ${error.response?.data?.message || 'Something went wrong'}`);
+      toast('Something went wrong');
     }
   };
 
