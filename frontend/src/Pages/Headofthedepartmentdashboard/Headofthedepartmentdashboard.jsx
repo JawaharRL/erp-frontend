@@ -9,6 +9,7 @@ import Allbuttons from '../../Components/Allbuttons/Allbuttons.jsx';
 import Logout from '../../Assets/logout.svg';
 
 function Headofthedepartmentdashboard() {
+  var sl= 0;
   const location = useLocation();
   const navigate = useNavigate();
   const  [userId, setuserId] = useState('Headofthedepartment')
@@ -21,7 +22,7 @@ function Headofthedepartmentdashboard() {
     const fetchHeadofthedepartment = async () => {
       try {
         const Headofthedepartment = location.state.userId;
-        const response = await axios.get(`http://localhost:8080/api/faculty/${Headofthedepartment}`);
+        const response = await axios.get(`http://localhost:8080/api/hod/student/${Headofthedepartment}`);
         console.log('Response data:', response.data);
         setHeadofthedepartment(response.data);
       } catch (error) {
@@ -69,16 +70,33 @@ function Headofthedepartmentdashboard() {
       </div>
       }
 
-    <div className="student_and_faculty_profile">
+    {/* <div className="student_and_faculty_profile">
     <div className="view_faculty_profiles">
         <button id="view_faculty_profiles" onClick={gotofacultyinfohod}>view faculties</button>
       </div>
       <div className="view_student_profiles">
         <button id="view_student_profiles" onClick={gotostudentinfohod}>view Students</button>
       </div>
-    </div>
+    </div> */}
      
-
+     <div className="profile_name">
+        
+        {Headofthedepartment.students && Headofthedepartment.students.length > 0 ? (
+          Headofthedepartment.students.map((student, index) => (
+            <div key={index} className="student_info">
+              <p>{++sl}</p>
+              <p>{student.firstName} {student.lastName}</p>
+              <p>{student.registerNo}</p>
+              <p>{student.emailid}</p>
+              {/* <Allbuttons value="View" image={View} target={() => handleViewClick(student)} />   */}
+              {/* Add more fields as necessary */}
+            </div>
+          ))
+        ) : (
+          <p>No students available</p>
+        )}
+        
+      </div>
 
 
        <div className="Headofthedepartmentdashboard_footer">
