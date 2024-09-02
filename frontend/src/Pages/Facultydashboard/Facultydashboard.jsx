@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Facultydashboard.css';
-import { useLocation , useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons.jsx';
@@ -9,18 +9,49 @@ import View from '../../Assets/eyewhite.svg';
 import Logout from '../../Assets/logout.svg';
 import axios from 'axios';
 
+// Modal Component
+const Modal = ({ student, onClose }) => {
+  if (!student) return null;
+
+  return (
+    <div className="modal">
+      <div className="modal_content">
+        <span className="close" onClick={onClose}>&times;</span>
+        <h3>{student.firstName} Details</h3>
+        <table className="student_detail_table">
+          <tbody>
+            <tr>
+              <td><strong>Name:</strong></td>
+              <td>{student.firstName} {student.lastName}</td>
+            </tr>
+            <tr>
+              <td><strong>Register No:</strong></td>
+              <td>{student.registerNo}</td>
+            </tr>
+            <tr>
+              <td><strong>Email ID:</strong></td>
+              <td>{student.emailid}</td>
+            </tr>
+            {/* Add more fields as necessary */}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
 function Facultydashboard() {
-  var sl= 0;
   const [faculty, setFaculty] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [open, setOpen] = useState(null);
+  const [openProfile, setOpenProfile] = useState(false); // State for faculty profile
+  const [openModal, setOpenModal] = useState(false); // State for student details modal
   const location = useLocation();
   const navigate = useNavigate();
   const facultyId = location.state.userId;
+
   useEffect(() => {
     const fetchFaculty = async () => {
       try {
-        const facultyId = location.state.userId;
         const response = await axios.get(`http://localhost:8080/api/faculty/${facultyId}`);
         console.log('Response data:', response.data);
         setFaculty(response.data);
@@ -30,51 +61,46 @@ function Facultydashboard() {
     };
 
     fetchFaculty();
-  }, [location.state.userId]);
+  }, [facultyId]);
 
   const handleLogoutClick = () => {
-    // Perform logout and then navigate to a different route if needed
     navigate('/login-page');
   };
 
   const handleClearClick = () => {
-    // Reset or clear state
     setSelectedStudent(null);
-    // Optionally, you can perform other clearing actions here
   };
 
   const handleItemClick = async (className, batchYear) => {
     try {
-        // Construct the query parameters
-        const queryParams = new URLSearchParams({
-            email: facultyId,
-            className: className,
-            batchYear: batchYear,
-        });
+      const queryParams = new URLSearchParams({
+        email: facultyId,
+        className: className,
+        batchYear: batchYear,
+      });
 
-        // Send a GET request to the backend with query parameters
-        const response = await axios.get(`http://localhost:8080/api/faculty/filter?${queryParams.toString()}`);
-        setFaculty(response.data);
-        // Log the response data or handle it as needed
-        console.log('Response data:', response.data);
-        // You can also set this data to state if needed
-        // setSomeState(response.data);
+      const response = await axios.get(`http://localhost:8080/api/faculty/filter?${queryParams.toString()}`);
+      setFaculty(response.data);
+      console.log('Response data:', response.data);
     } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle error (e.g., show an error message)
+      console.error('Error fetching data:', error);
     }
   };
 
-  const handleViewClick = async (student) => {
-    try {
-      const studentId = student.registerNo;
-      const response = await axios.get(`http://localhost:8080/api/student/${studentId}`);
-      console.log('Response data:', response.data);
-      setSelectedStudent(response.data);
-    } catch (error) {
-      console.error('Error fetching faculty:', error);
-    }
-    //setSelectedStudent(student);
+  const handleViewClick = (student) => {
+    setSelectedStudent(student);
+    setOpenModal(true); // Open the modal
+    setOpenProfile(false); // Close the faculty profile if it's open
+  };
+
+  const closeModal = () => {
+    setOpenModal(false); // Close the modal
+    setSelectedStudent(null); // Reset selected student
+  };
+
+  const toggleProfile = () => {
+    setOpenProfile(!openProfile);
+    setOpenModal(false); // Close the modal if profile is opened
   };
 
   if (!faculty) {
@@ -85,79 +111,81 @@ function Facultydashboard() {
     <div>
       <Header />
       <div className="nav">
-      <Allbuttons value="Clear" image={Logout} target={handleClearClick} />
-        <div className="faculty_profile_icon" onClick={()=>setOpen(!open)} >
-            <img id="profile_icon" src={Profileicon} alt="" />
+        <div className="faculty_profile_icon" onClick={toggleProfile}>
+          <img id="profile_icon" src={Profileicon} alt="Profile Icon" />
         </div>
-
-      </div >
-      { open &&
-      <div className="faculty_profile_details">
-        
-      <div className="faculty-profile">
-         <p className="field_background">{faculty.firstName} {faculty.lastName}</p>
-         <p className="field_background">{faculty.discipline}</p>
-         <p className="field_background">{faculty.email}</p>
-         <p className="field_background">{faculty.mobileNumber}</p>
-         <Allbuttons value="Logout" image={Logout} target={handleLogoutClick}/>
-         </div>
       </div>
-      }
+      {openProfile && (
+        <div className="faculty_profile_details">
+          <div className="faculty-profile">
+            <p className="field_background">{faculty.firstName} {faculty.lastName}</p>
+            <p className="field_background">{faculty.discipline}</p>
+            <p className="field_background">{faculty.email}</p>
+            <p className="field_background">{faculty.mobileNumber}</p>
+            <Allbuttons value="Logout" image={Logout} target={handleLogoutClick} />
+          </div>
+        </div>
+      )}
 
       <div className="faculty_dashboard_container">
-      <div className="profile-links">
-                <ul>
-                    <li className="profile_links" onClick={() => handleItemClick(faculty.discipline, faculty.handlingBatch)}>
-                      {faculty.discipline} ({faculty.handlingBatch})
-                    </li>
-                    {faculty.handlingClass && faculty.handlingClass.split(',').map((item, index) => {
-                        const [className, batchYear] = item.trim().split('#');
-                        return (
-                            <li 
-                                key={index} 
-                                className="profile_links" 
-                                onClick={() => handleItemClick(className, batchYear)} // Attach the click handler
-                            >
-                                {className} ({batchYear})
-                            </li>
-                        );
-                    })}
-                    {/* <li className="profile_links">Requests</li> */}
-                </ul>
-            </div>
+        <div className="profile-links">
+          <ul>
+            <li className="profile_links" onClick={() => handleItemClick(faculty.discipline, faculty.handlingBatch)}>
+              {faculty.discipline} ({faculty.handlingBatch})
+            </li>
+            {faculty.handlingClass && faculty.handlingClass.split(',').map((item, index) => {
+              const [className, batchYear] = item.trim().split('#');
+              return (
+                <li 
+                  key={index} 
+                  className="profile_links" 
+                  onClick={() => handleItemClick(className, batchYear)}
+                >
+                  {className} ({batchYear})
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         <div className="profile_name">
-        
           {faculty.students && faculty.students.length > 0 ? (
-            faculty.students.map((student, index) => (
-              <div key={index} className="student_info">
-                <p>{++sl}</p>
-                <p>{student.firstName} {student.lastName}</p>
-                <p>{student.registerNo}</p>
-                <p>{student.emailid}</p>
-                <Allbuttons value="View" image={View} target={() => handleViewClick(student)} />
-                {/* Add more fields as necessary */}
-              </div>
-            ))
+            <table className="student_table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Register No</th>
+                  <th>Email ID</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {faculty.students.map((student, index) => (
+                  <tr key={student.registerNo}>
+                    <td>{index + 1}</td>
+                    <td>{student.firstName} {student.lastName}</td>
+                    <td>{student.registerNo}</td>
+                    <td>{student.emailid}</td>
+                    <td>
+                      <Allbuttons value="View" image={View} target={() => handleViewClick(student)} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ) : (
             <p>No students available</p>
           )}
-          
         </div>
-        {selectedStudent && (
-        <div className="student_details">
-          <h3>{selectedStudent.firstName} Details</h3>
-          <p><strong>First Name:</strong> {selectedStudent.firstName}</p>
-          <p><strong>Last Name:</strong> {selectedStudent.lastName}</p>
-          <p><strong>Register No:</strong> {selectedStudent.registerNo}</p>
-          <p><strong>Email ID:</strong> {selectedStudent.emailid}</p>
-          {/* Add more fields as necessary */}
-        </div>
-      )}
       </div>
-     <div id="one"> 
-     <Footer />
-     </div>
+
+      {/* Modal for displaying student details */}
+      <Modal student={selectedStudent} onClose={closeModal} />
+
+      <div id="one">
+        <Footer />
+      </div>
     </div>
   );
 }
