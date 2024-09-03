@@ -274,13 +274,16 @@ const PersonalForm = () => {
            </div>
           <br />
           <div>
+          
+          </div>
           <button
-            className="navigate_buttons"
+          className="navigate_buttons"
+            id="navigate_button_next_personal"
             onClick={() => handleSectionClick("communication")}>Next
           </button>
-          </div>
-         
         </div>
+        
+        
 )}
 {displaySection === "communication" && (
           
@@ -321,11 +324,13 @@ const PersonalForm = () => {
             </div>
             <br />
             <button
-              className="navigate_buttons"
+            className="navigate_buttons"
+              id="navigate_buttons_previous_communication"
               onClick={() => handleSectionClick("personal")}
             >Previous</button>
              <button
-              className="navigate_buttons"
+             className="navigate_buttons"
+              id="navigate_buttons_next_communication"
               onClick={() => handleSectionClick("bank")}
             >Next</button>
            </div>
@@ -363,11 +368,13 @@ const PersonalForm = () => {
               </div>
               
              <button
-              className="navigate_buttons"
+             className="navigate_buttons"
+              id="navigate_buttons_previous_bank"
               onClick={() => handleSectionClick("communication")}
             >Previous</button>
              <button
-              className="navigate_buttons"
+             className="navigate_buttons"
+              id="navigate_buttons_next_bank"
               onClick={() => handleSectionClick("educational")}
             >Next</button>
              
@@ -460,10 +467,12 @@ const PersonalForm = () => {
             <br />
             <button
               className="navigate_buttons"
+              id="navigate_buttons_previous_educational"
               onClick={() => handleSectionClick("bank")}
             >Previous</button>
              <button
-              className="navigate_buttons"
+             className="navigate_buttons"
+              id="navigate_buttons_next_educational"
               onClick={() => handleSectionClick("academic")}
             >Next</button>
             </div>
@@ -568,10 +577,13 @@ const PersonalForm = () => {
           <br />
           <p
               className="navigate_buttons"
+              id="navigate_buttons_previous_academic"
               onClick={() => handleSectionClick("educational")}
             >Previous</p>
             <div className='academic-buttons'>
-          <Allbuttons value="submit" image={Nextwhite} />
+         <div id="submit_button">
+         <Allbuttons   value="submit" image={Nextwhite} />
+         </div>
           <ToastContainer />
         </div>
         </div>

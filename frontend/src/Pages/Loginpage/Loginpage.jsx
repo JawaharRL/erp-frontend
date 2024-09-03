@@ -34,7 +34,7 @@ function Loginpage() {
           toast("Invalid Register Number or Password");
           await new Promise((resolve) => setTimeout(resolve, 1000));
         }
-        else if(res.data ==="Faculty Registration Not Successful"){
+        else if((res.data ==="Faculty Registration Not Successful")||(res.data ==="HOD Registration Not Successful")){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/faculty-registration',{state: {userId}})
@@ -43,6 +43,11 @@ function Loginpage() {
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/faculty-dashboard',{state: {userId}})
+        }
+        else if(res.data ==="HOD Authentication Successful"){
+          toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          navigate('/hod-dashboard',{state: {userId}})
         }
       })
       .catch(err => {
@@ -62,9 +67,9 @@ function Loginpage() {
               <input type="text" id='input-mail' onChange={e => setuserId(e.target.value)}  />
               <label className='login-password' htmlFor="Password">Password</label>
               <input type="password" onChange={e => setPassword(e.target.value)} />
-              <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a>
+              {/* <a href="#" id='forgotpassword'> <p className='forgotpassword'>Forgot password?</p></a> */}
               <div className='login-button-space'>
-                <Loginbutton></Loginbutton>        
+                <Loginbutton ></Loginbutton>        
               </div>
             </form>
 

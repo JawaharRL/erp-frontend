@@ -1,64 +1,161 @@
-.profile-links{
+/* Updated CSS for Facultydashboard */
+
+/* Profile Links */
+.profile-links {
     width: 200px;
+    height: fit-content;
+    gap: 20px; /* Adjusted gap for better spacing */
+    display: flex; /* Ensure flex display for children */
+    flex-direction: column; /* Stack items vertically */
 }
-.faculty_dashboard_container{
+
+/* Faculty Dashboard Container */
+.faculty_dashboard_container {
     display: flex;
     margin-bottom: 50px;
     margin-top: 10px;
-
 }
-.student_sampledata_container{
+
+/* Student Sample Data Container */
+.student_sampledata_container {
     margin-left: 30px;
+    flex-grow: 1; /* Allow it to take available space */
 }
 
-.nav{
-    justify-content: end;
+/* Navigation */
+.nav {
+    display: flex; /* Ensure flex display */
+    justify-content: flex-end; /* Align items to the end */
 }
-.faculty-profile{
-    text-align: center;
+
+/* Faculty Profile */
+.faculty-profile {
+    text-align: right;
     background-color: #ade0ff;
     padding: 26px;
     width: fit-content;
-    border-radius:16px;
-    justify-content: end;
-    flex-direction: column;
+    border-radius: 16px;
+    display: flex; /* Use flex for layout */
+    flex-direction: column; /* Stack items vertically */
 }
 
-.faculty_profile_details{
+/* Profile Details */
+.faculty_profile_details {
     align-items: center;
     display: flex;
     right: 0;
     position: absolute;
 }
-.student_info{
+
+/* Student Info */
+.student_info {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between; /* Space between items */
+    padding: 10px; /* Add padding for better spacing */
+    border-bottom: 1px solid #ddd; /* Add border for separation */
+}
 
+/* Profile Name */
+.profile_name {
+    width: 100%; /* Ensure full width */
 }
-.profile_name{
-    width: stretch;
- 
-}
-.faculty-profile>*{
+
+/* Faculty Profile Items */
+.faculty-profile > * {
     padding-top: 8px;
-    
 }
-.faculty_profile_icon{
+
+/* Profile Icon */
+.faculty_profile_icon {
     cursor: pointer;
     display: flex;
     padding: 10px;
     margin: 10px 18px;
-    border-radius: 60px;
+    border-radius: 50%; /* Make it circular */
     background: linear-gradient(109deg, rgba(1, 119, 193, 0.7) -3%, rgba(0, 102, 165, 0.9) 48%, #004B79 103%);
 }
-#profile_icon{
-    width: 20px;
+
+/* Profile Icon Size */
+#profile_icon {
+    width: 30px; /* Increased size for better visibility */
+    height: 30px; /* Ensure height for circular shape */
 }
 
-#one{
-    position: absolute;
+/* Footer */
+#one {
+    position: relative; /* Changed to relative for better layout */
+    width: 100%; /* Ensure full width */
+    padding: 10px; /* Add padding */
+    background-color: #f1f1f1; /* Light background for footer */
+    text-align: center; /* Center text */
+}
+
+/* Student Table Styles */
+.student_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add margin for spacing */
+}
+
+.student_table th, .student_table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Add border for separation */
+}
+
+.student_table th {
+    background-color: #007bff; /* Header background */
+    color: white; /* Header text color */
+}
+
+.student_table tr:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+}
+
+/* Student Details Table */
+.student_detail_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add margin for spacing */
+}
+
+.student_detail_table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Add border for separation */
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Ensure modal is on top */
     left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+}
+
+.modal_content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

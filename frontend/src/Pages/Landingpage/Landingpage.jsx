@@ -13,8 +13,10 @@ function Landingpage() {
     navigate('/login-page');
   };
   return (
+
     <div>
-    <Header></Header>
+    <Header />
+    
     <div class="landingpage-container">
         <div class="nav">
             <Allbuttons className="login-button" target={goToLoginpage} value="Login" image={loginicon}/>
@@ -22,9 +24,8 @@ function Landingpage() {
     </div>
     <div className="empty"></div>
     
-    <div id="one">
+    
     <Footer />
-    </div>
     </div>
   )
 }
