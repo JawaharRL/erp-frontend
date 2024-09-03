@@ -20,7 +20,7 @@ function Fileupload({ input_name , onFileSelect }) {
       const fileURL = URL.createObjectURL(file);
       setSelectedImage(file);
       setPreview(fileURL);
-      onFileSelect(file);
+      // onFileSelect(file);
       // localStorage.setItem('uploadedImage', fileURL);
     }
   };
