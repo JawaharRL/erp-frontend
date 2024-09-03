@@ -1,19 +1,10 @@
 
-.registration-background{
-    margin-left:7% ;
-    margin-right:7% ;
-}
-
-.landingpage-container{
-    display: grid;
-    justify-content: flex-end;
-    margin-right: 10px;
-   
-}
 
 .nav{
     display: flex;
 }
 
-
+.empty{
+    height: 480px;
+}
 

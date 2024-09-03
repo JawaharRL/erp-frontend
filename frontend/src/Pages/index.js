@@ -1,5 +1,13 @@
 export {default as Landingpage} from './Landingpage/Landingpage.jsx'
 export {default as Loginpage} from './Loginpage/Loginpage'
-export {default as Personalform} from './Personalform/Personalform.jsx'
-export {default as Academicform} from './Academicform/Academicform.jsx'
+
+export {default as Registrationform} from './Registrationform/Registrationform.jsx'
 export {default as Profilepage} from './Profilepage/Profilepage.jsx'
+export {default as Bonafide} from './Bonafide/Bonafide.jsx'
+
+
+export {default as Facultyregistration} from './Facultyregistration/Facultyregistration.jsx'
+export {default as Facultydashboard} from './Facultydashboard/Facultydashboard.jsx'
+export {default as Headofthedepartmentdashboard} from './Headofthedepartmentdashboard/Headofthedepartmentdashboard.jsx'
+export {default as FacultyInfohod} from './Headofthedepartmentdashboard/Headofthedepartmentdashboard.jsx'
+export {default as StudentInfohod} from './Headofthedepartmentdashboard/Headofthedepartmentdashboard.jsx'
