@@ -89,21 +89,28 @@ const PersonalForm = () => {
   });
 
   useEffect(() => {
-    const storedData = localStorage.getItem('formData');
-    if (storedData) {
-      setFormData(JSON.parse(storedData));
+    // Retrieve form data from localStorage
+    const storedFormData = localStorage.getItem('formData');
+    if (storedFormData) {
+        setFormData(JSON.parse(storedFormData));
     }
-
-    const storedFileNames = localStorage.getItem('fileNames');
-    if (storedFileNames) {
-      setFileNames(JSON.parse(storedFileNames));
-    }
+  
+    // Retrieve file names and data from localStorage
+    const filesToLoad = ['profilePhoto', 'passbook', 'hsc1YearFile', 'hsc2YearFile', 'diplomaFile', 'sslcFile'];
+    filesToLoad.forEach(fileKey => {
+        const fileName = localStorage.getItem(`${fileKey}FileName`);
+        const fileBase64 = localStorage.getItem(`${fileKey}`);
+        if (fileName && fileBase64) {
+            setFormData(prevData => ({ ...prevData, [fileKey]: fileBase64 }));
+            setFileNames(prevNames => ({ ...prevNames, [fileKey]: fileName }));
+        }
+    });
   }, []);
 
 
-  const handleFileSelect = (file) => {
-    setProfilePhoto(file);
-  };
+  // const handleFileSelect = (file) => {
+  //   setProfilePhoto(file);
+  // };
 
   const handleOtherField = (e) => {
     const { name, value } = e.target;
@@ -112,15 +119,37 @@ const PersonalForm = () => {
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
   }
   
-  const handleFileChange = (name) => (e) => {
+  
+  const handleFileChange = (name) => async (e) => {
     const { target: { files } } = e;
-    setFormData({
-      ...formData,
-      [name]: files[0]
-    });
-    setFileNames({
-      ...fileNames,
-      [name]: files[0].name
+    const file = files[0];
+  
+    if (file) {
+        const base64 = await convertFileToBase64(file);
+  
+        // Update form data with the base64 string
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: base64
+        }));
+  
+        // Store file name and base64 string in localStorage
+        localStorage.setItem(`${name}FileName`, file.name);
+        localStorage.setItem(name, base64);
+  
+        // Update the displayed file name
+        setFileNames(prevNames => ({
+            ...prevNames,
+            [name]: file.name
+        }));
+    }
+  };
+  const convertFileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
     });
   };
 
@@ -269,8 +298,16 @@ const PersonalForm = () => {
              </select>
            </div>
 
-           <div className="profile_photo">
-             <Fileupload input_name="profilePhoto"  onFileSelect={handleFileSelect}/>
+           {/* <div className="profile_photo">
+             <Fileupload input_name="profilePhoto"  onFileSelect={handleFileSelect}/> */}
+             <div className="profile-photo">
+                <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} />
+                <p className="marksheet_label">Profile Photo</p>
+                <label htmlFor="profilePhoto" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                  <img className='icon' src={Upload} alt='' />
+                  <p>Upload</p>
+                </label>
+                {fileNames['profilePhoto'] && <p className="uploaded_file_name">{fileNames['profilePhoto']} Uploaded</p>}
            </div>
           <br />
           <div>
