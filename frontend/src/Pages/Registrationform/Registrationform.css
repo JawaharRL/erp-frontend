@@ -240,7 +240,7 @@ textarea::placeholder{
     }
 
 }
-@media (width<=450px) {
+@media (width<=550px) {
     .sslc,.hsc_1_Year,.hsc_2_Year,.diploma{
         grid-column:span 12;
     }

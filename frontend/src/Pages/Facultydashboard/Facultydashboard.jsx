@@ -124,6 +124,12 @@ const Modal = ({ student, onClose }) => {
                     </tr>
                     <tr>
                       <td>
+                        <strong>Blood Group:</strong>
+                      </td>
+                      <td>{student.bloodGroup}</td>
+                    </tr>
+                    <tr>
+                      <td>
                         <strong>Nationality:</strong>
                       </td>
                       <td>{student.nationality}</td>
