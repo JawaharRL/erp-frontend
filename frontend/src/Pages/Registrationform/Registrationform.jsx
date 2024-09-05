@@ -46,7 +46,8 @@ const PersonalForm = () => {
         guardiansMobileNumber: '', 
         parentsStatus: '', 
         income: '', 
-        maritalStatus: '', 
+        maritalStatus: '',
+        communityCertificate:null, 
         profilePhoto: null, 
         mobileNumber: '', 
         emailid: '', 
@@ -66,6 +67,7 @@ const PersonalForm = () => {
         emisNumber: '', 
         firstGraduate: '', 
         specialCategory: '',
+        specialCategoryFile:null,
         registerNo : '', 
         programme: '', 
         discipline: '', 
@@ -80,7 +82,8 @@ const PersonalForm = () => {
         courseType: '', 
         fastTrack: '', 
         cgpa: '', 
-        studentStatus: '', 
+        studentStatus: '',
+        firstGraduateFile:null 
     }); 
     useEffect(() => {
       // Load form data from localStorage
@@ -90,7 +93,7 @@ const PersonalForm = () => {
       }
 
       // Load file names from localStorage
-      const filesToLoad = ['profilePhoto', 'passbook']; // Add other file keys as needed
+      const filesToLoad = ['profilePhoto', 'passbook','communityCertificate','specialCategoryFile','firstGraduateFile']; // Add other file keys as needed
       filesToLoad.forEach(fileKey => {
           const fileName = localStorage.getItem(`${fileKey}FileName`);
           const fileBase64 = localStorage.getItem(fileKey);
@@ -287,6 +290,15 @@ const PersonalForm = () => {
   
              {/* <div className="profile_photo">
                <Fileupload input_name="profilePhoto"  onFileSelect={handleFileSelect}/> */}
+                <div className="field">
+                  <input type="file" id="communityCertificate" name="communityCertificate" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('communityCertificate')} />
+                  <p className="marksheet_label">Community Certificate</p>
+                  <label htmlFor="communityCertificate" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                    <img className='icon' src={Upload} alt='' />
+                    <p>Upload</p>
+                  </label>
+                  {fileNames['communityCertificate'] && <p className="uploaded_file_name">{fileNames['communityCertificate']} Uploaded</p>}
+             </div>
                <div className="profile-photo">
                   <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} />
                   <p className="marksheet_label">Profile Photo</p>
@@ -490,6 +502,24 @@ const PersonalForm = () => {
                   <option value="Not applicable" >Not applicable</option>
                 </select>
               </div>
+              <div className="field">
+                  <input type="file" id="firstGraduateFile" name="firstGraduateFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('firstGraduateFile')} />
+                  <p className="marksheet_label">First Graduate File</p>
+                  <label htmlFor="firstGraduateFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                    <img className='icon' src={Upload} alt='' />
+                    <p>Upload</p>
+                  </label>
+                  {fileNames['firstGraduateFile'] && <p className="uploaded_file_name">{fileNames['firstGraduateFile']} Uploaded</p>}
+             </div>
+              <div className="field">
+                  <input type="file" id="specialCategoryFile" name="specialCategoryFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('specialCategoryFile')} />
+                  <p className="marksheet_label">Special Category File</p>
+                  <label htmlFor="specialCategoryFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                    <img className='icon' src={Upload} alt='' />
+                    <p>Upload</p>
+                  </label>
+                  {fileNames['specialCategoryFile'] && <p className="uploaded_file_name">{fileNames['specialCategoryFile']} Uploaded</p>}
+             </div>
               <br />
               <button
                 className="navigate_buttons"
@@ -600,6 +630,7 @@ const PersonalForm = () => {
                 <option value="Passed Out" >Passed Out</option>
               </select>
             </div>
+           
             <br />
             <p
                 className="navigate_buttons"
