@@ -6,6 +6,7 @@ import Formtitle from '../../Components/Formtitle/Formtitle';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 import Allfields from '../../Components/Allfields/Allfields'; 
 import Fileupload from '../../Components/Fileupload/Fileupload'; 
+import Modal from '../../Components/Modal/Modal.jsx';
 import axios from 'axios'; 
 import { useLocation } from 'react-router-dom'; 
 import { useNavigate } from 'react-router-dom'; 
@@ -20,6 +21,7 @@ const PersonalForm = () => {
     }; 
 
     const [displaySection, setDisplaySection] = useState("personal"); 
+    const [showModal, setShowModal] = useState(false);
     const [fileNames, setFileNames] = useState({}); 
     const [profilePhoto, setProfilePhoto] = useState(null); 
     const [formData, setFormData] = useState({ 
@@ -63,7 +65,8 @@ const PersonalForm = () => {
         diploma: '', 
         emisNumber: '', 
         firstGraduate: '', 
-        specialCategory: '', 
+        specialCategory: '',
+        registerNo : '', 
         programme: '', 
         discipline: '', 
         academicYear: '', 
@@ -124,29 +127,35 @@ const PersonalForm = () => {
     }; 
 
     const handleSubmit = async (e) => { 
-        e.preventDefault(); 
-        const formDataToSend = new FormData(); 
-        Object.keys(formData).forEach((key) => { 
-            formDataToSend.append(key, formData[key]); 
-        }); 
-        formDataToSend.append("registerNo", location.state.userId); 
-        // formDataToSend.append("profilePhoto", profilePhoto); 
-        try { 
-            const response = await axios.post('http://localhost:8080/api/student', formDataToSend, { 
-                headers: { 'Content-Type': 'multipart/form-data' } 
-            }); 
-            console.log('Form submitted successfully:', response.data); 
-            localStorage.clear();
-            toast("Registration Successful"); 
-            await new Promise((resolve) => setTimeout(resolve, 1000)); 
-            navigate('/login-page'); 
-        } catch (error) { 
-            console.error('Error submitting form:', error); 
-            toast(`Error: ${error || 'Something went wrong'}`); 
-        } 
+        e.preventDefault();
+        const registerNumber = location.state.userId;
+        const updatedFormData = { ...formData, ['registerNo']: registerNumber };
+        setFormData(updatedFormData);
+        localStorage.setItem('formData', JSON.stringify(updatedFormData));
+        setShowModal(true);
+        // const formDataToSend = new FormData(); 
+        // Object.keys(formData).forEach((key) => { 
+        //     formDataToSend.append(key, formData[key]); 
+        // }); 
+        // formDataToSend.append("registerNo", location.state.userId); 
+        // // formDataToSend.append("profilePhoto", profilePhoto); 
+        // try { 
+        //     const response = await axios.post('http://localhost:8080/api/student', formDataToSend, { 
+        //         headers: { 'Content-Type': 'multipart/form-data' } 
+        //     }); 
+        //     console.log('Form submitted successfully:', response.data); 
+        //     localStorage.clear();
+        //     toast("Registration Successful"); 
+        //     await new Promise((resolve) => setTimeout(resolve, 1000)); 
+        //     navigate('/login-page'); 
+        // } catch (error) { 
+        //     console.error('Error submitting form:', error); 
+        //     toast(`Error: ${error || 'Something went wrong'}`); 
+        // } 
     }; 
 
     return (
+      <div>
       <form onSubmit={handleSubmit}>
         <Formtitle/>
         {displaySection === "personal" && (
@@ -474,6 +483,7 @@ const PersonalForm = () => {
                 <label htmlFor="Special Category">Special Category</label>
                 <select className='community-dropdown' name="specialCategory" value={formData.specialCategory || ''} required onChange={handleOtherField} >
                   <option>Select</option>
+                  <option value="7.5 Quota">7.5 Quota</option>
                   <option value="Ex-Service Man">Ex-Service Man</option>
                   <option value="Eminent sports man" >Eminent sports man</option>
                   <option value="Differently Abled" >Differently Abled</option>
@@ -555,7 +565,7 @@ const PersonalForm = () => {
               <Allfields fieldtype="text" value="ABC Id" inputname="abcId" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
             </div>
             <div className="umis-id">
-              <Allfields fieldtype="text" value="UMIS Id" inputname="umisId" fieldpattern="[0-9]+" req_flag={true} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
+              <Allfields fieldtype="text" value="UMIS Id" inputname="umisId" fieldpattern="[0-9]+" req_flag={false} format={/[^0-9]/g} formData={formData} setFormData={setFormData} />
             </div>
             <div className="date-of-adm">
               <Allfields fieldtype="date" value="Date of Admission" inputname="dateOfAdmission" fieldpattern="" req_flag={true} format="" formData={formData} setFormData={setFormData} />
@@ -602,13 +612,16 @@ const PersonalForm = () => {
            </div>
             <ToastContainer />
           </div>
+          
           </div>
           
           
             )}
-             
+          
          
       </form>
+      {showModal && <Modal student={formData} onClose={() => setShowModal(false)} />}
+      </div>
     );
 };
 

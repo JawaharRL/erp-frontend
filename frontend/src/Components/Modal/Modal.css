@@ -1,0 +1,50 @@
+/* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Ensure modal is on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+}
+
+.modal_content {
+    background-color: #fefefe;
+    margin:3% auto; 
+    padding: 40px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 8px;
+    overflow-y: auto; 
+    max-height: 90%;
+}
+
+.model_sidebar_items {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-direction: row; /* Ensure items are in a row */
+    justify-content: space-around; /* Space items evenly */
+    padding: 30px; /* Add some padding for aesthetics */
+    list-style-type: none; /* Remove default list styling */
+}
+.profile_links:hover {
+    /* Change background color on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+.profile_links {
+    padding: 6px;
+   border-radius: 8px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
