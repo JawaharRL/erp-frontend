@@ -7,94 +7,88 @@ import Allbuttons from '../../Components/Allbuttons/Allbuttons';
 import Allfields from '../../Components/Allfields/Allfields'; 
 import Fileupload from '../../Components/Fileupload/Fileupload'; 
 import Modal from '../../Components/Modal/Modal.jsx';
-import axios from 'axios'; 
 import { useLocation } from 'react-router-dom'; 
-import { useNavigate } from 'react-router-dom'; 
 import { ToastContainer, toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 
 const PersonalForm = () => { 
-    const navigate = useNavigate(); 
     const location = useLocation(); 
-    
+    const MAX_FILE_SIZE = 20 * 1024;
     const handleSectionClick = (section) => { 
         setDisplaySection(section); 
     }; 
-    const [selectedOption, setSelectedOption] = useState('');
     const [displaySection, setDisplaySection] = useState("personal"); 
     const [showModal, setShowModal] = useState(false);
     const [fileNames, setFileNames] = useState({}); 
     const [profilePhoto, setProfilePhoto] = useState(null); 
     const [formData, setFormData] = useState({ 
-        firstName: '', 
-        lastName: '', 
-        dateOfBirth: '', 
-        gender: '', 
-        aadharNumber: '', 
-        bloodGroup: '', 
-        nationality: '', 
-        religion: '', 
-        community: '', 
-        caste: '', 
-        fathersName: '', 
-        fathersOccupation: '', 
-        fathersMobileNumber: '', 
-        mothersName: '', 
-        mothersOccupation: '', 
-        mothersMobileNumber: '', 
-        guardiansName: '', 
-        guardiansOccupation: '', 
-        guardiansMobileNumber: '', 
-        parentsStatus: '', 
-        income: '', 
-        maritalStatus: '',
-        communityCertificate:null, 
+        firstName: null, 
+        lastName: null, 
+        dateOfBirth: null, 
+        gender: null, 
+        aadharNumber: null, 
+        bloodGroup: null, 
+        nationality: null, 
+        religion: null, 
+        community: null, 
+        caste: null, 
+        fathersName: null, 
+        fathersOccupation: null, 
+        fathersMobileNumber: null, 
+        mothersName: null, 
+        mothersOccupation: null, 
+        mothersMobileNumber: null, 
+        guardiansName: null, 
+        guardiansOccupation: null, 
+        guardiansMobileNumber: null, 
+        parentsStatus: null, 
+        income: null, 
+        maritalStatus: null,
+        communityCertificate: null, 
         profilePhoto: null, 
-        mobileNumber: '', 
-        emailid: '', 
-        residentialAddress: '', 
-        communicationAddress: '', 
-        hosteller: '', 
-        hostelType: '', 
-        bankName: '', 
-        ifscCode: '', 
-        branchName: '', 
-        accountNumber: '', 
+        mobileNumber: null, 
+        emailid: null, 
+        residentialAddress: null, 
+        communicationAddress: null, 
+        hosteller: null, 
+        hostelType: null, 
+        bankName: null, 
+        ifscCode: null, 
+        branchName: null, 
+        accountNumber: null, 
         passbook: null, 
-        sslc: '', 
-        hsc1Year: '', 
-        hsc2Year: '', 
-        diploma: '', 
-        emisNumber: '', 
-        firstGraduate: '', 
-        specialCategory: '',
+        sslc: null, 
+        hsc1Year: null, 
+        hsc2Year: null, 
+        diploma: null, 
+        emisNumber: null, 
+        firstGraduate: null, 
+        specialCategory: null,
         specialCategoryFile:null,
-        registerNo : '', 
-        programme: '', 
-        discipline: '', 
-        academicYear: '', 
-        admissionNumber: '', 
-        regulation: '', 
-        semester: '', 
-        umisId: '', 
-        abcId: '', 
-        dateOfAdmission: '', 
-        courseJoinedDate: '', 
-        courseType: '', 
-        fastTrack: '', 
-        cgpa: '', 
-        studentStatus: '',
-        firstGraduateFile:null 
+        registerNo : null, 
+        programme: null, 
+        discipline: null, 
+        academicYear: null, 
+        admissionNumber: null, 
+        regulation: null, 
+        semester: null, 
+        umisId: null, 
+        abcId: null, 
+        dateOfAdmission: null, 
+        courseJoinedDate: null, 
+        courseType: null, 
+        fastTrack: null, 
+        cgpa: null, 
+        studentStatus: null,
+        firstGraduateFile: null 
     }); 
     useEffect(() => {
-      // Load form data from localStorage
       const storedFormData = localStorage.getItem('formData');
       if (storedFormData) {
           setFormData(JSON.parse(storedFormData));
       }
 
-      // Load file names from localStorage
-      const filesToLoad = ['profilePhoto', 'passbook','communityCertificate','specialCategoryFile','firstGraduateFile']; // Add other file keys as needed
+      const filesToLoad = ['profilePhoto', 'passbook','communityCertificate','sslcFile','hsc1YearFile','hsc2YearFile','diploma','specialCategoryFile','firstGraduateFile'];
       filesToLoad.forEach(fileKey => {
           const fileName = localStorage.getItem(`${fileKey}FileName`);
           const fileBase64 = localStorage.getItem(fileKey);
@@ -104,78 +98,206 @@ const PersonalForm = () => {
           }
       });
   }, []);
-
-  const validatePersonalInfo = () => {
-    const validateAlphabets = (value) => /^[A-Za-z]+$/.test(value);
-    const validateNames = (value) => /^[A-Za-z]+( [A-Za-z]+)*$/.test(value);
-
   
-    const requiredFields = [
-      { field: formData.firstName, name: "First Name", validate: validateNames, errorMessage: "should contain only alphabets" },
-      { field: formData.lastName, name: "Last Name", validate: validateNames, errorMessage: "should contain only alphabets" },
-      { field: formData.caste, name: "Caste", validate: validateAlphabets, errorMessage: "should contain only alphabets" },
-      { field: formData.dateOfBirth, name: "Date of Birth" },
-      { field: formData.aadharNumber, name: "Aadhar Number" },
-      { field: formData.fathersName, name: "Father's Name" },
-      { field: formData.mothersName, name: "Mother's Name" },
-      { field: formData.nationality, name: "Nationality" },
-      { field: formData.religion, name: "Religion" },
-      { field: formData.bloodGroup, name: "Blood Group" },
-      { field: formData.community, name: "Community" },
-      { field: formData.profilePhoto, name: "Profile Photo" },
-      { field: formData.communityCertificate, name: "Community Certificate" },
-    ];
-  
-    for (let { field, name, validate, errorMessage } of requiredFields) {
+  const isValidAlphabets = (value) => /^[A-Za-z]+$/.test(value);
+  const isValidNumbers = (value) => /^[0-9]+$/.test(value);
+  const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
+  const isValidMark = (value) => /^\d{2}\.\d{1,2}$/.test(value);
+  const isValidName = (value) => /^[A-Za-z]+( [A-Za-z]+)*$/.test(value);
+  const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
+  const isValidMobileNumber = (value) => /^\d{10}$/.test(value);
+  const isValidEmail = (value) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+
+  const validateFields = (fields) => {
+    for (let { field, name, validate, errorMessage } of fields) {
       if (!field) {
         toast.error(`${name} is required.`);
         return false;
       }
-  
-      // Validation for fields that require alphabetic input
+
       if (validate && !validate(field)) {
-        toast.error(`${name} is required and ${errorMessage}.`);
+        toast.error(`${name} ${errorMessage}.`);
         return false;
       }
     }
-  
-    // Aadhar Number validation
-    if (!isValidAadharNumber(formData.aadharNumber)) {
-      toast.error("Aadhar Number should be 12 digits.");
-      return false;
-    }
-  
-    // Income validation
-    if (!formData.income.match(/^[0-9]+$/)) {
-      toast.error("Income is required and should contain only numbers.");
-      return false;
-    }
-  
     return true;
   };
-  
-  const isValidAadharNumber = (number) => /^\d{12}$/.test(number);
-  
- 
-  
-  const validateAcademic =()=>{}
- 
-    const handleOtherField = (e) => {
-      const { name, value } = e.target;
-      const updatedFormData = { ...formData, [name]: value };
-      setFormData(updatedFormData);
-      localStorage.setItem('formData', JSON.stringify(updatedFormData));
-  };
-    const handleFileChange = (name) => async (e) => {
-      const { target: { files } } = e;
-      const file = files[0];
-      if (file) {
-          const base64 = await convertFileToBase64(file);
-          setFormData(prevData => ({ ...prevData, [name]: base64 }));
-          setFileNames(prevNames => ({ ...prevNames, [name]: file.name }));
-          localStorage.setItem(`${name}FileName`, file.name);
-          localStorage.setItem(name, base64);
+
+  const validatePersonalInfo = () => {
+    const requiredFields = [
+      { field: formData.firstName, name: "First Name", validate: isValidName, errorMessage: "should contain only alphabets" },
+      { field: formData.lastName, name: "Last Name", validate: isValidName, errorMessage: "should contain only alphabets" },
+      { field: formData.dateOfBirth, name: "Date of Birth" },
+      { field: formData.gender, name: "Gender" },
+      { field: formData.aadharNumber, name: "Aadhar Number" ,validate: isValidAadharNumber, errorMessage: "should contain 12 digits " },
+      { field: formData.bloodGroup, name: "Blood Group" },
+      { field: formData.nationality, name: "NationaliisVy" , validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
+      { field: formData.religion, name: "Religion", validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
+      { field: formData.community, name: "Community" },
+      { field: formData.caste, name: "CaisVte", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
+      { field: formData.fathersName, name: "Father's Name" ,  validate: isValidName, errorMessage: "should contain only alphabets"},
+      { field: formData.mothersName, name: "Mother's Name" , validate: isValidName, errorMessage: "should contain only alphabets" },
+      { field: formData.parentsStatus, name: "Parents Status" },
+      { field: formData.income, name: "Parents income" , validate: isValidNumbers, errorMessage: "should contain only digits"},
+      { field: formData.maritalStatus, name: "Marital Status" },
+      { field: formData.profilePhoto, name: "Profile Photo" },
+      { field: formData.communityCertificate, name: "Community Certificate" }
+    ];
+
+    if (!validateFields(requiredFields)) {
+      return false;
+    }
+
+    const optionalFields = [
+      { field: formData.fathersOccupation, name: "Father's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
+      { field: formData.fathersMobileNumber, name: "Father's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" },
+      { field: formData.mothersOccupation, name: "Mother's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
+      { field: formData.mothersMobileNumber, name: "Mother's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" },
+      { field: formData.guardiansName, name: "Guardian's Name", validate: isValidName, errorMessage: "should contain only alphabets or be null" },
+      { field: formData.guardiansOccupation, name: "Guardian's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
+      { field: formData.guardiansMobileNumber, name: "Guardian's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" }
+    ];
+
+    for (let { field, name, validate, errorMessage } of optionalFields) {
+      if (field !== null && field !== '' && !validate(field)) {
+        toast.error(`${name} ${errorMessage}.`);
+        return false;
       }
+    }
+
+    return true;
+  };
+
+  const validateCommunicationInfo = () => {
+    const requiredFields = [
+      { field: formData.mobileNumber, name: "Mobile Number" ,validate:isValidMobileNumber , errorMessage: "should contain only 10 digits" },
+      { field: formData.emailid, name: "Email ID", validate: isValidEmail, errorMessage: "should be a valid email address" },
+      { field: formData.residentialAddress, name: "Residential Address" },
+      { field: formData.communicationAddress, name: "Communication Address" },
+      { field: formData.hosteller, name: "Hosteller" }
+    ];
+
+    if (!validateFields(requiredFields)) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateBankInfo = () => {
+    const requiredFields = [
+      { field: formData.bankName, name: "Bank Name" ,validate:isValidAlphabets , errorMessage: "should contain only alphabets"},
+      { field: formData.branchName, name: "Branch Name", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
+      { field: formData.accountNumber, name: "Account Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
+      { field: formData.ifscCode, name: "IFSC Code" },
+      { field: formData.passbook, name: "PassBook" }
+    ];
+
+    if (!validateFields(requiredFields)) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateEducationalInfo = () => {
+    const requiredFields = [
+      { field: formData.sslc, name: "SSLC" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+      { field: formData.sslcFile, name: "SSLC File" },
+      { field: formData.emisNumber, name: "EMIS Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
+      { field: formData.firstGraduate, name: "First Graduate" },
+      { field: formData.specialCategory, name: "Special Category" }
+    ];
+
+    if (!validateFields(requiredFields)) {
+      return false;
+    }
+
+    if (formData.flowofstudy.includes("hsc")) {
+      const hscFields = [
+        { field: formData.hsc1Year, name: "HSC First Year" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.hsc1YearFile, name: "HSC First Year File" },
+        { field: formData.hsc2Year, name: "HSC Second Year" , validate: isValidMark, errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.hsc2YearFile, name: "HSC Second Year File" }
+      ];
+
+      if (!validateFields(hscFields)) {
+        return false;
+      }
+    }
+
+    if (formData.flowofstudy.includes("diploma")) {
+      const diplomaFields = [
+        { field: formData.diploma, name: "Diploma" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.diplomaFile, name: "Diploma File" }
+      ];
+
+      if (!validateFields(diplomaFields)) {
+        return false;
+      }
+    }
+
+    if (formData.firstGraduate === "Yes" && !formData.firstGraduateFile) {
+      toast.error("First Graduate File is required");
+      return false;
+    }
+
+    if (formData.specialCategory !== "Not applicable" && !formData.specialCategoryFile) {
+      toast.error("Special Category File is required");
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateAcademicInfo = () => {
+    const requiredFields = [
+      { field: formData.programme, name: "Programme" },
+      { field: formData.discipline, name: "Discipline" },
+      { field: formData.academicYear, name: "Academic Year" },
+      { field: formData.admissionNumber, name: "Admission Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
+      { field: formData.regulation, name: "Regulation" },
+      { field: formData.semester, name: "Semester" },
+      { field: formData.abcId, name: "ABC Id", validate: isValidNumbers, errorMessage: "should contain only digits" },
+      { field: formData.umisId, name: "UMIS Id" , validate: isValidNumbers, errorMessage: "should contain only digits"},
+      { field: formData.dateOfAdmission, name: "Date of Admission" },
+      { field: formData.courseJoinedDate, name: "Course Joined Date" },
+      { field: formData.courseType, name: "Course type" },
+      { field: formData.fastTrack, name: "FastTrack" },
+      { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should contain only digits"},
+      { field: formData.studentStatus, name: "Student Status" }
+    ];
+
+    if (!validateFields(requiredFields)) {
+      return false;
+    }
+
+    return true;
+  };
+
+ 
+  const handleOtherField = (e) => {
+    const { name, value } = e.target;
+    const updatedFormData = { ...formData, [name]: value };
+    setFormData(updatedFormData);
+    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+  };
+  const handleFileChange = (name) => async (e) => {
+    const { target: { files } } = e;
+    const file = files[0];
+  
+    if (file) {
+      if (file.size > MAX_FILE_SIZE) {
+        toast.error("File size exceeds 20 KB. Please upload a smaller file.");
+        return; 
+      }
+  
+      const base64 = await convertFileToBase64(file);
+      setFormData(prevData => ({ ...prevData, [name]: base64 }));
+      setFileNames(prevNames => ({ ...prevNames, [name]: file.name }));
+      localStorage.setItem(`${name}FileName`, file.name);
+      localStorage.setItem(name, base64);
+    }
   };
     const convertFileToBase64 = (file) => { 
         return new Promise((resolve, reject) => { 
@@ -185,20 +307,25 @@ const PersonalForm = () => {
             reader.onerror = error => reject(error); 
         }); 
     }; 
-    const handleRadioChange = (event) => {
-      setSelectedOption(event.target.value);
-    };
 
-    const handleSubmit = async (e) => { 
-        e.preventDefault();
-        if(validateAcademic()){
-          const registerNumber = location.state.userId;
-          const updatedFormData = { ...formData, ['registerNo']: registerNumber };
-          setFormData(updatedFormData);
-          localStorage.setItem('formData', JSON.stringify(updatedFormData));
-          setShowModal(true);
-        }
-    }; 
+    const handleSubmit =  (e) => {
+      e.preventDefault();
+      if (displaySection!=="academic"){
+        return;
+      }
+
+      if (!validateAcademicInfo()) {
+        return;
+      }
+
+      const { userId: registerNumber } = location.state;
+      const updatedFormData = { ...formData, registerNo: registerNumber };
+
+      setFormData(updatedFormData);
+      localStorage.setItem('formData', JSON.stringify(updatedFormData));
+
+      setShowModal(true);
+  };
 
     return (
       <div>
@@ -235,7 +362,7 @@ const PersonalForm = () => {
              <div className="blood_group" >
                <label htmlFor="Bloodgroup">Blood Group</label>
                <select className='community-dropdown' name="bloodGroup" value={formData.bloodGroup || ''} onChange={handleOtherField} >
-                 <option value="Select" >Select</option>
+                 <option >Select</option>
                  <option value="A+" >A+</option>
                  <option value="A-" >A-</option>
                  <option value="B+" >B+</option>
@@ -258,7 +385,7 @@ const PersonalForm = () => {
              <div className="community" >
                <label htmlFor="Community">Community</label>
                <select className='community-dropdown' name="community" value={formData.community || ''} onChange={handleOtherField} >
-                 <option value="Select" >Select</option>
+                 <option>Select</option>
                  <option value="OC" >OC</option>
                  <option value="BC" >BC</option>
                  <option value="MBC" >MBC</option>
@@ -368,8 +495,7 @@ const PersonalForm = () => {
 
             <ToastContainer />
           </div>
-          
-          
+        
           
   )}  
   {displaySection === "communication" && (
@@ -401,14 +527,17 @@ const PersonalForm = () => {
                   <div className="radio-spacing"> <input type="radio" name="hosteller" value="No"  onChange={handleOtherField} checked={formData.hosteller === 'No'}/> No</div>
                 </div>
               </div>
-  
-              <div className="hostel_type" >
+
+              {formData.hosteller==="Yes"&&(
+                <div className="hostel_type" >
                 <label htmlFor="Hostel Type">Hostel Type</label>
                 <div className="radio">
                   <div className="radio-spacing"><input type="radio" name="hostelType" value="Free" onChange={handleOtherField} checked={formData.hostelType === 'Free'}/> Free</div>
                   <div className="radio-spacing"><input type="radio" name="hostelType" value="Paid" onChange={handleOtherField} checked={formData.hostelType === 'Paid'}/> Paid</div>
                 </div>
-              </div>
+              </div>  
+              )}
+              
               <br />
               <button
               className="navigate_buttons"
@@ -418,14 +547,17 @@ const PersonalForm = () => {
                <button
                className="navigate_buttons"
                 id="navigate_buttons_next_communication"
-                onClick={() => handleSectionClick("bank")}
+                onClick={() => {
+                  if (validateCommunicationInfo()) {
+                    handleSectionClick("bank");
+                  }
+                }}
               >Next</button>
+              <ToastContainer />
              </div>
             
              )}
             
-              
-             
   
               {displaySection === "bank" && (
              <div className="bank-data personal-container">
@@ -462,9 +594,13 @@ const PersonalForm = () => {
                <button
                className="navigate_buttons"
                 id="navigate_buttons_next_bank"
-                onClick={() => handleSectionClick("educational")}
+                onClick={() => {
+                  if (validateBankInfo()) {
+                    handleSectionClick("educational");
+                  }
+                }}
               >Next</button>
-               
+               <ToastContainer />
                 
                 </div>
             
@@ -474,25 +610,15 @@ const PersonalForm = () => {
               
               {displaySection === "educational" && (
                 
-              <div className="educational-data personal-container">
-             <div >
-                  <label htmlFor="flowofstudy">Flow of Study</label>
-                    <div className="flowofstudy">
-                        <label>
-                          <input type="radio" value="diploma" checked={selectedOption === 'diploma'} onChange={handleRadioChange}/>
-                          Diploma
-                        </label>
-                        <label>
-                          <input  type="radio"  value="hsc"   checked={selectedOption === 'hsc'}   onChange={handleRadioChange}  />
-                          HSC
-                        </label>
-                        <label>
-                          <input  type="radio"  value="hsc,diploma"  checked={selectedOption === 'hsc,diploma'}   onChange={handleRadioChange} />
-                          HSC, Diploma
-                        </label>
-                      </div>
+              <div className="educational-data personal-container">      
+                <div className="flowofstudy" >
+                <label htmlFor="flowofstudy">Flow of Study</label>
+                <div className="radio">
+                  <div className="radio-spacing"><input type="radio" name="flowofstudy" value="hsc" onChange={handleOtherField} checked={formData.flowofstudy === 'hsc'}/> HSC </div>
+                  <div className="radio-spacing"><input type="radio" name="flowofstudy" value="diploma" onChange={handleOtherField} checked={formData.flowofstudy === 'diploma'}/> Diploma</div>
+                  <div className="radio-spacing"><input type="radio" name="flowofstudy" value="hsc,diploma" onChange={handleOtherField} checked={formData.flowofstudy === 'hsc,diploma'}/> HSC, Diploma</div>
                 </div>
-
+              </div>  
 
               <div className="sslc">
                 <Allfields fieldtype="text" value="SSLC %" inputname="sslc"  formData={formData} setFormData={setFormData} />
@@ -508,28 +634,12 @@ const PersonalForm = () => {
               </div>
 
 
-
-
-      {selectedOption === 'hsc' || selectedOption === 'hsc,diploma' ? (
+      {formData.flowofstudy === 'hsc' || formData.flowofstudy === 'hsc,diploma' ? (
         <div className="hsc_1_Year">
-          <Allfields
-            fieldtype="text"
-            value="HSC 1st YEAR"
-            inputname="hsc1Year"
-           
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc1Year" formData={formData} setFormData={setFormData} />
           <div className="field">
             <p className="marksheet_label">HSC I-year Marksheet</p>
-            <input
-              type="file"
-              id="hsc1-input"
-              name="hsc1YearFile"
-              className="educational-document"
-              style={{ display: 'none' }}
-              onChange={handleFileChange('hsc1YearFile')}
-            />
+            <input type="file" id="hsc1-input" name="hsc1YearFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('hsc1YearFile')} />
             <label htmlFor="hsc1-input" className="File-upload-button" style={{ justifyContent: 'center' }}>
               <img className='icon' src={Upload} alt='' />
               <p>Upload</p>
@@ -539,7 +649,7 @@ const PersonalForm = () => {
         </div>
       ) : null}
 
-      {selectedOption === 'hsc' || selectedOption === 'hsc,diploma' ? (
+      {formData.flowofstudy === 'hsc' || formData.flowofstudy === 'hsc,diploma' ? (
         <div className="hsc_2_Year">
           <Allfields fieldtype="text" value="HSC 2nd YEAR"  inputname="hsc2Year"  formData={formData} setFormData={setFormData}/>
           <div className="field">
@@ -554,7 +664,7 @@ const PersonalForm = () => {
         </div>
       ) : null}
 
-      {selectedOption === 'diploma' || selectedOption === 'hsc,diploma' ? (
+      {formData.flowofstudy === 'diploma' || formData.flowofstudy === 'hsc,diploma' ? (
         <div className="diploma">
           <Allfields fieldtype="text" value="Diploma %"  inputname="diploma" 
             formData={formData}  setFormData={setFormData}  />
@@ -585,7 +695,7 @@ const PersonalForm = () => {
               <div className="special_category">
                 <label htmlFor="Special Category">Special Category</label>
                 <select className='community-dropdown' name="specialCategory" value={formData.specialCategory || ''}  onChange={handleOtherField} >
-                  <option>Select</option>
+                  <option >Select</option>
                   <option value="7.5 Quota">7.5 Quota</option>
                   <option value="Ex-Service Man">Ex-Service Man</option>
                   <option value="Eminent sports man" >Eminent sports man</option>
@@ -593,24 +703,28 @@ const PersonalForm = () => {
                   <option value="Not applicable" >Not applicable</option>
                 </select>
               </div>
-              <div className="field">
-                  <input type="file" id="firstGraduateFile" name="firstGraduateFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('firstGraduateFile')} />
-                  <p className="marksheet_label">First Graduate File</p>
-                  <label htmlFor="firstGraduateFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
-                    <img className='icon' src={Upload} alt='' />
-                    <p>Upload</p>
-                  </label>
-                  {fileNames['firstGraduateFile'] && <p className="uploaded_file_name">{fileNames['firstGraduateFile']} Uploaded</p>}
-             </div>
-              <div className="field">
-                  <input type="file" id="specialCategoryFile" name="specialCategoryFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('specialCategoryFile')} />
-                  <p className="marksheet_label">Special Category File</p>
-                  <label htmlFor="specialCategoryFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
-                    <img className='icon' src={Upload} alt='' />
-                    <p>Upload</p>
-                  </label>
-                  {fileNames['specialCategoryFile'] && <p className="uploaded_file_name">{fileNames['specialCategoryFile']} Uploaded</p>}
-             </div>
+              {formData.firstGraduate==="Yes"  && (
+                <div className="field">
+                <input type="file" id="firstGraduateFile" name="firstGraduateFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('firstGraduateFile')} />
+                <p className="marksheet_label">First Graduate File</p>
+                <label htmlFor="firstGraduateFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                  <img className='icon' src={Upload} alt='' />
+                  <p>Upload</p>
+                </label>
+                {fileNames['firstGraduateFile'] && <p className="uploaded_file_name">{fileNames['firstGraduateFile']} Uploaded</p>}
+           </div>
+              )}
+              {formData.specialCategory!=="Not applicable" && (
+                <div className="field">
+                <input type="file" id="specialCategoryFile" name="specialCategoryFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('specialCategoryFile')} />
+                <p className="marksheet_label">Special Category File</p>
+                <label htmlFor="specialCategoryFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
+                  <img className='icon' src={Upload} alt='' />
+                  <p>Upload</p>
+                </label>
+                {fileNames['specialCategoryFile'] && <p className="uploaded_file_name">{fileNames['specialCategoryFile']} Uploaded</p>}
+           </div>
+              )}
               <br />
               <button
                 className="navigate_buttons"
@@ -620,18 +734,18 @@ const PersonalForm = () => {
                <button
                className="navigate_buttons"
                 id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("academic")}
+                onClick={() => {
+                  if (validateEducationalInfo()) {
+                    handleSectionClick("academic");
+                  }
+                }}
               >Next</button>
+              <ToastContainer />
               </div>
               )}
-  
-  
-  
-       
-  
+ 
             {displaySection === "academic" && (
-              
-              
+                    
             <div className="academic-data personal-container">
             <div className="programme">
               <label htmlFor="programme">Programme</label>
@@ -665,9 +779,14 @@ const PersonalForm = () => {
             <div className="adm-no">
               <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber"  formData={formData} setFormData={setFormData} />
             </div>
-            <div className="regulation">
-              <Allfields fieldtype="text" value="Regulation" inputname="regulation" formData={formData} setFormData={setFormData} />
-            </div>
+            <div className="regulation" >
+               <label htmlFor="Bloodgroup">Regulation</label>
+               <select className='community-dropdown' name="regulation" value={formData.regulation || ''} onChange={handleOtherField} >
+                 <option value>Select</option>
+                 <option value="2019A" >2019A</option>
+                 <option value="2022" >2022</option>
+               </select>
+             </div>
             <div className="sem">
               <label htmlFor="semester">Semester</label>
               <select className='community-dropdown' name="semester"  value={formData.semester || ''} onChange={handleOtherField}>
