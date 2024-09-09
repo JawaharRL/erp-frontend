@@ -5,7 +5,7 @@ import Upload from '../../Assets/upload.svg';
 import Formtitle from '../../Components/Formtitle/Formtitle'; 
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 import Allfields from '../../Components/Allfields/Allfields'; 
-import Fileupload from '../../Components/Fileupload/Fileupload'; 
+// import Fileupload from '../../Components/Fileupload/Fileupload'; 
 import Modal from '../../Components/Modal/Modal.jsx';
 import { useLocation } from 'react-router-dom'; 
 import { ToastContainer, toast } from 'react-toastify'; 
@@ -20,7 +20,7 @@ const PersonalForm = () => {
     const [displaySection, setDisplaySection] = useState("personal"); 
     const [showModal, setShowModal] = useState(false);
     const [fileNames, setFileNames] = useState({}); 
-    const [profilePhoto, setProfilePhoto] = useState(null); 
+    // const [profilePhoto, setProfilePhoto] = useState(null); 
     const [formData, setFormData] = useState({ 
         firstName: null, 
         lastName: null, 
@@ -131,7 +131,7 @@ const PersonalForm = () => {
       { field: formData.gender, name: "Gender" },
       { field: formData.aadharNumber, name: "Aadhar Number" ,validate: isValidAadharNumber, errorMessage: "should contain 12 digits " },
       { field: formData.bloodGroup, name: "Blood Group" },
-      { field: formData.nationality, name: "NationaliisVy" , validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
+      { field: formData.nationality, name: "Nationality" , validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.religion, name: "Religion", validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.community, name: "Community" },
       { field: formData.caste, name: "CaisVte", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
@@ -361,7 +361,7 @@ const PersonalForm = () => {
              </div>
              <div className="blood_group" >
                <label htmlFor="Bloodgroup">Blood Group</label>
-               <select className='community-dropdown' name="bloodGroup" value={formData.bloodGroup || ''} onChange={handleOtherField} >
+               <select className='dropdown' name="bloodGroup" value={formData.bloodGroup || ''} onChange={handleOtherField} >
                  <option >Select</option>
                  <option value="A+" >A+</option>
                  <option value="A-" >A-</option>
@@ -384,7 +384,7 @@ const PersonalForm = () => {
   
              <div className="community" >
                <label htmlFor="Community">Community</label>
-               <select className='community-dropdown' name="community" value={formData.community || ''} onChange={handleOtherField} >
+               <select className="dropdown" name="community" value={formData.community || ''} onChange={handleOtherField} >
                  <option>Select</option>
                  <option value="OC" >OC</option>
                  <option value="BC" >BC</option>
@@ -398,28 +398,44 @@ const PersonalForm = () => {
              <div className="caste">
                <Allfields fieldtype="text" value="Caste" inputname="caste" formData={formData} setFormData={setFormData}/>
              </div>
+
+            
+             <div className="income">
+               <Allfields fieldtype="text" value="Income" inputname="income"  formData={formData} setFormData={setFormData} />
+             </div>
   
-             <div className="fathers_Name">
+             <div className="parents_status">
+               <label htmlFor="ParentsStatus">Parents Status</label>
+               <select className="dropdown" name="parentsStatus" value={formData.parentsStatus || ''} onChange={handleOtherField} >
+                 <option >Select</option>
+                 <option value="Both are alive" >Both are alive</option>
+                 <option value="Father alive" >Father alive</option>
+                 <option value="Mother alive">Mother alive</option>
+                 <option value="Both are not alive">Both are not alive</option>
+               </select>
+             </div>
+
+             <div className="fathers_name">
                <Allfields fieldtype="text" value="Father's Name" inputname="fathersName" formData={formData} setFormData={setFormData}/>
              </div>
   
-             <div className="fathers_Occupation">
+             <div className="fathers_occupation">
                <Allfields fieldtype="text" value="Father's Occupation" inputname="fathersOccupation"  formData={formData} setFormData={setFormData}/>
              </div>
   
-             <div className="fathers_Mobile_Number">
+             <div className="fathers_mobile_number">
                <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathersMobileNumber"   formData={formData} setFormData={setFormData} />
              </div>
   
-             <div className="mothers_Name">
+             <div className="mothers_name">
                <Allfields fieldtype="text" value="Mother's Name" inputname="mothersName" formData={formData} setFormData={setFormData} />
              </div>
   
-             <div className="mothers_Occupation">
+             <div className="mothers_occupation">
                <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothersOccupation" formData={formData} setFormData={setFormData}/>
              </div>
   
-             <div className="Mothers_Mobile_Number">
+             <div className="mothers_mobile_number">
                <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothersMobileNumber"   formData={formData} setFormData={setFormData}/>
              </div>
   
@@ -436,31 +452,17 @@ const PersonalForm = () => {
              </div>
              <div className="marital_status">
                <label htmlFor="MaritalStatus">Marital Status</label>
-               <select className='community-dropdown' name='maritalStatus'value={formData.maritalStatus || ''}  onChange={handleOtherField} >
+               <select className="dropdown" name='maritalStatus'value={formData.maritalStatus || ''}  onChange={handleOtherField} >
                  <option>Select</option>
                  <option value="Unmarried" >Unmarried</option>
                  <option value="Married" >Married</option>
                </select>
              </div>
   
-             <div className="income">
-               <Allfields fieldtype="text" value="Income" inputname="income"  formData={formData} setFormData={setFormData} />
-             </div>
-  
-             <div className="parents_status">
-               <label htmlFor="ParentsStatus">Parents Status</label>
-               <select className='community-dropdown' name="parentsStatus" value={formData.parentsStatus || ''} onChange={handleOtherField} >
-                 <option >Select</option>
-                 <option value="Both are alive" >Both are alive</option>
-                 <option value="Father alive" >Father alive</option>
-                 <option value="Mother alive">Mother alive</option>
-                 <option value="Both are not alive">Both are not alive</option>
-               </select>
-             </div>
   
              {/* <div className="profile_photo">
                <Fileupload input_name="profilePhoto"  onFileSelect={handleFileSelect}/> */}
-                <div className="field">
+                <div className="community_certificate" id="community_certificate">
                   <input type="file" id="communityCertificate" name="communityCertificate" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('communityCertificate')} />
                   <p className="marksheet_label">Community Certificate</p>
                   <label htmlFor="communityCertificate" className="File-upload-button" style={{ justifyContent: 'center' }} >
@@ -620,6 +622,26 @@ const PersonalForm = () => {
                 </div>
               </div>  
 
+              <div className="first_graduate">
+                <label htmlFor="First Graduate">First Graduate</label>
+                <div className="radio" >
+                  <div className="radio-spacing"><input type="radio" name="firstGraduate" value="Yes" onChange={handleOtherField} checked={formData.firstGraduate === 'Yes'}/> Yes</div>
+                  <div className="radio-spacing"><input type="radio" name="firstGraduate" value="No" onChange={handleOtherField} checked={formData.firstGraduate === 'No'} /> No</div>
+                </div>
+              </div>
+
+              <div className="special_category">
+                <label htmlFor="Special Category">Special Category</label>
+                <select className="dropdown" name="specialCategory" value={formData.specialCategory || ''}  onChange={handleOtherField} >
+                  <option >Select</option>
+                  <option value="7.5 Quota">7.5 Quota</option>
+                  <option value="Ex-Service Man">Ex-Service Man</option>
+                  <option value="Eminent sports man" >Eminent sports man</option>
+                  <option value="Differently Abled" >Differently Abled</option>
+                  <option value="Not applicable" >Not applicable</option>
+                </select>
+              </div>
+
               <div className="sslc">
                 <Allfields fieldtype="text" value="SSLC %" inputname="sslc"  formData={formData} setFormData={setFormData} />
                 <div className="field">
@@ -684,25 +706,9 @@ const PersonalForm = () => {
                 <Allfields fieldtype="text" value="Emis Number" inputname="emisNumber"   formData={formData} setFormData={setFormData}/>
               </div>
   
-              <div className="first_graduate">
-                <label htmlFor="First Graduate">First Graduate</label>
-                <div className="radio" >
-                  <div className="radio-spacing"><input type="radio" name="firstGraduate" value="Yes" onChange={handleOtherField} checked={formData.firstGraduate === 'Yes'}/> Yes</div>
-                  <div className="radio-spacing"><input type="radio" name="firstGraduate" value="No" onChange={handleOtherField} checked={formData.firstGraduate === 'No'} /> No</div>
-                </div>
-              </div>
+             
   
-              <div className="special_category">
-                <label htmlFor="Special Category">Special Category</label>
-                <select className='community-dropdown' name="specialCategory" value={formData.specialCategory || ''}  onChange={handleOtherField} >
-                  <option >Select</option>
-                  <option value="7.5 Quota">7.5 Quota</option>
-                  <option value="Ex-Service Man">Ex-Service Man</option>
-                  <option value="Eminent sports man" >Eminent sports man</option>
-                  <option value="Differently Abled" >Differently Abled</option>
-                  <option value="Not applicable" >Not applicable</option>
-                </select>
-              </div>
+              
               {formData.firstGraduate==="Yes"  && (
                 <div className="field">
                 <input type="file" id="firstGraduateFile" name="firstGraduateFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('firstGraduateFile')} />
@@ -749,7 +755,7 @@ const PersonalForm = () => {
             <div className="academic-data personal-container">
             <div className="programme">
               <label htmlFor="programme">Programme</label>
-              <select className='programme-dropdown' name="programme"  value={formData.programme || ''} onChange={handleOtherField}>
+              <select className="dropdown" name="programme"  value={formData.programme || ''} onChange={handleOtherField}>
                 <option>Select</option>
                 <option value="BE (Fulltime)" >BE (Full time)</option>
                 <option value="BE (part time)" >BE (part time)</option>
@@ -758,7 +764,7 @@ const PersonalForm = () => {
             </div>
             <div className="discipline">
               <label htmlFor="discipline">Discipline</label>
-              <select className='discipline-dropdown' name="discipline"  value={formData.discipline || ''} onChange={handleOtherField}>
+              <select className="dropdown" name="discipline"  value={formData.discipline || ''} onChange={handleOtherField}>
                 <option >Select</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Mechanical Engineering" >Mechanical Engineering</option>
@@ -780,8 +786,8 @@ const PersonalForm = () => {
               <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber"  formData={formData} setFormData={setFormData} />
             </div>
             <div className="regulation" >
-               <label htmlFor="Bloodgroup">Regulation</label>
-               <select className='community-dropdown' name="regulation" value={formData.regulation || ''} onChange={handleOtherField} >
+               <label htmlFor="regulation">Regulation</label>
+               <select className="dropdown" name="regulation" value={formData.regulation || ''} onChange={handleOtherField} >
                  <option value>Select</option>
                  <option value="2019A" >2019A</option>
                  <option value="2022" >2022</option>
@@ -789,7 +795,7 @@ const PersonalForm = () => {
              </div>
             <div className="sem">
               <label htmlFor="semester">Semester</label>
-              <select className='community-dropdown' name="semester"  value={formData.semester || ''} onChange={handleOtherField}>
+              <select className="dropdown" name="semester"  value={formData.semester || ''} onChange={handleOtherField}>
                 <option>Select</option>
                 <option value="I" >I</option>
                 <option value="II" >II</option>
@@ -832,7 +838,7 @@ const PersonalForm = () => {
             </div>
             <div className="student-status">
               <label htmlFor="student_Status">Student Status</label>
-              <select className='community-dropdown' name="studentStatus"  value={formData.studentStatus || ''} onChange={handleOtherField}>
+              <select className="dropdown" name="studentStatus"  value={formData.studentStatus || ''} onChange={handleOtherField}>
                 <option>Select</option>
                 <option value="Pursuing" >Pursuing</option>
                 <option value="Terminated" >Terminated</option>
