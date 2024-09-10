@@ -15,7 +15,7 @@ function Loginpage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/authentication/authenticate", { userId, password })
+    axios.post(`/api/authentication/authenticate`, { userId, password })
       .then(async(res) => {
         console.log(res);
         if(res.data === "Student Authentication Successful"){
