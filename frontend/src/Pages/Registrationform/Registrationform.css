@@ -172,7 +172,7 @@ input[type="radio"]{
 .marksheet_label{
     font-weight: 500;
 }
-.community_certificate,.profile-photo,.first_graduate_file,.specialCategory_file{
+.community_certificate,.profile-photo,.first_graduate_file,.specialCategory_file,.passbook{
  margin-top: -30px;
 }
 

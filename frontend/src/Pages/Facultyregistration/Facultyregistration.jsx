@@ -30,7 +30,7 @@ function Facultyregistration() {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/faculty/post', formDataToSend, {
+      const response = await axios.post('/api/faculty/post', formDataToSend, {
         headers: { 'Content-Type': 'application/json' }
       });
       console.log('Form submitted successfully:', response.data);

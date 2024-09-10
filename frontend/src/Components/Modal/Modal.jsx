@@ -32,7 +32,7 @@ const Modal = ({ student, onClose }) => {
     const onSubmit = async () => {
      
       try { 
-          const response = await axios.post('http://localhost:8080/api/student', student, { 
+          const response = await axios.post('/api/student', student, { 
               headers: { 'Content-Type': 'multipart/form-data' } 
           }); 
           console.log('Form submitted successfully:', response.data); 
@@ -43,7 +43,7 @@ const Modal = ({ student, onClose }) => {
       } catch (error) {
   
         console.error('Error submitting form:', error);
-        toast('Something went wrong');
+        toast.error('Something went wrong');
         console.log(error);
   
       }
