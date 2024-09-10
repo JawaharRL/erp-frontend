@@ -3,42 +3,13 @@ import './Facultydashboard.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
+import Modal from '../../Components/Modal/Modal.jsx';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons.jsx';
 import Profileicon from '../../Assets/profile.svg';
 import View from '../../Assets/eyewhite.svg';
 import Logout from '../../Assets/logout.svg';
 import axios from 'axios';
 
-// Modal Component
-const Modal = ({ student, onClose }) => {
-  if (!student) return null;
-
-  return (
-    <div className="modal">
-      <div className="modal_content">
-        <span className="close" onClick={onClose}>&times;</span>
-        <h3>{student.firstName} Details</h3>
-        <table className="student_detail_table">
-          <tbody>
-            <tr>
-              <td><strong>Name:</strong></td>
-              <td>{student.firstName} {student.lastName}</td>
-            </tr>
-            <tr>
-              <td><strong>Register No:</strong></td>
-              <td>{student.registerNo}</td>
-            </tr>
-            <tr>
-              <td><strong>Email ID:</strong></td>
-              <td>{student.emailid}</td>
-            </tr>
-            {/* Add more fields as necessary */}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
 
 function Facultydashboard() {
   const [faculty, setFaculty] = useState(null);
@@ -52,7 +23,7 @@ function Facultydashboard() {
   useEffect(() => {
     const fetchFaculty = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/faculty/${facultyId}`);
+        const response = await axios.get(`/api/faculty/${facultyId}`);
         console.log('Response data:', response.data);
         setFaculty(response.data);
       } catch (error) {
@@ -67,10 +38,6 @@ function Facultydashboard() {
     navigate('/login-page');
   };
 
-  const handleClearClick = () => {
-    setSelectedStudent(null);
-  };
-
   const handleItemClick = async (className, batchYear) => {
     try {
       const queryParams = new URLSearchParams({
@@ -79,7 +46,7 @@ function Facultydashboard() {
         batchYear: batchYear,
       });
 
-      const response = await axios.get(`http://localhost:8080/api/faculty/filter?${queryParams.toString()}`);
+      const response = await axios.get(`/api/faculty/filter?${queryParams.toString()}`);
       setFaculty(response.data);
       console.log('Response data:', response.data);
     } catch (error) {

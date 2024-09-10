@@ -30,7 +30,7 @@ function Facultyregistration() {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/faculty/post', formDataToSend, {
+      const response = await axios.post('/api/faculty/post', formDataToSend, {
         headers: { 'Content-Type': 'application/json' }
       });
       console.log('Form submitted successfully:', response.data);
@@ -85,7 +85,7 @@ function Facultyregistration() {
           <Allfields fieldtype="text" value="Last Name" inputname="lastName" formData={formData} setFormData={setFormData} />
           <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber" req_flag={true} formData={formData} setFormData={setFormData} />
           
-          <div className="discipline">
+          <div className="faculty_discipline">
             <label htmlFor="discipline">Discipline</label>
             <select name="discipline" className='discipline-dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
               <option>Select</option>
