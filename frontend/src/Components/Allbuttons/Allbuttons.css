@@ -5,11 +5,11 @@
     text-decoration: none;
     align-items: center;
     color: #fafafa;
+    /* width: clamp(30px,5vw,120px); */
     margin: 10px 5px 0px 5px ;
     border: none;
     padding:7px 20px 7px 15px;
     border-radius: 8px;
-    /* background: linear-gradient(rgba(0, 129, 238, 1),rgba(0, 74, 136, 1)); */
     opacity: 1;
     background: linear-gradient(109deg, rgba(1, 119, 193, 0.7) -3%, rgba(0, 102, 165, 0.9) 48%, #004B79 103%);
 

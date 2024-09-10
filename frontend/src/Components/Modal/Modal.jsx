@@ -3,6 +3,9 @@ import './Modal.css';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
 import { toast } from 'react-toastify'; 
+import Nextwhite from '../../Assets/Nextwhite.svg'; 
+import Previouswhite from '../../Assets/Previouswhite.svg'; 
+import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 
 const Modal = ({ student, onClose }) => {
     
@@ -69,15 +72,9 @@ const Modal = ({ student, onClose }) => {
                   style={getLinkStyle("communication")}
                   //onClick={() => handleSectionClick("communication")}
                 >
-                  Communication Details
+                  Communication & Bank Details
                 </li>
-                <li
-                  className="profile_links"
-                  style={getLinkStyle("bank")}
-                  //onClick={() => handleSectionClick("bank")}
-                >
-                  Bank Details
-                </li>
+                
                 <li
                   className="profile_links"
                   style={getLinkStyle("education")}
@@ -102,23 +99,19 @@ const Modal = ({ student, onClose }) => {
                     <tbody>
                       <tr>
                         <td>
-                          <strong>Name:</strong>
+                          <strong>First Name:</strong>
                         </td>
                         <td>
-                          {student.firstName} {student.lastName}
+                          {student.firstName} 
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <strong>Register No:</strong>
+                          <strong>Last Name:</strong>
                         </td>
-                        <td>{student.registerNo}</td>
-                      </tr>
-                      <tr>
                         <td>
-                          <strong>Email ID:</strong>
+                           {student.lastName}
                         </td>
-                        <td>{student.emailid}</td>
                       </tr>
                       <tr>
                         <td>
@@ -168,17 +161,100 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.caste}</td>
                       </tr>
-                      {/* Add more personal details fields */}
+                      <tr>
+                        <td>
+                          <strong>Income:</strong>
+                        </td>
+                        <td>{student.income}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Parents Status:</strong>
+                        </td>
+                        <td>{student.parentsStatus}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Father's Name:</strong>
+                        </td>
+                        <td>{student.fathersName}</td>
+                      </tr>
+                      {student.fathersOccupation &&(
+                        <tr>
+                        <td>
+                          <strong>Father's Occupation:</strong>
+                        </td>
+                        <td>{student.fathersMobileNumber}</td>
+                      </tr>
+                      )}
+                      {student.fathersMobileNumber &&(
+                        <tr>
+                        <td>
+                          <strong>Father's Mobile Number:</strong>
+                        </td>
+                        <td>{student.fathersMobileNumber}</td>
+                      </tr>
+                      )}
+                      <tr>
+                        <td>
+                          <strong>Mother's Name:</strong>
+                        </td>
+                        <td>{student.mothersName}</td>
+                      </tr>
+                      {student.mothersOccupation &&(
+                        <tr>
+                        <td>
+                          <strong>Mother's Occupation:</strong>
+                        </td>
+                        <td>{student.mothersOccupation}</td>
+                      </tr>
+                      )}
+                      {student.mothersMobileNumber &&(
+                        <tr>
+                        <td>
+                          <strong>Mother's Mobile Number:</strong>
+                        </td>
+                        <td>{student.mothersMobileNumber}</td>
+                      </tr>
+                      )}
+                      {student.guardianName &&(
+                        <tr>
+                        <td>
+                          <strong>Guardian's Name:</strong>
+                        </td>
+                        <td>{student.guardianName}</td>
+                      </tr>
+                      )}
+                      {student.guardianOccupation &&(
+                        <tr>
+                        <td>
+                          <strong>Guardian's Occupation:</strong>
+                        </td>
+                        <td>{student.guardianOccupation}</td>
+                      </tr>
+                      )}
+                      {student.guardianMobileNumber &&(
+                        <tr>
+                        <td>
+                          <strong>Guardian's Mobile Number:</strong>
+                        </td>
+                        <td>{student.guardianMobileNumber}</td>
+                      </tr>
+                      )}
+                        <tr>
+                        <td>
+                          <strong>Marital Status:</strong>
+                        </td>
+                        <td>{student.maritalStatus}</td>
+                      </tr>
                     </tbody>
                   </table>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("communication")}
-              >Next</button>
+                  <div  id="navigate_button_next_personal" >
+                       <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("communication_bank")}/>
+                </div>
                 </div>
               )}
-              {activeSection === "communication" && (
+              {activeSection === "communication_bank" && (
                 <div className="student_detail_section">
                   <table className="student_detail_table">
                     <tbody>
@@ -220,36 +296,11 @@ const Modal = ({ student, onClose }) => {
                         <td>{student.hostelType}</td>
                       </tr>
                       )}
-                      {/* Add more communication details fields */}
-                    </tbody>
-                  </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("personal")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("bank")}
-              >Next</button>
-                </div>
-              )}
-              {activeSection === "bank" && (
-                <div className="student_detail_section">
-                  <table className="student_detail_table">
-                    <tbody>
                       <tr>
                         <td>
                           <strong>Bank Name:</strong>
                         </td>
                         <td>{student.bankName}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>IFSC Code:</strong>
-                        </td>
-                        <td>{student.ifscCode}</td>
                       </tr>
                       <tr>
                         <td>
@@ -263,21 +314,19 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.accountNumber}</td>
                       </tr>
-                      {/* Add more bank details fields */}
+                      <tr>
+                        <td>
+                          <strong>IFSC Code:</strong>
+                        </td>
+                        <td>{student.ifscCode}</td>
+                      </tr>
                     </tbody>
                   </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("communication")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("education")}
-              >Next</button>
+               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("personal")}/>
+               <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("education")}/>
                 </div>
               )}
+              
               {activeSection === "education" && (
                 <div className="student_detail_section">
                   <table className="student_detail_table">
@@ -288,24 +337,30 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.sslc}</td>
                       </tr>
-                      <tr>
+                      {student.hsc1Year &&(
+                        <tr>
                         <td>
                           <strong>HSC 1 Year:</strong>
                         </td>
-                        <td>{student.hsc1Year || "NA"}</td>
+                        <td>{student.hsc1Year}</td>
                       </tr>
-                      <tr>
+                      )}
+                      {student.hsc2Year &&(
+                        <tr>
                         <td>
                           <strong>HSC 2 Year:</strong>
                         </td>
-                        <td>{student.hsc2Year || "NA"}</td>
+                        <td>{student.hsc2Year}</td>
                       </tr>
-                      <tr>
+                      )}
+                      {student.diploma &&(
+                        <tr>
                         <td>
                           <strong>Diploma:</strong>
                         </td>
-                        <td>{student.diploma || "NA"}</td>
+                        <td>{student.diploma}</td>
                       </tr>
+                      )}
                       <tr>
                         <td>
                           <strong>EMIS Number:</strong>
@@ -314,9 +369,9 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>First Graduate:</strong>
+                          <strong>Fast Track:</strong>
                         </td>
-                        <td>{student.firstGraduate || "NA"}</td>
+                        <td>{student.fastTrack}</td>
                       </tr>
                       <tr>
                         <td>
@@ -324,19 +379,10 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.specialCategory}</td>
                       </tr>
-                      {/* Add more educational details fields */}
                     </tbody>
                   </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("bank")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("academic")}
-              >Next</button>
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("communication_bank")}/>
+              <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("academic")}/>
                 </div>
               )}
               {activeSection === "academic" && (
@@ -411,9 +457,9 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>Fast Track:</strong>
+                          <strong>First Graduate:</strong>
                         </td>
-                        <td>{student.fastTrack}</td>
+                        <td>{student.firstGraduate}</td>
                       </tr>
                       <tr>
                         <td>
@@ -427,19 +473,11 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.studentStatus}</td>
                       </tr>
-                      {/* Add more academic details fields */}
                     </tbody>
                   </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("education")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={onSubmit}
-              >Submit</button>
+                  
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("education")}/>
+              <Allbuttons  value="Submit" image={Nextwhite} target={onSubmit}/>
                 </div>
                 
               )}

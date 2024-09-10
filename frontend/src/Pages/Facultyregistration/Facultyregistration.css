@@ -11,13 +11,13 @@
 .faculty_first_name,.faculty_last_name{
     grid-column:span 6;
 }
-.discipline,.Mobile_Number{
+.faculty_discipline,.Mobile_Number{
     grid-column:span 5;
 }
 .mailid{
     grid-column:span 7;
 }
-.discipline,.handling_batch{
+.faculty_discipline,.handling_batch{
     grid-column:span 6;
 }
 .handling_class{
