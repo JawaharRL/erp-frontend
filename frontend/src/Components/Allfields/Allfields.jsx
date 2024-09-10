@@ -1,16 +1,13 @@
 import React from 'react'
 import './Allfields.css'
 
-const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, format, formData, setFormData }) => {
+const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updatedFormData = { ...formData, [name]: value };
     setFormData(updatedFormData);
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
 
-  };
-  const handleInputChange = (e) => {
-    e.target.value = e.target.value.replace(format, '');
   };
 
   return (
@@ -21,10 +18,7 @@ const Allfields = ({ fieldtype, value, inputname, fieldpattern, req_flag, format
         name={inputname}
         value={formData[inputname] || ''}
         onChange={handleChange}
-        pattern={fieldpattern}
-        required={req_flag}
         placeholder={`Enter ${value }`}
-        onInput={handleInputChange}
       />
     </div>
   );

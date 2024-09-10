@@ -4,36 +4,25 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.form-content{
-    position: static;
-    top:0;
-    left:0;
-
-}
-.catagory{
-    color: #59E34E;
-}
-
     .marksheet_label{
         margin-top: 30px;
         margin-bottom: 15px;
     }
 
 .personal-data,.communication-data,.bank-data,.educational-data,.academic-data{
-    padding: 0px 100px;
-    gap:20px;
-    grid-row-gap: 35px;
+    padding: 0px clamp(20px,10vw,100px);
     display: grid;
     grid-template-columns: repeat(12,1fr);
-}
+    gap:20px;
+    grid-row-gap: 35px;
 
+}
 
 .uploaded_file_name{
     margin-left: 30px;
     color: #1D242C;
 }
-.community-dropdown,.parential-dropdown,.discipline-dropdown,.programme-dropdown{
+.dropdown{
     border: none;
     background-color: rgba(199, 238, 255,0.5);
     height: 40px;
@@ -45,8 +34,6 @@
 
 input[type="date"]
 {
-    /* background: url('../../Assets/calendar.svg') no-repeat ; */
-    /* background-position: 250px; */
     background-size: 25px 25px;
     width: 24px;
     height: 24px;
@@ -58,24 +45,23 @@ input[type="date"]
     border-radius: 8px;
     padding: 0px 30px 0px 20px;
     box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
-    
 }
 input[type="radio"]{
-   width:20px;
-   height: 20px;
-   border:3px solid #002133;
-   border-radius: 50%;
-   transform: translateY(3px);
+    width:20px;
+    height: 20px;
+    border:3px solid #002133;
+    border-radius: 50%;
+    transform: translateY(3px);
 }
 
 input[type="radio"]:before{
-   content:'';
-   display:block;
-   width: 70%;
-   height: 70%;
-   margin:15% auto;
-   border-radius: 50%;
-   
+    content:'';
+    display:block;
+    width: 70%;
+    height: 70%;
+    margin:15% auto;
+    border-radius: 50%;
+
 }
 input[type="radio"]:checked:before{
     background-color: #002133;
@@ -92,12 +78,13 @@ textArea{
     color:#002133;
     border: none;
     width: 100%;
-    padding: 8px;
+    padding: 16px 8px 16px 16px;
     border-radius: 8px;
     box-shadow: 4px 7px 14px -11px rgba(0,33,51,1);
 }
 label{
     display:block;
+    font-weight: 500;
     margin-bottom:8px;
 }
 .File-upload-button{
@@ -107,7 +94,6 @@ label{
     padding: 6px 30px;
     border-radius: 8px;
     margin: auto;
-
 }
 .navigate_buttons,.navigate_buttons_previous{
     all: unset;
@@ -120,168 +106,23 @@ label{
     opacity: 1;
     background: linear-gradient(109deg, rgba(1, 119, 193, 0.7) -3%, rgba(0, 102, 165, 0.9) 48%, #004B79 103%);
     text-align: center;
-}
-.navigate_buttons:hover{
-    cursor: pointer;
-}
-
-.photo{
-    width:15%;
-    height:35%;
-    margin-left:20%;
-}
-
-#registration-seperator{
-    height: 3px;
-    margin: 3%;
-    background-color: #002133;
-  
+    font-size: clamp(8px,3vw,16px);
 }
 textarea::placeholder{
     padding: 5px;
-    
-   
-}
-
-
-.personal-form-buttons{
-
-    margin-top: 15px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-end;
-    grid-column: span 12;
-
-}
-
-#navigate_button_next_personal{
-    grid-column-start: 11;
-        grid-row-start: 8;
-    grid-column-end: span 2;
-}
-#navigate_buttons_previous_communication,#navigate_buttons_previous_bank,#navigate_buttons_previous_educational,#navigate_buttons_previous_academic {
-    grid-column-start: 9;
-    grid-row-start: 5;
-    grid-column-end: span 2;
-}
-
-#navigate_buttons_next_communication,#navigate_buttons_next_bank,#navigate_buttons_next_educational{
-    grid-column-start: 11;
-        grid-row-start: 5;
-    grid-column-end: span 2;
-}
-.first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
-    grid-column:span 4;
-}
-.gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{
-    grid-column:span 6;
-}
-.profile_photo,#registration-seperator{
-    grid-column:span 12;
-}
-
-.nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
-    grid-column:span 3;
-}
-
-.mobile_no{
-    grid-column:span 4;
-}
-.mail_id{
-    grid-column:span 8;
-}
-.discipline-dropdown{
-    grid-column:span 8;
-}
-
-
-@media (width<=921px) {
-
-    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
-        grid-column:span 4;
-    }
-    .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field{
-        grid-column:span 6;
-    }
-    /* .personal-form-buttons{
-        grid-column: 1/1;
-    } */
-}
-
-@media (width<=680px) {
-
-    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.income,.marital_status,.parents_status,.emis_Number,.first_graduate,.special_category{
-        grid-column:span 6;
-    }
-    /* .personal-form-buttons{
-        grid-column: 1/1;
-    } */
-}
-
-
-
-@media (width<=590px) {
-
-    .first_name,.last_name,.date_Of_Birth,.fathers_Name,.fathers_Occupation,.fathers_Mobile_Number,.Mothers_Mobile_Number,.mothers_Occupation,.mothers_Name,.guardians_occupation,.guardians_name,.guardians_mobile_number,.parents_status,.emis_Number,.first_graduate,.special_category{
-        grid-column:span 12;
-    }
-    .gender,.aadhar_number,.communication_address,.residential_address,.hosteller,.hostel_type,.bank_name,.branch_Name,.account_Number,.ifsc_Code{
-        grid-column:span 12;
-    }
-    .nationality,.religion,.community,.caste,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.field,.income,.marital_status{
-        grid-column:span 6;
-    }
-    .mobile_no{
-        grid-column:span 12;
-       
-    }
-    .mail_id{
-        grid-column:span 12;
-    }
-
-}
-@media (width<=550px) {
-    .sslc,.hsc_1_Year,.hsc_2_Year,.diploma{
-        grid-column:span 12;
-    }
-   
-  
-}
-
-
-
-
-
-
-
-.academic-data{
-    display: grid;
-    margin-top: 35px;
-    grid-template-columns: repeat(6,1fr);
-    gap: 20px;
-    grid-row-gap: 35px;
-    justify-content: center;
-    align-items: center;
-
-}
-.aca-year,.reg-no,.programme,.discipline,.adm-no,.abc-id,.umis-id,.course-type,.fasttrack{
-    grid-column:span 2;
-}
-.sem,.date-of-adm,.regulation,.join-date,.cgpa,.student-status{
-    grid-column: span 1;
 }
 
 .radio-spacing{
     width:65%; 
-    /* margin: 10px; */
 } 
-.academic-buttons{
+.registration_form_buttons{
+    margin-top: 30px;
+    margin-right: 100px;
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    justify-content: flex-end;
+    justify-content: end;
 
 }
+
 
 input[type="radio"]{
     appearance: none;
@@ -291,82 +132,84 @@ input[type="radio"]{
     border-radius: 50%;
     transform: translateY(3px);
  }
- .create-passwors-form{
-    
-    width: 300px;
-    height: fit-content;
-    padding: 15px;
-    border-radius: 10px;
-    
-    
-}
- 
-.create_password_fields{
-    width: 100%;    
-    margin-top: 15px;
-    margin-bottom: 15px;
 
-}
-.create_password_fields::placeholder{
-    color: #002133;
-}
-.password_crate_button{
-    float: right;
-}
-
-.login-popup{
-
-    /* margin-left: 350px; */
+ .sslc,.hsc_1_Year,.hsc_2_Year,.diploma{
     display: flex;
-    /* align-items: center; */
+    flex-direction: column;
+    gap: 30px;
+ }
+
+.first_name,.last_name,.date_Of_Birth,.gender,.fathers_name,
+.fathers_occupation,.fathers_mobile_number,.mothers_name,.mothers_occupation,
+.mothers_mobile_number,.guardians_name,.guardians_occupation,.guardians_mobile_number,
+.marital_status,.community_certificate,.profile-photo,.fasttrack,.student_status,.discipline{
+    grid-column: span 4;
+}
+.flowofstudy,.course_type{
+    grid-column: span 6;
+}
+
+.aadhar_number,.blood_group,.nationality,.religion,
+.programme,.semester,.student_status{
+    grid-column: span 2;
+}
+.cgpa{
+    grid-column: span 1;
+}
+.community,.caste,.income,.parents_status,.mobile_no,.mail_id,.communication_address,.residential_address,.hosteller,.hostel_type,
+.bank_name,.branch_Name,.account_Number,.ifsc_Code,.passbook,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.first_graduate,.special_category,
+.emis_Number,.first_graduate_file,.specialCategory_file,.regulation,.academic_year,.date_of_admission,.join_date,.admission_no,
+.abc_id,.umis_id{
+ 
+    grid-column: span 3;
+}
+.sslc,.hsc_1_Year,.hsc_2_Year,.diploma{
+    grid-row: span 2;
+}
+.communication_address,.residential_address{
+    grid-row: span 2;
+}
+.marksheet_label{
+    font-weight: 500;
+}
+.community_certificate,.profile-photo,.first_graduate_file,.specialCategory_file{
+ margin-top: -30px;
+}
+
+#navigate_buttons_previous_communication_bank,#navigate_buttons_next_communication_bank,#navigate_buttons_previous_educational,#navigate_buttons_next_educational,
+#navigate_buttons_previous_academic,#form_submit_button{
+    grid-row-start:5 ;
+   
+}
+
+
+
+
+@media (width<=768px) {
+
+ 
+}
+@media (width<=425px) {
+
+    
+.first_name,.last_name,.date_Of_Birth,.gender,.fathers_name,
+.fathers_occupation,.fathers_mobile_number,.mothers_name,.mothers_occupation,
+.mothers_mobile_number,.guardians_name,.guardians_occupation,.guardians_mobile_number,.programme,
+.marital_status,.community_certificate,.profile-photo,.fasttrack,.student_status,.discipline,.flowofstudy,.course_type,.student_status,.mobile_no,.mail_id,.communication_address,.residential_address,.hosteller,.hostel_type,
+.bank_name,.branch_Name,.account_Number,.ifsc_Code,.passbook,.sslc,.hsc_1_Year,.hsc_2_Year,.diploma,.first_graduate,.special_category,
+.emis_Number,.first_graduate_file,.specialCategory_file,.date_of_admission,.join_date,.admission_no,
+.abc_id,.umis_id{
+    grid-column: span 12;
+}
+.aadhar_number,.blood_group,.nationality,.religion,.community,.caste,.income,.parents_status,.regulation,.academic_year,.semester,.cgpa
+{
+    grid-column: span 6;
+}
+.registration_form_buttons{
+    margin-right: 0;
+    margin-bottom: 30px;
     justify-content: center;
-    max-width: 400px;
-    padding: 15px;
-    height: fit-content;
-    border-radius: 30px;
-    opacity: 1;
-    background: rgba(92, 146, 190, 0.47);
-    box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.68);
-    backdrop-filter: blur(3.6px);
-}
-.create-password-title{
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 30px;
-}
 
- @media (width<=980px) {
-    
-.academic-container{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    /* grid-template-rows: repeat(4,1fr); */
-    gap: 20px;
-
-}
-    .reg-no,.programme,.discipline,.adm-no,.regulation,.abc-id,.umis-id,.course-type,.fasttrack{
-        grid-column:span 1;
-    }
-    .aca-year,.sem,.date-of-adm,.join-date,.cgpa,.student-status{
-        grid-column: span 1;
-    }
-    
-}
- @media (width<=790px) {
-    
-.academic-container{
-    
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-
-}
-.reg-no,.programme,.discipline,.abc-id,.umis-id,.course-type,.fasttrack{
-        grid-column:span 2;
-}
-.aca-year,.sem,.date-of-adm,.regulation,.join-date,.adm-no,.cgpa,.student-status{
-        grid-column: span 1;
 }
 
 }

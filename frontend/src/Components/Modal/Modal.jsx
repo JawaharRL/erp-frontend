@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Modal.css';
 import axios from 'axios'; 
-import { useLocation } from 'react-router-dom'; 
 import { useNavigate } from 'react-router-dom'; 
-import { ToastContainer, toast } from 'react-toastify'; 
+import { toast } from 'react-toastify'; 
+import Nextwhite from '../../Assets/Nextwhite.svg'; 
+import Previouswhite from '../../Assets/Previouswhite.svg'; 
+import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 
 const Modal = ({ student, onClose }) => {
     
@@ -11,7 +13,7 @@ const Modal = ({ student, onClose }) => {
     const [activeSection, setActiveSection] = useState("personal");
     
     useEffect(() => {
-      // Reset activeSection to "personal" when the student prop changes
+      
       if (!student) {
         setActiveSection("personal");
       }
@@ -28,6 +30,7 @@ const Modal = ({ student, onClose }) => {
         : {};
     };
     const onSubmit = async () => {
+     
       try { 
           const response = await axios.post('http://localhost:8080/api/student', student, { 
               headers: { 'Content-Type': 'multipart/form-data' } 
@@ -37,28 +40,14 @@ const Modal = ({ student, onClose }) => {
           toast("Registration Successful"); 
           await new Promise((resolve) => setTimeout(resolve, 1000)); 
           navigate('/login-page'); 
-      } catch (error) { 
-          console.error('Error submitting form:', error); 
+      } catch (error) {
   
-          // Check if the error is a response from the server
-          if (error.response) {
-              // If the server responded with validation errors
-              if (error.response.data && error.response.data.errors) {
-                  const errors = error.response.data.errors; // This should be your HashMap
-                  // Iterate over each error and display it in a toast
-                  for (const [field, message] of Object.entries(errors)) {
-                      toast(`Error in ${field}: ${message}`);
-                  }
-              } else {
-                  // Fallback for other types of errors
-                  toast(`Error: ${error.response.data.message || 'Something went wrong'}`);
-              }
-          } else {
-              // Network or other errors
-              toast(`Error: ${error.message || 'Something went wrong'}`);
-          }
-      } 
-      onClose(); // Close the Modal
+        console.error('Error submitting form:', error);
+        toast('Something went wrong');
+        console.log(error);
+  
+      }
+      onClose();
   };
   
     return (
@@ -74,35 +63,29 @@ const Modal = ({ student, onClose }) => {
                 <li
                   className="profile_links"
                   style={getLinkStyle("personal")}
-                  onClick={() => handleSectionClick("personal")}
+                  //onClick={() => handleSectionClick("personal")}
                 >
                   Personal Details
                 </li>
                 <li
                   className="profile_links"
                   style={getLinkStyle("communication")}
-                  onClick={() => handleSectionClick("communication")}
+                  //onClick={() => handleSectionClick("communication")}
                 >
-                  Communication Details
+                  Communication & Bank Details
                 </li>
-                <li
-                  className="profile_links"
-                  style={getLinkStyle("bank")}
-                  onClick={() => handleSectionClick("bank")}
-                >
-                  Bank Details
-                </li>
+                
                 <li
                   className="profile_links"
                   style={getLinkStyle("education")}
-                  onClick={() => handleSectionClick("education")}
+                  //onClick={() => handleSectionClick("education")}
                 >
                   Educational Details
                 </li>
                 <li
                   className="profile_links"
                   style={getLinkStyle("academic")}
-                  onClick={() => handleSectionClick("academic")}
+                  //onClick={() => handleSectionClick("academic")}
                 >
                   Academic Details
                 </li>
@@ -185,14 +168,12 @@ const Modal = ({ student, onClose }) => {
                       {/* Add more personal details fields */}
                     </tbody>
                   </table>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("communication")}
-              >Next</button>
+                  <div  id="navigate_button_next_personal" >
+                       <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("communication_bank")}/>
+                </div>
                 </div>
               )}
-              {activeSection === "communication" && (
+              {activeSection === "communication_bank" && (
                 <div className="student_detail_section">
                   <table className="student_detail_table">
                     <tbody>
@@ -220,25 +201,20 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.communicationAddress}</td>
                       </tr>
-                      {/* Add more communication details fields */}
-                    </tbody>
-                  </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("personal")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("bank")}
-              >Next</button>
-                </div>
-              )}
-              {activeSection === "bank" && (
-                <div className="student_detail_section">
-                  <table className="student_detail_table">
-                    <tbody>
+                      <tr>
+                        <td>
+                          <strong>Hosteller:</strong>
+                        </td>
+                        <td>{student.hosteller}</td>
+                      </tr>
+                      {student.hosteller==="Yes" &&(
+                        <tr>
+                        <td>
+                          <strong>Hostel Type:</strong>
+                        </td>
+                        <td>{student.hostelType}</td>
+                      </tr>
+                      )}
                       <tr>
                         <td>
                           <strong>Bank Name:</strong>
@@ -263,21 +239,14 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.accountNumber}</td>
                       </tr>
-                      {/* Add more bank details fields */}
+                      {/* Add more communication details fields */}
                     </tbody>
                   </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("communication")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("education")}
-              >Next</button>
+               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("personal")}/>
+               <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("education")}/>
                 </div>
               )}
+              
               {activeSection === "education" && (
                 <div className="student_detail_section">
                   <table className="student_detail_table">
@@ -306,31 +275,35 @@ const Modal = ({ student, onClose }) => {
                         </td>
                         <td>{student.diploma || "NA"}</td>
                       </tr>
-                      {/* Add more educational details fields */}
-                    </tbody>
-                  </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("bank")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => handleSectionClick("academic")}
-              >Next</button>
-                </div>
-              )}
-              {activeSection === "academic" && (
-                <div className="student_detail_section">
-                  <table className="student_detail_table">
-                    <tbody>
                       <tr>
                         <td>
                           <strong>EMIS Number:</strong>
                         </td>
                         <td>{student.emisNumber}</td>
                       </tr>
+                      <tr>
+                        <td>
+                          <strong>First Graduate:</strong>
+                        </td>
+                        <td>{student.firstGraduate || "NA"}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Special Category:</strong>
+                        </td>
+                        <td>{student.specialCategory}</td>
+                      </tr>
+                      {/* Add more educational details fields */}
+                    </tbody>
+                  </table>
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("communication_bank")}/>
+              <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("academic")}/>
+                </div>
+              )}
+              {activeSection === "academic" && (
+                <div className="student_detail_section">
+                  <table className="student_detail_table">
+                    <tbody>
                       <tr>
                         <td>
                           <strong>Register Number:</strong>
@@ -418,16 +391,9 @@ const Modal = ({ student, onClose }) => {
                       {/* Add more academic details fields */}
                     </tbody>
                   </table>
-                  <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("education")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={onSubmit}
-              >Submit</button>
+                  
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("education")}/>
+              <Allbuttons  value="Next" image={Nextwhite} target={onSubmit}/>
                 </div>
                 
               )}
