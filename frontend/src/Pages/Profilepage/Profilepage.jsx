@@ -16,17 +16,14 @@ function StudentDisplay() {
   console.log(location);
 
   const [studentWithFiles, setStudentWithFiles] = useState();
-  // const [academicDetails, setAcademicDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
  
   const [displaySection, setDisplaySection] = useState("personal");
   const handleLogoutClick = () => {
-    // Perform logout and then navigate to a different route if needed
     navigate('/login-page');
   };
   const handleBonafideClick = () => {
-    // Perform logout and then navigate to a different route if needed
     navigate('/bonafide-page');
   };
   const getLinkStyle = (section) => {
@@ -69,11 +66,10 @@ function StudentDisplay() {
         const studentId = location.state.userId; 
         console.log(studentId);
         const response = await axios.get(
-          `http://localhost:8080/api/student/${studentId}`
+          `/api/student/${studentId}`
         );
         console.log(response);
         setStudentWithFiles(response.data);
-        // setAcademicDetails(response.data.academicsDto);
         setLoading(false); 
       } catch (error) {
         console.error("Error fetching data:", error);

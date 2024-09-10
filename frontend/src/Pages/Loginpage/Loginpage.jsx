@@ -15,7 +15,7 @@ function Loginpage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/authentication/authenticate", { userId, password })
+    axios.post(`/api/authentication/authenticate`, { userId, password })
       .then(async(res) => {
         console.log(res);
         if(res.data === "Student Authentication Successful"){
@@ -34,7 +34,7 @@ function Loginpage() {
           toast("Invalid Register Number or Password");
           await new Promise((resolve) => setTimeout(resolve, 1000));
         }
-        else if(res.data ==="Faculty Registration Not Successful"){
+        else if((res.data ==="Faculty Registration Not Successful")||(res.data ==="HOD Registration Not Successful")){
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/faculty-registration',{state: {userId}})
@@ -43,6 +43,11 @@ function Loginpage() {
           toast("Login Successful");
           await new Promise((resolve) => setTimeout(resolve, 1000));
           navigate('/faculty-dashboard',{state: {userId}})
+        }
+        else if(res.data ==="HOD Authentication Successful"){
+          toast("Login Successful");
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          navigate('/hod-dashboard',{state: {userId}})
         }
       })
       .catch(err => {

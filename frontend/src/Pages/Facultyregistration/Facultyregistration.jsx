@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import './Facultyregistration.css';
-import { Allfields } from '../../Components';
-import { Allbuttons } from '../../Components';
-import { useLocation } from 'react-router-dom'
+import { Allfields, Allbuttons } from '../../Components';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Nextwhite from '../../Assets/Nextwhite.svg';
 
 function Facultyregistration() {
   const navigate = useNavigate();
-  const location=useLocation();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -18,10 +16,9 @@ function Facultyregistration() {
     mobileNumber: '',
     discipline: '',
     handlingBatch: ''
-    // handlingClass: ''
   });
 
-  const [fields, setFields] = useState(['']);
+  const [fields, setFields] = useState([{ handlingDiscipline: '', academicYear: '' }]);
   const maxFields = 10;
 
   const handleSubmit = async (e) => {
@@ -29,14 +26,12 @@ function Facultyregistration() {
 
     const formDataToSend = {
       ...formData,
-      handlingClass: fields.join(', ')
+      handlingClass: fields.map(field => `${field.handlingDiscipline}#${field.academicYear}`).join(', ')
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/faculty/post', formDataToSend, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const response = await axios.post('/api/faculty/post', formDataToSend, {
+        headers: { 'Content-Type': 'application/json' }
       });
       console.log('Form submitted successfully:', response.data);
       toast("Registration Successful");
@@ -44,23 +39,20 @@ function Facultyregistration() {
       navigate('/login-page');
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast(`Error: ${error.response?.data?.message || 'Something went wrong'}`);
+      toast('Something went wrong');
     }
   };
 
   const handleOtherField = (e) => {
     const { name, value } = e.target;
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      [name]: value
-    }));
+    setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
   const handleAddField = () => {
     if (fields.length < maxFields) {
-      setFields([...fields, '']);
+      setFields([...fields, { handlingDiscipline: '', academicYear: '' }]);
     } else {
-      alert(`You can only add up to ${maxFields} fields.`);
+      toast(`You can only add up to ${maxFields} fields.`);
     }
   };
 
@@ -68,13 +60,20 @@ function Facultyregistration() {
     if (fields.length > 1) {
       setFields(fields.filter((_, i) => i !== index));
     } else {
-      alert('At least one field is required.');
+      toast('At least one field is required.');
     }
   };
 
-  const handleChange = (index, event) => {
+  const handleDisciplineChange = (index, value) => {
     const newFields = [...fields];
-    newFields[index] = event.target.value;
+    newFields[index].handlingDiscipline = value;
+    setFields(newFields);
+  };
+
+  const handleAcademicYearChange = (index, event) => {
+    const { value } = event.target;
+    const newFields = [...fields];
+    newFields[index].academicYear = value;
     setFields(newFields);
   };
 
@@ -82,52 +81,13 @@ function Facultyregistration() {
     <div>
       <form className="faculty_registration_form" onSubmit={handleSubmit}>
         <div className="faculty_registration_container">
-          <div className="faculty_first_name">
-            <Allfields 
-              fieldtype="text" 
-              value="First Name" 
-              inputname="firstName"  
-              fieldpattern="[A-Za-z]+" 
-              req_flag={true} 
-              format={/[^A-Za-z\s]/g} 
-              formData={formData} 
-              setFormData={setFormData} 
-            />
-          </div>
-
-          <div className="faculty_last_name">
-            <Allfields 
-              fieldtype="text" 
-              value="Last Name" 
-              inputname="lastName"  
-              fieldpattern="[A-Za-z]+" 
-              format={/[^A-Za-z\s]/g} 
-              formData={formData} 
-              setFormData={setFormData}
-            />
-          </div>
-
-          <div className="Mobile_Number">
-            <Allfields 
-              fieldtype="text" 
-              value="Mobile Number" 
-              inputname="mobileNumber"  
-              fieldpattern="[0-9]{10}" 
-              req_flag={true} 
-              format={/[^0-9]/g} 
-              formData={formData} 
-              setFormData={setFormData}
-            />
-          </div>
-
-          <div className="discipline">
+          <Allfields fieldtype="text" value="First Name" inputname="firstName" req_flag={true} formData={formData} setFormData={setFormData} />
+          <Allfields fieldtype="text" value="Last Name" inputname="lastName" formData={formData} setFormData={setFormData} />
+          <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber" req_flag={true} formData={formData} setFormData={setFormData} />
+          
+          <div className="faculty_discipline">
             <label htmlFor="discipline">Discipline</label>
-            <select 
-              className='discipline-dropdown' 
-              name="discipline"  
-              value={formData.discipline || ''}  
-              onChange={handleOtherField}
-            >
+            <select name="discipline" className='discipline-dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
               <option>Select</option>
               <option value="Civil Engineering">Civil Engineering</option>
               <option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -143,30 +103,28 @@ function Facultyregistration() {
             </select>
           </div>
 
-          <div className="handling_batch">
-            <Allfields 
-              fieldtype="text" 
-              value="Handling batch" 
-              inputname="handlingBatch"  
-              fieldpattern="\d{4}-\d{4}$" 
-              format={/[^0-9-]/g} 
-              formData={formData} 
-              setFormData={setFormData}
-            />
-          </div>
+          <Allfields fieldtype="text" value="Handling batch" inputname="handlingBatch" formData={formData} setFormData={setFormData} />
 
           {fields.map((field, index) => (
             <div className="handling_class" key={index}>
-              <label>
-                Handling Class
-                </label>
-                <input
-                  type="text"
-                  value={field}
-                  name="handlingClass"
-                  onChange={(event) => handleChange(index, event)}
-                  placeholder={`Enter value for field ${index + 1}`}
-                />
+              <label>Handling Discipline</label>
+              <select className='discipline-dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
+                <option >Select</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                <option value="Electronics and communication Engineering">Electronics and communication Engineering</option>
+                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                <option value="Structural Engineering">Structural Engineering</option>
+                <option value="Environmental Engineering">Environmental Engineering</option>
+                <option value="Manufacturing Engineering">Manufacturing Engineering</option>
+                <option value="Computer Aided Design">Computer Aided Design</option>
+                <option value="Power Electronics and Drives">Power Electronics and Drives</option>
+                <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
+              </select>
+              
+              <label>Handling Academic Year</label>
+              <input type="text" value={field.academicYear} onChange={(event) => handleAcademicYearChange(index, event)} placeholder={`Enter academic year for field ${index + 1}`} />
               
               {fields.length > 1 && (
                 <button type="button" onClick={() => handleRemoveField(index)}>
@@ -175,12 +133,12 @@ function Facultyregistration() {
               )}
             </div>
           ))}
+          
           {fields.length < maxFields && (
-          <button type="button" onClick={handleAddField}>
-            Add Field
-          </button>
-        )}
-
+            <button type="button" onClick={handleAddField}>
+              Add Field
+            </button>
+          )}
         </div>
         
         <Allbuttons value="submit" image={Nextwhite} />
