@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'; 
 import './Registrationform.css'; 
 import Nextwhite from '../../Assets/Nextwhite.svg'; 
+import Previouswhite from '../../Assets/Previouswhite.svg'; 
 import Upload from '../../Assets/upload.svg'; 
 import Formtitle from '../../Components/Formtitle/Formtitle'; 
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
@@ -168,24 +169,13 @@ const PersonalForm = () => {
     return true;
   };
 
-  const validateCommunicationInfo = () => {
+  const validateCommunicationBankInfo = () => {
     const requiredFields = [
       { field: formData.mobileNumber, name: "Mobile Number" ,validate:isValidMobileNumber , errorMessage: "should contain only 10 digits" },
       { field: formData.emailid, name: "Email ID", validate: isValidEmail, errorMessage: "should be a valid email address" },
       { field: formData.residentialAddress, name: "Residential Address" },
       { field: formData.communicationAddress, name: "Communication Address" },
-      { field: formData.hosteller, name: "Hosteller" }
-    ];
-
-    if (!validateFields(requiredFields)) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const validateBankInfo = () => {
-    const requiredFields = [
+      { field: formData.hosteller, name: "Hosteller" },
       { field: formData.bankName, name: "Bank Name" ,validate:isValidAlphabets , errorMessage: "should contain only alphabets"},
       { field: formData.branchName, name: "Branch Name", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
       { field: formData.accountNumber, name: "Account Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
@@ -332,7 +322,7 @@ const PersonalForm = () => {
       <form onSubmit={handleSubmit}>
         <Formtitle/>
         {displaySection === "personal" && (
-             
+             <div>
              <div className="personal-data personal-container">
              <div className="first_name">
              <Allfields fieldtype="text" value="First Name" inputname="firstName"  formData={formData} setFormData={setFormData} />
@@ -480,138 +470,119 @@ const PersonalForm = () => {
                   </label>
                   {fileNames['profilePhoto'] && <p className="uploaded_file_name">{fileNames['profilePhoto']} Uploaded</p>}
              </div>
-            <br />
-            <div>
-            
-            </div>
-            <button
-  className="navigate_buttons"
-  id="navigate_button_next_personal"
-  onClick={() => {
-    if (validatePersonalInfo()) {
-      handleSectionClick("communication");
-    }
-  }}>
-  Next
-</button>
+              
 
-            <ToastContainer />
+           
+          </div>
+          <div className="registration_form_buttons">
+         <div id="navigate_buttons_next_personal">
+    <Allbuttons value="Next" image={Nextwhite} target={() => {
+        if (validatePersonalInfo()) {
+            handleSectionClick("communication_bank");
+        }
+    }} />
+    
+</div>
+         </div>
+<ToastContainer />
           </div>
         
           
   )}  
-  {displaySection === "communication" && (
-            
-            <div className="communication-data personal-container">
-              
-             <div className="mobile_no">
-                <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber"   formData={formData} setFormData={setFormData}/>
-              </div>
-              <div className="mail_id">
-                <label htmlFor="Emailid">Email ID</label>
-                <input id='mailid' type="email" name="emailid"  value={formData.emailid || ''}  onChange={handleOtherField}  />
-              </div>
   
-              <div className="communication_address">
-                <label htmlFor="CommunicationAddress">Communication Address</label><br />
-                <textarea name="communicationAddress" cols="40" rows="6" placeholder="Enter your address here" value={formData.communicationAddress || ''} onChange={handleOtherField} ></textarea>
-              </div>
-  
-              <div className=" residential_address">
-                <label htmlFor="ResidentialAddress">Residential Address</label><br />
-                <textarea name="residentialAddress" cols="40" rows="6" placeholder="  Enter your address here" value={formData.residentialAddress || ''} onChange={handleOtherField} ></textarea>
-              </div>
-  
-              <div className="hosteller">
-                <label htmlFor="Hosteller">Hosteller</label>
-                <div className="radio" >
-                  <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes"  onChange={handleOtherField} checked={formData.hosteller === 'Yes'}/> Yes</div>
-                  <div className="radio-spacing"> <input type="radio" name="hosteller" value="No"  onChange={handleOtherField} checked={formData.hosteller === 'No'}/> No</div>
-                </div>
-              </div>
+{displaySection === "communication_bank" && (
+  <div>
+    <div className="communication-data personal-container">
+        <div className="mobile_no">
+            <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber" formData={formData} setFormData={setFormData} />
+        </div>
+        <div className="mail_id">
+            <label htmlFor="Emailid">Email ID</label>
+            <input id='mailid' type="email" name="emailid" value={formData.emailid || ''} onChange={handleOtherField} />
+        </div>
 
-              {formData.hosteller==="Yes"&&(
-                <div className="hostel_type" >
+        <div className="communication_address">
+            <label htmlFor="CommunicationAddress">Communication Address</label><br />
+            <textarea name="communicationAddress" cols="40" rows="6" placeholder="Enter your address here" value={formData.communicationAddress || ''} onChange={handleOtherField}></textarea>
+        </div>
+
+        <div className="residential_address">
+            <label htmlFor="ResidentialAddress">Residential Address</label><br />
+            <textarea name="residentialAddress" cols="40" rows="6" placeholder="Enter your address here" value={formData.residentialAddress || ''} onChange={handleOtherField}></textarea>
+        </div>
+
+        <div className="hosteller">
+            <label htmlFor="Hosteller">Hosteller</label>
+            <div className="radio">
+                <div className="radio-spacing"><input type="radio" name="hosteller" value="Yes" onChange={handleOtherField} checked={formData.hosteller === 'Yes'} /> Yes</div>
+                <div className="radio-spacing"><input type="radio" name="hosteller" value="No" onChange={handleOtherField} checked={formData.hosteller === 'No'} /> No</div>
+            </div>
+        </div>
+
+        {formData.hosteller === "Yes" && (
+            <div className="hostel_type">
                 <label htmlFor="Hostel Type">Hostel Type</label>
                 <div className="radio">
-                  <div className="radio-spacing"><input type="radio" name="hostelType" value="Free" onChange={handleOtherField} checked={formData.hostelType === 'Free'}/> Free</div>
-                  <div className="radio-spacing"><input type="radio" name="hostelType" value="Paid" onChange={handleOtherField} checked={formData.hostelType === 'Paid'}/> Paid</div>
+                    <div className="radio-spacing"><input type="radio" name="hostelType" value="Free" onChange={handleOtherField} checked={formData.hostelType === 'Free'} /> Free</div>
+                    <div className="radio-spacing"><input type="radio" name="hostelType" value="Paid" onChange={handleOtherField} checked={formData.hostelType === 'Paid'} /> Paid</div>
                 </div>
-              </div>  
-              )}
-              
-              <br />
-              <button
-              className="navigate_buttons"
-                id="navigate_buttons_previous_communication"
-                onClick={() => handleSectionClick("personal")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_communication"
-                onClick={() => {
-                  if (validateCommunicationInfo()) {
-                    handleSectionClick("bank");
-                  }
-                }}
-              >Next</button>
-              <ToastContainer />
-             </div>
-            
-             )}
-            
-  
-              {displaySection === "bank" && (
-             <div className="bank-data personal-container">
-             <div className=" bank_name">
-                <Allfields fieldtype="text" value="Bank Name" inputname="bankName" formData={formData} setFormData={setFormData} />
-              </div>
-  
-              <div className="branch_Name">
-                <Allfields fieldtype="text" value="Branch Name" inputname="branchName" formData={formData} setFormData={setFormData} />
-              </div>
-  
-              <div className="account_Number ">
-                <Allfields fieldtype="text" value="Account Number" inputname="accountNumber"   formData={formData} setFormData={setFormData}/>
-              </div>
-  
-              <div className="ifsc_Code ">
-                <Allfields fieldtype="text" value="IFSC Code" inputname="ifscCode"  formData={formData} setFormData={setFormData}/>
-              </div>
-              <div className="field">
-                  <input type="file" id="passbook" name="passbook" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('passbook')} />
-                  <p className="marksheet_label">Bank Passbook</p>
-                  <label htmlFor="passbook" className="File-upload-button" style={{ justifyContent: 'center' }} >
-                    <img className='icon' src={Upload} alt='' />
-                    <p>Upload</p>
-                  </label>
-                  {fileNames['passbook'] && <p className="uploaded_file_name">{fileNames['passbook']} Uploaded</p>}
-                </div>
-                
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_previous_bank"
-                onClick={() => handleSectionClick("communication")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_bank"
-                onClick={() => {
-                  if (validateBankInfo()) {
-                    handleSectionClick("educational");
-                  }
-                }}
-              >Next</button>
-               <ToastContainer />
-                
-                </div>
-            
-             )}
+            </div>
+        )}
+        
+        <div className="bank_name">
+            <Allfields fieldtype="text" value="Bank Name" inputname="bankName" formData={formData} setFormData={setFormData} />
+        </div>
+
+        <div className="branch_Name">
+            <Allfields fieldtype="text" value="Branch Name" inputname="branchName" formData={formData} setFormData={setFormData} />
+        </div>
+
+        <div className="account_Number">
+            <Allfields fieldtype="text" value="Account Number" inputname="accountNumber" formData={formData} setFormData={setFormData} />
+        </div>
+
+        <div className="ifsc_Code">
+            <Allfields fieldtype="text" value="IFSC Code" inputname="ifscCode" formData={formData} setFormData={setFormData} />
+        </div>
+
+        <div className="passbook">
+            <input type="file" id="passbook" name="passbook" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('passbook')} />
+            <p className="marksheet_label">Bank Passbook</p>
+            <label htmlFor="passbook" className="File-upload-button" style={{ justifyContent: 'center' }}>
+                <img className='icon' src={Upload} alt='' />
+                <p>Upload</p>
+            </label>
+            {fileNames['passbook'] && <p className="uploaded_file_name">{fileNames['passbook']} Uploaded</p>}
+        </div>
+       
+
+       
+       
+    </div>
+    <div className="registration_form_buttons">
+    <div id="navigate_buttons_previous_communication_bank">
+    <Allbuttons value="Previous" image={Previouswhite} target={() => handleSectionClick("personal")} />
+</div>
+<div id="navigate_buttons_next_communication_bank">
+    <Allbuttons value="Next" image={Nextwhite} target={() => {
+        if (validateCommunicationBankInfo()) {
+            handleSectionClick("educational");
+        }
+    }} />
+</div>
+    </div>
+<ToastContainer />
+    </div>
+
+)}
+
+
+          
              
   
               
               {displaySection === "educational" && (
-                
+                <div>
               <div className="educational-data personal-container">      
                 <div className="flowofstudy" >
                 <label htmlFor="flowofstudy">Flow of Study</label>
@@ -643,7 +614,9 @@ const PersonalForm = () => {
               </div>
 
               <div className="sslc">
+                <div>
                 <Allfields fieldtype="text" value="SSLC %" inputname="sslc"  formData={formData} setFormData={setFormData} />
+                </div>
                 <div className="field">
                   <input type="file" id="sslc-input" name="sslcFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('sslcFile')} />
                   <p className="marksheet_label">SSLC Marksheet</p>
@@ -702,15 +675,9 @@ const PersonalForm = () => {
           </div>
         </div>
       ) : null}
-              <div className="emis_Number">
-                <Allfields fieldtype="text" value="Emis Number" inputname="emisNumber"   formData={formData} setFormData={setFormData}/>
-              </div>
-  
-             
-  
               
               {formData.firstGraduate==="Yes"  && (
-                <div className="field">
+                <div className="first_graduate_file">
                 <input type="file" id="firstGraduateFile" name="firstGraduateFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('firstGraduateFile')} />
                 <p className="marksheet_label">First Graduate File</p>
                 <label htmlFor="firstGraduateFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
@@ -721,7 +688,7 @@ const PersonalForm = () => {
            </div>
               )}
               {formData.specialCategory!=="Not applicable" && (
-                <div className="field">
+                <div className="specialCategory_file">
                 <input type="file" id="specialCategoryFile" name="specialCategoryFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('specialCategoryFile')} />
                 <p className="marksheet_label">Special Category File</p>
                 <label htmlFor="specialCategoryFile" className="File-upload-button" style={{ justifyContent: 'center' }} >
@@ -731,27 +698,33 @@ const PersonalForm = () => {
                 {fileNames['specialCategoryFile'] && <p className="uploaded_file_name">{fileNames['specialCategoryFile']} Uploaded</p>}
            </div>
               )}
-              <br />
-              <button
-                className="navigate_buttons"
-                id="navigate_buttons_previous_educational"
-                onClick={() => handleSectionClick("bank")}
-              >Previous</button>
-               <button
-               className="navigate_buttons"
-                id="navigate_buttons_next_educational"
-                onClick={() => {
+              <div className="emis_Number">
+                <Allfields fieldtype="text" value="Emis Number" inputname="emisNumber"   formData={formData} setFormData={setFormData}/>
+              </div>
+
+             
+           
+          
+              
+              </div>
+              <div className="registration_form_buttons">
+              <div  id="navigate_buttons_previous_educational">
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("communication_bank")}/>
+              </div>
+              <div  id="navigate_buttons_next_educational" >
+              <Allbuttons  value="Next" image={Nextwhite} target={() => {
                   if (validateEducationalInfo()) {
                     handleSectionClick("academic");
                   }
-                }}
-              >Next</button>
+                }}/>
+              </div>
+              </div>
               <ToastContainer />
               </div>
               )}
  
             {displaySection === "academic" && (
-                    
+            <div>
             <div className="academic-data personal-container">
             <div className="programme">
               <label htmlFor="programme">Programme</label>
@@ -779,12 +752,6 @@ const PersonalForm = () => {
                 <option value="Microwave and Optical Communication" >Microwave and Optical Communication</option>
               </select>
             </div>
-            <div className="aca-year">
-              <Allfields fieldtype="text" value="Academic Year" inputname="academicYear"  formData={formData} setFormData={setFormData} />
-            </div>
-            <div className="adm-no">
-              <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber"  formData={formData} setFormData={setFormData} />
-            </div>
             <div className="regulation" >
                <label htmlFor="regulation">Regulation</label>
                <select className="dropdown" name="regulation" value={formData.regulation || ''} onChange={handleOtherField} >
@@ -793,7 +760,35 @@ const PersonalForm = () => {
                  <option value="2022" >2022</option>
                </select>
              </div>
-            <div className="sem">
+            <div className="academic_year">
+              <Allfields fieldtype="text" value="Academic Year" inputname="academicYear"  formData={formData} setFormData={setFormData} />
+            </div>
+            <div className="admission_no">
+              <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber"  formData={formData} setFormData={setFormData} />
+            </div>
+           
+           
+            <div className="abc_id">
+              <Allfields fieldtype="text" value="ABC Id" inputname="abcId" formData={formData} setFormData={setFormData} />
+            </div>
+            <div className="course_type">
+              <label htmlFor="course_Type">Course Type</label>
+              <div className="radio">
+                <div className="radio-spacing"><input type="radio" name="courseType" value="Regular" onChange={handleOtherField} checked={formData.courseType === 'Regular'} /> Regular</div>
+                <div className="radio-spacing"><input type="radio" name="courseType" value="Lateral" onChange={handleOtherField} checked={formData.courseType === 'Lateral'} /> Lateral</div>
+                <div className="radio-spacing"><input type="radio" name="courseType" value="Regular-Transfer" onChange={handleOtherField} checked={formData.courseType === 'Regular-Transfer'} /> Regular-Transfer</div>
+              </div>
+            </div>
+            <div className="umis_id">
+              <Allfields fieldtype="text" value="UMIS Id" inputname="umisId" formData={formData} setFormData={setFormData} />
+            </div>
+            <div className="date_of_admission">
+              <Allfields fieldtype="date" value="Date of Admission" inputname="dateOfAdmission" formData={formData} setFormData={setFormData} />
+            </div>
+            <div className="join_date">
+              <Allfields fieldtype="date" value="Course Joined Date" inputname="courseJoinedDate" formData={formData} setFormData={setFormData} />
+            </div>
+            <div className="semester">
               <label htmlFor="semester">Semester</label>
               <select className="dropdown" name="semester"  value={formData.semester || ''} onChange={handleOtherField}>
                 <option>Select</option>
@@ -807,25 +802,10 @@ const PersonalForm = () => {
                 <option value="VIII" >VIII</option>
               </select>
             </div>
-            <div className="abc-id">
-              <Allfields fieldtype="text" value="ABC Id" inputname="abcId" formData={formData} setFormData={setFormData} />
+            <div className="cgpa">
+              <Allfields fieldtype="text" value="CGPA" inputname="cgpa" formData={formData} setFormData={setFormData} />
             </div>
-            <div className="umis-id">
-              <Allfields fieldtype="text" value="UMIS Id" inputname="umisId" formData={formData} setFormData={setFormData} />
-            </div>
-            <div className="date-of-adm">
-              <Allfields fieldtype="date" value="Date of Admission" inputname="dateOfAdmission" formData={formData} setFormData={setFormData} />
-            </div>
-            <div className="join-date">
-              <Allfields fieldtype="date" value="Course Joined Date" inputname="courseJoinedDate" formData={formData} setFormData={setFormData} />
-            </div>
-            <div className="course-type">
-              <label htmlFor="course_Type">Course Type</label>
-              <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="courseType" value="Regular" onChange={handleOtherField} checked={formData.courseType === 'Regular'} /> Regular</div>
-                <div className="radio-spacing"><input type="radio" name="courseType" value="Lateral" onChange={handleOtherField} checked={formData.courseType === 'Lateral'} /> Lateral</div>
-              </div>
-            </div>
+         
             <div className="fasttrack">
               <label htmlFor="fast_Track">Fasttrack</label>
               <div className="radio">
@@ -833,10 +813,8 @@ const PersonalForm = () => {
                 <div className="radio-spacing"><input type="radio" name="fastTrack" value="No"  onChange={handleOtherField}checked={formData.fastTrack === 'No'} /> No</div>
               </div>
             </div>
-            <div className="cgpa">
-              <Allfields fieldtype="text" value="CGPA" inputname="cgpa" formData={formData} setFormData={setFormData} />
-            </div>
-            <div className="student-status">
+           
+            <div className="student_status">
               <label htmlFor="student_Status">Student Status</label>
               <select className="dropdown" name="studentStatus"  value={formData.studentStatus || ''} onChange={handleOtherField}>
                 <option>Select</option>
@@ -847,22 +825,20 @@ const PersonalForm = () => {
               </select>
             </div>
            
-            <br />
-            <p
-                className="navigate_buttons"
-                id="navigate_buttons_previous_academic"
-                onClick={() => handleSectionClick("educational")}
-              >Previous</p>
-              <div className='academic-buttons'>
-           <div id="submit_button">
-           <Allbuttons   value="submit" image={Nextwhite} />
+         
+          
+          </div>
+          <div className="registration_form_buttons">
+          <div id="navigate_buttons_previous_academic">
+              <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("educational")}/>
+            </div>
+            <div id="form_submit_button">
+              <Allbuttons   value="submit" image={Nextwhite} />
            </div>
+          </div>
+       
             <ToastContainer />
           </div>
-          
-          </div>
-          
-          
             )}
           
          
