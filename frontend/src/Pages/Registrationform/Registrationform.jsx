@@ -100,11 +100,11 @@ const PersonalForm = () => {
       });
   }, []);
   
-  const isValidAlphabets = (value) => /^[A-Za-z]+$/.test(value);
+  const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
   const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
   const isValidMark = (value) => /^\d{2}\.\d{1,2}$/.test(value);
-  const isValidName = (value) => /^[A-Za-z]+( [A-Za-z]+)*$/.test(value);
+  const isValidName = (value) => /^[A-Za-z]+( [A-Za-z\s]+)*$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^\d{10}$/.test(value);
   const isValidEmail = (value) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
@@ -135,7 +135,7 @@ const PersonalForm = () => {
       { field: formData.nationality, name: "Nationality" , validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.religion, name: "Religion", validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.community, name: "Community" },
-      { field: formData.caste, name: "CaisVte", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
+      { field: formData.caste, name: "Caste", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
       { field: formData.fathersName, name: "Father's Name" ,  validate: isValidName, errorMessage: "should contain only alphabets"},
       { field: formData.mothersName, name: "Mother's Name" , validate: isValidName, errorMessage: "should contain only alphabets" },
       { field: formData.parentsStatus, name: "Parents Status" },
@@ -187,12 +187,18 @@ const PersonalForm = () => {
       return false;
     }
 
+    if (formData.hosteller === "Yes" && (!formData.hostelType||formData.hostelType==='')) {
+      toast.error("Hostel Type is required");
+      return false;
+    }
+
     return true;
   };
 
   const validateEducationalInfo = () => {
     const requiredFields = [
-      { field: formData.sslc, name: "SSLC" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+      { field: formData.flowofstudy, name: "Flow of Study"},
+      { field: formData.sslc, name: "SSLC" ,validate: isValidMark , errorMessage: "should be a valid decimal upto two digits"},
       { field: formData.sslcFile, name: "SSLC File" },
       { field: formData.emisNumber, name: "EMIS Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.firstGraduate, name: "First Graduate" },
@@ -244,17 +250,17 @@ const PersonalForm = () => {
     const requiredFields = [
       { field: formData.programme, name: "Programme" },
       { field: formData.discipline, name: "Discipline" },
+      { field: formData.regulation, name: "Regulation" },
       { field: formData.academicYear, name: "Academic Year" },
       { field: formData.admissionNumber, name: "Admission Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
-      { field: formData.regulation, name: "Regulation" },
-      { field: formData.semester, name: "Semester" },
       { field: formData.abcId, name: "ABC Id", validate: isValidNumbers, errorMessage: "should contain only digits" },
+      { field: formData.courseType, name: "Course type" },
       { field: formData.umisId, name: "UMIS Id" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.dateOfAdmission, name: "Date of Admission" },
       { field: formData.courseJoinedDate, name: "Course Joined Date" },
-      { field: formData.courseType, name: "Course type" },
-      { field: formData.fastTrack, name: "FastTrack" },
+      { field: formData.semester, name: "Semester" },
       { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should contain only digits"},
+      { field: formData.fastTrack, name: "FastTrack" },
       { field: formData.studentStatus, name: "Student Status" }
     ];
 
@@ -576,10 +582,6 @@ const PersonalForm = () => {
 
 )}
 
-
-          
-             
-  
               
               {displaySection === "educational" && (
                 <div>
@@ -840,8 +842,7 @@ const PersonalForm = () => {
             <ToastContainer />
           </div>
             )}
-          
-         
+  
       </form>
       {showModal && <Modal student={formData} onClose={() => setShowModal(false)} />}
       </div>

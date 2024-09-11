@@ -1,5 +1,5 @@
-import React from 'react'
-import './Allfields.css'
+import React from 'react';
+import './Allfields.css';
 
 const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
   const handleChange = (e) => {
@@ -7,8 +7,9 @@ const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
     const updatedFormData = { ...formData, [name]: value };
     setFormData(updatedFormData);
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
-
   };
+
+  const inputValue = formData[inputname] ? formData[inputname].trim() : '';
 
   return (
     <div className="field">
@@ -16,9 +17,9 @@ const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
       <input
         type={fieldtype}
         name={inputname}
-        value={formData[inputname] || ''}
+        value={inputValue}
         onChange={handleChange}
-        placeholder={`Enter ${value }`}
+        placeholder={`Enter ${value}`}
       />
     </div>
   );
