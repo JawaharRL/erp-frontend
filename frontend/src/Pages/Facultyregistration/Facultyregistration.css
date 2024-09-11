@@ -3,23 +3,14 @@
     gap:20px;
     grid-row-gap: 35px;
     display: grid;
-    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(3,1fr);
 
 }
 
 
-.faculty_first_name,.faculty_last_name{
-    grid-column:span 6;
+.faculty_firstname,.faculty_lastname{
+    grid-column:span 1;
 }
-.faculty_discipline,.Mobile_Number{
-    grid-column:span 5;
-}
-.mailid{
-    grid-column:span 7;
-}
-.faculty_discipline,.handling_batch{
-    grid-column:span 6;
-}
-.handling_class{
-    grid-column:span 3;
+.faculty_discipline,.faculty_mobilenumber{
+    grid-column:span 1;
 }
