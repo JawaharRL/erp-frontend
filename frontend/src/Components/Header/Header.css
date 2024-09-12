@@ -14,6 +14,7 @@ header:hover{
 .clg-name{
     text-align: center;
     font-family: outfit,popins;
+    font-size: clamp(12px,3vw,16px);
     color: #002133;
     margin: auto;
 }

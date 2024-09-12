@@ -10,6 +10,9 @@
     cursor: pointer;
     /* padding: 0px 10px 0px 10px; */
 }
+.profile_display{
+    display: flex;
+}
 
 .bonafide_button{
     all: unset;
@@ -22,13 +25,13 @@
 }
 .profile-personal-display,.profile-bank-display,.profile-academic-display,.profile-communication-display,.profile-education-display{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 20px;
-    width: 80%;
+    width: 80vw;
     height: fit-content;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     border-radius: 26px;
-    padding: 50px;
+    padding: clamp(20px,5vw,50px);
     opacity: 0.8;
     background: rgba(0, 157, 255, 0.4);
     box-sizing: border-box;
@@ -40,25 +43,38 @@
     grid-template-columns: repeat(3,1fr);
     gap: 20px;
 }
+.profile-education-display{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
 .profile-communication-display,.profile-bank-display{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 20px;
 }
+
+.menu{
+    all: unset;
+}
+.profile_lables{
+    font-weight: bold;
+}
 #name{
     padding:0px 25px;
-border-radius: 6px;
-opacity: 1;
-background: rgba(255, 255, 255, 0.4);
-box-sizing: border-box;
-border: 1px solid rgba(255, 255, 255, 0.68);
-backdrop-filter: blur(5px);
+    border-radius: 6px;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.4);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(5px);
 }
-.profile-links{
-    width: fit-content;
+.profile-links,.profile-links-desktop{
+    width: 20%;
     height: 300px;
     padding: 26px;
     border-radius: 30px;
+
     margin-left: 10px;
     opacity: 0.8;
     background: rgba(0, 157, 255, 0.4);
@@ -66,17 +82,20 @@ backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.68);
     backdrop-filter: blur(5px);
 }
+.profile-links-desktop{
+    margin-top: 20px;
+}
 .field_bckground{
-width: 90%;
-text-align: center;
-margin-top: 5px;
-padding: 5px 40px ;
- border-radius: 6px;
-opacity: 1;
-background: rgba(255, 255, 255, 0.55);
-box-sizing: border-box;
-border: 1px solid rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(5px);
+    width: 90%;
+    text-align: center;
+    margin-top: 5px;
+    padding: 5px 40px ;
+    border-radius: 6px;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.55);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
 }
 .profile_profile_photo{
     margin: auto;
@@ -84,7 +103,6 @@ backdrop-filter: blur(5px);
     grid-area:  1/4/3/5 ;
 }
 #user_profile_photo{
-    
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -93,7 +111,6 @@ backdrop-filter: blur(5px);
     text-decoration: none;
     background-color: #fff;
     color: #000;
-    
     border-radius: 8px;
     padding: 5px 15px;
     width: fit-content;
@@ -108,9 +125,59 @@ backdrop-filter: blur(5px);
 .profile_communication_address,.profile_residential_address{
     grid-row: span 2;
 }
-/* .profile_gender,.profile_aadhar_number{
-    grid-row: 2;
-} */
-/* .profile_fathers_mobile_number,.profile_fathers_occupation,.profile_fathers_name{
-    grid-column: span 4;
-} */
+.menu{
+    margin: 10px 10px 0px 0px;
+    display: none;
+}
+.hi{
+    display: block;
+}
+
+@media (width<=425px) {
+
+    .profile-personal-display,.profile-communication-display,.profile-education-display,.profile-academic-display{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .profile-personal-display>*,.profile-communication-display>*,.profile-education-display>*,.profile-academic-display>*{
+        grid-column: span 3;
+        margin-left: clamp(10px,10vw,80px);
+    }
+    .profile_profile_photo{
+        margin: auto;
+        grid-area:  1/1/3/5 ;
+    }
+    .menu{
+        display: block;
+    }
+    .profile-personal-display,.profile-bank-display,.profile-academic-display,.profile-communication-display,.profile-education-display{
+      width: 100vw;
+    }
+    .hi{
+        position: absolute;
+        display: flex;
+        z-index: 2;
+    }
+    .profile{
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .profile-links,.profile-links-desktop{
+        float: right;
+        width: 100px;
+        height: 30px;
+        padding: 26px;
+        border-radius: 30px;
+        margin-left: 0px;
+        opacity: 1;
+        background: rgba(0, 157, 255, 0.4);
+        box-sizing: border-box;
+        border: 1px solid rgba(255, 255, 255, 0.68);
+        backdrop-filter: blur(100px);
+    }
+    .profile-links-desktop{
+
+        display: none;
+    }
+}
+
