@@ -81,13 +81,19 @@ function Facultyregistration() {
     <div>
       <form className="faculty_registration_form" onSubmit={handleSubmit}>
         <div className="faculty_registration_container">
+          <div className='faculty_firstname'>
           <Allfields fieldtype="text" value="First Name" inputname="firstName" req_flag={true} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className='faculty_lastname'>
           <Allfields fieldtype="text" value="Last Name" inputname="lastName" formData={formData} setFormData={setFormData} />
+          </div>
+          <div className='faculty_mobilenumber'>
           <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber" req_flag={true} formData={formData} setFormData={setFormData} />
+          </div>
           
           <div className="faculty_discipline">
             <label htmlFor="discipline">Discipline</label>
-            <select name="discipline" className='discipline-dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
+            <select name="discipline" className='dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
               <option>Select</option>
               <option value="Civil Engineering">Civil Engineering</option>
               <option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -108,7 +114,7 @@ function Facultyregistration() {
           {fields.map((field, index) => (
             <div className="handling_class" key={index}>
               <label>Handling Discipline</label>
-              <select className='discipline-dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
+              <select className='dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
                 <option >Select</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -126,21 +132,16 @@ function Facultyregistration() {
               <label>Handling Academic Year</label>
               <input type="text" value={field.academicYear} onChange={(event) => handleAcademicYearChange(index, event)} placeholder={`Enter academic year for field ${index + 1}`} />
               
-              {fields.length > 1 && (
-                <button type="button" onClick={() => handleRemoveField(index)}>
-                  Remove
-                </button>
+              {fields.length > 1 && (              
+                <Allbuttons value="Remove" image={Nextwhite} target={() => handleRemoveField(index)} type="button" />
               )}
             </div>
           ))}
-          
-          {fields.length < maxFields && (
-            <button type="button" onClick={handleAddField}>
-              Add Field
-            </button>
-          )}
+                    
         </div>
-        
+        {fields.length < maxFields && (
+            <Allbuttons value="Add Field" image={Nextwhite} target={handleAddField} type="button" />
+          )}
         <Allbuttons value="submit" image={Nextwhite} />
       </form>
     </div>

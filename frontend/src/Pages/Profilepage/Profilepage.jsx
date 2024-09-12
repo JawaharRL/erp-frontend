@@ -479,11 +479,11 @@ function StudentDisplay() {
               <p>Discipline</p>
               <p className="field_bckground">{studentWithFiles.discipline}</p>
             </div>
-            <div className="profile_academic_year">
-              <p>Academic Year</p>
+            <div className="profile_batch">
+              <p>Course Completion Year</p>
               <p className="field_bckground">
                 {" "}
-                {studentWithFiles.academicYear}
+                {studentWithFiles.batch}
               </p>
             </div>
             <div className="profile_semester">
