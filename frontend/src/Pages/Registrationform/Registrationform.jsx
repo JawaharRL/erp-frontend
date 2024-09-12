@@ -103,7 +103,7 @@ const PersonalForm = () => {
   const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
   const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
-  const isValidMark = (value) => /^\d{2}\.\d{1,2}$/.test(value);
+  const isValidMark = (value) => /^(5[0-9]|[6-9][0-9]|[1-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
   const isValidName = (value) => /^[A-Za-z]+( [A-Za-z\s]+)*$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^\d{10}$/.test(value);

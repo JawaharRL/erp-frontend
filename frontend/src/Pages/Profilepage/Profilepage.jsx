@@ -121,19 +121,28 @@ function StudentDisplay() {
   const diplomaMimeType = studentWithFiles.diplomaFileContent
     ? getMimeType(studentWithFiles.diplomaFileContent)
     : "";
+  const firstGraduateFileMimeType = studentWithFiles.firstGraduateFileContent
+    ? getMimeType(studentWithFiles.firstGraduateFileContent)
+    : "";
+  const specialCategoryFileMimeType = studentWithFiles.specialCategoryFileContent
+    ? getMimeType(studentWithFiles.specialCategoryFileContent)
+    : "";
 
   const passbookExtension = getExtension(passbookMimeType);
+  const communityCertificateExtension = getExtension(passbookMimeType);
   const sslcExtension = getExtension(sslcMimeType);
   const hsc1Extension = getExtension(hsc1MimeType);
   const hsc2Extension = getExtension(hsc2MimeType);
   const diplomaExtension = getExtension(diplomaMimeType);
+  const firstGraduateFileExtension = getExtension(firstGraduateFileMimeType);
+  const specialCategoryFileExtension = getExtension(specialCategoryFileMimeType);
 
   return (
     <div>
       <Header />
       <div className="nav">
      
-        <button className="bonafide_button" onClick={handleBonafideClick}>Bonafide</button>
+        {/* <button className="bonafide_button" onClick={handleBonafideClick}>Bonafide</button> */}
         <button className="menu" onClick={handleMenuClick}>
           <img src={Menu} alt="" />
         </button>
@@ -257,6 +266,10 @@ function StudentDisplay() {
                 {studentWithFiles.aadharNumber}
               </p>
             </div>
+            <div className="profile_gender">
+              <p className="profile_lables">Blood Group</p>
+              <p className="field_bckground">{studentWithFiles.bloodGroup}</p>
+            </div>
             <div className="profile_nationality">
               <p className="profile_lables">Nationality</p>
               <p className="field_bckground"> {studentWithFiles.nationality}</p>
@@ -268,17 +281,6 @@ function StudentDisplay() {
             <div className="profile_community">
               <p className="profile_lables">Community</p>
               <p className="field_bckground"> {studentWithFiles.community}</p>
-            </div>
-            <div className="file_download">
-              {communityCertificateMimeType && studentWithFiles.communityCertificate && (
-                <a
-                  className="marksheet_download_links"
-                  href={`data:${communityCertificateMimeType};base64,${studentWithFiles.communityCertificate}`}
-                  download={`passbook.${passbookExtension}`}
-                >
-                  Download Community Certificate
-                </a>
-              )}
             </div>
             <div className="profile_caste">
               <p className="profile_lables">Caste</p>
@@ -364,6 +366,18 @@ function StudentDisplay() {
                 {" "}
                 {studentWithFiles.maritalStatus}
               </p>
+            </div>
+
+            <div className="file_download community_certifibate_download">
+              {communityCertificateMimeType && studentWithFiles.communityCertificateContent && (
+                <a
+                  className="marksheet_download_links"
+                  href={`data:${communityCertificateMimeType};base64,${studentWithFiles.communityCertificateContent}`}
+                  download={`communityCertificate.${communityCertificateExtension}`}
+                >
+                  Download Community Certificate
+                </a>
+              )}
             </div>
           </div>
         )}
@@ -516,6 +530,28 @@ function StudentDisplay() {
                 {studentWithFiles.specialCategory}
               </p>
             </div>
+            <div className="file_download">
+                {firstGraduateFileMimeType && studentWithFiles.firstGraduateFileContent && (
+                  <a
+                    className="marksheet_download_links"
+                    href={`data:${firstGraduateFileMimeType};base64,${studentWithFiles.firstGraduateFileContent}`}
+                    download={`sslcfile.${firstGraduateFileExtension}`}
+                  >
+                    Download First Graduate File
+                  </a>
+                )}
+              </div>
+            <div className="file_download">
+                {specialCategoryFileMimeType && studentWithFiles.specialCategoryFileContent && (
+                  <a
+                    className="marksheet_download_links"
+                    href={`data:${specialCategoryFileMimeType};base64,${studentWithFiles.specialCategoryFileContent}`}
+                    download={`sslcfile.${specialCategoryFileExtension}`}
+                  >
+                    Download Special Category File
+                  </a>
+                )}
+              </div>
           </div>
         )}
 
@@ -534,13 +570,8 @@ function StudentDisplay() {
               <p className="profile_lables">Discipline</p>
               <p className="field_bckground">{studentWithFiles.discipline}</p>
             </div>
-<<<<<<< HEAD
-            <div className="profile_academic_year">
-              <p className="profile_lables">Course Completion Year</p>
-=======
             <div className="profile_batch">
-              <p>Course Completion Year</p>
->>>>>>> 59e1834a8a824e88689a834ead081cd365c41965
+              <p className="profile_lables">Course Completion Year</p>
               <p className="field_bckground">
                 {" "}
                 {studentWithFiles.batch}

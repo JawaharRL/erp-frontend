@@ -13,7 +13,9 @@
 .profile_display{
     display: flex;
 }
-
+.community_certifibate_download{
+    grid-column: span 2;
+}
 .bonafide_button{
     all: unset;
     margin-right: 26px;
@@ -119,6 +121,9 @@
     margin-top: 20px;
 }
 .profile_name,.profile_aadhar_number,.profile_communication_address,.profile_residential_address,.profile_email_id,.profile_mobile_number,.profile_account_number,.profile_branch_name,.profile_ifsc_code,.profile_bank_name{
+    grid-column: span 2;
+}
+.profile_discipline{
     grid-column: span 2;
 }
 
