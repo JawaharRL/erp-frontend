@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": " https://c473-2401-4900-4835-a95e-a8dd-d7ff-e369-30b.ngrok-free.app",
+  "proxy": "  https://8f4b-2409-408d-3e83-684-4962-1ec1-33d3-da49.ngrok-free.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
