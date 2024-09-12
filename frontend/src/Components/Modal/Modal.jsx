@@ -409,9 +409,9 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>Academic Year:</strong>
+                          <strong>Course Completion Year:</strong>
                         </td>
-                        <td>{student.academicYear}</td>
+                        <td>{student.batch}</td>
                       </tr>
                       <tr>
                         <td>

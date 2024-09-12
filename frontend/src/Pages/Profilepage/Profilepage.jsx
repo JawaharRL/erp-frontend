@@ -534,8 +534,13 @@ function StudentDisplay() {
               <p className="profile_lables">Discipline</p>
               <p className="field_bckground">{studentWithFiles.discipline}</p>
             </div>
+<<<<<<< HEAD
             <div className="profile_academic_year">
               <p className="profile_lables">Course Completion Year</p>
+=======
+            <div className="profile_batch">
+              <p>Course Completion Year</p>
+>>>>>>> 59e1834a8a824e88689a834ead081cd365c41965
               <p className="field_bckground">
                 {" "}
                 {studentWithFiles.batch}
