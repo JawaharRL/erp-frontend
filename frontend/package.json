@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://JawaharRL.github.io/erp-frontend",
+  "homepage": "https://JawaharRL.github.io/erp-frontend/frontend",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://Localhost:8080",
