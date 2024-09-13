@@ -66,27 +66,27 @@ function StudentDisplay() {
     }
     return "";
   };
-
   useEffect(() => {
     const fetchStudentWithFiles = async () => {
-      try {
-        const studentId = location.state.userId; 
-        console.log(studentId);
-        const response = await axios.get(
-          `/api/student/${studentId}`
-        );
-        console.log(response);
-        setStudentWithFiles(response.data);
-        setLoading(false); 
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error);
-        setLoading(false);
-      }
+        try {
+            const studentId = location.state.userId; 
+            console.log("Fetching data for Student ID:", studentId);
+            
+            const response = await axios.get(
+                `/api/student/${studentId}`
+            );
+            console.log("Response data:", response.data);
+            setStudentWithFiles(response.data);
+            setLoading(false); 
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            setError(error);
+            setLoading(false);
+        }
     };
 
     fetchStudentWithFiles();
-  }, [location.state.userId]);
+}, [location.state.userId]);
 
   const handleSectionClick = (section) => {
     setDisplaySection(section);
