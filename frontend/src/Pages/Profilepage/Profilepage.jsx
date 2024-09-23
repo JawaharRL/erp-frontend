@@ -5,7 +5,6 @@ import { useLocation,useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 import Allbuttons from "../../Components/Allbuttons/Allbuttons.jsx";
-import Profileicon from "../../Assets/profile.svg";
 import Logout from '../../Assets/logout.svg';
 import Menu from '../../Assets/menu.svg';
 
@@ -25,9 +24,7 @@ function StudentDisplay() {
   const handleLogoutClick = () => {
     navigate('/login-page');
   };
-  const handleBonafideClick = () => {
-    navigate('/bonafide-page');
-  };
+  
   const handleMenuClick = () => {
     setIsVisible(!isVisible);
   };
@@ -136,7 +133,7 @@ function StudentDisplay() {
   const diplomaExtension = getExtension(diplomaMimeType);
   const firstGraduateFileExtension = getExtension(firstGraduateFileMimeType);
   const specialCategoryFileExtension = getExtension(specialCategoryFileMimeType);
-
+  console.log(profilePhotoMimeType)
   return (
     <div>
       <Header />
