@@ -4,6 +4,7 @@ import Nextwhite from '../../Assets/Nextwhite.svg';
 import Previouswhite from '../../Assets/Previouswhite.svg'; 
 import Upload from '../../Assets/upload.svg'; 
 import Formtitle from '../../Components/Formtitle/Formtitle'; 
+import FileUpload from '../../Components/Fileupload/Fileupload';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 import Allfields from '../../Components/Allfields/Allfields'; 
 // import Fileupload from '../../Components/Fileupload/Fileupload'; 
@@ -66,7 +67,7 @@ const PersonalForm = () => {
         firstGraduate: null, 
         specialCategory: null,
         specialCategoryFile:null,
-        registerNo : null, 
+        registerNo : location.state.userId, 
         programme: null, 
         discipline: null, 
         batch: null, 
@@ -103,7 +104,7 @@ const PersonalForm = () => {
   const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
   const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
-  const isValidMark = (value) => /^\d{2}\.\d{1,2}$/.test(value);
+  const isValidMark = (value) => /^(5[0-9]|[6-9][0-9]|[1-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
   const isValidName = (value) => /^[A-Za-z]+( [A-Za-z\s]+)*$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^\d{10}$/.test(value);
@@ -279,7 +280,7 @@ const PersonalForm = () => {
       { field: formData.programme, name: "Programme" },
       { field: formData.discipline, name: "Discipline" },
       { field: formData.regulation, name: "Regulation" },
-      { field: formData.batch, name: "Academic Year" },
+      { field: formData.batch, name: "Course Completion Year" },
       { field: formData.admissionNumber, name: "Admission Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.abcId, name: "ABC Id", validate: isValidNumbers, errorMessage: "should contain only digits" },
       { field: formData.courseType, name: "Course type" },
@@ -287,7 +288,7 @@ const PersonalForm = () => {
       { field: formData.dateOfAdmission, name: "Date of Admission" },
       { field: formData.courseJoinedDate, name: "Course Joined Date" },
       { field: formData.semester, name: "Semester" },
-      { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should contain only digits"},
+      { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should be a valid decimal upto two digits"},
       { field: formData.fastTrack, name: "FastTrack" },
       { field: formData.studentStatus, name: "Student Status" }
     ];
@@ -392,6 +393,7 @@ const PersonalForm = () => {
                  <option value="B+" >B+</option>
                  <option value="B-" >B-</option>
                  <option value="AB+" >AB+</option>
+                 <option value="A1B+" >A1B+</option>
                  <option value="AB-" >AB-</option>
                  <option value="O+" >O+</option>
                  <option value="O-" >O-</option>
@@ -509,15 +511,18 @@ const PersonalForm = () => {
                   </label>
                   {fileNames['communityCertificate'] && <p className="uploaded_file_name">{fileNames['communityCertificate']} Uploaded</p>}
              </div>
-               <div className="profile-photo">
-                  <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} />
+             <div className="profile-photo">
+             <FileUpload input_name={"profilePhoto"} onFileSelect={handleFileChange('profilePhoto')} formData={formData} setFormData={setFormData} />
+             </div>
+               {/* <div className="profile-photo">
+                  <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} accept="image/*" />
                   <p className="marksheet_label">Profile Photo</p>
                   <label htmlFor="profilePhoto" className="File-upload-button" style={{ justifyContent: 'center' }} >
                     <img className='icon' src={Upload} alt='' />
                     <p>Upload</p>
                   </label>
                   {fileNames['profilePhoto'] && <p className="uploaded_file_name">{fileNames['profilePhoto']} Uploaded</p>}
-             </div>
+             </div> */}
               
 
            
