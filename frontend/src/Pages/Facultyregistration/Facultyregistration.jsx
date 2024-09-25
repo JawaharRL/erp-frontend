@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import './Facultyregistration.css';
 import { Allfields, Allbuttons } from '../../Components';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Formtitle from '../../Components/Formtitle/Formtitle'; 
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Nextwhite from '../../Assets/Nextwhite.svg';
+import Add from '../../Assets/add.svg';
+import Remove from '../../Assets/remove.svg';
 
 function Facultyregistration() {
   const navigate = useNavigate();
@@ -80,14 +83,26 @@ function Facultyregistration() {
   return (
     <div>
       <form className="faculty_registration_form" onSubmit={handleSubmit}>
+      <Formtitle/>
         <div className="faculty_registration_container">
+          <div className='faculty_firstname'>
           <Allfields fieldtype="text" value="First Name" inputname="firstName" req_flag={true} formData={formData} setFormData={setFormData} />
+          </div>
+          <div className='faculty_lastname'>
           <Allfields fieldtype="text" value="Last Name" inputname="lastName" formData={formData} setFormData={setFormData} />
+          </div>
+          <div className='faculty_mobilenumber'>
+          <label htmlFor="email">Email</label>
+          <input type='email' value={formData.email} disabled/>
+          
+          </div>
+          <div className='faculty_mobilenumber'>
           <Allfields fieldtype="text" value="Mobile Number" inputname="mobileNumber" req_flag={true} formData={formData} setFormData={setFormData} />
+          </div>
           
           <div className="faculty_discipline">
             <label htmlFor="discipline">Discipline</label>
-            <select name="discipline" className='discipline-dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
+            <select name="discipline" className='dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
               <option>Select</option>
               <option value="Civil Engineering">Civil Engineering</option>
               <option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -108,7 +123,7 @@ function Facultyregistration() {
           {fields.map((field, index) => (
             <div className="handling_class" key={index}>
               <label>Handling Discipline</label>
-              <select className='discipline-dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
+              <select className='dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
                 <option >Select</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -123,25 +138,24 @@ function Facultyregistration() {
                 <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
               </select>
               
+              <div id='hi'>
               <label>Handling Academic Year</label>
               <input type="text" value={field.academicYear} onChange={(event) => handleAcademicYearChange(index, event)} placeholder={`Enter academic year for field ${index + 1}`} />
+              </div>
               
-              {fields.length > 1 && (
-                <button type="button" onClick={() => handleRemoveField(index)}>
-                  Remove
-                </button>
+              {fields.length > 1 && (              
+                <Allbuttons value="Remove" image={Remove} target={() => handleRemoveField(index)} type="button" />
               )}
             </div>
           ))}
-          
-          {fields.length < maxFields && (
-            <button type="button" onClick={handleAddField}>
-              Add Field
-            </button>
-          )}
+                    
         </div>
-        
-        <Allbuttons value="submit" image={Nextwhite} />
+        {fields.length < maxFields && (
+            <Allbuttons value="Add Class" image={Add} target={handleAddField} type="button" />
+          )}
+      
+       <Allbuttons value="submit" image={Nextwhite} />
+    
       </form>
     </div>
   );

@@ -4,6 +4,7 @@ import Nextwhite from '../../Assets/Nextwhite.svg';
 import Previouswhite from '../../Assets/Previouswhite.svg'; 
 import Upload from '../../Assets/upload.svg'; 
 import Formtitle from '../../Components/Formtitle/Formtitle'; 
+import FileUpload from '../../Components/Fileupload/Fileupload';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons'; 
 import Allfields from '../../Components/Allfields/Allfields'; 
 // import Fileupload from '../../Components/Fileupload/Fileupload'; 
@@ -66,10 +67,10 @@ const PersonalForm = () => {
         firstGraduate: null, 
         specialCategory: null,
         specialCategoryFile:null,
-        registerNo : null, 
+        registerNo : location.state.userId, 
         programme: null, 
         discipline: null, 
-        academicYear: null, 
+        batch: null, 
         admissionNumber: null, 
         regulation: null, 
         semester: null, 
@@ -103,7 +104,7 @@ const PersonalForm = () => {
   const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
   const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
-  const isValidMark = (value) => /^\d{2}\.\d{1,2}$/.test(value);
+  const isValidMark = (value) => /^(5[0-9]|[6-9][0-9]|[1-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
   const isValidName = (value) => /^[A-Za-z]+( [A-Za-z\s]+)*$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^\d{10}$/.test(value);
@@ -149,19 +150,47 @@ const PersonalForm = () => {
       return false;
     }
 
-    const optionalFields = [
+
+    const father = [
       { field: formData.fathersOccupation, name: "Father's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
-      { field: formData.fathersMobileNumber, name: "Father's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" },
+      { field: formData.fathersMobileNumber, name: "Father's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" }
+    ];
+
+    const mother = [
+      
       { field: formData.mothersOccupation, name: "Mother's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
-      { field: formData.mothersMobileNumber, name: "Mother's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" },
+      { field: formData.mothersMobileNumber, name: "Mother's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" }
+    ];
+
+    const guardian = [
       { field: formData.guardiansName, name: "Guardian's Name", validate: isValidName, errorMessage: "should contain only alphabets or be null" },
       { field: formData.guardiansOccupation, name: "Guardian's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
       { field: formData.guardiansMobileNumber, name: "Guardian's Mobile Number", validate: isValidMobileNumber, errorMessage: "should contain only 10 digits or be null" }
     ];
 
-    for (let { field, name, validate, errorMessage } of optionalFields) {
-      if (field !== null && field !== '' && !validate(field)) {
-        toast.error(`${name} ${errorMessage}.`);
+    if (formData.parentsStatus==="Both are alive"){
+      if (!validateFields(father)){
+        return false;
+      }
+      if (!validateFields(mother)) {
+        return false;
+      }
+    }
+
+    if (formData.parentsStatus==="Father alive"){
+      if (!validateFields(father)) {
+        return false;
+      }
+    }
+
+    if (formData.parentsStatus==="Mother alive"){
+      if (!validateFields(mother)) {
+        return false;
+      }
+    }
+
+    if (formData.parentsStatus==="Both are not alive"){
+      if (!validateFields(guardian)) {
         return false;
       }
     }
@@ -251,7 +280,7 @@ const PersonalForm = () => {
       { field: formData.programme, name: "Programme" },
       { field: formData.discipline, name: "Discipline" },
       { field: formData.regulation, name: "Regulation" },
-      { field: formData.academicYear, name: "Academic Year" },
+      { field: formData.batch, name: "Course Completion Year" },
       { field: formData.admissionNumber, name: "Admission Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.abcId, name: "ABC Id", validate: isValidNumbers, errorMessage: "should contain only digits" },
       { field: formData.courseType, name: "Course type" },
@@ -259,7 +288,7 @@ const PersonalForm = () => {
       { field: formData.dateOfAdmission, name: "Date of Admission" },
       { field: formData.courseJoinedDate, name: "Course Joined Date" },
       { field: formData.semester, name: "Semester" },
-      { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should contain only digits"},
+      { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should be a valid decimal upto two digits"},
       { field: formData.fastTrack, name: "FastTrack" },
       { field: formData.studentStatus, name: "Student Status" }
     ];
@@ -364,6 +393,7 @@ const PersonalForm = () => {
                  <option value="B+" >B+</option>
                  <option value="B-" >B-</option>
                  <option value="AB+" >AB+</option>
+                 <option value="A1B+" >A1B+</option>
                  <option value="AB-" >AB-</option>
                  <option value="O+" >O+</option>
                  <option value="O-" >O-</option>
@@ -397,7 +427,7 @@ const PersonalForm = () => {
 
             
              <div className="income">
-               <Allfields fieldtype="text" value="Income" inputname="income"  formData={formData} setFormData={setFormData} />
+               <Allfields fieldtype="text" value="Parent / Guardian Income" inputname="income"  formData={formData} setFormData={setFormData} />
              </div>
   
              <div className="parents_status">
@@ -415,37 +445,51 @@ const PersonalForm = () => {
                <Allfields fieldtype="text" value="Father's Name" inputname="fathersName" formData={formData} setFormData={setFormData}/>
              </div>
   
-             <div className="fathers_occupation">
+             {(formData.parentsStatus === "Both are alive" ||formData.parentsStatus === "Father alive" ) && (
+        <>
+        <div className="fathers_occupation">
                <Allfields fieldtype="text" value="Father's Occupation" inputname="fathersOccupation"  formData={formData} setFormData={setFormData}/>
              </div>
   
              <div className="fathers_mobile_number">
                <Allfields fieldtype="text" value="Father's Mobile Number" inputname="fathersMobileNumber"   formData={formData} setFormData={setFormData} />
              </div>
+        </>
+      )}
   
              <div className="mothers_name">
                <Allfields fieldtype="text" value="Mother's Name" inputname="mothersName" formData={formData} setFormData={setFormData} />
              </div>
-  
-             <div className="mothers_occupation">
+
+             {(formData.parentsStatus === "Both are alive" ||formData.parentsStatus === "Mother alive" ) && (
+        <>
+        <div className="mothers_occupation">
                <Allfields fieldtype="text" value="Mother's Occupation" inputname="mothersOccupation" formData={formData} setFormData={setFormData}/>
              </div>
   
              <div className="mothers_mobile_number">
                <Allfields fieldtype="text" value="Mother's Mobile Number" inputname="mothersMobileNumber"   formData={formData} setFormData={setFormData}/>
              </div>
+        </>
+      )}
   
-             <div className="guardians_name">
-               <Allfields fieldtype="text" value="Guardian Name" inputname="guardiansName"  formData={formData} setFormData={setFormData}/>
-             </div>
-  
-             <div className="guardians_occupation">
-               <Allfields fieldtype="text" value="Guardian Occupation" inputname="guardiansOccupation"   formData={formData} setFormData={setFormData} />
-             </div>
-  
-             <div className=" guardians_mobile_number">
-               <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardiansMobileNumber"   formData={formData} setFormData={setFormData}/>
-             </div>
+             {formData.parentsStatus === "Both are not alive" && (
+        <>
+          <div className="guardians_name">
+            <Allfields  fieldtype="text"  value="Guardian Name"  inputname="guardiansName"  formData={formData}  setFormData={setFormData}/>
+          </div>
+
+          <div className="guardians_occupation">
+            <Allfields  fieldtype="text"  value="Guardian Occupation"  inputname="guardiansOccupation"  formData={formData}  setFormData={setFormData}  />
+          </div>
+
+          <div className="guardians_mobile_number">
+            <Allfields fieldtype="text" value="Guardian Mobile Number" inputname="guardiansMobileNumber" formData={formData} setFormData={setFormData} />
+          </div>
+        </>
+      )}
+
+             
              <div className="marital_status">
                <label htmlFor="MaritalStatus">Marital Status</label>
                <select className="dropdown" name='maritalStatus'value={formData.maritalStatus || ''}  onChange={handleOtherField} >
@@ -467,15 +511,18 @@ const PersonalForm = () => {
                   </label>
                   {fileNames['communityCertificate'] && <p className="uploaded_file_name">{fileNames['communityCertificate']} Uploaded</p>}
              </div>
-               <div className="profile-photo">
-                  <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} />
+             <div className="profile-photo">
+             <FileUpload input_name={"profilePhoto"} onFileSelect={handleFileChange('profilePhoto')} formData={formData} setFormData={setFormData} />
+             </div>
+               {/* <div className="profile-photo">
+                  <input type="file" id="profilePhoto" name="profilePhoto" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('profilePhoto')} accept="image/*" />
                   <p className="marksheet_label">Profile Photo</p>
                   <label htmlFor="profilePhoto" className="File-upload-button" style={{ justifyContent: 'center' }} >
                     <img className='icon' src={Upload} alt='' />
                     <p>Upload</p>
                   </label>
                   {fileNames['profilePhoto'] && <p className="uploaded_file_name">{fileNames['profilePhoto']} Uploaded</p>}
-             </div>
+             </div> */}
               
 
            
@@ -762,8 +809,8 @@ const PersonalForm = () => {
                  <option value="2022" >2022</option>
                </select>
              </div>
-            <div className="academic_year">
-              <Allfields fieldtype="text" value="Academic Year" inputname="academicYear"  formData={formData} setFormData={setFormData} />
+            <div className="batch">
+              <Allfields fieldtype="text" value="Course Completion Year" inputname="batch"  formData={formData} setFormData={setFormData} />
             </div>
             <div className="admission_no">
               <Allfields fieldtype="text" value="Admission Number" inputname="admissionNumber"  formData={formData} setFormData={setFormData} />

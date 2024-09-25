@@ -9,7 +9,7 @@ const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
   };
 
-  const inputValue = formData[inputname] ? formData[inputname].trim() : '';
+  const inputValue = formData[inputname] || '';
 
   return (
     <div className="field">
