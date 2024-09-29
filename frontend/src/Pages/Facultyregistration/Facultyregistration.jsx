@@ -103,7 +103,7 @@ function Facultyregistration() {
           <div className="faculty_discipline">
             <label htmlFor="discipline">Discipline</label>
             <select name="discipline" className='dropdown' value={formData.discipline || ''} onChange={handleOtherField}>
-              <option>Select</option>
+              <option value=''>Select</option>
               <option value="Civil Engineering">Civil Engineering</option>
               <option value="Mechanical Engineering">Mechanical Engineering</option>
               <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
@@ -124,7 +124,7 @@ function Facultyregistration() {
             <div className="handling_class" key={index}>
               <label>Handling Discipline</label>
               <select className='dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
-                <option >Select</option>
+                <option value=''>Select</option>
                 <option value="Civil Engineering">Civil Engineering</option>
                 <option value="Mechanical Engineering">Mechanical Engineering</option>
                 <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>

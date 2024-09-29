@@ -4,12 +4,13 @@ import './Allfields.css';
 const Allfields = ({ fieldtype, value, inputname, formData, setFormData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedFormData = { ...formData, [name]: value };
+    const updatedValue = value.replace(/^\s+/, '');
+    const updatedFormData = { ...formData, [name]: updatedValue };
     setFormData(updatedFormData);
     localStorage.setItem('formData', JSON.stringify(updatedFormData));
   };
 
-  const inputValue = formData[inputname] || '';
+  const inputValue = formData[inputname] ? formData[inputname] : '';
 
   return (
     <div className="field">
