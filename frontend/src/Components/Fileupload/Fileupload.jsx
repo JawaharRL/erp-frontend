@@ -14,7 +14,7 @@ function Fileupload({ input_name , onFileSelect, formData}) {
           <img className="photo_preview" src={Profile} alt="Default Profile" />
         )}
       </div>
-      <input type="file" id="file-input" name={input_name} onChange={onFileSelect} style={{ display: 'none' }} />
+      <input type="file" id="file-input" name={input_name} onChange={onFileSelect} style={{ display: 'none' }} accept="image/*" />
       <div>
         <label htmlFor="file-input" className="upload-button">
           <img className='icon' src={Upload} alt="Upload Icon" />

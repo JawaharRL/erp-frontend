@@ -483,7 +483,7 @@ const Modal = ({ student, onClose }) => {
               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("education")}/>
               <Allbuttons  value="Submit" image={Nextwhite} target={onSubmit}/>
               </div>
-                </div>
+              </div>
                 
               )}
             </div>
