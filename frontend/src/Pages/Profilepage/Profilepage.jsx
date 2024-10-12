@@ -607,10 +607,6 @@ function StudentDisplay() {
               <p className="profile_lables">Regulation</p>
               <p className="field_bckground"> {studentWithFiles.regulation}</p>
             </div>
-            <div className="profile_fast_track">
-              <p className="profile_lables">Fast Track</p>
-              <p className="field_bckground"> {studentWithFiles.fastTrack}</p>
-            </div>
             <div className="profile_cgpa">
               <p className="profile_lables">CGPA</p>
               <p className="field_bckground"> {studentWithFiles.cgpa}</p>
