@@ -20,7 +20,7 @@ function Headofthedepartmentdashboard() {
     const fetchHeadofthedepartment = async () => {
       try {
         const { userId } = location.state || {};
-        const response = await axios.get(`http://localhost:8080/api/faculty/hod/student/${userId}`);
+        const response = await axios.get(`/api/faculty/hod/student/${userId}`);
         setHeadofthedepartment(response.data);
       } catch (error) {
         console.error('Error fetching faculty:', error);

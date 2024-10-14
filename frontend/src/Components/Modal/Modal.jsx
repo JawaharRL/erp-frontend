@@ -32,7 +32,7 @@ const Modal = ({ student, onClose }) => {
     const onSubmit = async () => {
      
       try { 
-          const response = await axios.post('http://localhost:8080/api/student', student, { 
+          const response = await axios.post('/api/student', student, { 
               headers: { 'Content-Type': 'multipart/form-data' } 
           }); 
           console.log('Form submitted successfully:', response.data); 
@@ -43,7 +43,7 @@ const Modal = ({ student, onClose }) => {
       } catch (error) {
   
         console.error('Error submitting form:', error);
-        toast('Something went wrong');
+        toast.error('Something went wrong');
         console.log(error);
   
       }
@@ -69,7 +69,7 @@ const Modal = ({ student, onClose }) => {
                 </li>
                 <li
                   className="profile_links"
-                  style={getLinkStyle("communication")}
+                  style={getLinkStyle("communication_bank")}
                   //onClick={() => handleSectionClick("communication")}
                 >
                   Communication & Bank Details
@@ -184,7 +184,7 @@ const Modal = ({ student, onClose }) => {
                         <td>
                           <strong>Father's Occupation:</strong>
                         </td>
-                        <td>{student.fathersMobileNumber}</td>
+                        <td>{student.fathersOccupation}</td>
                       </tr>
                       )}
                       {student.fathersMobileNumber &&(
@@ -249,7 +249,7 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                     </tbody>
                   </table>
-                  <div  id="navigate_button_next_personal" >
+                  <div className='registration_form_buttons' id="navigate_button_next_personal" >
                        <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("communication_bank")}/>
                 </div>
                 </div>
@@ -322,8 +322,10 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                     </tbody>
                   </table>
+                  <div className='registration_form_buttons' id="navigate_button_next_personal" >
                <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("personal")}/>
                <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("education")}/>
+                </div>
                 </div>
               )}
               
@@ -363,15 +365,15 @@ const Modal = ({ student, onClose }) => {
                       )}
                       <tr>
                         <td>
-                          <strong>EMIS Number:</strong>
+                          <strong>First Graduate:</strong>
                         </td>
-                        <td>{student.emisNumber}</td>
+                        <td>{student.firstGraduate}</td>
                       </tr>
                       <tr>
                         <td>
-                          <strong>Fast Track:</strong>
+                          <strong>EMIS Number:</strong>
                         </td>
-                        <td>{student.fastTrack}</td>
+                        <td>{student.emisNumber}</td>
                       </tr>
                       <tr>
                         <td>
@@ -381,8 +383,10 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                     </tbody>
                   </table>
+                  <div className='registration_form_buttons' id="navigate_button_next_personal" >
               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("communication_bank")}/>
               <Allbuttons  value="Next" image={Nextwhite} target={() => handleSectionClick("academic")}/>
+                </div>
                 </div>
               )}
               {activeSection === "academic" && (
@@ -409,9 +413,9 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>Academic Year:</strong>
+                          <strong>Course Completion Year:</strong>
                         </td>
-                        <td>{student.academicYear}</td>
+                        <td>{student.batch}</td>
                       </tr>
                       <tr>
                         <td>
@@ -457,12 +461,6 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>First Graduate:</strong>
-                        </td>
-                        <td>{student.firstGraduate}</td>
-                      </tr>
-                      <tr>
-                        <td>
                           <strong>CGPA:</strong>
                         </td>
                         <td>{student.cgpa}</td>
@@ -475,10 +473,11 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                     </tbody>
                   </table>
-                  
+                  <div className='registration_form_buttons' id="navigate_button_next_personal" >
               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("education")}/>
               <Allbuttons  value="Submit" image={Nextwhite} target={onSubmit}/>
-                </div>
+              </div>
+              </div>
                 
               )}
             </div>

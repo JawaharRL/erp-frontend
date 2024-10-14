@@ -23,7 +23,7 @@ function Facultydashboard() {
   useEffect(() => {
     const fetchFaculty = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/faculty/${facultyId}`);
+        const response = await axios.get(`/api/faculty/${facultyId}`);
         console.log('Response data:', response.data);
         setFaculty(response.data);
       } catch (error) {
@@ -46,7 +46,7 @@ function Facultydashboard() {
         batchYear: batchYear,
       });
 
-      const response = await axios.get(`http://localhost:8080/api/faculty/filter?${queryParams.toString()}`);
+      const response = await axios.get(`/api/faculty/filter?${queryParams.toString()}`);
       setFaculty(response.data);
       console.log('Response data:', response.data);
     } catch (error) {
