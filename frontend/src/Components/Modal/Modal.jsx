@@ -467,12 +467,6 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>Fast Track:</strong>
-                        </td>
-                        <td>{student.fastTrack}</td>
-                      </tr>
-                      <tr>
-                        <td>
                           <strong>Student Status:</strong>
                         </td>
                         <td>{student.studentStatus}</td>

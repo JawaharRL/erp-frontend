@@ -76,8 +76,7 @@ const PersonalForm = () => {
         abcId: null, 
         dateOfAdmission: null, 
         courseJoinedDate: null, 
-        courseType: null, 
-        fastTrack: null, 
+        courseType: null,
         cgpa: null, 
         studentStatus: null,
         firstGraduateFile: null 
@@ -103,7 +102,7 @@ const PersonalForm = () => {
   const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
   const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
-  const isValidMark = (value) => /^(5[0-9]|[6-9][0-9]|[1-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
+  const isValidMark = (value) => /^([3-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^[6-9]\d{9}$/.test(value);
   const isValidEmail = (value) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
@@ -135,20 +134,28 @@ const PersonalForm = () => {
       { field: formData.nationality, name: "Nationality" , validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.religion, name: "Religion", validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.community, name: "Community" },
-      { field: formData.caste, name: "Caste", validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
       { field: formData.fathersName, name: "Father's Name" ,  validate: isValidAlphabets, errorMessage: "should contain only alphabets"},
       { field: formData.mothersName, name: "Mother's Name" , validate: isValidAlphabets, errorMessage: "should contain only alphabets" },
       { field: formData.parentsStatus, name: "Parents Status" },
       { field: formData.income, name: "Parents income" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.maritalStatus, name: "Marital Status" },
       { field: formData.profilePhoto, name: "Profile Photo" },
-      { field: formData.communityCertificate, name: "Community Certificate" }
     ];
 
     if (!validateFields(requiredFields)) {
       return false;
     }
 
+    if (formData.community!== "OC" ) {
+      if (!formData.caste || !isValidAlphabets(formData.caste)){
+        toast.error("Caste is required and must contain only letters.");
+        return false;
+      }
+      if (!formData.communityCertificate){
+        toast.error("Community Certificate File is required");
+        return false;
+      }   
+    }
 
     const father = [
       { field: formData.fathersOccupation, name: "Father's Occupation", validate: isValidAlphabets, errorMessage: "should contain only alphabets or be null" },
@@ -226,7 +233,7 @@ const PersonalForm = () => {
   const validateEducationalInfo = () => {
     const requiredFields = [
       { field: formData.flowofstudy, name: "Flow of Study"},
-      { field: formData.sslc, name: "SSLC" ,validate: isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+      { field: formData.sslc, name: "SSLC" ,validate: isValidMark , errorMessage: "mark must be at least 35. Please enter a valid score"},
       { field: formData.sslcFile, name: "SSLC File" },
       { field: formData.emisNumber, name: "EMIS Number" , validate: isValidNumbers, errorMessage: "should contain only digits"},
       { field: formData.firstGraduate, name: "First Graduate" },
@@ -239,9 +246,9 @@ const PersonalForm = () => {
 
     if (formData.flowofstudy.includes("hsc")) {
       const hscFields = [
-        { field: formData.hsc1Year, name: "HSC First Year" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.hsc1Year, name: "HSC First Year" ,validate:isValidMark , errorMessage: "mark must be at least 35. Please enter a valid score"},
         { field: formData.hsc1YearFile, name: "HSC First Year File" },
-        { field: formData.hsc2Year, name: "HSC Second Year" , validate: isValidMark, errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.hsc2Year, name: "HSC Second Year" , validate: isValidMark, errorMessage: "mark must be at least 35. Please enter a valid score"},
         { field: formData.hsc2YearFile, name: "HSC Second Year File" }
       ];
 
@@ -252,7 +259,7 @@ const PersonalForm = () => {
 
     if (formData.flowofstudy.includes("diploma")) {
       const diplomaFields = [
-        { field: formData.diploma, name: "Diploma" ,validate:isValidMark , errorMessage: "should be a valid decimal upto two digits"},
+        { field: formData.diploma, name: "Diploma" ,validate:isValidMark , errorMessage: "mark must be at least 35. Please enter a valid score"},
         { field: formData.diplomaFile, name: "Diploma File" }
       ];
 
@@ -288,7 +295,6 @@ const PersonalForm = () => {
       { field: formData.courseJoinedDate, name: "Course Joined Date" },
       { field: formData.semester, name: "Semester" },
       { field: formData.cgpa, name: "CGPA" , validate: isValidDecimal, errorMessage: "should be a valid decimal upto two digits"},
-      { field: formData.fastTrack, name: "FastTrack" },
       { field: formData.studentStatus, name: "Student Status" }
     ];
 
@@ -388,6 +394,7 @@ const PersonalForm = () => {
                <select className='dropdown' name="bloodGroup" value={formData.bloodGroup || ''} onChange={handleOtherField} >
                  <option value=''>Select</option>
                  <option value="A+" >A+</option>
+                 <option value="A2+" >A2+</option>
                  <option value="A-" >A-</option>
                  <option value="B+" >B+</option>
                  <option value="B-" >B-</option>
@@ -415,18 +422,24 @@ const PersonalForm = () => {
                  <option value="BC" >BC</option>
                  <option value="MBC" >MBC</option>
                  <option value="SC" >SC</option>
+                 <option value="ST" >ST</option>
                  <option value="DNC" >DNC</option>
                  <option value="BCM" >BCM</option>
                </select>
              </div>
-  
+             {formData.community!=="OC" && (
              <div className="caste">
                <Allfields fieldtype="text" value="Caste" inputname="caste" formData={formData} setFormData={setFormData}/>
              </div>
-
+             )}
             
-             <div className="income">
-               <Allfields fieldtype="text" value="Parent / Guardian Income" inputname="income"  formData={formData} setFormData={setFormData} />
+            <div className="marital_status">
+               <label htmlFor="MaritalStatus">Marital Status</label>
+               <select className="dropdown" name='maritalStatus'value={formData.maritalStatus || ''}  onChange={handleOtherField} >
+                 <option value=''>Select</option>
+                 <option value="Unmarried" >Unmarried</option>
+                 <option value="Married" >Married</option>
+               </select>
              </div>
   
              <div className="parents_status">
@@ -488,17 +501,11 @@ const PersonalForm = () => {
         </>
       )}
 
-             
-             <div className="marital_status">
-               <label htmlFor="MaritalStatus">Marital Status</label>
-               <select className="dropdown" name='maritalStatus'value={formData.maritalStatus || ''}  onChange={handleOtherField} >
-                 <option value=''>Select</option>
-                 <option value="Unmarried" >Unmarried</option>
-                 <option value="Married" >Married</option>
-               </select>
-             </div>
+            <div className="income">
+              <Allfields fieldtype="text" value="Parent / Guardian Income" inputname="income"  formData={formData} setFormData={setFormData} />
+            </div>
   
-  
+             {formData.community!=="OC" && (
                 <div className="community_certificate" id="community_certificate">
                   <input type="file" id="communityCertificate" name="communityCertificate" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('communityCertificate')} />
                   <p className="marksheet_label">Community Certificate</p>
@@ -508,7 +515,10 @@ const PersonalForm = () => {
                   </label>
                   {fileNames['communityCertificate'] && <p className="uploaded_file_name">{fileNames['communityCertificate']} Uploaded</p>}
              </div>
+             )}
              <div className="profile-photo">
+              
+      <label htmlFor="file-input" id="profile_photo_label">Profile Photo</label>
              <FileUpload input_name={"profilePhoto"} onFileSelect={handleFileChange('profilePhoto')} formData={formData} setFormData={setFormData} />
              </div>
             </div>
@@ -665,7 +675,7 @@ const PersonalForm = () => {
 
       {formData.flowofstudy === 'hsc' || formData.flowofstudy === 'hsc,diploma' ? (
         <div className="hsc_1_Year">
-          <Allfields fieldtype="text" value="HSC 1st YEAR" inputname="hsc1Year" formData={formData} setFormData={setFormData} />
+          <Allfields fieldtype="text" value="HSC 1st YEAR %" inputname="hsc1Year" formData={formData} setFormData={setFormData} />
           <div className="field">
             <p className="marksheet_label">HSC I-year Marksheet</p>
             <input type="file" id="hsc1-input" name="hsc1YearFile" className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('hsc1YearFile')} />
@@ -680,7 +690,7 @@ const PersonalForm = () => {
 
       {formData.flowofstudy === 'hsc' || formData.flowofstudy === 'hsc,diploma' ? (
         <div className="hsc_2_Year">
-          <Allfields fieldtype="text" value="HSC 2nd YEAR"  inputname="hsc2Year"  formData={formData} setFormData={setFormData}/>
+          <Allfields fieldtype="text" value="HSC 2nd YEAR %"  inputname="hsc2Year"  formData={formData} setFormData={setFormData}/>
           <div className="field">
             <p className="marksheet_label">HSC II-year Marksheet</p>
             <input type="file" id="hsc2-input"  name="hsc2YearFile"  className="educational-document" style={{ display: 'none' }} onChange={handleFileChange('hsc2YearFile')}/>
@@ -836,16 +846,9 @@ const PersonalForm = () => {
                 <option value="VIII" >VIII</option>
               </select>
             </div>
+            
             <div className="cgpa">
               <Allfields fieldtype="text" value="CGPA" inputname="cgpa" formData={formData} setFormData={setFormData} />
-            </div>
-         
-            <div className="fasttrack">
-              <label htmlFor="fast_Track">Fasttrack</label>
-              <div className="radio">
-                <div className="radio-spacing"><input type="radio" name="fastTrack" value="Yes" onChange={handleOtherField} checked={formData.fastTrack === 'Yes'} /> Yes</div>
-                <div className="radio-spacing"><input type="radio" name="fastTrack" value="No"  onChange={handleOtherField}checked={formData.fastTrack === 'No'} /> No</div>
-              </div>
             </div>
            
             <div className="student_status">

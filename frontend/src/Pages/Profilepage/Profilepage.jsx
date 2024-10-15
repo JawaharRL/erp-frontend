@@ -504,7 +504,7 @@ function StudentDisplay() {
                   <a
                     className="marksheet_download_links"
                     href={`data:${diplomaMimeType};base64,${studentWithFiles.diplomaFileContent}`}
-                    download={`diploma_File.${diplomaExtension}`}
+                    download={`diplomafile.${diplomaExtension}`}
                   >
                     Download Diploma File
                   </a>
@@ -532,7 +532,7 @@ function StudentDisplay() {
                   <a
                     className="marksheet_download_links"
                     href={`data:${firstGraduateFileMimeType};base64,${studentWithFiles.firstGraduateFileContent}`}
-                    download={`sslcfile.${firstGraduateFileExtension}`}
+                    download={`firstgraduatefile.${firstGraduateFileExtension}`}
                   >
                     Download First Graduate File
                   </a>
@@ -543,7 +543,7 @@ function StudentDisplay() {
                   <a
                     className="marksheet_download_links"
                     href={`data:${specialCategoryFileMimeType};base64,${studentWithFiles.specialCategoryFileContent}`}
-                    download={`sslcfile.${specialCategoryFileExtension}`}
+                    download={`specialcategoryfile.${specialCategoryFileExtension}`}
                   >
                     Download Special Category File
                   </a>
@@ -606,10 +606,6 @@ function StudentDisplay() {
             <div className="profile__regulation">
               <p className="profile_lables">Regulation</p>
               <p className="field_bckground"> {studentWithFiles.regulation}</p>
-            </div>
-            <div className="profile_fast_track">
-              <p className="profile_lables">Fast Track</p>
-              <p className="field_bckground"> {studentWithFiles.fastTrack}</p>
             </div>
             <div className="profile_cgpa">
               <p className="profile_lables">CGPA</p>
