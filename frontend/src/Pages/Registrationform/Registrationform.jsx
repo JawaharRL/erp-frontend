@@ -68,6 +68,7 @@ const PersonalForm = () => {
         registerNo : location.state.userId, 
         programme: null, 
         discipline: null, 
+        section:null,
         batch: null, 
         admissionNumber: null, 
         regulation: null, 
@@ -796,6 +797,18 @@ const PersonalForm = () => {
                 <option value="Microwave and Optical Communication" >Microwave and Optical Communication</option>
               </select>
             </div>
+
+            {(formData.discipline==="Mechanical Engineering"|| formData.discipline==="Electrical and Electronics Engineering" ) && (
+                 <div className="section">
+                 <label htmlFor="section">Class</label>
+                 <select className="dropdown" name="section"  value={formData.section || ''} onChange={handleOtherField}>
+                   <option value=''>Select</option>
+                   <option value="Class A">Class A</option>
+                   <option value="Class B" >Class B</option>
+                 </select>
+               </div>
+              )}
+
             <div className="regulation" >
                <label htmlFor="regulation">Regulation</label>
                <select className="dropdown" name="regulation" value={formData.regulation || ''} onChange={handleOtherField} >
