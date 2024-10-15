@@ -467,12 +467,6 @@ const Modal = ({ student, onClose }) => {
                       </tr>
                       <tr>
                         <td>
-                          <strong>Fast Track:</strong>
-                        </td>
-                        <td>{student.fastTrack}</td>
-                      </tr>
-                      <tr>
-                        <td>
                           <strong>Student Status:</strong>
                         </td>
                         <td>{student.studentStatus}</td>
@@ -483,7 +477,7 @@ const Modal = ({ student, onClose }) => {
               <Allbuttons   value="Previous" image={Previouswhite} target={() => handleSectionClick("education")}/>
               <Allbuttons  value="Submit" image={Nextwhite} target={onSubmit}/>
               </div>
-                </div>
+              </div>
                 
               )}
             </div>
