@@ -102,8 +102,8 @@ const PersonalForm = () => {
   
   const isValidAlphabets = (value) => /^[A-Za-z\s]+$/.test(value);
   const isValidNumbers = (value) => /^[0-9]+$/.test(value);
-  const isValidDecimal = (value) => /^\d\.\d+$/.test(value);
-  const isValidMark = (value) => /^([3-9][0-9]{1})(\.[0-9]{1,2})?$/.test(value);
+  const isValidDecimal = (value) => /^(10(\.0+)?|[0-9](\.\d+)?)$/.test(value);
+  const isValidMark = (value) => /^(100|[3-9][0-9]{1})(\.[0-9]{1,4})?$/.test(value);
   const isValidAadharNumber = (value) => /^\d{12}$/.test(value);
   const isValidMobileNumber = (value) => /^[6-9]\d{9}$/.test(value);
   const isValidEmail = (value) => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
@@ -394,7 +394,8 @@ const PersonalForm = () => {
                <label htmlFor="Bloodgroup">Blood Group</label>
                <select className='dropdown' name="bloodGroup" value={formData.bloodGroup || ''} onChange={handleOtherField} >
                  <option value=''>Select</option>
-                 <option value="A+" >A+</option>
+                 <option value="A2+" >A+</option>
+                 <option value="A+" >A1+</option>
                  <option value="A2+" >A2+</option>
                  <option value="A-" >A-</option>
                  <option value="B+" >B+</option>
@@ -503,7 +504,7 @@ const PersonalForm = () => {
       )}
 
             <div className="income">
-              <Allfields fieldtype="text" value="Parent / Guardian Income" inputname="income"  formData={formData} setFormData={setFormData} />
+              <Allfields fieldtype="text" value="Parent/Guardian Anual Income" inputname="income"  formData={formData} setFormData={setFormData} />
             </div>
   
              {formData.community!=="OC" && (
