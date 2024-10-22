@@ -1,11 +1,8 @@
 import React from 'react'
-import { useLocation , useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 
-function StudentInfoHOD() {
-  const location = useLocation();
-  const navigate = useNavigate();
+function StudentInfohod() {
   return (
     <div>
         <Header></Header>
@@ -16,4 +13,4 @@ function StudentInfoHOD() {
   )
 }
 
-export default StudentInfoHOD
+export default StudentInfohod
