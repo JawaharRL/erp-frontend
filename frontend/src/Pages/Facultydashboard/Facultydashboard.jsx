@@ -5,6 +5,7 @@ import Header from '../../Components/Header/Header.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 import Modal from '../../Components/Modal/Modal.jsx';
 import Allbuttons from '../../Components/Allbuttons/Allbuttons.jsx';
+import Facultyfields from '../../Components/Facultyfields/Facultyfields.jsx';
 import Profileicon from '../../Assets/profile.svg';
 import View from '../../Assets/eyewhite.svg';
 import Logout from '../../Assets/logout.svg';
@@ -16,11 +17,13 @@ function Facultydashboard() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [openProfile, setOpenProfile] = useState(false); // State for faculty profile
   const [openModal, setOpenModal] = useState(false); // State for student details modal
+  const [openAddClassModal, setOpenAddClassModal] = useState(false); 
   const location = useLocation();
   const navigate = useNavigate();
   const facultyId = location.state.userId;
 
   useEffect(() => {
+    localStorage.clear();
     const fetchFaculty = async () => {
       try {
         const response = await axios.get(`/api/faculty/${facultyId}`);
@@ -70,6 +73,15 @@ function Facultydashboard() {
     setOpenModal(false); // Close the modal if profile is opened
   };
 
+  // Function to open Add Class Modal
+  const openAddClass = () => {
+    setOpenAddClassModal(true); // Open Add Class modal
+  };
+  // Function to close Add Class Modal
+  const closeAddClassModal = () => {
+    setOpenAddClassModal(false); // Close Add Class modal
+  };
+
   if (!faculty) {
     return <p>Loading faculty data...</p>;
   }
@@ -92,6 +104,11 @@ function Facultydashboard() {
             <Allbuttons value="Logout" image={Logout} target={handleLogoutClick} />
           </div>
         </div>
+      )}
+
+      <Allbuttons value="Add Class" target={openAddClass} />
+      {openAddClassModal && (
+        <Facultyfields email={faculty.email} onClose={closeAddClassModal} />
       )}
 
       <div className="faculty_dashboard_container">
@@ -120,7 +137,7 @@ function Facultydashboard() {
             <table className="student_table">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>S.no</th>
                   <th>Name</th>
                   <th>Register No</th>
                   <th>Email ID</th>
@@ -147,7 +164,6 @@ function Facultydashboard() {
         </div>
       </div>
 
-      {/* Modal for displaying student details */}
       <Modal student={selectedStudent} onClose={closeModal} />
 
       <div id="one">

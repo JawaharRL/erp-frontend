@@ -6,8 +6,6 @@ import Formtitle from '../../Components/Formtitle/Formtitle';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Nextwhite from '../../Assets/Nextwhite.svg';
-import Add from '../../Assets/add.svg';
-import Remove from '../../Assets/remove.svg';
 
 function Facultyregistration() {
   const navigate = useNavigate();
@@ -18,26 +16,21 @@ function Facultyregistration() {
     email: location.state.userId,
     mobileNumber: '',
     discipline: '',
-    handlingBatch: ''
+    faculty:'',
+    handlingBatch:''
   });
-
-  const [fields, setFields] = useState([{ handlingDiscipline: '', academicYear: '' }]);
-  const maxFields = 10;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataToSend = {
-      ...formData,
-      handlingClass: fields.map(field => `${field.handlingDiscipline}#${field.academicYear}`).join(', ')
-    };
-
     try {
-      const response = await axios.post('/api/faculty/post', formDataToSend, {
+      const response = await axios.post('/api/faculty/post', formData, {
         headers: { 'Content-Type': 'application/json' }
       });
       console.log('Form submitted successfully:', response.data);
+      localStorage.clear();
       toast("Registration Successful");
+      localStorage.clear();
       await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate('/login-page');
     } catch (error) {
@@ -49,35 +42,6 @@ function Facultyregistration() {
   const handleOtherField = (e) => {
     const { name, value } = e.target;
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
-  };
-
-  const handleAddField = () => {
-    if (fields.length < maxFields) {
-      setFields([...fields, { handlingDiscipline: '', academicYear: '' }]);
-    } else {
-      toast(`You can only add up to ${maxFields} fields.`);
-    }
-  };
-
-  const handleRemoveField = (index) => {
-    if (fields.length > 1) {
-      setFields(fields.filter((_, i) => i !== index));
-    } else {
-      toast('At least one field is required.');
-    }
-  };
-
-  const handleDisciplineChange = (index, value) => {
-    const newFields = [...fields];
-    newFields[index].handlingDiscipline = value;
-    setFields(newFields);
-  };
-
-  const handleAcademicYearChange = (index, event) => {
-    const { value } = event.target;
-    const newFields = [...fields];
-    newFields[index].academicYear = value;
-    setFields(newFields);
   };
 
   return (
@@ -109,51 +73,31 @@ function Facultyregistration() {
               <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
               <option value="Electronics and communication Engineering">Electronics and communication Engineering</option>
               <option value="Computer Science and Engineering">Computer Science and Engineering</option>
-              <option value="Structural Engineering">Structural Engineering</option>
-              <option value="Environmental Engineering">Environmental Engineering</option>
-              <option value="Manufacturing Engineering">Manufacturing Engineering</option>
-              <option value="Computer Aided Design">Computer Aided Design</option>
-              <option value="Power Electronics and Drives">Power Electronics and Drives</option>
-              <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
+              <option value="Department of Physics">Department of Physics</option>
+              <option value="Department of Chemistry">Department of Chemistry</option>
+              <option value="Department of Mathematics">Department of Mathematics</option>
+              <option value="Department of English">Department of English</option>
+              <option value="Department of Tamil">Department of Tamil</option>
+              <option value="Department of Physical Education">Department of Physical Education</option>
             </select>
           </div>
 
-          <Allfields fieldtype="text" value="Handling batch" inputname="handlingBatch" formData={formData} setFormData={setFormData} />
-
-          {fields.map((field, index) => (
-            <div className="handling_class" key={index}>
-              <label>Handling Discipline</label>
-              <select className='dropdown' value={field.handlingDiscipline || ''} onChange={(event) => handleDisciplineChange(index, event.target.value)}>
-                <option value=''>Select</option>
-                <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-                <option value="Electronics and communication Engineering">Electronics and communication Engineering</option>
-                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
-                <option value="Structural Engineering">Structural Engineering</option>
-                <option value="Environmental Engineering">Environmental Engineering</option>
-                <option value="Manufacturing Engineering">Manufacturing Engineering</option>
-                <option value="Computer Aided Design">Computer Aided Design</option>
-                <option value="Power Electronics and Drives">Power Electronics and Drives</option>
-                <option value="Microwave and Optical Communication">Microwave and Optical Communication</option>
-              </select>
-              
-              <div id='hi'>
-              <label>Handling Academic Year</label>
-              <input type="text" value={field.academicYear} onChange={(event) => handleAcademicYearChange(index, event)} placeholder={`Enter academic year for field ${index + 1}`} />
-              </div>
-              
-              {fields.length > 1 && (              
-                <Allbuttons value="Remove" image={Remove} target={() => handleRemoveField(index)} type="button" />
-              )}
-            </div>
-          ))}
+          
+          <div className="faculty">
+               <label htmlFor="Faculty">Faculty</label>
+               <div className="radio" >
+                 <div className="radio-spacing"><input type="radio" name="faculty" value="Yes" onChange={handleOtherField} checked={formData.faculty === 'Yes'}/> Yes</div>
+                 <div className="radio-spacing"><input type="radio" name="faculty" value="No" onChange={handleOtherField} checked={formData.faculty === 'No'} /> No</div>
+                 
+               </div>
+             </div>
+             {
+              formData.faculty==="Yes" && (
+              <Allfields fieldtype="text" value="Handling batch" inputname="handlingBatch" formData={formData} setFormData={setFormData} />)
+             }
                     
         </div>
-        {fields.length < maxFields && (
-            <Allbuttons value="Add Class" image={Add} target={handleAddField} type="button" />
-          )}
-      
+       
        <Allbuttons value="submit" image={Nextwhite} />
     
       </form>
