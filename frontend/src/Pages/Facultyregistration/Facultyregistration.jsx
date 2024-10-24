@@ -95,10 +95,11 @@ function Facultyregistration() {
               formData.faculty==="Yes" && (
               <Allfields fieldtype="text" value="Handling batch" inputname="handlingBatch" formData={formData} setFormData={setFormData} />)
              }
+             <div id='faculty_form_submit_button'>
+             <Allbuttons value="submit" image={Nextwhite} />
+             </div>
                     
         </div>
-       
-       <Allbuttons value="submit" image={Nextwhite} />
     
       </form>
     </div>
